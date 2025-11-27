@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config/api';
 import { MapContainer, TileLayer, Marker, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
@@ -140,7 +141,7 @@ const LandMap: React.FC = () => {
     const [selectedDistrict, setSelectedDistrict] = useState<District | null>(null);
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/districts')
+        fetch(`${API_BASE_URL}/districts`)
             .then(res => res.json())
             .then(data => setDistricts(data))
             .catch(err => console.error('Failed to fetch districts:', err));

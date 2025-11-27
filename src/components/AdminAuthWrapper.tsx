@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 interface AdminAuthWrapperProps {
     children: React.ReactNode;
@@ -27,7 +28,7 @@ export const AdminAuthWrapper: React.FC<AdminAuthWrapperProps> = ({ children }) 
         setLoading(true);
         try {
             // Test the code against a protected endpoint
-            const response = await fetch('http://localhost:3001/api/memorandums', {
+            const response = await fetch(`${API_BASE_URL}/memorandums`, {
                 headers: {
                     'x-admin-secret': secret
                 }

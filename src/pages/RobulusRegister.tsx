@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 const RobulusRegister: React.FC = () => {
     const [memorandumCount, setMemorandumCount] = useState<number>(0);
@@ -15,7 +16,7 @@ const RobulusRegister: React.FC = () => {
 
     useEffect(() => {
         setIsVisible(true);
-        fetch('http://localhost:3001/api/memorandums/count')
+        fetch(`${API_BASE_URL}/memorandums/count`)
             .then(res => res.json())
             .then(data => setMemorandumCount(data.count))
             .catch(err => console.error('Failed to fetch count', err));
@@ -62,7 +63,7 @@ const RobulusRegister: React.FC = () => {
         e.preventDefault();
         setError('');
         try {
-            const response = await fetch('http://localhost:3001/api/memorandums', {
+            const response = await fetch(`${API_BASE_URL}/memorandums`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

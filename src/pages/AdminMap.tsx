@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config/api';
 import { motion } from 'framer-motion';
 import { AdminAuthWrapper } from '../components/AdminAuthWrapper';
 
@@ -79,7 +80,7 @@ const AdminMap: React.FC = () => {
     const MAP_HEIGHT = 150 * VISUAL_SCALE;
 
     const fetchDistricts = () => {
-        fetch('http://localhost:3001/api/districts')
+        fetch(`${API_BASE_URL}/districts`)
             .then(res => {
                 if (!res.ok) throw new Error('Failed to connect to server');
                 return res.json();
@@ -103,7 +104,7 @@ const AdminMap: React.FC = () => {
         setStatus('Saving...');
         try {
             const updates = districts.map(d =>
-                fetch(`http://localhost:3001/api/districts/${d.id}`, {
+                fetch(`${API_BASE_URL}/districts/${d.id}`, {
                     method: 'PUT',
                     headers: getAdminHeaders(),
                     body: JSON.stringify({
@@ -126,7 +127,7 @@ const AdminMap: React.FC = () => {
     const deleteSalesZone = async (id: number) => {
         if (!confirm('Delete this zone?')) return;
         try {
-            await fetch(`http://localhost:3001/api/sales-zones/${id}`, {
+            await fetch(`${API_BASE_URL}/sales-zones/${id}`, {
                 method: 'DELETE',
                 headers: getAdminHeaders()
             });
@@ -139,7 +140,7 @@ const AdminMap: React.FC = () => {
     const addBuilding = async () => {
         if (!selectedDistrictId) return;
         try {
-            const res = await fetch('http://localhost:3001/api/buildings', {
+            const res = await fetch(`${API_BASE_URL}/buildings`, {
                 method: 'POST',
                 headers: getAdminHeaders(),
                 body: JSON.stringify({
@@ -162,7 +163,7 @@ const AdminMap: React.FC = () => {
     const deleteBuilding = async (id: number) => {
         if (!confirm('Delete this building?')) return;
         try {
-            await fetch(`http://localhost:3001/api/buildings/${id}`, {
+            await fetch(`${API_BASE_URL}/buildings/${id}`, {
                 method: 'DELETE',
                 headers: getAdminHeaders()
             });
@@ -252,7 +253,7 @@ const AdminMap: React.FC = () => {
         if (!selectedDistrictId || previewZones.length === 0) return;
 
         try {
-            const res = await fetch('http://localhost:3001/api/sales-zones/bulk', {
+            const res = await fetch(`${API_BASE_URL}/sales-zones/bulk`, {
                 method: 'POST',
                 headers: getAdminHeaders(),
                 body: JSON.stringify({
@@ -547,7 +548,7 @@ const AdminMap: React.FC = () => {
                                         onClick={async () => {
                                             if (confirm('Are you sure you want to DELETE ALL zones in this district? This cannot be undone.')) {
                                                 try {
-                                                    const res = await fetch(`http://localhost:3001/api/sales-zones/district/${selectedDistrictId}`, {
+                                                    const res = await fetch(`${API_BASE_URL}/sales-zones/district/${selectedDistrictId}`, {
                                                         method: 'DELETE',
                                                         headers: getAdminHeaders()
                                                     });
@@ -584,7 +585,7 @@ const AdminMap: React.FC = () => {
                                         onClick={async () => {
                                             if (confirm('Delete zones ONLY within the current blue dashed area?')) {
                                                 try {
-                                                    const res = await fetch(`http://localhost:3001/api/sales-zones/district/${selectedDistrictId}/clear-area`, {
+                                                    const res = await fetch(`${API_BASE_URL}/sales-zones/district/${selectedDistrictId}/clear-area`, {
                                                         method: 'POST',
                                                         headers: getAdminHeaders(),
                                                         body: JSON.stringify({

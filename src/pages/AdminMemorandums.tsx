@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 interface Memorandum {
     id: number;
@@ -53,7 +54,7 @@ const AdminMemorandums: React.FC = () => {
     const fetchMemorandums = async (secret: string) => {
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:3001/api/memorandums', {
+            const response = await fetch(`${API_BASE_URL}/memorandums`, {
                 headers: {
                     'x-admin-secret': secret
                 }
@@ -81,7 +82,7 @@ const AdminMemorandums: React.FC = () => {
         if (!secret) return;
 
         try {
-            await fetch(`http://localhost:3001/api/memorandums/${id}/status`, {
+            await fetch(`${API_BASE_URL}/memorandums/${id}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +102,7 @@ const AdminMemorandums: React.FC = () => {
 
         if (!confirm('Are you sure you want to delete this memorandum?')) return;
         try {
-            await fetch(`http://localhost:3001/api/memorandums/${id}`, {
+            await fetch(`${API_BASE_URL}/memorandums/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'x-admin-secret': secret
