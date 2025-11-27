@@ -38,5 +38,7 @@ jobs:
         run: |
           # Ensure target directory exists
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /var/www/juvantia/site"
-          # Sync files
+          # Sync frontend files
           rsync -avz --delete dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/juvantia/site/
+          # Sync backend files
+          rsync -avz --delete backend/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/juvantia/backend/
