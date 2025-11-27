@@ -10,7 +10,7 @@ const Domus: React.FC = () => {
     const timelineSteps = [
         {
             title: "Land Registration",
-            description: "Secure ownership or rental contract for your plot",
+            description: "Juvantia secures the physical territory for the technopark. The official map and landscape are revealed, signaling readiness for construction.",
             icon: "📋",
             status: "available"
         },

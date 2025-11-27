@@ -379,7 +379,7 @@ const Home: React.FC = () => {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     zIndex: -1,
-                    filter: 'brightness(0.3)',
+                    filter: 'brightness(0.15)',
                     y: y1
                 }} />
 
@@ -657,7 +657,7 @@ const Home: React.FC = () => {
                         color: 'var(--color-text-muted)',
                         fontWeight: 300
                     }}>
-                        The city is the shield. The safety of every citizen and their Robulus is our paramount priority.
+                        You can receive charging via Pogo Pin Magnetic, 4P.
                     </p>
                     <GlassCard style={{
                         padding: '2rem',

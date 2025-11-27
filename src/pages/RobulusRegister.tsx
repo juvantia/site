@@ -271,11 +271,13 @@ const RobulusRegister: React.FC = () => {
                                         </a>
                                     </span>
                                 ),
-                                icon: "⚙️"
+                                icon: <img src="/images/firmware.svg" alt="Firmware" style={{ width: '1em', height: '1em', objectFit: 'contain' }} />
                             },
+                            { title: "Install Client", text: "For managing your Robulus (Windows initially)", icon: "💻" },
+                            { title: "Configure Firmware", text: "Firmware configuration setup to match your robot control from the client.", icon: "⚙️" },
                             { title: "Get Citizenship", text: "Register on juvantia.org", icon: "🏛️" },
                             { title: "Send by Parcel", text: "To Europe (Location TBD)", icon: "📦" },
-                            { title: "Install Client", text: "For managing your Robulus (Windows initially)", icon: "💻" }
+                            { title: "Control Robulus", text: "Control your robulus from the game client", icon: "🎮" }
                         ].map((step, index) => (
                             <div
                                 key={index}
