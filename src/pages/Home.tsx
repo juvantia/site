@@ -424,7 +424,7 @@ const Home: React.FC = () => {
                             letterSpacing: '0.02em'
                         }}>
                             <span style={{
-                                background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%)',
+                                background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 50%, var(--color-accent) 100%)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
                                 fontWeight: 400
@@ -572,7 +572,7 @@ const Home: React.FC = () => {
                                 marginBottom: '2rem'
                             }}>
                                 <img
-                                    src="/images/icon_constitution.png"
+                                    src="/images/laws.png"
                                     alt="Laws"
                                     style={{
                                         width: '80px',
