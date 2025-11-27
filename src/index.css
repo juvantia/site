@@ -1,0 +1,105 @@
+:root {
+  /* Brand Colors */
+  --color-primary: #660000;
+  /* Imperial Burgundy */
+  --color-primary-dark: #3a0000;
+  --color-accent: #d4af37;
+  /* Metallic Gold */
+  --color-accent-light: #f3cf55;
+
+  /* Neutral Colors */
+  --color-bg: #050505;
+  /* Deepest Black */
+  --color-bg-paper: #121212;
+  /* Slightly lighter for cards */
+  --color-text: #e0e0e0;
+  /* Silver/White */
+  --color-text-muted: #a0a0a0;
+
+  /* Typography */
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+
+  /* Borders & Effects */
+  --border-gold: 1px solid rgba(212, 175, 55, 0.3);
+  --shadow-gold: 0 0 15px rgba(212, 175, 55, 0.1);
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-accent-light);
+}
+
+button {
+  font-family: var(--font-heading);
+  cursor: pointer;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Hide Leaflet attribution completely (Juvantia rule: no external symbols) */
+.leaflet-control-attribution {
+  display: none !important;
+}
