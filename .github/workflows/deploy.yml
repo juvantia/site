@@ -40,5 +40,17 @@ jobs:
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /var/www/juvantia/site"
           # Sync frontend files
           rsync -avz --delete dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/juvantia/site/
-          # Sync backend files (preserve .env)
-          rsync -avz --delete --exclude='.env' backend/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/juvantia/backend/
+          # Sync backend files (preserve .env and node_modules)
+          rsync -avz --delete --exclude='.env' --exclude='node_modules' --exclude='prisma/dev.db' backend/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/juvantia/backend/
+          
+      - name: Setup Backend on VPS
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            cd /var/www/juvantia/backend
+            # Install dependencies
+            npm install
+            # Generate Prisma client
+            npx prisma generate
+            # Restart backend service (if exists)
+            sudo systemctl restart juvantia-backend || echo "Service not yet configured"
+          EOF
