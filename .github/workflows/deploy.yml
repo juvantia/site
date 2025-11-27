@@ -40,5 +40,5 @@ jobs:
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /var/www/juvantia/site"
           # Sync frontend files
           rsync -avz --delete dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/juvantia/site/
-          # Sync backend files
-          rsync -avz --delete backend/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/juvantia/backend/
+          # Sync backend files (preserve .env)
+          rsync -avz --delete --exclude='.env' backend/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/juvantia/backend/
