@@ -12,6 +12,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     const [isQuickActionsOpen, setIsQuickActionsOpen] = useState(false);
     const floatBarRef = useRef<HTMLDivElement>(null);
 
+    // Обработчик для динамического создания ссылки mailto
+    const handleEmailClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        const user = 'info';
+        const domain = 'juvantia.org';
+        window.location.href = `mailto:${user}@${domain}`;
+    };
+
     const navItems = [
         { path: '/', label: 'Juvantia', shortLabel: 'Home' },
         { path: '/land', label: 'Land Map', shortLabel: 'Land' },
@@ -21,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     ];
 
     const quickActions = [
-        { href: 'mailto:info@juvantia.org', label: 'Mail', icon: '✉' },
+        { href: '#', label: 'Send Mail', icon: '✉', onClick: handleEmailClick },
         { href: 'https://tabularium.juvantia.org', label: 'Tabularium', icon: '📜', external: true },
         { href: 'https://forum.juvantia.org', label: 'Forum', icon: '💬', external: true },
     ];
@@ -70,7 +78,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
             {/* Desktop Footer */}
             <footer className={styles.footer}>
-                <a href="mailto:info@juvantia.org" className={styles.footerLink}>info@juvantia.org</a>
+                <a href="#" onClick={handleEmailClick} className={styles.footerLink}>Send Mail</a>
                 <a href="https://tabularium.juvantia.org" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Tabularium</a>
                 <a href="https://forum.juvantia.org" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Forum</a>
             </footer>
@@ -132,7 +140,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                         scale: 0.8,
                                         transition: { delay: (quickActions.length - index - 1) * 0.03 }
                                     }}
-                                    onClick={() => setIsQuickActionsOpen(false)}
+                                    onClick={(e) => {
+                                        setIsQuickActionsOpen(false);
+                                        // @ts-ignore
+                                        if (action.onClick) action.onClick(e);
+                                    }}
                                 >
                                     <span className={styles.quickActionsItemIcon}>{action.icon}</span>
                                     {action.label}

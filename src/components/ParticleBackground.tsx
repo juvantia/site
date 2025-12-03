@@ -18,7 +18,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const mouseRef = useRef({ x: 0, y: 0 });
-    const animationRef = useRef<number>();
+    const animationRef = useRef<number | null>(null);
 
     const colors = useMemo(() => ({
         primary: new THREE.Color(0x00ff88),

@@ -14,7 +14,7 @@ const CursorGlow: React.FC<CursorGlowProps> = ({
     const glowRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const rafRef = useRef<number>();
+    const rafRef = useRef<number | null>(null);
     const targetRef = useRef({ x: 0, y: 0 });
 
     useEffect(() => {
