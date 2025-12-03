@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../config/api';
+import CursorGlow from '../components/CursorGlow';
 
 const RobulusRegister: React.FC = () => {
     const [memorandumCount, setMemorandumCount] = useState<number>(0);
@@ -13,13 +14,18 @@ const RobulusRegister: React.FC = () => {
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
     const [isVisible, setIsVisible] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         setIsVisible(true);
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
         fetch(`${API_BASE_URL}/memorandums/count`)
             .then(res => res.json())
             .then(data => setMemorandumCount(data.count))
             .catch(err => console.error('Failed to fetch count', err));
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -87,10 +93,12 @@ const RobulusRegister: React.FC = () => {
     return (
         <div style={{
             minHeight: '100vh',
-            background: 'linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%)',
+            background: 'var(--color-bg)',
             position: 'relative',
             overflow: 'hidden'
         }}>
+            <CursorGlow size={350} opacity={0.12} />
+
             {/* Animated Background Elements */}
             <div style={{
                 position: 'absolute',
@@ -98,10 +106,9 @@ const RobulusRegister: React.FC = () => {
                 right: '10%',
                 width: '500px',
                 height: '500px',
-                background: 'radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%)',
                 borderRadius: '50%',
                 filter: 'blur(80px)',
-                animation: 'float 20s ease-in-out infinite',
                 pointerEvents: 'none'
             }} />
             <div style={{
@@ -110,16 +117,15 @@ const RobulusRegister: React.FC = () => {
                 left: '10%',
                 width: '400px',
                 height: '400px',
-                background: 'radial-gradient(circle, rgba(102, 0, 0, 0.15) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%)',
                 borderRadius: '50%',
                 filter: 'blur(80px)',
-                animation: 'float 25s ease-in-out infinite reverse',
                 pointerEvents: 'none'
             }} />
 
             <div style={{
-                padding: '6rem 2rem 4rem',
-                maxWidth: '1400px',
+                padding: isMobile ? '4rem 1rem 4rem' : '6rem 2rem 4rem',
+                maxWidth: '1200px',
                 margin: '0 auto',
                 position: 'relative',
                 opacity: isVisible ? 1 : 0,
@@ -129,46 +135,48 @@ const RobulusRegister: React.FC = () => {
                 {/* Hero Section */}
                 <div style={{
                     textAlign: 'center',
-                    marginBottom: '6rem',
+                    marginBottom: isMobile ? '4rem' : '6rem',
                     position: 'relative'
                 }}>
                     <div style={{
                         display: 'inline-block',
                         position: 'relative',
-                        marginBottom: '3rem'
+                        marginBottom: isMobile ? '2rem' : '3rem'
                     }}>
                         <img
                             src="/images/ROBULUS.png"
                             alt="Robulus"
                             style={{
-                                maxWidth: '450px',
+                                maxWidth: isMobile ? '280px' : '400px',
                                 width: '100%',
                                 height: 'auto',
-                                borderRadius: '24px',
-                                boxShadow: '0 20px 60px rgba(212, 175, 55, 0.3), 0 0 100px rgba(212, 175, 55, 0.1)',
+                                borderRadius: isMobile ? '20px' : '24px',
+                                boxShadow: '0 20px 60px rgba(0, 255, 136, 0.2), 0 0 80px rgba(0, 255, 136, 0.1)',
+                                border: '1px solid rgba(0, 255, 136, 0.2)',
                                 transform: 'translateZ(0)',
-                                transition: 'transform 0.3s ease',
+                                transition: 'all 0.4s ease',
                             }}
-                            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02) translateZ(0)'}
-                            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1) translateZ(0)'}
+                            onMouseOver={(e) => {
+                                if (!isMobile) {
+                                    e.currentTarget.style.transform = 'scale(1.02) translateZ(0)';
+                                    e.currentTarget.style.boxShadow = '0 25px 70px rgba(0, 255, 136, 0.3), 0 0 100px rgba(0, 255, 136, 0.15)';
+                                }
+                            }}
+                            onMouseOut={(e) => {
+                                if (!isMobile) {
+                                    e.currentTarget.style.transform = 'scale(1) translateZ(0)';
+                                    e.currentTarget.style.boxShadow = '0 20px 60px rgba(0, 255, 136, 0.2), 0 0 80px rgba(0, 255, 136, 0.1)';
+                                }
+                            }}
                         />
-                        <div style={{
-                            position: 'absolute',
-                            inset: '-20px',
-                            background: 'linear-gradient(45deg, var(--color-accent), var(--color-primary))',
-                            borderRadius: '24px',
-                            opacity: 0.1,
-                            filter: 'blur(30px)',
-                            zIndex: -1
-                        }} />
                     </div>
 
                     <p style={{
-                        fontSize: '1.5rem',
+                        fontSize: isMobile ? '1.1rem' : '1.35rem',
                         lineHeight: '1.8',
-                        maxWidth: '900px',
+                        maxWidth: '800px',
                         margin: '0 auto',
-                        background: 'linear-gradient(135deg, var(--color-text) 0%, var(--color-accent) 100%)',
+                        background: 'linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         fontWeight: 300,
@@ -177,8 +185,8 @@ const RobulusRegister: React.FC = () => {
                         Juvantia will occupy real land when it receives 1000 memorandums for sending the required Robuli.
                         <br />
                         <span style={{
-                            fontSize: '1.2rem',
-                            background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%)',
+                            fontSize: isMobile ? '0.95rem' : '1.1rem',
+                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             fontWeight: 500
@@ -189,24 +197,35 @@ const RobulusRegister: React.FC = () => {
                 </div>
 
                 {/* Steps Section */}
-                <div style={{ marginBottom: '6rem' }}>
+                <div style={{ marginBottom: isMobile ? '4rem' : '6rem' }}>
                     <h2 style={{
                         textAlign: 'center',
-                        marginBottom: '3rem',
-                        fontSize: '2.5rem',
-                        fontWeight: 300,
+                        marginBottom: isMobile ? '2rem' : '3rem',
+                        fontSize: isMobile ? '1.5rem' : '2.2rem',
+                        fontWeight: 400,
                         letterSpacing: '-0.02em',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
                     }}>
                         How to Participate
                     </h2>
-                    <div style={{
+                    
+                    {/* Mobile: Horizontal scroll | Desktop: Grid */}
+                    <div style={isMobile ? {
+                        display: 'flex',
+                        overflowX: 'auto',
+                        scrollSnapType: 'x mandatory',
+                        gap: '1rem',
+                        padding: '0.5rem 0',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none'
+                    } : {
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                        gap: '2rem'
+                        gridTemplateColumns: 'repeat(4, 1fr)',
+                        gap: '1.5rem'
                     }}>
+                        <style>{`.steps-scroll::-webkit-scrollbar { display: none; }`}</style>
                         {[
                             {
                                 title: "Read Constitution",
@@ -218,9 +237,9 @@ const RobulusRegister: React.FC = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             style={{
-                                                color: 'var(--color-accent)',
+                                                color: 'var(--color-primary)',
                                                 textDecoration: 'none',
-                                                borderBottom: '1px solid var(--color-accent)',
+                                                borderBottom: '1px solid var(--color-primary)',
                                                 transition: 'all 0.3s ease'
                                             }}
                                         >
@@ -240,9 +259,9 @@ const RobulusRegister: React.FC = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             style={{
-                                                color: 'var(--color-accent)',
+                                                color: 'var(--color-primary)',
                                                 textDecoration: 'none',
-                                                borderBottom: '1px solid var(--color-accent)',
+                                                borderBottom: '1px solid var(--color-primary)',
                                                 transition: 'all 0.3s ease'
                                             }}
                                         >
@@ -262,9 +281,9 @@ const RobulusRegister: React.FC = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             style={{
-                                                color: 'var(--color-accent)',
+                                                color: 'var(--color-primary)',
                                                 textDecoration: 'none',
-                                                borderBottom: '1px solid var(--color-accent)',
+                                                borderBottom: '1px solid var(--color-primary)',
                                                 transition: 'all 0.3s ease'
                                             }}
                                         >
@@ -283,54 +302,51 @@ const RobulusRegister: React.FC = () => {
                             <div
                                 key={index}
                                 style={{
-                                    background: 'rgba(255, 255, 255, 0.02)',
+                                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
                                     backdropFilter: 'blur(10px)',
-                                    padding: '2.5rem',
-                                    borderRadius: '24px',
-                                    border: '1px solid rgba(212, 175, 55, 0.15)',
+                                    padding: isMobile ? '1.5rem' : '2rem',
+                                    borderRadius: isMobile ? '16px' : '20px',
+                                    border: '1px solid rgba(0, 255, 136, 0.12)',
                                     position: 'relative',
                                     overflow: 'hidden',
                                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                                    cursor: 'default'
+                                    cursor: 'default',
+                                    ...(isMobile && {
+                                        flexShrink: 0,
+                                        width: '260px',
+                                        scrollSnapAlign: 'start'
+                                    })
                                 }}
                                 onMouseOver={(e) => {
-                                    e.currentTarget.style.transform = 'translateY(-8px)';
-                                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
-                                    e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.4)';
-                                    e.currentTarget.style.boxShadow = '0 20px 40px rgba(212, 175, 55, 0.2)';
+                                    if (!isMobile) {
+                                        e.currentTarget.style.transform = 'translateY(-6px)';
+                                        e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.4)';
+                                        e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 255, 136, 0.15)';
+                                    }
                                 }}
                                 onMouseOut={(e) => {
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
-                                    e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.15)';
-                                    e.currentTarget.style.boxShadow = 'none';
+                                    if (!isMobile) {
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.12)';
+                                        e.currentTarget.style.boxShadow = 'none';
+                                    }
                                 }}
                             >
                                 <div style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    right: 0,
-                                    width: '150px',
-                                    height: '150px',
-                                    background: 'radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
-                                    pointerEvents: 'none'
-                                }} />
-
-                                <div style={{
-                                    fontSize: '3rem',
+                                    fontSize: isMobile ? '2rem' : '2.5rem',
                                     marginBottom: '1rem',
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '1rem'
                                 }}>
                                     <span style={{
-                                        fontSize: '1.2rem',
-                                        fontWeight: 700,
-                                        color: 'var(--color-accent)',
-                                        background: 'rgba(212, 175, 55, 0.1)',
-                                        width: '40px',
-                                        height: '40px',
-                                        borderRadius: '12px',
+                                        fontSize: isMobile ? '0.85rem' : '1rem',
+                                        fontWeight: 600,
+                                        color: 'var(--color-primary)',
+                                        background: 'rgba(0, 255, 136, 0.1)',
+                                        width: isMobile ? '30px' : '36px',
+                                        height: isMobile ? '30px' : '36px',
+                                        borderRadius: '10px',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center'
@@ -340,16 +356,16 @@ const RobulusRegister: React.FC = () => {
                                     <span>{step.icon}</span>
                                 </div>
                                 <h3 style={{
-                                    fontWeight: 600,
-                                    marginBottom: '0.75rem',
+                                    fontWeight: 500,
+                                    marginBottom: '0.5rem',
                                     color: 'var(--color-text)',
-                                    fontSize: '1.4rem',
+                                    fontSize: isMobile ? '1rem' : '1.2rem',
                                     letterSpacing: '-0.01em'
                                 }}>
                                     {step.title}
                                 </h3>
                                 <p style={{
-                                    fontSize: '1rem',
+                                    fontSize: isMobile ? '0.85rem' : '0.95rem',
                                     margin: 0,
                                     color: 'var(--color-text-muted)',
                                     lineHeight: '1.6'
@@ -363,21 +379,21 @@ const RobulusRegister: React.FC = () => {
 
                 {/* Progress Section */}
                 <div style={{
-                    marginBottom: '6rem',
-                    background: 'rgba(255, 255, 255, 0.02)',
+                    marginBottom: isMobile ? '4rem' : '6rem',
+                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
                     backdropFilter: 'blur(20px)',
-                    padding: '3rem',
-                    borderRadius: '32px',
-                    border: '1px solid rgba(212, 175, 55, 0.2)',
+                    padding: isMobile ? '2rem 1.25rem' : '3rem',
+                    borderRadius: isMobile ? '24px' : '28px',
+                    border: '1px solid rgba(0, 255, 136, 0.15)',
                     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
                 }}>
                     <h2 style={{
-                        marginBottom: '2rem',
+                        marginBottom: isMobile ? '1.5rem' : '2rem',
                         textAlign: 'center',
-                        fontSize: '2rem',
-                        fontWeight: 300,
+                        fontSize: isMobile ? '1.3rem' : '1.8rem',
+                        fontWeight: 400,
                         letterSpacing: '-0.02em',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
                     }}>
@@ -389,15 +405,15 @@ const RobulusRegister: React.FC = () => {
                         borderRadius: '20px',
                         overflow: 'hidden',
                         position: 'relative',
-                        border: '1px solid rgba(212, 175, 55, 0.2)'
+                        border: '1px solid rgba(0, 255, 136, 0.2)'
                     }}>
                         <div style={{
                             width: `${progress}%`,
-                            background: 'linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%)',
+                            background: 'linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                             height: '100%',
                             transition: 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)',
                             position: 'relative',
-                            boxShadow: '0 0 20px rgba(212, 175, 55, 0.5)'
+                            boxShadow: '0 0 30px rgba(0, 255, 136, 0.4)'
                         }}>
                             <div style={{
                                 position: 'absolute',
@@ -412,8 +428,8 @@ const RobulusRegister: React.FC = () => {
                             left: '50%',
                             transform: 'translate(-50%, -50%)',
                             color: '#fff',
-                            fontWeight: 700,
-                            fontSize: '1.1rem',
+                            fontWeight: 600,
+                            fontSize: '1rem',
                             textShadow: '0 2px 10px rgba(0,0,0,0.5)',
                             letterSpacing: '0.05em'
                         }}>
@@ -424,7 +440,7 @@ const RobulusRegister: React.FC = () => {
                         display: 'flex',
                         justifyContent: 'space-between',
                         marginTop: '1rem',
-                        fontSize: '0.9rem',
+                        fontSize: '0.85rem',
                         color: 'var(--color-text-muted)'
                     }}>
                         <span>Started</span>
@@ -434,22 +450,22 @@ const RobulusRegister: React.FC = () => {
 
                 {/* Memorandum Form */}
                 <div style={{
-                    background: 'rgba(255, 255, 255, 0.02)',
+                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
                     backdropFilter: 'blur(20px)',
-                    padding: '4rem',
-                    borderRadius: '32px',
-                    border: '1px solid rgba(212, 175, 55, 0.2)',
-                    maxWidth: '900px',
+                    padding: isMobile ? '2rem 1.25rem' : '3rem',
+                    borderRadius: isMobile ? '24px' : '28px',
+                    border: '1px solid rgba(0, 255, 136, 0.15)',
+                    maxWidth: '800px',
                     margin: '0 auto',
                     boxShadow: '0 30px 80px rgba(0, 0, 0, 0.4)'
                 }}>
                     <h2 style={{
                         textAlign: 'center',
                         marginBottom: '1rem',
-                        fontSize: '2.5rem',
-                        fontWeight: 300,
+                        fontSize: isMobile ? '1.5rem' : '2rem',
+                        fontWeight: 400,
                         letterSpacing: '-0.02em',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
                     }}>
@@ -457,12 +473,12 @@ const RobulusRegister: React.FC = () => {
                     </h2>
                     <p style={{
                         textAlign: 'center',
-                        marginBottom: '3rem',
+                        marginBottom: isMobile ? '2rem' : '3rem',
                         color: 'var(--color-text-muted)',
-                        fontSize: '1.1rem',
+                        fontSize: isMobile ? '0.9rem' : '1rem',
                         lineHeight: '1.8',
-                        maxWidth: '700px',
-                        margin: '0 auto 3rem'
+                        maxWidth: '600px',
+                        margin: isMobile ? '0 auto 2rem' : '0 auto 3rem'
                     }}>
                         We count only applications with confirmed experience or a concrete plan for building a Robulus.
                         Actual shipping will be possible only after electricity and wifi are provided to the selected territory.
@@ -472,28 +488,28 @@ const RobulusRegister: React.FC = () => {
                         <div style={{
                             textAlign: 'center',
                             padding: '3rem',
-                            background: 'rgba(76, 175, 80, 0.1)',
+                            background: 'rgba(0, 255, 136, 0.1)',
                             borderRadius: '20px',
-                            border: '1px solid rgba(76, 175, 80, 0.3)'
+                            border: '1px solid rgba(0, 255, 136, 0.3)'
                         }}>
-                            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✓</div>
+                            <div style={{ fontSize: '3rem', marginBottom: '1rem', color: 'var(--color-primary)' }}>✓</div>
                             <div style={{
-                                color: '#4caf50',
-                                fontSize: '1.5rem',
+                                color: 'var(--color-primary)',
+                                fontSize: '1.4rem',
                                 fontWeight: 500
                             }}>
                                 Thank you! Your memorandum has been received.
                             </div>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                             <div>
                                 <label style={{
                                     display: 'block',
-                                    marginBottom: '0.75rem',
-                                    fontSize: '0.9rem',
+                                    marginBottom: '0.5rem',
+                                    fontSize: '0.85rem',
                                     fontWeight: 500,
-                                    color: 'var(--color-accent)',
+                                    color: 'var(--color-primary)',
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em'
                                 }}>
@@ -507,32 +523,32 @@ const RobulusRegister: React.FC = () => {
                                     required
                                     style={{
                                         width: '100%',
-                                        padding: '1rem 1.5rem',
-                                        background: 'rgba(255, 255, 255, 0.05)',
-                                        border: '1px solid rgba(212, 175, 55, 0.2)',
+                                        padding: '1rem 1.25rem',
+                                        background: 'rgba(0, 255, 136, 0.03)',
+                                        border: '1px solid rgba(0, 255, 136, 0.2)',
                                         color: 'var(--color-text)',
                                         borderRadius: '12px',
-                                        fontSize: '1.1rem',
+                                        fontSize: '1rem',
                                         transition: 'all 0.3s ease',
                                         outline: 'none'
                                     }}
                                     onFocus={(e) => {
-                                        e.currentTarget.style.borderColor = 'var(--color-accent)';
-                                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                                        e.currentTarget.style.borderColor = 'var(--color-primary)';
+                                        e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.15)';
                                     }}
                                     onBlur={(e) => {
-                                        e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.2)';
-                                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                                        e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.2)';
+                                        e.currentTarget.style.boxShadow = 'none';
                                     }}
                                 />
                             </div>
                             <div>
                                 <label style={{
                                     display: 'block',
-                                    marginBottom: '0.75rem',
-                                    fontSize: '0.9rem',
+                                    marginBottom: '0.5rem',
+                                    fontSize: '0.85rem',
                                     fontWeight: 500,
-                                    color: 'var(--color-accent)',
+                                    color: 'var(--color-primary)',
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em'
                                 }}>
@@ -546,32 +562,32 @@ const RobulusRegister: React.FC = () => {
                                     required
                                     style={{
                                         width: '100%',
-                                        padding: '1rem 1.5rem',
-                                        background: 'rgba(255, 255, 255, 0.05)',
-                                        border: '1px solid rgba(212, 175, 55, 0.2)',
+                                        padding: '1rem 1.25rem',
+                                        background: 'rgba(0, 255, 136, 0.03)',
+                                        border: '1px solid rgba(0, 255, 136, 0.2)',
                                         color: 'var(--color-text)',
                                         borderRadius: '12px',
-                                        fontSize: '1.1rem',
+                                        fontSize: '1rem',
                                         transition: 'all 0.3s ease',
                                         outline: 'none'
                                     }}
                                     onFocus={(e) => {
-                                        e.currentTarget.style.borderColor = 'var(--color-accent)';
-                                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                                        e.currentTarget.style.borderColor = 'var(--color-primary)';
+                                        e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.15)';
                                     }}
                                     onBlur={(e) => {
-                                        e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.2)';
-                                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                                        e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.2)';
+                                        e.currentTarget.style.boxShadow = 'none';
                                     }}
                                 />
                             </div>
                             <div>
                                 <label style={{
                                     display: 'block',
-                                    marginBottom: '0.75rem',
-                                    fontSize: '0.9rem',
+                                    marginBottom: '0.5rem',
+                                    fontSize: '0.85rem',
                                     fontWeight: 500,
-                                    color: 'var(--color-accent)',
+                                    color: 'var(--color-primary)',
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em'
                                 }}>
@@ -581,16 +597,16 @@ const RobulusRegister: React.FC = () => {
                                     name="experience"
                                     value={formData.experience}
                                     onChange={handleChange}
-                                    rows={5}
+                                    rows={4}
                                     placeholder="YouTube, Forum, GitHub links, etc."
                                     style={{
                                         width: '100%',
-                                        padding: '1rem 1.5rem',
-                                        background: 'rgba(255, 255, 255, 0.05)',
-                                        border: '1px solid rgba(212, 175, 55, 0.2)',
+                                        padding: '1rem 1.25rem',
+                                        background: 'rgba(0, 255, 136, 0.03)',
+                                        border: '1px solid rgba(0, 255, 136, 0.2)',
                                         color: 'var(--color-text)',
                                         borderRadius: '12px',
-                                        fontSize: '1.1rem',
+                                        fontSize: '1rem',
                                         transition: 'all 0.3s ease',
                                         outline: 'none',
                                         resize: 'vertical',
@@ -598,22 +614,22 @@ const RobulusRegister: React.FC = () => {
                                         lineHeight: '1.6'
                                     }}
                                     onFocus={(e) => {
-                                        e.currentTarget.style.borderColor = 'var(--color-accent)';
-                                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                                        e.currentTarget.style.borderColor = 'var(--color-primary)';
+                                        e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.15)';
                                     }}
                                     onBlur={(e) => {
-                                        e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.2)';
-                                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                                        e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.2)';
+                                        e.currentTarget.style.boxShadow = 'none';
                                     }}
                                 />
                             </div>
                             <div>
                                 <label style={{
                                     display: 'block',
-                                    marginBottom: '0.75rem',
-                                    fontSize: '0.9rem',
+                                    marginBottom: '0.5rem',
+                                    fontSize: '0.85rem',
                                     fontWeight: 500,
-                                    color: 'var(--color-accent)',
+                                    color: 'var(--color-primary)',
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em'
                                 }}>
@@ -627,9 +643,9 @@ const RobulusRegister: React.FC = () => {
                                     disabled={formData.photos.length >= 5}
                                     style={{
                                         width: '100%',
-                                        padding: '1.5rem',
-                                        background: 'rgba(255, 255, 255, 0.05)',
-                                        border: '2px dashed rgba(212, 175, 55, 0.3)',
+                                        padding: '1.25rem',
+                                        background: 'rgba(0, 255, 136, 0.03)',
+                                        border: '2px dashed rgba(0, 255, 136, 0.25)',
                                         color: 'var(--color-text)',
                                         borderRadius: '12px',
                                         cursor: formData.photos.length >= 5 ? 'not-allowed' : 'pointer',
@@ -639,7 +655,7 @@ const RobulusRegister: React.FC = () => {
                                 {formData.photos.length > 0 && (
                                     <div style={{
                                         display: 'grid',
-                                        gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
+                                        gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
                                         gap: '1rem',
                                         marginTop: '1rem'
                                     }}>
@@ -649,7 +665,7 @@ const RobulusRegister: React.FC = () => {
                                                 aspectRatio: '1',
                                                 borderRadius: '12px',
                                                 overflow: 'hidden',
-                                                border: '1px solid rgba(212, 175, 55, 0.2)'
+                                                border: '1px solid rgba(0, 255, 136, 0.2)'
                                             }}>
                                                 <img
                                                     src={photo}
@@ -665,25 +681,21 @@ const RobulusRegister: React.FC = () => {
                                                     onClick={() => removePhoto(index)}
                                                     style={{
                                                         position: 'absolute',
-                                                        top: '8px',
-                                                        right: '8px',
-                                                        background: 'rgba(244, 67, 54, 0.9)',
-                                                        backdropFilter: 'blur(10px)',
+                                                        top: '6px',
+                                                        right: '6px',
+                                                        background: 'rgba(255, 71, 87, 0.9)',
                                                         color: '#fff',
                                                         border: 'none',
                                                         borderRadius: '8px',
-                                                        width: '32px',
-                                                        height: '32px',
+                                                        width: '28px',
+                                                        height: '28px',
                                                         cursor: 'pointer',
                                                         fontWeight: 'bold',
-                                                        fontSize: '1.2rem',
+                                                        fontSize: '1rem',
                                                         display: 'flex',
                                                         alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        transition: 'all 0.2s ease'
+                                                        justifyContent: 'center'
                                                     }}
-                                                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-                                                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                                                 >
                                                     ×
                                                 </button>
@@ -696,8 +708,8 @@ const RobulusRegister: React.FC = () => {
                             {error && (
                                 <div style={{
                                     padding: '1rem',
-                                    background: 'rgba(244, 67, 54, 0.1)',
-                                    border: '1px solid rgba(244, 67, 54, 0.3)',
+                                    background: 'rgba(255, 71, 87, 0.1)',
+                                    border: '1px solid rgba(255, 71, 87, 0.3)',
                                     borderRadius: '12px',
                                     color: '#ff6b6b',
                                     textAlign: 'center'
@@ -707,8 +719,8 @@ const RobulusRegister: React.FC = () => {
                             )}
 
                             <div style={{
-                                paddingTop: '2rem',
-                                borderTop: '1px solid rgba(212, 175, 55, 0.2)',
+                                paddingTop: '1.5rem',
+                                borderTop: '1px solid rgba(0, 255, 136, 0.15)',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: '1.5rem'
@@ -718,14 +730,14 @@ const RobulusRegister: React.FC = () => {
                                     alignItems: 'center',
                                     gap: '1rem',
                                     cursor: 'pointer',
-                                    padding: '1.5rem',
-                                    background: 'rgba(255, 255, 255, 0.03)',
+                                    padding: '1.25rem',
+                                    background: 'rgba(0, 255, 136, 0.03)',
                                     borderRadius: '12px',
-                                    border: '1px solid rgba(212, 175, 55, 0.2)',
+                                    border: '1px solid rgba(0, 255, 136, 0.15)',
                                     transition: 'all 0.3s ease'
                                 }}
-                                    onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'}
-                                    onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'}
+                                    onMouseOver={(e) => e.currentTarget.style.background = 'rgba(0, 255, 136, 0.06)'}
+                                    onMouseOut={(e) => e.currentTarget.style.background = 'rgba(0, 255, 136, 0.03)'}
                                 >
                                     <input
                                         type="checkbox"
@@ -734,14 +746,14 @@ const RobulusRegister: React.FC = () => {
                                         onChange={handleChange}
                                         id="readyToBuild"
                                         style={{
-                                            width: '24px',
-                                            height: '24px',
+                                            width: '22px',
+                                            height: '22px',
                                             cursor: 'pointer',
-                                            accentColor: 'var(--color-accent)'
+                                            accentColor: 'var(--color-primary)'
                                         }}
                                     />
                                     <span style={{
-                                        fontSize: '1.05rem',
+                                        fontSize: '1rem',
                                         color: 'var(--color-text)',
                                         flex: 1
                                     }}>
@@ -753,39 +765,37 @@ const RobulusRegister: React.FC = () => {
                                     type="submit"
                                     disabled={!formData.readyToBuild}
                                     style={{
-                                        padding: '1.5rem 3rem',
+                                        padding: '1.25rem 2.5rem',
                                         background: formData.readyToBuild
-                                            ? 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)'
+                                            ? 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)'
                                             : 'rgba(100, 100, 100, 0.3)',
-                                        color: '#fff',
+                                        color: formData.readyToBuild ? '#000' : '#666',
                                         border: 'none',
-                                        borderRadius: '16px',
-                                        fontSize: '1.2rem',
+                                        borderRadius: '14px',
+                                        fontSize: '1.1rem',
                                         fontWeight: 600,
                                         cursor: formData.readyToBuild ? 'pointer' : 'not-allowed',
                                         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                                         letterSpacing: '0.05em',
                                         textTransform: 'uppercase',
                                         boxShadow: formData.readyToBuild
-                                            ? '0 10px 30px rgba(212, 175, 55, 0.3)'
-                                            : 'none',
-                                        position: 'relative',
-                                        overflow: 'hidden'
+                                            ? '0 10px 30px rgba(0, 255, 136, 0.3)'
+                                            : 'none'
                                     }}
                                     onMouseOver={(e) => {
                                         if (formData.readyToBuild) {
                                             e.currentTarget.style.transform = 'translateY(-2px)';
-                                            e.currentTarget.style.boxShadow = '0 15px 40px rgba(212, 175, 55, 0.4)';
+                                            e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 255, 136, 0.4)';
                                         }
                                     }}
                                     onMouseOut={(e) => {
                                         if (formData.readyToBuild) {
                                             e.currentTarget.style.transform = 'translateY(0)';
-                                            e.currentTarget.style.boxShadow = '0 10px 30px rgba(212, 175, 55, 0.3)';
+                                            e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 255, 136, 0.3)';
                                         }
                                     }}
                                 >
-                                    <span style={{ position: 'relative', zIndex: 1 }}>Submit Memorandum</span>
+                                    Submit Memorandum
                                 </button>
                             </div>
                         </form>
@@ -795,12 +805,6 @@ const RobulusRegister: React.FC = () => {
 
             <style>
                 {`
-                    @keyframes float {
-                        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-                        33% { transform: translate(30px, -30px) rotate(5deg); }
-                        66% { transform: translate(-20px, 20px) rotate(-5deg); }
-                    }
-                    
                     @keyframes shimmer {
                         0% { transform: translateX(-100%); }
                         100% { transform: translateX(100%); }
@@ -808,7 +812,7 @@ const RobulusRegister: React.FC = () => {
 
                     input::placeholder,
                     textarea::placeholder {
-                        color: rgba(224, 224, 224, 0.3);
+                        color: rgba(139, 168, 154, 0.5);
                     }
                 `}
             </style>

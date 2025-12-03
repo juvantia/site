@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import CursorGlow from '../components/CursorGlow';
 
 const Domus: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         setIsVisible(true);
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     const timelineSteps = [
@@ -12,14 +18,14 @@ const Domus: React.FC = () => {
             title: "Land Registration",
             description: "Juvantia secures the physical territory for the technopark. The official map and landscape are revealed, signaling readiness for construction.",
             icon: "📋",
-            status: "available"
+            phase: "preparation" // оранжевый - подготовка
         },
         {
             title: "Infrastructure Setup",
             description: "Installation of electricity (24V) and network connectivity",
             duration: "2-3 months",
             icon: "⚡",
-            status: "in-progress"
+            phase: "preparation" // оранжевый - подготовка
         },
         {
             title: "Domus Installation",
@@ -27,7 +33,7 @@ const Domus: React.FC = () => {
             duration: "3-6 months",
             icon: "🔨",
             isWindow: true,
-            status: "open"
+            phase: "active" // зелёный - можно устанавливать
         },
         {
             title: "Robuli-Only Era",
@@ -35,17 +41,26 @@ const Domus: React.FC = () => {
             duration: "∞",
             icon: "🤖",
             isWindow: true,
-            status: "future"
+            phase: "future" // красный - будущее
         }
     ];
+
+    // Цвета для фаз timeline
+    const phaseColors = {
+        preparation: { bg: '#ff9500', shadow: 'rgba(255, 149, 0, 0.5)' },
+        active: { bg: 'var(--color-primary)', shadow: 'rgba(0, 255, 136, 0.5)' },
+        future: { bg: '#ff4757', shadow: 'rgba(255, 71, 87, 0.5)' }
+    };
 
     return (
         <div style={{
             minHeight: '100vh',
-            background: 'linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%)',
+            background: 'var(--color-bg)',
             position: 'relative',
             overflow: 'hidden'
         }}>
+            <CursorGlow size={350} opacity={0.12} />
+
             {/* Animated Background Elements */}
             <div style={{
                 position: 'absolute',
@@ -53,10 +68,9 @@ const Domus: React.FC = () => {
                 right: '10%',
                 width: '500px',
                 height: '500px',
-                background: 'radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%)',
                 borderRadius: '50%',
                 filter: 'blur(80px)',
-                animation: 'float 20s ease-in-out infinite',
                 pointerEvents: 'none'
             }} />
             <div style={{
@@ -65,16 +79,15 @@ const Domus: React.FC = () => {
                 left: '10%',
                 width: '400px',
                 height: '400px',
-                background: 'radial-gradient(circle, rgba(102, 0, 0, 0.15) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%)',
                 borderRadius: '50%',
                 filter: 'blur(80px)',
-                animation: 'float 25s ease-in-out infinite reverse',
                 pointerEvents: 'none'
             }} />
 
             <div style={{
-                padding: '6rem 2rem 4rem',
-                maxWidth: '1400px',
+                padding: isMobile ? '4rem 1rem 4rem' : '6rem 2rem 4rem',
+                maxWidth: '1200px',
                 margin: '0 auto',
                 position: 'relative',
                 opacity: isVisible ? 1 : 0,
@@ -84,44 +97,36 @@ const Domus: React.FC = () => {
                 {/* Hero Section */}
                 <div style={{
                     textAlign: 'center',
-                    marginBottom: '6rem',
+                    marginBottom: isMobile ? '4rem' : '6rem',
                     position: 'relative'
                 }}>
                     <div style={{
                         display: 'inline-block',
                         position: 'relative',
-                        marginBottom: '3rem'
+                        marginBottom: isMobile ? '2rem' : '3rem'
                     }}>
                         <img
                             src="/images/DOMUS1.png"
                             alt="Domus"
                             style={{
-                                maxWidth: '600px',
+                                maxWidth: isMobile ? '100%' : '550px',
                                 width: '100%',
                                 height: 'auto',
-                                borderRadius: '24px',
-                                boxShadow: '0 20px 60px rgba(212, 175, 55, 0.3), 0 0 100px rgba(212, 175, 55, 0.1)',
+                                borderRadius: isMobile ? '20px' : '24px',
+                                boxShadow: '0 20px 60px rgba(0, 255, 136, 0.2), 0 0 80px rgba(0, 255, 136, 0.1)',
+                                border: '1px solid rgba(0, 255, 136, 0.2)',
                                 transform: 'translateZ(0)',
                                 transition: 'transform 0.3s ease',
                             }}
                         />
-                        <div style={{
-                            position: 'absolute',
-                            inset: '-20px',
-                            background: 'linear-gradient(45deg, var(--color-accent), var(--color-primary))',
-                            borderRadius: '24px',
-                            opacity: 0.1,
-                            filter: 'blur(30px)',
-                            zIndex: -1
-                        }} />
                     </div>
 
                     <p style={{
-                        fontSize: '1.5rem',
+                        fontSize: isMobile ? '1.1rem' : '1.35rem',
                         lineHeight: '1.8',
-                        maxWidth: '900px',
+                        maxWidth: '800px',
                         margin: '0 auto',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%)',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         fontWeight: 400,
@@ -134,203 +139,131 @@ const Domus: React.FC = () => {
 
                 {/* What is Domus Section */}
                 <div style={{
-                    marginBottom: '6rem',
-                    background: 'rgba(255, 255, 255, 0.02)',
+                    marginBottom: isMobile ? '4rem' : '6rem',
+                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
                     backdropFilter: 'blur(20px)',
-                    padding: '4rem',
-                    borderRadius: '32px',
-                    border: '1px solid rgba(212, 175, 55, 0.2)',
+                    padding: isMobile ? '2rem 1.25rem' : '4rem',
+                    borderRadius: isMobile ? '24px' : '32px',
+                    border: '1px solid rgba(0, 255, 136, 0.15)',
                     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
                 }}>
                     <h2 style={{
                         textAlign: 'center',
-                        fontSize: '2.5rem',
-                        fontWeight: 300,
+                        fontSize: isMobile ? '1.5rem' : '2.2rem',
+                        fontWeight: 400,
                         letterSpacing: '-0.02em',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
-                        marginBottom: '3rem'
+                        marginBottom: isMobile ? '2rem' : '3rem'
                     }}>
                         What is a Domus?
                     </h2>
                     <div style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                        gap: '2rem',
-                        marginBottom: '3rem'
+                        gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
+                        gap: isMobile ? '1rem' : '1.5rem',
+                        marginBottom: isMobile ? '2rem' : '3rem'
                     }}>
-                        <div style={{
-                            padding: '2rem',
-                            background: 'rgba(255, 255, 255, 0.03)',
-                            borderRadius: '16px',
-                            border: '1px solid rgba(212, 175, 55, 0.15)'
-                        }}>
-                            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🏠</div>
-                            <h3 style={{
-                                color: 'var(--color-accent)',
-                                marginBottom: '1rem',
-                                fontSize: '1.3rem'
+                        {[
+                            { icon: '🏠', title: 'Personal or Commercial', text: 'Build a shelter for your Robulus or create a commercial space with smart contracts.' },
+                            { icon: '🛠️', title: 'Any Materials', text: 'Most Domus structures are built from MDF with waterproofing, but you\'re free to use any materials you choose.' },
+                            { icon: '🏛️', title: 'Citizenship Included', text: 'Register your Domus and receive Juvantian citizenship, even without owning a Robulus.' }
+                        ].map((item, idx) => (
+                            <div key={idx} style={{
+                                padding: isMobile ? '1.5rem' : '2rem',
+                                background: 'rgba(0, 255, 136, 0.03)',
+                                borderRadius: '16px',
+                                border: '1px solid rgba(0, 255, 136, 0.12)',
+                                transition: 'all 0.3s ease'
                             }}>
-                                Personal or Commercial
-                            </h3>
-                            <p style={{
-                                color: 'var(--color-text-muted)',
-                                lineHeight: '1.7',
-                                fontSize: '1.05rem'
-                            }}>
-                                Build a shelter for your Robulus or create a commercial space with smart contracts.
-                            </p>
-                        </div>
-                        <div style={{
-                            padding: '2rem',
-                            background: 'rgba(255, 255, 255, 0.03)',
-                            borderRadius: '16px',
-                            border: '1px solid rgba(212, 175, 55, 0.15)'
-                        }}>
-                            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🛠️</div>
-                            <h3 style={{
-                                color: 'var(--color-accent)',
-                                marginBottom: '1rem',
-                                fontSize: '1.3rem'
-                            }}>
-                                Any Materials
-                            </h3>
-                            <p style={{
-                                color: 'var(--color-text-muted)',
-                                lineHeight: '1.7',
-                                fontSize: '1.05rem'
-                            }}>
-                                Most Domus structures are built from MDF with waterproofing, but you're free to use any materials you choose.
-                            </p>
-                        </div>
-                        <div style={{
-                            padding: '2rem',
-                            background: 'rgba(255, 255, 255, 0.03)',
-                            borderRadius: '16px',
-                            border: '1px solid rgba(212, 175, 55, 0.15)'
-                        }}>
-                            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>🏛️</div>
-                            <h3 style={{
-                                color: 'var(--color-accent)',
-                                marginBottom: '1rem',
-                                fontSize: '1.3rem'
-                            }}>
-                                Citizenship Included
-                            </h3>
-                            <p style={{
-                                color: 'var(--color-text-muted)',
-                                lineHeight: '1.7',
-                                fontSize: '1.05rem'
-                            }}>
-                                Register your Domus and receive Juvantian citizenship, even without owning a Robulus.
-                            </p>
-                        </div>
+                                <div style={{ fontSize: isMobile ? '2rem' : '2.5rem', marginBottom: '1rem' }}>{item.icon}</div>
+                                <h3 style={{
+                                    color: 'var(--color-primary)',
+                                    marginBottom: '0.75rem',
+                                    fontSize: isMobile ? '1.05rem' : '1.2rem'
+                                }}>
+                                    {item.title}
+                                </h3>
+                                <p style={{
+                                    color: 'var(--color-text-muted)',
+                                    lineHeight: '1.7',
+                                    fontSize: isMobile ? '0.9rem' : '0.95rem'
+                                }}>
+                                    {item.text}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
                 {/* Primary Purpose Section */}
                 <div style={{
                     display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '4rem',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    gap: isMobile ? '2rem' : '4rem',
                     alignItems: 'center',
-                    marginBottom: '6rem'
+                    marginBottom: isMobile ? '4rem' : '6rem'
                 }}>
-                    <div style={{ flex: '1 1 500px', maxWidth: '600px' }}>
+                    <div style={{ width: isMobile ? '100%' : '50%' }}>
                         <img
                             src="/images/DOMUS3.png"
                             alt="Domus Protection"
                             style={{
                                 width: '100%',
                                 height: 'auto',
-                                borderRadius: '24px',
-                                boxShadow: '0 20px 60px rgba(212, 175, 55, 0.2)',
-                                border: '1px solid rgba(212, 175, 55, 0.2)'
+                                borderRadius: isMobile ? '20px' : '24px',
+                                boxShadow: '0 20px 60px rgba(0, 255, 136, 0.15)',
+                                border: '1px solid rgba(0, 255, 136, 0.2)'
                             }}
                         />
                     </div>
-                    <div style={{ flex: '1 1 400px', maxWidth: '600px' }}>
+                    <div style={{ width: isMobile ? '100%' : '50%' }}>
                         <h2 style={{
-                            fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                            marginBottom: '2rem',
-                            fontWeight: 300,
+                            fontSize: isMobile ? '1.5rem' : 'clamp(1.8rem, 4vw, 2.4rem)',
+                            marginBottom: isMobile ? '1.5rem' : '2rem',
+                            fontWeight: 400,
                             letterSpacing: '-0.01em',
                             color: 'var(--color-text)'
                         }}>
                             Primary{' '}
                             <span style={{
-                                background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%)',
+                                background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent'
                             }}>
                                 Purpose
                             </span>
                         </h2>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                            <div style={{
-                                padding: '1.5rem',
-                                background: 'rgba(255, 255, 255, 0.03)',
-                                borderLeft: '3px solid var(--color-accent)',
-                                borderRadius: '0 12px 12px 0'
-                            }}>
-                                <h4 style={{
-                                    color: 'var(--color-accent)',
-                                    marginBottom: '0.5rem',
-                                    fontSize: '1.2rem'
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            {[
+                                { title: 'Weather Protection', text: 'Shield your Robulus from rain, snow, wind, and extreme temperatures.' },
+                                { title: 'Charging Station', text: 'Safe, dedicated space for your Robulus to recharge on the 24V city grid.' },
+                                { title: 'Security', text: 'Protection from theft and vandalism. Your Robulus is safe inside.' }
+                            ].map((item, idx) => (
+                                <div key={idx} style={{
+                                    padding: isMobile ? '1rem' : '1.25rem',
+                                    background: 'rgba(0, 255, 136, 0.03)',
+                                    borderLeft: '2px solid var(--color-primary)',
+                                    borderRadius: '0 12px 12px 0'
                                 }}>
-                                    Weather Protection
-                                </h4>
-                                <p style={{
-                                    color: 'var(--color-text-muted)',
-                                    lineHeight: '1.7',
-                                    margin: 0
-                                }}>
-                                    Shield your Robulus from rain, snow, wind, and extreme temperatures.
-                                </p>
-                            </div>
-                            <div style={{
-                                padding: '1.5rem',
-                                background: 'rgba(255, 255, 255, 0.03)',
-                                borderLeft: '3px solid var(--color-accent)',
-                                borderRadius: '0 12px 12px 0'
-                            }}>
-                                <h4 style={{
-                                    color: 'var(--color-accent)',
-                                    marginBottom: '0.5rem',
-                                    fontSize: '1.2rem'
-                                }}>
-                                    Charging Station
-                                </h4>
-                                <p style={{
-                                    color: 'var(--color-text-muted)',
-                                    lineHeight: '1.7',
-                                    margin: 0
-                                }}>
-                                    Safe, dedicated space for your Robulus to recharge on the 24V city grid.
-                                </p>
-                            </div>
-                            <div style={{
-                                padding: '1.5rem',
-                                background: 'rgba(255, 255, 255, 0.03)',
-                                borderLeft: '3px solid var(--color-accent)',
-                                borderRadius: '0 12px 12px 0'
-                            }}>
-                                <h4 style={{
-                                    color: 'var(--color-accent)',
-                                    marginBottom: '0.5rem',
-                                    fontSize: '1.2rem'
-                                }}>
-                                    Security
-                                </h4>
-                                <p style={{
-                                    color: 'var(--color-text-muted)',
-                                    lineHeight: '1.7',
-                                    margin: 0
-                                }}>
-                                    Protection from theft and vandalism. Your Robulus is safe inside.
-                                </p>
-                            </div>
+                                    <h4 style={{
+                                        color: 'var(--color-primary)',
+                                        marginBottom: '0.4rem',
+                                        fontSize: isMobile ? '1rem' : '1.1rem'
+                                    }}>
+                                        {item.title}
+                                    </h4>
+                                    <p style={{
+                                        color: 'var(--color-text-muted)',
+                                        lineHeight: '1.7',
+                                        margin: 0,
+                                        fontSize: isMobile ? '0.9rem' : '0.95rem'
+                                    }}>
+                                        {item.text}
+                                    </p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -338,40 +271,26 @@ const Domus: React.FC = () => {
                 {/* Land Requirements Section */}
                 <div style={{
                     display: 'flex',
-                    flexWrap: 'wrap',
-                    flexDirection: 'row-reverse',
-                    gap: '4rem',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    gap: isMobile ? '2rem' : '4rem',
                     alignItems: 'center',
-                    marginBottom: '6rem'
+                    marginBottom: isMobile ? '4rem' : '6rem'
                 }}>
-                    <div style={{ flex: '1 1 500px', maxWidth: '600px' }}>
-                        <img
-                            src="/images/DOMUS2.png"
-                            alt="Land Requirements"
-                            style={{
-                                width: '100%',
-                                height: 'auto',
-                                borderRadius: '24px',
-                                boxShadow: '0 20px 60px rgba(212, 175, 55, 0.2)',
-                                border: '1px solid rgba(212, 175, 55, 0.2)'
-                            }}
-                        />
-                    </div>
-                    <div style={{ flex: '1 1 400px', maxWidth: '600px' }}>
+                    <div style={{ order: isMobile ? 2 : 1, width: isMobile ? '100%' : '50%' }}>
                         <h2 style={{
-                            fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                            marginBottom: '2rem',
-                            fontWeight: 300,
+                            fontSize: isMobile ? '1.5rem' : 'clamp(1.8rem, 4vw, 2.4rem)',
+                            marginBottom: isMobile ? '1.5rem' : '2rem',
+                            fontWeight: 400,
                             letterSpacing: '-0.01em',
-                            background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
+                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent'
                         }}>
                             Land Requirements
                         </h2>
                         <p style={{
-                            fontSize: '1.25rem',
-                            marginBottom: '2rem',
+                            fontSize: isMobile ? '1rem' : '1.15rem',
+                            marginBottom: isMobile ? '1.5rem' : '2rem',
                             lineHeight: '1.9',
                             color: 'var(--color-text-muted)',
                             fontWeight: 300
@@ -379,15 +298,15 @@ const Domus: React.FC = () => {
                             To install a Domus, you must own land in Juvantia or have a valid rental contract.
                         </p>
                         <div style={{
-                            padding: '2rem',
-                            background: 'rgba(212, 175, 55, 0.05)',
+                            padding: isMobile ? '1.5rem' : '2rem',
+                            background: 'rgba(0, 255, 136, 0.05)',
                             borderRadius: '16px',
-                            border: '1px solid rgba(212, 175, 55, 0.2)'
+                            border: '1px solid rgba(0, 255, 136, 0.2)'
                         }}>
                             <h4 style={{
-                                color: 'var(--color-accent)',
+                                color: 'var(--color-primary)',
                                 marginBottom: '1rem',
-                                fontSize: '1.3rem'
+                                fontSize: isMobile ? '1.05rem' : '1.2rem'
                             }}>
                                 Two Options:
                             </h4>
@@ -397,124 +316,140 @@ const Domus: React.FC = () => {
                                 margin: 0,
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: '1rem'
+                                gap: '0.75rem'
                             }}>
-                                <li style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '1rem'
-                                }}>
-                                    <span style={{
-                                        color: 'var(--color-accent)',
-                                        fontSize: '1.5rem'
-                                    }}>
-                                        ✓
-                                    </span>
-                                    <span style={{
-                                        color: 'var(--color-text)',
-                                        fontSize: '1.1rem'
-                                    }}>
+                                <li style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                    <span style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.1rem' : '1.3rem' }}>✓</span>
+                                    <span style={{ color: 'var(--color-text)', fontSize: isMobile ? '0.9rem' : '1rem' }}>
                                         <strong>Land Ownership</strong> — Purchase your plot
                                     </span>
                                 </li>
-                                <li style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '1rem'
-                                }}>
-                                    <span style={{
-                                        color: 'var(--color-accent)',
-                                        fontSize: '1.5rem'
-                                    }}>
-                                        ✓
-                                    </span>
-                                    <span style={{
-                                        color: 'var(--color-text)',
-                                        fontSize: '1.1rem'
-                                    }}>
+                                <li style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                    <span style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.1rem' : '1.3rem' }}>✓</span>
+                                    <span style={{ color: 'var(--color-text)', fontSize: isMobile ? '0.9rem' : '1rem' }}>
                                         <strong>Rental Contract</strong> — Lease from another citizen
                                     </span>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                    <div style={{ order: 1, width: isMobile ? '100%' : '50%' }}>
+                        <img
+                            src="/images/DOMUS2.png"
+                            alt="Land Requirements"
+                            style={{
+                                width: '100%',
+                                height: 'auto',
+                                borderRadius: isMobile ? '20px' : '24px',
+                                boxShadow: '0 20px 60px rgba(0, 255, 136, 0.15)',
+                                border: '1px solid rgba(0, 255, 136, 0.2)'
+                            }}
+                        />
+                    </div>
                 </div>
 
                 {/* Timeline Section */}
                 <div style={{
-                    marginBottom: '6rem',
-                    background: 'rgba(255, 255, 255, 0.02)',
+                    marginBottom: isMobile ? '4rem' : '6rem',
+                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
                     backdropFilter: 'blur(20px)',
-                    padding: '4rem',
-                    borderRadius: '32px',
-                    border: '1px solid rgba(212, 175, 55, 0.2)',
+                    padding: isMobile ? '2rem 1.25rem' : '4rem',
+                    borderRadius: isMobile ? '24px' : '32px',
+                    border: '1px solid rgba(0, 255, 136, 0.15)',
                     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
                 }}>
                     <h2 style={{
                         textAlign: 'center',
-                        fontSize: '2.5rem',
-                        fontWeight: 300,
+                        fontSize: isMobile ? '1.5rem' : '2.2rem',
+                        fontWeight: 400,
                         letterSpacing: '-0.02em',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
-                        marginBottom: '4rem'
+                        marginBottom: isMobile ? '2rem' : '4rem'
                     }}>
                         Domus Installation Timeline
                     </h2>
-                    <div style={{
+                    
+                    {/* Mobile: Vertical timeline | Desktop: Grid */}
+                    <div style={isMobile ? {
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1.5rem',
+                        position: 'relative',
+                        paddingLeft: '2rem'
+                    } : {
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                        gap: '2rem',
+                        gridTemplateColumns: 'repeat(4, 1fr)',
+                        gap: '1.5rem',
                         position: 'relative'
                     }}>
+                        
                         {timelineSteps.map((step, index) => (
                             <div
                                 key={index}
                                 style={{
                                     position: 'relative',
-                                    padding: '2rem',
-                                    background: step.isWindow
-                                        ? (step.status === 'open' ? 'rgba(212, 175, 55, 0.15)' : 'rgba(102, 0, 0, 0.1)')
-                                        : 'rgba(255, 255, 255, 0.03)',
+                                    padding: isMobile ? '1.5rem' : '2rem',
+                                    background: step.phase === 'active' 
+                                        ? 'rgba(0, 255, 136, 0.1)' 
+                                        : step.phase === 'future' 
+                                            ? 'rgba(255, 71, 87, 0.08)'
+                                            : 'rgba(0, 255, 136, 0.03)',
                                     borderRadius: '16px',
                                     border: step.isWindow
-                                        ? `2px solid ${step.status === 'open' ? 'var(--color-accent)' : 'var(--color-primary)'}`
-                                        : '1px solid rgba(212, 175, 55, 0.15)',
+                                        ? `2px solid ${step.phase === 'active' ? 'var(--color-primary)' : 'rgba(255, 71, 87, 0.4)'}`
+                                        : '1px solid rgba(0, 255, 136, 0.12)',
                                     transition: 'all 0.3s ease'
                                 }}
                             >
+                                {/* Timeline dot */}
+                                <div style={{
+                                    position: 'absolute',
+                                    left: isMobile ? 'calc(-2rem - 6px)' : '50%',
+                                    top: isMobile ? '50%' : '-24px',
+                                    transform: isMobile ? 'translateY(-50%)' : 'translateX(-50%)',
+                                    width: '14px',
+                                    height: '14px',
+                                    borderRadius: '50%',
+                                    background: phaseColors[step.phase as keyof typeof phaseColors].bg,
+                                    boxShadow: `0 0 10px ${phaseColors[step.phase as keyof typeof phaseColors].shadow}`,
+                                    zIndex: 2
+                                }} />
+                                
                                 {step.duration && (
                                     <div style={{
-                                        position: 'absolute',
-                                        top: '-12px',
-                                        left: '20px',
-                                        background: step.isWindow
-                                            ? (step.status === 'open' ? 'var(--color-accent)' : 'var(--color-primary)')
-                                            : 'rgba(100, 100, 100, 0.5)',
-                                        color: step.isWindow ? '#000' : '#fff',
-                                        padding: '0.3rem 1rem',
-                                        borderRadius: '12px',
-                                        fontSize: '0.85rem',
+                                        position: isMobile ? 'static' : 'absolute',
+                                        top: '-10px',
+                                        left: '16px',
+                                        display: 'inline-block',
+                                        background: step.phase === 'future' ? '#ff4757' : 'rgba(0, 255, 136, 0.8)',
+                                        color: step.phase === 'future' ? '#fff' : '#fff',
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '8px',
+                                        fontSize: isMobile ? '0.7rem' : '0.8rem',
                                         fontWeight: 600,
-                                        letterSpacing: '0.05em'
+                                        letterSpacing: '0.03em',
+                                        marginBottom: isMobile ? '0.75rem' : 0
                                     }}>
                                         {step.duration}
                                     </div>
                                 )}
                                 <div style={{
-                                    fontSize: '2.5rem',
-                                    marginBottom: '1rem',
-                                    marginTop: step.duration ? '1rem' : '0'
+                                    fontSize: isMobile ? '1.6rem' : '2rem',
+                                    marginBottom: '0.75rem',
+                                    marginTop: step.duration && !isMobile ? '0.5rem' : '0'
                                 }}>
                                     {step.icon}
                                 </div>
                                 <h3 style={{
-                                    color: step.isWindow
-                                        ? (step.status === 'open' ? 'var(--color-accent)' : 'var(--color-primary)')
-                                        : 'var(--color-text)',
-                                    marginBottom: '0.75rem',
-                                    fontSize: '1.3rem',
+                                    color: step.phase === 'active' 
+                                        ? 'var(--color-primary)' 
+                                        : step.phase === 'future' 
+                                            ? '#ff4757' 
+                                            : 'var(--color-text)',
+                                    marginBottom: '0.5rem',
+                                    fontSize: isMobile ? '1rem' : '1.15rem',
                                     fontWeight: 500
                                 }}>
                                     {step.title}
@@ -523,7 +458,7 @@ const Domus: React.FC = () => {
                                     color: 'var(--color-text-muted)',
                                     lineHeight: '1.6',
                                     margin: 0,
-                                    fontSize: '0.95rem'
+                                    fontSize: isMobile ? '0.85rem' : '0.9rem'
                                 }}>
                                     {step.description}
                                 </p>
@@ -531,28 +466,28 @@ const Domus: React.FC = () => {
                         ))}
                     </div>
                     <div style={{
-                        marginTop: '3rem',
-                        padding: '2rem',
-                        background: 'rgba(212, 175, 55, 0.05)',
+                        marginTop: isMobile ? '1.5rem' : '2.5rem',
+                        padding: isMobile ? '1.25rem' : '1.5rem',
+                        background: 'rgba(0, 255, 136, 0.03)',
                         borderRadius: '16px',
-                        border: '1px solid rgba(212, 175, 55, 0.2)',
+                        border: '1px solid rgba(0, 255, 136, 0.15)',
                         textAlign: 'center'
                     }}>
                         <p style={{
-                            fontSize: '1.15rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             color: 'var(--color-text)',
-                            marginBottom: '1rem',
+                            marginBottom: '0.75rem',
                             lineHeight: '1.7'
                         }}>
-                            <span style={{ color: 'var(--color-accent)', fontWeight: 500 }}>🔨 Open Window:</span> You can personally install your Domus during the 3-6 month period.
+                            <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>🔨 Open Window:</span> You can personally install your Domus during the 3-6 month period.
                         </p>
                         <p style={{
-                            fontSize: '1.15rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             color: 'var(--color-text)',
                             margin: 0,
                             lineHeight: '1.7'
                         }}>
-                            <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>🤖 Robuli-Only:</span> After the window closes, installation is only possible via Robulus.
+                            <span style={{ color: '#ff4757', fontWeight: 500 }}>🤖 Robuli-Only:</span> After the window closes, installation is only possible via Robulus.
                         </p>
                     </div>
                 </div>
@@ -560,35 +495,35 @@ const Domus: React.FC = () => {
                 {/* Design Expectations Section */}
                 <div style={{
                     display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '4rem',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    gap: isMobile ? '2rem' : '4rem',
                     alignItems: 'center',
-                    marginBottom: '6rem'
+                    marginBottom: isMobile ? '4rem' : '6rem'
                 }}>
-                    <div style={{ flex: '1 1 500px', maxWidth: '600px' }}>
+                    <div style={{ width: isMobile ? '100%' : '50%' }}>
                         <img
                             src="/images/DOMUS4.png"
                             alt="Domus Design"
                             style={{
                                 width: '100%',
                                 height: 'auto',
-                                borderRadius: '24px',
-                                boxShadow: '0 20px 60px rgba(212, 175, 55, 0.2)',
-                                border: '1px solid rgba(212, 175, 55, 0.2)'
+                                borderRadius: isMobile ? '20px' : '24px',
+                                boxShadow: '0 20px 60px rgba(0, 255, 136, 0.15)',
+                                border: '1px solid rgba(0, 255, 136, 0.2)'
                             }}
                         />
                     </div>
-                    <div style={{ flex: '1 1 400px', maxWidth: '600px' }}>
+                    <div style={{ width: isMobile ? '100%' : '50%' }}>
                         <h2 style={{
-                            fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                            marginBottom: '2rem',
-                            fontWeight: 300,
+                            fontSize: isMobile ? '1.5rem' : 'clamp(1.8rem, 4vw, 2.4rem)',
+                            marginBottom: isMobile ? '1.5rem' : '2rem',
+                            fontWeight: 400,
                             letterSpacing: '-0.01em',
                             color: 'var(--color-text)'
                         }}>
                             Design{' '}
                             <span style={{
-                                background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%)',
+                                background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent'
                             }}>
@@ -596,102 +531,74 @@ const Domus: React.FC = () => {
                             </span>
                         </h2>
                         <p style={{
-                            fontSize: '1.25rem',
-                            marginBottom: '2rem',
+                            fontSize: isMobile ? '1rem' : '1.15rem',
+                            marginBottom: isMobile ? '1.5rem' : '2rem',
                             lineHeight: '1.9',
                             color: 'var(--color-text-muted)',
                             fontWeight: 300
                         }}>
                             We expect your Domus to be aesthetically pleasing and contribute to the city's visual identity.
                         </p>
-                        <div style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '1.5rem'
-                        }}>
-                            <div style={{
-                                padding: '1.5rem',
-                                background: 'rgba(255, 255, 255, 0.03)',
-                                borderRadius: '12px',
-                                border: '1px solid rgba(212, 175, 55, 0.15)'
-                            }}>
-                                <div style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '1rem',
-                                    marginBottom: '0.5rem'
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            {[
+                                { icon: '💡', title: 'Exterior Lighting', text: 'Install attractive exterior lighting to enhance the cityscape at night.' },
+                                { icon: '🎨', title: 'Aesthetic Design', text: 'Create a visually appealing structure that adds character to Juvantia.' }
+                            ].map((item, idx) => (
+                                <div key={idx} style={{
+                                    padding: isMobile ? '1rem' : '1.25rem',
+                                    background: 'rgba(0, 255, 136, 0.03)',
+                                    borderRadius: '12px',
+                                    border: '1px solid rgba(0, 255, 136, 0.12)'
                                 }}>
-                                    <span style={{ fontSize: '1.5rem' }}>💡</span>
-                                    <h4 style={{
-                                        color: 'var(--color-accent)',
-                                        fontSize: '1.2rem',
-                                        margin: 0
+                                    <div style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.75rem',
+                                        marginBottom: '0.4rem'
                                     }}>
-                                        Exterior Lighting
-                                    </h4>
-                                </div>
-                                <p style={{
-                                    color: 'var(--color-text-muted)',
-                                    lineHeight: '1.7',
-                                    margin: 0,
-                                    paddingLeft: '2.5rem'
-                                }}>
-                                    Install attractive exterior lighting to enhance the cityscape at night.
-                                </p>
-                            </div>
-                            <div style={{
-                                padding: '1.5rem',
-                                background: 'rgba(255, 255, 255, 0.03)',
-                                borderRadius: '12px',
-                                border: '1px solid rgba(212, 175, 55, 0.15)'
-                            }}>
-                                <div style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '1rem',
-                                    marginBottom: '0.5rem'
-                                }}>
-                                    <span style={{ fontSize: '1.5rem' }}>🎨</span>
-                                    <h4 style={{
-                                        color: 'var(--color-accent)',
-                                        fontSize: '1.2rem',
-                                        margin: 0
+                                        <span style={{ fontSize: isMobile ? '1.1rem' : '1.3rem' }}>{item.icon}</span>
+                                        <h4 style={{
+                                            color: 'var(--color-primary)',
+                                            fontSize: isMobile ? '1rem' : '1.1rem',
+                                            margin: 0
+                                        }}>
+                                            {item.title}
+                                        </h4>
+                                    </div>
+                                    <p style={{
+                                        color: 'var(--color-text-muted)',
+                                        lineHeight: '1.7',
+                                        margin: 0,
+                                        paddingLeft: isMobile ? '1.85rem' : '2.05rem',
+                                        fontSize: isMobile ? '0.9rem' : '0.95rem'
                                     }}>
-                                        Aesthetic Design
-                                    </h4>
+                                        {item.text}
+                                    </p>
                                 </div>
-                                <p style={{
-                                    color: 'var(--color-text-muted)',
-                                    lineHeight: '1.7',
-                                    margin: 0,
-                                    paddingLeft: '2.5rem'
-                                }}>
-                                    Create a visually appealing structure that adds character to Juvantia.
-                                </p>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
 
                 {/* Electrical Connection Section */}
                 <div style={{
-                    marginBottom: '6rem',
-                    background: 'rgba(255, 255, 255, 0.02)',
+                    marginBottom: '4rem',
+                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
                     backdropFilter: 'blur(20px)',
-                    padding: '4rem',
-                    borderRadius: '32px',
-                    border: '1px solid rgba(212, 175, 55, 0.2)',
+                    padding: isMobile ? '2rem 1.25rem' : '4rem',
+                    borderRadius: isMobile ? '24px' : '32px',
+                    border: '1px solid rgba(0, 255, 136, 0.15)',
                     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
                 }}>
                     <h2 style={{
                         textAlign: 'center',
-                        fontSize: '2.5rem',
-                        fontWeight: 300,
+                        fontSize: isMobile ? '1.5rem' : '2.2rem',
+                        fontWeight: 400,
                         letterSpacing: '-0.02em',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
-                        marginBottom: '4rem'
+                        marginBottom: isMobile ? '2rem' : '4rem'
                     }}>
                         Electrical Connection
                     </h2>
@@ -699,34 +606,34 @@ const Domus: React.FC = () => {
                     {/* External Connection */}
                     <div style={{
                         display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: '4rem',
+                        flexDirection: isMobile ? 'column' : 'row',
+                        gap: isMobile ? '1.5rem' : '3rem',
                         alignItems: 'center',
-                        marginBottom: '4rem',
-                        padding: '3rem',
-                        background: 'rgba(212, 175, 55, 0.05)',
-                        borderRadius: '24px',
-                        border: '1px solid rgba(212, 175, 55, 0.2)'
+                        marginBottom: isMobile ? '2rem' : '3rem',
+                        padding: isMobile ? '1.5rem' : '2.5rem',
+                        background: 'rgba(0, 255, 136, 0.05)',
+                        borderRadius: '20px',
+                        border: '1px solid rgba(0, 255, 136, 0.2)'
                     }}>
-                        <div style={{ flex: '1 1 400px', maxWidth: '600px' }}>
+                        <div style={{ width: isMobile ? '100%' : '60%' }}>
                             <h3 style={{
-                                fontSize: '1.8rem',
-                                marginBottom: '1.5rem',
+                                fontSize: isMobile ? '1.2rem' : '1.5rem',
+                                marginBottom: '1.25rem',
                                 fontWeight: 400,
-                                color: 'var(--color-accent)'
+                                color: 'var(--color-primary)'
                             }}>
                                 ⚡ External Connection
                             </h3>
                             <p style={{
-                                fontSize: '1.15rem',
-                                marginBottom: '1.5rem',
+                                fontSize: isMobile ? '0.95rem' : '1.05rem',
+                                marginBottom: '1rem',
                                 lineHeight: '1.8',
                                 color: 'var(--color-text-muted)'
                             }}>
-                                All Domus structures connect to the city grid via the standard 24V <span style={{ color: 'var(--color-accent)', fontWeight: 500 }}>GX16-4</span> plug connector.
+                                All Domus structures connect to the city grid via the standard 24V <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>GX16-4</span> plug connector.
                             </p>
                             <p style={{
-                                fontSize: '1.05rem',
+                                fontSize: isMobile ? '0.85rem' : '0.95rem',
                                 lineHeight: '1.7',
                                 color: 'var(--color-text-muted)',
                                 fontStyle: 'italic'
@@ -734,23 +641,23 @@ const Domus: React.FC = () => {
                                 This GX16-4 connector powers your Domus from the Juvantia city electrical network.
                             </p>
                         </div>
-                        <div style={{ flex: '1 1 350px', maxWidth: '400px', textAlign: 'center' }}>
+                        <div style={{ textAlign: 'center', width: isMobile ? '100%' : '40%' }}>
                             <img
                                 src="/images/plug.jpg"
                                 alt="External GX16-4 connector"
                                 style={{
                                     width: '100%',
-                                    maxWidth: '350px',
+                                    maxWidth: isMobile ? '200px' : '300px',
                                     height: 'auto',
                                     borderRadius: '16px',
-                                    boxShadow: '0 15px 40px rgba(212, 175, 55, 0.3)',
-                                    border: '1px solid rgba(212, 175, 55, 0.3)'
+                                    boxShadow: '0 15px 40px rgba(0, 255, 136, 0.2)',
+                                    border: '1px solid rgba(0, 255, 136, 0.25)'
                                 }}
                             />
                             <p style={{
-                                marginTop: '1rem',
-                                color: 'var(--color-accent)',
-                                fontSize: '1rem',
+                                marginTop: '0.75rem',
+                                color: 'var(--color-primary)',
+                                fontSize: isMobile ? '0.85rem' : '0.95rem',
                                 fontWeight: 500
                             }}>
                                 GX16-4 City Connector (24V)
@@ -760,14 +667,14 @@ const Domus: React.FC = () => {
 
                     {/* Internal Connection */}
                     <div style={{
-                        padding: '3rem',
-                        background: 'rgba(255, 255, 255, 0.02)',
-                        borderRadius: '24px',
-                        border: '1px solid rgba(212, 175, 55, 0.15)'
+                        padding: isMobile ? '1.5rem' : '2.5rem',
+                        background: 'rgba(0, 255, 136, 0.02)',
+                        borderRadius: '20px',
+                        border: '1px solid rgba(0, 255, 136, 0.12)'
                     }}>
                         <h3 style={{
-                            fontSize: '1.8rem',
-                            marginBottom: '2rem',
+                            fontSize: isMobile ? '1.2rem' : '1.5rem',
+                            marginBottom: '1.5rem',
                             fontWeight: 400,
                             color: 'var(--color-text)',
                             textAlign: 'center'
@@ -775,53 +682,54 @@ const Domus: React.FC = () => {
                             🔌 Internal Charging (Inside Domus)
                         </h3>
                         <p style={{
-                            fontSize: '1.1rem',
-                            marginBottom: '3rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
+                            marginBottom: isMobile ? '1.5rem' : '2.5rem',
                             lineHeight: '1.8',
                             color: 'var(--color-text-muted)',
                             textAlign: 'center',
-                            maxWidth: '800px',
-                            margin: '0 auto 3rem'
+                            maxWidth: '700px',
+                            margin: isMobile ? '0 auto 1.5rem' : '0 auto 2.5rem'
                         }}>
                             Inside your Domus, you can choose how to charge your Robulus:
                         </p>
 
                         <div style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                            gap: '2rem'
+                            display: 'flex',
+                            flexDirection: isMobile ? 'column' : 'row',
+                            gap: '1.5rem'
                         }}>
                             {/* Juvantia Standard */}
                             <div style={{
-                                padding: '2rem',
-                                background: 'rgba(212, 175, 55, 0.08)',
+                                padding: isMobile ? '1.5rem' : '2rem',
+                                background: 'rgba(0, 255, 136, 0.08)',
                                 borderRadius: '16px',
-                                border: '2px solid rgba(212, 175, 55, 0.3)'
+                                border: '2px solid rgba(0, 255, 136, 0.25)',
+                                flex: 1
                             }}>
                                 <div style={{
                                     display: 'inline-block',
-                                    padding: '0.4rem 1rem',
-                                    background: 'var(--color-accent)',
+                                    padding: '0.3rem 0.75rem',
+                                    background: 'var(--color-primary)',
                                     color: '#000',
-                                    borderRadius: '8px',
-                                    fontSize: '0.85rem',
+                                    borderRadius: '6px',
+                                    fontSize: isMobile ? '0.65rem' : '0.75rem',
                                     fontWeight: 600,
-                                    marginBottom: '1.5rem'
+                                    marginBottom: '1rem'
                                 }}>
                                     FOR RENTAL / COMMERCIAL
                                 </div>
                                 <h4 style={{
-                                    color: 'var(--color-accent)',
-                                    marginBottom: '1.5rem',
-                                    fontSize: '1.4rem'
+                                    color: 'var(--color-primary)',
+                                    marginBottom: '1rem',
+                                    fontSize: isMobile ? '1.05rem' : '1.2rem'
                                 }}>
                                     Juvantia Standard
                                 </h4>
                                 <p style={{
                                     color: 'var(--color-text-muted)',
                                     lineHeight: '1.8',
-                                    fontSize: '1.05rem',
-                                    marginBottom: '1.5rem'
+                                    fontSize: isMobile ? '0.85rem' : '0.95rem',
+                                    marginBottom: '1.25rem'
                                 }}>
                                     Required if your Domus is for rental or commercial use. The 4-pin magnetic connector ensures compatibility with all Robulus units.
                                 </p>
@@ -833,14 +741,14 @@ const Domus: React.FC = () => {
                                             maxWidth: '100%',
                                             height: 'auto',
                                             borderRadius: '12px',
-                                            border: '1px solid rgba(212, 175, 55, 0.3)',
+                                            border: '1px solid rgba(0, 255, 136, 0.25)',
                                             boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)'
                                         }}
                                     />
                                     <p style={{
-                                        marginTop: '0.75rem',
-                                        fontSize: '0.95rem',
-                                        color: 'var(--color-accent)',
+                                        marginTop: '0.5rem',
+                                        fontSize: isMobile ? '0.8rem' : '0.85rem',
+                                        color: 'var(--color-primary)',
                                         fontWeight: 500
                                     }}>
                                         4-Pin Magnetic Connector
@@ -850,43 +758,44 @@ const Domus: React.FC = () => {
 
                             {/* Personal Use */}
                             <div style={{
-                                padding: '2rem',
-                                background: 'rgba(255, 255, 255, 0.03)',
+                                padding: isMobile ? '1.5rem' : '2rem',
+                                background: 'rgba(0, 255, 136, 0.02)',
                                 borderRadius: '16px',
-                                border: '1px solid rgba(212, 175, 55, 0.2)'
+                                border: '1px solid rgba(0, 255, 136, 0.15)',
+                                flex: 1
                             }}>
                                 <div style={{
                                     display: 'inline-block',
-                                    padding: '0.4rem 1rem',
+                                    padding: '0.3rem 0.75rem',
                                     background: 'rgba(255, 255, 255, 0.1)',
                                     color: 'var(--color-text)',
-                                    borderRadius: '8px',
-                                    fontSize: '0.85rem',
+                                    borderRadius: '6px',
+                                    fontSize: isMobile ? '0.65rem' : '0.75rem',
                                     fontWeight: 600,
-                                    marginBottom: '1.5rem'
+                                    marginBottom: '1rem'
                                 }}>
                                     FOR PERSONAL USE
                                 </div>
                                 <h4 style={{
                                     color: 'var(--color-text)',
-                                    marginBottom: '1.5rem',
-                                    fontSize: '1.4rem'
+                                    marginBottom: '1rem',
+                                    fontSize: isMobile ? '1.05rem' : '1.2rem'
                                 }}>
                                     Any Connector
                                 </h4>
                                 <p style={{
                                     color: 'var(--color-text-muted)',
                                     lineHeight: '1.8',
-                                    fontSize: '1.05rem',
-                                    marginBottom: '1.5rem'
+                                    fontSize: isMobile ? '0.85rem' : '0.95rem',
+                                    marginBottom: '1rem'
                                 }}>
                                     For personal Domus, you're free to use any charging method you prefer.
                                 </p>
                                 <ul style={{
                                     color: 'var(--color-text-muted)',
                                     lineHeight: '2',
-                                    fontSize: '1.05rem',
-                                    paddingLeft: '1.5rem',
+                                    fontSize: isMobile ? '0.85rem' : '0.95rem',
+                                    paddingLeft: '1.25rem',
                                     margin: 0
                                 }}>
                                     <li>Custom connectors</li>
@@ -898,19 +807,7 @@ const Domus: React.FC = () => {
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
-            <style>
-                {`
-                    @keyframes float {
-                        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-                        33% { transform: translate(30px, -30px) rotate(5deg); }
-                        66% { transform: translate(-20px, 20px) rotate(-5deg); }
-                    }
-                `}
-            </style>
         </div>
     );
 };

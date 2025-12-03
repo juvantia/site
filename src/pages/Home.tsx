@@ -1,68 +1,108 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import CursorGlow from '../components/CursorGlow';
 
-// --- Components ---
+// --- Reusable Components ---
 
-const Section: React.FC<{ children: React.ReactNode; className?: string; style?: React.CSSProperties; id?: string }> = ({ children, className, style, id }) => (
-    <motion.section
-        id={id}
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-        className={className}
-        style={{
-            padding: '8rem 2rem',
-            minHeight: '80vh',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'relative',
-            ...style
-        }}
-    >
-        {children}
-    </motion.section>
+const SectionDivider: React.FC = () => (
+    <div style={{
+        width: '100%',
+        height: '1px',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(0, 255, 136, 0.3) 50%, transparent 100%)',
+        margin: '0'
+    }} />
 );
 
-const GlassCard: React.FC<{ children: React.ReactNode; style?: React.CSSProperties; className?: string }> = ({ children, style, className }) => (
-    <motion.div
-        className={className}
-        whileHover={{ y: -8, scale: 1.02 }}
-        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-        style={{
-            background: 'rgba(255, 255, 255, 0.02)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(212, 175, 55, 0.15)',
-            borderRadius: '24px',
-            padding: '2.5rem',
-            boxShadow: '0 10px 40px rgba(0,0,0,0.4)',
-            position: 'relative',
-            overflow: 'hidden',
-            ...style
-        }}
-        onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.4)';
-            e.currentTarget.style.boxShadow = '0 20px 60px rgba(212, 175, 55, 0.2)';
-        }}
-        onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.15)';
-            e.currentTarget.style.boxShadow = '0 10px 40px rgba(0,0,0,0.4)';
-        }}
-    >
-        <div style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            width: '200px',
-            height: '200px',
-            background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)',
-            pointerEvents: 'none'
-        }} />
-        {children}
-    </motion.div>
-);
+const GlassCard: React.FC<{ 
+    children: React.ReactNode; 
+    style?: React.CSSProperties;
+    hoverEffect?: boolean;
+}> = ({ children, style, hoverEffect = true }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    
+    return (
+        <motion.div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            whileHover={hoverEffect ? { y: -6, scale: 1.01 } : {}}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            style={{
+                background: 'linear-gradient(135deg, rgba(15, 31, 23, 0.8) 0%, rgba(10, 15, 10, 0.9) 100%)',
+                backdropFilter: 'blur(20px)',
+                border: `1px solid ${isHovered ? 'rgba(0, 255, 136, 0.4)' : 'rgba(0, 255, 136, 0.12)'}`,
+                borderRadius: '20px',
+                padding: '2rem',
+                position: 'relative',
+                overflow: 'hidden',
+                boxShadow: isHovered 
+                    ? '0 0 40px rgba(0, 255, 136, 0.15), 0 20px 60px rgba(0, 0, 0, 0.4)'
+                    : '0 10px 40px rgba(0, 0, 0, 0.3)',
+                transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
+                ...style
+            }}
+        >
+            {/* Top highlight line */}
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: '10%',
+                right: '10%',
+                height: '1px',
+                background: 'linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.5), transparent)',
+                opacity: isHovered ? 1 : 0,
+                transition: 'opacity 0.4s ease'
+            }} />
+            {children}
+        </motion.div>
+    );
+};
+
+const ImageCard: React.FC<{ 
+    src: string; 
+    alt: string; 
+    aspectRatio?: string;
+}> = ({ src, alt, aspectRatio = '16/9' }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    
+    return (
+        <motion.div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            style={{
+                borderRadius: '24px',
+                overflow: 'hidden',
+                border: `1px solid ${isHovered ? 'rgba(0, 255, 136, 0.4)' : 'rgba(0, 255, 136, 0.15)'}`,
+                boxShadow: isHovered 
+                    ? '0 0 50px rgba(0, 255, 136, 0.2), 0 30px 80px rgba(0, 0, 0, 0.5)'
+                    : '0 20px 60px rgba(0, 0, 0, 0.4)',
+                transition: 'border-color 0.5s ease, box-shadow 0.5s ease',
+                aspectRatio,
+                position: 'relative'
+            }}
+        >
+            <img
+                src={src}
+                alt={alt}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block'
+                }}
+            />
+            <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(10, 15, 10, 0.6), transparent 50%)',
+                pointerEvents: 'none'
+            }} />
+        </motion.div>
+    );
+};
+
+// --- Tab Components ---
 
 const RolesTabs: React.FC = () => {
     const roles = [
@@ -77,124 +117,195 @@ const RolesTabs: React.FC = () => {
     ];
 
     const [selectedRole, setSelectedRole] = useState(roles[0]);
+    const [isMobile, setIsMobile] = useState(false);
 
+    React.useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Mobile version - horizontal swipe carousel
+    if (isMobile) {
+        return (
+            <div style={{ width: '100%', maxWidth: '100vw', overflow: 'hidden' }}>
+                {/* Pills navigation */}
+                <div style={{
+                    display: 'flex',
+                    overflowX: 'auto',
+                    scrollSnapType: 'x mandatory',
+                    gap: '0.5rem',
+                    padding: '0 1rem 1rem',
+                    marginBottom: '1.5rem',
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none',
+                }}>
+                    <style>{`.roles-pills::-webkit-scrollbar { display: none; }`}</style>
+                    {roles.map((role) => (
+                        <motion.button
+                            key={role.id}
+                            onClick={() => setSelectedRole(role)}
+                            whileTap={{ scale: 0.95 }}
+                            style={{
+                                flexShrink: 0,
+                                scrollSnapAlign: 'start',
+                                padding: '0.6rem 1rem',
+                                background: selectedRole.id === role.id
+                                    ? 'linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%)'
+                                    : 'rgba(10, 15, 10, 0.6)',
+                                color: selectedRole.id === role.id ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                                border: `1px solid ${selectedRole.id === role.id ? 'rgba(0, 255, 136, 0.4)' : 'rgba(0, 255, 136, 0.1)'}`,
+                                borderRadius: '20px',
+                                fontSize: '0.75rem',
+                                cursor: 'pointer',
+                                fontFamily: 'var(--font-heading)',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.05em',
+                                whiteSpace: 'nowrap',
+                                boxShadow: selectedRole.id === role.id ? '0 0 15px rgba(0, 255, 136, 0.2)' : 'none'
+                            }}
+                        >
+                            {role.label}
+                        </motion.button>
+                    ))}
+                </div>
+
+                {/* Content Card */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={selectedRole.id}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                        style={{ padding: '0 1rem' }}
+                    >
+                        <ImageCard src={selectedRole.image} alt={selectedRole.label} aspectRatio="3/2" />
+                        <div style={{ marginTop: '1.5rem' }}>
+                            <h3 style={{
+                                fontSize: '1.4rem',
+                                background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                marginBottom: '0.75rem',
+                                fontWeight: 400
+                            }}>
+                                {selectedRole.label}
+                            </h3>
+                            <p style={{
+                                fontSize: '0.95rem',
+                                color: 'var(--color-text-muted)',
+                                lineHeight: '1.7',
+                                fontWeight: 300
+                            }}>
+                                {selectedRole.description}
+                            </p>
+                        </div>
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+        );
+    }
+
+    // Desktop version - original layout
     return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', justifyContent: 'center', width: '100%', maxWidth: '1400px' }}>
+        <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'minmax(250px, 300px) minmax(300px, 450px)',
+            gap: '3rem', 
+            width: '100%', 
+            maxWidth: '900px',
+            alignItems: 'start',
+            justifyContent: 'center'
+        }}>
             {/* Tabs List */}
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '0.25rem',
+                background: 'rgba(10, 15, 10, 0.5)',
+                borderRadius: '16px',
+                padding: '0.5rem',
+                border: '1px solid rgba(0, 255, 136, 0.1)'
+            }}>
                 {roles.map((role) => (
                     <motion.button
                         key={role.id}
                         onClick={() => setSelectedRole(role)}
-                        whileHover={{ x: selectedRole.id === role.id ? 0 : 10 }}
-                        transition={{ duration: 0.2 }}
+                        whileHover={{ x: selectedRole.id === role.id ? 0 : 4 }}
                         style={{
-                            padding: '1.5rem 2rem',
+                            padding: '1rem 1.5rem',
                             textAlign: 'left',
                             background: selectedRole.id === role.id
-                                ? 'linear-gradient(90deg, rgba(212, 175, 55, 0.15) 0%, transparent 100%)'
-                                : 'rgba(255, 255, 255, 0.02)',
-                            color: selectedRole.id === role.id ? 'var(--color-accent)' : 'var(--color-text-muted)',
-                            borderLeft: `3px solid ${selectedRole.id === role.id ? 'var(--color-accent)' : 'transparent'}`,
-                            borderTop: 'none',
-                            borderRight: 'none',
-                            borderBottom: 'none',
-                            fontSize: '1.1rem',
+                                ? 'linear-gradient(90deg, rgba(0, 255, 136, 0.15) 0%, transparent 100%)'
+                                : 'transparent',
+                            color: selectedRole.id === role.id ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                            border: 'none',
+                            borderLeft: `2px solid ${selectedRole.id === role.id ? 'var(--color-primary)' : 'transparent'}`,
+                            fontSize: '0.95rem',
                             cursor: 'pointer',
-                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                            transition: 'all 0.3s ease',
                             fontFamily: 'var(--font-heading)',
                             textTransform: 'uppercase',
-                            letterSpacing: '0.05em',
+                            letterSpacing: '0.08em',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '1rem',
-                            borderRadius: '12px 0 0 12px'
+                            justifyContent: 'space-between',
+                            borderRadius: '0 12px 12px 0',
+                            boxShadow: selectedRole.id === role.id ? '0 0 20px rgba(0, 255, 136, 0.1)' : 'none'
                         }}
                     >
-                        <span style={{ flex: 1 }}>{role.label}</span>
+                        <span>{role.label}</span>
                         {selectedRole.id === role.id && (
                             <motion.span
-                                layoutId="roleArrow"
-                                style={{ fontSize: '0.8em' }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                →
-                            </motion.span>
+                                layoutId="roleIndicator"
+                                style={{ 
+                                    width: '6px', 
+                                    height: '6px', 
+                                    borderRadius: '50%', 
+                                    background: 'var(--color-primary)',
+                                    boxShadow: '0 0 10px var(--color-primary)'
+                                }}
+                            />
                         )}
                     </motion.button>
                 ))}
             </div>
 
-            {/* Image & Description Area */}
-            <div style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={selectedRole.id}
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 1.05, y: -20 }}
-                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
-                    >
-                        <div style={{
-                            width: '100%',
-                            maxWidth: '450px',
-                            aspectRatio: '1/1',
-                            background: 'radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            marginBottom: '2.5rem',
-                            borderRadius: '50%',
-                            border: '1px solid rgba(212, 175, 55, 0.15)',
-                            boxShadow: '0 0 80px rgba(212, 175, 55, 0.15)',
-                            position: 'relative',
-                            overflow: 'hidden'
-                        }}>
-                            <div style={{
-                                position: 'absolute',
-                                inset: 0,
-                                background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(212, 175, 55, 0.1) 90deg, transparent 180deg)`,
-                                animation: 'rotate 20s linear infinite'
-                            }} />
-                            <img
-                                src={selectedRole.image}
-                                alt={selectedRole.label}
-                                style={{
-                                    width: '100%',
-                                    height: 'auto',
-                                    borderRadius: '12px',
-                                    filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.6))',
-                                    transition: 'filter 0.3s ease',
-                                    position: 'relative',
-                                    zIndex: 1
-                                }}
-                            />
-                        </div>
+            {/* Content Area */}
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={selectedRole.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '400px' }}
+                >
+                    <ImageCard src={selectedRole.image} alt={selectedRole.label} aspectRatio="3/2" />
+                    <div>
                         <h3 style={{
-                            fontSize: '2.5rem',
-                            background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
+                            fontSize: '1.6rem',
+                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
-                            marginBottom: '1.5rem',
-                            fontWeight: 300,
-                            letterSpacing: '-0.01em'
+                            marginBottom: '0.75rem',
+                            fontWeight: 400
                         }}>
                             {selectedRole.label}
                         </h3>
                         <p style={{
-                            fontSize: '1.2rem',
-                            textAlign: 'center',
+                            fontSize: '1rem',
                             color: 'var(--color-text-muted)',
-                            maxWidth: '500px',
-                            lineHeight: '1.8',
+                            lineHeight: '1.7',
                             fontWeight: 300
                         }}>
                             {selectedRole.description}
                         </p>
-                    </motion.div>
-                </AnimatePresence>
-            </div>
+                    </div>
+                </motion.div>
+            </AnimatePresence>
         </div>
     );
 };
@@ -208,129 +319,225 @@ const DomusTabs: React.FC = () => {
     ];
 
     const [selectedDomus, setSelectedDomus] = useState(domusTypes[0]);
+    const [isMobile, setIsMobile] = useState(false);
 
-    return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', justifyContent: 'center', width: '100%', maxWidth: '1400px', flexDirection: 'row-reverse' }}>
-            {/* Tabs List */}
-            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {domusTypes.map((domus) => (
-                    <motion.button
-                        key={domus.id}
-                        onClick={() => setSelectedDomus(domus)}
-                        whileHover={{ x: selectedDomus.id === domus.id ? 0 : -10 }}
-                        transition={{ duration: 0.2 }}
-                        style={{
-                            padding: '1.5rem 2rem',
-                            textAlign: 'right',
-                            background: selectedDomus.id === domus.id
-                                ? 'linear-gradient(-90deg, rgba(212, 175, 55, 0.15) 0%, transparent 100%)'
-                                : 'rgba(255, 255, 255, 0.02)',
-                            color: selectedDomus.id === domus.id ? 'var(--color-accent)' : 'var(--color-text-muted)',
-                            borderRight: `3px solid ${selectedDomus.id === domus.id ? 'var(--color-accent)' : 'transparent'}`,
-                            borderTop: 'none',
-                            borderLeft: 'none',
-                            borderBottom: 'none',
-                            fontSize: '1.1rem',
-                            cursor: 'pointer',
-                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                            fontFamily: 'var(--font-heading)',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.05em',
-                            display: 'flex',
-                            flexDirection: 'row-reverse',
-                            alignItems: 'center',
-                            gap: '1rem',
-                            borderRadius: '0 12px 12px 0'
-                        }}
-                    >
-                        <span style={{ flex: 1 }}>{domus.label}</span>
-                        {selectedDomus.id === domus.id && (
-                            <motion.span
-                                layoutId="domusArrow"
-                                style={{ fontSize: '0.8em' }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                ←
-                            </motion.span>
-                        )}
-                    </motion.button>
-                ))}
-            </div>
+    React.useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
-            {/* Image & Description Area */}
-            <div style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    // Mobile version - horizontal swipe carousel
+    if (isMobile) {
+        return (
+            <div style={{ width: '100%', maxWidth: '100vw', overflow: 'hidden' }}>
+                {/* Pills navigation */}
+                <div style={{
+                    display: 'flex',
+                    overflowX: 'auto',
+                    scrollSnapType: 'x mandatory',
+                    gap: '0.5rem',
+                    padding: '0 1rem 1rem',
+                    marginBottom: '1.5rem',
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none',
+                }}>
+                    {domusTypes.map((domus) => (
+                        <motion.button
+                            key={domus.id}
+                            onClick={() => setSelectedDomus(domus)}
+                            whileTap={{ scale: 0.95 }}
+                            style={{
+                                flexShrink: 0,
+                                scrollSnapAlign: 'start',
+                                padding: '0.6rem 1rem',
+                                background: selectedDomus.id === domus.id
+                                    ? 'linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%)'
+                                    : 'rgba(10, 15, 10, 0.6)',
+                                color: selectedDomus.id === domus.id ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                                border: `1px solid ${selectedDomus.id === domus.id ? 'rgba(0, 255, 136, 0.4)' : 'rgba(0, 255, 136, 0.1)'}`,
+                                borderRadius: '20px',
+                                fontSize: '0.75rem',
+                                cursor: 'pointer',
+                                fontFamily: 'var(--font-heading)',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.05em',
+                                whiteSpace: 'nowrap',
+                                boxShadow: selectedDomus.id === domus.id ? '0 0 15px rgba(0, 255, 136, 0.2)' : 'none'
+                            }}
+                        >
+                            {domus.label}
+                        </motion.button>
+                    ))}
+                </div>
+
+                {/* Content Card */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedDomus.id}
-                        initial={{ opacity: 0, x: -30 }}
+                        initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 30 }}
-                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                        style={{ padding: '0 1rem' }}
                     >
-                        <div style={{
-                            width: '100%',
-                            maxWidth: '600px',
-                            aspectRatio: '16/9',
-                            overflow: 'hidden',
-                            borderRadius: '24px',
-                            border: '1px solid rgba(212, 175, 55, 0.2)',
-                            marginBottom: '2.5rem',
-                            position: 'relative',
-                            boxShadow: '0 30px 80px rgba(0,0,0,0.6)'
-                        }}>
-                            <img
-                                src={selectedDomus.image}
-                                alt={selectedDomus.label}
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover',
-                                }}
-                            />
-                            <div style={{
-                                position: 'absolute',
-                                inset: 0,
-                                background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%)'
-                            }} />
+                        <ImageCard src={selectedDomus.image} alt={selectedDomus.label} aspectRatio="3/2" />
+                        <div style={{ marginTop: '1.5rem' }}>
+                            <h3 style={{
+                                fontSize: '1.4rem',
+                                background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                marginBottom: '0.75rem',
+                                fontWeight: 400
+                            }}>
+                                {selectedDomus.label}
+                            </h3>
+                            <p style={{
+                                fontSize: '0.95rem',
+                                color: 'var(--color-text-muted)',
+                                lineHeight: '1.7',
+                                fontWeight: 300
+                            }}>
+                                {selectedDomus.description}
+                            </p>
                         </div>
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+        );
+    }
+
+    // Desktop version - original layout
+    return (
+        <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'minmax(300px, 450px) minmax(250px, 300px)',
+            gap: '3rem', 
+            width: '100%', 
+            maxWidth: '900px',
+            alignItems: 'start',
+            justifyContent: 'center'
+        }}>
+            {/* Content Area */}
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={selectedDomus.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '450px' }}
+                >
+                    <ImageCard src={selectedDomus.image} alt={selectedDomus.label} aspectRatio="3/2" />
+                    <div>
                         <h3 style={{
-                            fontSize: '2.5rem',
-                            background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
+                            fontSize: '1.6rem',
+                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
-                            marginBottom: '1.5rem',
-                            fontWeight: 300,
-                            letterSpacing: '-0.01em'
+                            marginBottom: '0.75rem',
+                            fontWeight: 400
                         }}>
                             {selectedDomus.label}
                         </h3>
                         <p style={{
-                            fontSize: '1.2rem',
-                            textAlign: 'center',
+                            fontSize: '1rem',
                             color: 'var(--color-text-muted)',
-                            maxWidth: '500px',
-                            lineHeight: '1.8',
+                            lineHeight: '1.7',
                             fontWeight: 300
                         }}>
                             {selectedDomus.description}
                         </p>
-                    </motion.div>
-                </AnimatePresence>
+                    </div>
+                </motion.div>
+            </AnimatePresence>
+
+            {/* Tabs List */}
+            <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '0.25rem',
+                background: 'rgba(10, 15, 10, 0.5)',
+                borderRadius: '16px',
+                padding: '0.5rem',
+                border: '1px solid rgba(0, 255, 136, 0.1)'
+            }}>
+                {domusTypes.map((domus) => (
+                    <motion.button
+                        key={domus.id}
+                        onClick={() => setSelectedDomus(domus)}
+                        whileHover={{ x: selectedDomus.id === domus.id ? 0 : -4 }}
+                        style={{
+                            padding: '1rem 1.5rem',
+                            textAlign: 'right',
+                            background: selectedDomus.id === domus.id
+                                ? 'linear-gradient(-90deg, rgba(0, 255, 136, 0.15) 0%, transparent 100%)'
+                                : 'transparent',
+                            color: selectedDomus.id === domus.id ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                            border: 'none',
+                            borderRight: `2px solid ${selectedDomus.id === domus.id ? 'var(--color-primary)' : 'transparent'}`,
+                            fontSize: '0.95rem',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            fontFamily: 'var(--font-heading)',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.08em',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            flexDirection: 'row-reverse',
+                            borderRadius: '12px 0 0 12px',
+                            boxShadow: selectedDomus.id === domus.id ? '0 0 20px rgba(0, 255, 136, 0.1)' : 'none'
+                        }}
+                    >
+                        <span>{domus.label}</span>
+                        {selectedDomus.id === domus.id && (
+                            <motion.span
+                                layoutId="domusIndicator"
+                                style={{ 
+                                    width: '6px', 
+                                    height: '6px', 
+                                    borderRadius: '50%', 
+                                    background: 'var(--color-primary)',
+                                    boxShadow: '0 0 10px var(--color-primary)'
+                                }}
+                            />
+                        )}
+                    </motion.button>
+                ))}
             </div>
         </div>
     );
 };
 
+// --- Main Component ---
+
 const Home: React.FC = () => {
     const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-    const opacityHero = useTransform(scrollY, [0, 400], [1, 0]);
+    const heroImageY = useTransform(scrollY, [0, 600], [0, 150]);
+    const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+    const heroScale = useTransform(scrollY, [0, 400], [1, 1.1]);
+    const [isMobile, setIsMobile] = useState(false);
+
+    React.useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     return (
         <>
-            {/* Hero Section */}
-            <div style={{
+            {/* Cursor Glow Effect */}
+            <CursorGlow size={350} opacity={0.12} />
+
+            {/* Ambient Glow - Mobile Dark Mode Pulse */}
+            {isMobile && <div className="ambient-glow" />}
+
+            {/* ===== HERO SECTION ===== */}
+            <section style={{
                 position: 'relative',
                 height: '100vh',
                 width: '100%',
@@ -340,171 +547,180 @@ const Home: React.FC = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 textAlign: 'center',
-                color: 'var(--color-text)',
                 overflow: 'hidden'
             }}>
-                {/* Animated Background Blobs */}
+                {/* Background Image with Parallax */}
+                <motion.div 
+                    style={{
+                        position: 'absolute',
+                        inset: 0,
+                        backgroundImage: 'url(/images/hero_city.png)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        y: heroImageY,
+                        scale: heroScale
+                    }}
+                />
+                
+                {/* Dark Overlay */}
                 <div style={{
                     position: 'absolute',
-                    top: '15%',
-                    right: '10%',
-                    width: '600px',
-                    height: '600px',
-                    background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
-                    borderRadius: '50%',
-                    filter: 'blur(100px)',
-                    animation: 'float 25s ease-in-out infinite',
-                    pointerEvents: 'none'
-                }} />
-                <div style={{
-                    position: 'absolute',
-                    bottom: '10%',
-                    left: '5%',
-                    width: '500px',
-                    height: '500px',
-                    background: 'radial-gradient(circle, rgba(102, 0, 0, 0.2) 0%, transparent 70%)',
-                    borderRadius: '50%',
-                    filter: 'blur(100px)',
-                    animation: 'float 20s ease-in-out infinite reverse',
-                    pointerEvents: 'none'
+                    inset: 0,
+                    background: 'linear-gradient(to bottom, rgba(10, 15, 10, 0.7) 0%, rgba(10, 15, 10, 0.85) 100%)',
+                    zIndex: 1
                 }} />
 
-                <motion.div style={{
+                {/* Top Gradient Accent */}
+                <div style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
-                    width: '100%',
-                    height: '120%',
-                    backgroundImage: 'url(/images/hero_city.png)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    zIndex: -1,
-                    filter: 'brightness(0.15)',
-                    y: y1
+                    right: 0,
+                    height: '400px',
+                    background: 'radial-gradient(ellipse at 50% 0%, rgba(0, 255, 136, 0.08) 0%, transparent 70%)',
+                    zIndex: 2,
+                    pointerEvents: 'none'
                 }} />
 
-                <motion.div style={{ opacity: opacityHero, zIndex: 1, maxWidth: '90%' }}>
+                {/* Hero Content */}
+                <motion.div style={{ opacity: heroOpacity, zIndex: 3, maxWidth: '1000px', padding: '0 2rem' }}>
                     <motion.h1
-                        initial={{ opacity: 0, scale: 0.9, letterSpacing: '0.1em' }}
-                        animate={{ opacity: 1, scale: 1, letterSpacing: '0.25em' }}
-                        transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
                         style={{
-                            fontSize: 'clamp(3rem, 8vw, 8rem)',
-                            marginBottom: '2rem',
-                            background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 50%, var(--color-accent) 100%)',
+                            fontSize: 'clamp(3rem, 9vw, 8rem)',
+                            marginBottom: '1.5rem',
+                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-text) 40%, var(--color-secondary) 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
-                            fontWeight: 300,
+                            fontWeight: 400,
+                            letterSpacing: '0.25em',
+                            paddingRight: '0.25em',
                             position: 'relative'
                         }}
                     >
                         JUVANTIA
-                        <div style={{
-                            position: 'absolute',
-                            bottom: '-10px',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            width: '60%',
-                            height: '1px',
-                            background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)'
-                        }} />
                     </motion.h1>
+
+                    {/* Animated Underline */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ delay: 0.5, duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                        style={{
+                            width: '200px',
+                            height: '2px',
+                            background: 'linear-gradient(90deg, var(--color-primary), var(--color-secondary))',
+                            margin: '0 auto 3rem',
+                            boxShadow: '0 0 20px rgba(0, 255, 136, 0.5)',
+                            transformOrigin: 'center'
+                        }}
+                    />
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.7, duration: 1.2 }}
-                    >
-                        <p style={{
-                            fontSize: 'clamp(1.1rem, 1.5vw, 1.6rem)',
-                            maxWidth: '900px',
+                        transition={{ delay: 0.7, duration: 1 }}
+                        style={{
+                            fontSize: 'clamp(1rem, 2vw, 1.4rem)',
                             color: 'var(--color-text)',
-                            lineHeight: '1.9',
-                            margin: '0 auto',
+                            lineHeight: '1.8',
                             fontWeight: 300,
-                            letterSpacing: '0.02em'
+                            maxWidth: '700px',
+                            margin: '0 auto'
+                        }}
+                    >
+                        A non-profit technopark without human participation,
+                        <br />
+                        <span style={{ color: 'var(--color-text-muted)' }}>
+                            inspired by the Roman Republic with own real economy and politics.
+                        </span>
+                    </motion.p>
+                </motion.div>
+
+                {/* Scroll Indicator - Hidden on mobile */}
+                {!isMobile && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.6 }}
+                        transition={{ delay: 1.2 }}
+                        style={{
+                            position: 'absolute',
+                            bottom: '3rem',
+                            zIndex: 3,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '1rem'
+                        }}
+                    >
+                        <motion.div
+                            animate={{ y: [0, 8, 0] }}
+                            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                            style={{
+                                width: '1px',
+                                height: '50px',
+                                background: 'linear-gradient(to bottom, transparent, var(--color-primary))'
+                            }}
+                        />
+                        <span style={{ 
+                            fontSize: '0.7rem', 
+                            letterSpacing: '0.3em', 
+                            color: 'var(--color-primary)',
+                            fontFamily: 'var(--font-heading)'
                         }}>
-                            <span style={{
-                                background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 50%, var(--color-accent) 100%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                fontWeight: 400
-                            }}>
-                                A non-profit technopark without human participation,
-                                <br />
-                                inspired by the Roman Republic with own real economy and politics.
-                            </span>
-                        </p>
+                            SCROLL
+                        </span>
                     </motion.div>
-                </motion.div>
+                )}
+            </section>
 
-                <motion.div
-                    animate={{ y: [0, 12, 0] }}
-                    transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                    style={{
-                        position: 'absolute',
-                        bottom: '3rem',
-                        color: 'var(--color-accent)',
-                        opacity: 0.6,
-                        fontSize: '0.9rem',
-                        letterSpacing: '0.2em',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        gap: '0.5rem'
-                    }}
-                >
-                    <div style={{
-                        width: '1px',
-                        height: '40px',
-                        background: 'linear-gradient(to bottom, transparent, var(--color-accent))'
-                    }} />
-                    SCROLL
-                </motion.div>
-            </div>
-
-            {/* Concept Section */}
-            <Section style={{
-                background: 'linear-gradient(to bottom, #0a0a0a, #050505)',
-                position: 'relative'
-            }}>
+            {/* ===== PAX JUVANTIA SECTION ===== */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+                style={{
+                    padding: isMobile ? '5rem 1rem' : '10rem 2rem',
+                    background: 'var(--color-bg)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    textAlign: 'center'
+                }}
+            >
                 <motion.h2
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     style={{
-                        fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-                        marginBottom: '1.5rem',
-                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)',
+                        fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 5vw, 3.5rem)',
+                        marginBottom: '1rem',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
-                        letterSpacing: '0.1em',
-                        fontWeight: 300
+                        fontWeight: 400,
+                        letterSpacing: isMobile ? '0.1em' : '0.15em'
                     }}
                 >
                     Pax Juvantia
                 </motion.h2>
-                <div style={{
-                    width: '120px',
-                    height: '2px',
-                    background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)',
-                    marginBottom: '3.5rem'
-                }} />
+
+                <div className="divider-glow" style={{ marginBottom: isMobile ? '2rem' : '3rem' }} />
 
                 <p style={{
-                    fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
-                    maxWidth: '900px',
-                    textAlign: 'center',
-                    lineHeight: '1.9',
-                    marginBottom: '5rem',
+                    fontSize: isMobile ? '1.1rem' : '1.3rem',
+                    maxWidth: '700px',
+                    color: 'var(--color-text-muted)',
+                    lineHeight: '1.8',
+                    marginBottom: isMobile ? '3rem' : '5rem',
                     fontWeight: 300,
-                    color: 'var(--color-text-muted)'
+                    padding: isMobile ? '0 0.5rem' : 0
                 }}>
                     In Juvantia, the Law is absolute.{' '}
-                    <span style={{
-                        color: 'var(--color-accent)',
-                        fontStyle: 'italic',
-                        fontSize: '1.1em'
-                    }}>
+                    <span style={{ color: 'var(--color-primary)', fontStyle: 'italic' }}>
                         Dura lex, sed lex.
                     </span>
                     <br />
@@ -513,673 +729,645 @@ const Home: React.FC = () => {
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                    gap: '3rem',
+                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))',
+                    gap: isMobile ? '1.5rem' : '2rem',
                     maxWidth: '800px',
                     width: '100%',
-                    marginBottom: '4rem'
+                    padding: isMobile ? '0 1rem' : 0
                 }}>
                     <a href="https://tabularium.juvantia.org/lex/constitutio" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                        <GlassCard style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
+                        <GlassCard style={{ height: '100%', textAlign: 'center' }}>
                             <div style={{
-                                width: '120px',
-                                height: '120px',
+                                width: isMobile ? '80px' : '100px',
+                                height: isMobile ? '80px' : '100px',
+                                margin: '0 auto 1.5rem',
                                 borderRadius: '50%',
-                                background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+                                background: 'radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%)',
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'center',
-                                marginBottom: '2rem'
+                                justifyContent: 'center'
                             }}>
-                                <img
-                                    src="/images/icon_constitution.png"
-                                    alt="Constitution"
-                                    style={{
-                                        width: '80px',
-                                        filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))'
-                                    }}
-                                />
+                                <img src="/images/icon_constitution.png" alt="Constitution" style={{ width: isMobile ? '48px' : '60px', filter: 'brightness(1.1)' }} />
                             </div>
-                            <h3 style={{
-                                color: 'var(--color-accent)',
-                                marginBottom: '1rem',
-                                fontSize: '1.6rem',
-                                fontWeight: 400,
-                                letterSpacing: '0.05em'
-                            }}>
+                            <h3 style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.2rem' : '1.4rem', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 Constitution
                             </h3>
-                            <p style={{
-                                textAlign: 'center',
-                                color: 'var(--color-text-muted)',
-                                fontSize: '1rem',
-                                lineHeight: '1.6'
-                            }}>
+                            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>
                                 The foundation of our society.
                             </p>
                         </GlassCard>
                     </a>
+
                     <a href="https://tabularium.juvantia.org/lex/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                        <GlassCard style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
+                        <GlassCard style={{ height: '100%', textAlign: 'center' }}>
                             <div style={{
-                                width: '120px',
-                                height: '120px',
+                                width: isMobile ? '80px' : '100px',
+                                height: isMobile ? '80px' : '100px',
+                                margin: '0 auto 1.5rem',
                                 borderRadius: '50%',
-                                background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+                                background: 'radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%)',
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'center',
-                                marginBottom: '2rem'
+                                justifyContent: 'center'
                             }}>
-                                <img
-                                    src="/images/laws.png"
-                                    alt="Laws"
-                                    style={{
-                                        width: '80px',
-                                        filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))'
-                                    }}
-                                />
+                                <img src="/images/laws.png" alt="Laws" style={{ width: isMobile ? '48px' : '60px', filter: 'brightness(1.1)' }} />
                             </div>
-                            <h3 style={{
-                                color: 'var(--color-accent)',
-                                marginBottom: '1rem',
-                                fontSize: '1.6rem',
-                                fontWeight: 400,
-                                letterSpacing: '0.05em'
-                            }}>
+                            <h3 style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.2rem' : '1.4rem', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 Laws
                             </h3>
-                            <p style={{
-                                textAlign: 'center',
-                                color: 'var(--color-text-muted)',
-                                fontSize: '1rem',
-                                lineHeight: '1.6'
-                            }}>
+                            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>
                                 The rules we live by.
                             </p>
                         </GlassCard>
                     </a>
                 </div>
-            </Section>
+            </motion.section>
 
-            {/* Infrastructure & Protection */}
-            <Section style={{
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                gap: '6rem',
-                background: 'linear-gradient(135deg, #0a0a0a 0%, #1a0505 100%)',
-                alignItems: 'center'
-            }}>
-                <div style={{ flex: '1 1 500px', maxWidth: '600px' }}>
+            <SectionDivider />
+
+            {/* ===== POWER & PROTECTION SECTION ===== */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                style={{
+                    padding: isMobile ? '5rem 1rem' : '10rem 2rem',
+                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-elevated) 100%)',
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}
+            >
+                <div style={{
+                    display: 'flex',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    gap: isMobile ? '2rem' : '6rem',
+                    maxWidth: '1200px',
+                    width: '100%',
+                    alignItems: 'center'
+                }}>
                     <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                        style={{
-                            borderRadius: '24px',
-                            overflow: 'hidden',
-                            boxShadow: '0 30px 80px rgba(102, 0, 0, 0.3)',
-                            border: '1px solid rgba(102, 0, 0, 0.3)',
-                            position: 'relative'
-                        }}
+                        initial={{ opacity: 0, x: isMobile ? 0 : -40, y: isMobile ? 20 : 0 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ width: isMobile ? '100%' : '50%' }}
                     >
-                        <img
-                            src="/images/charging_station.png"
-                            alt="Standardized Charging Station"
-                            style={{ width: '100%', display: 'block' }}
-                        />
-                        <div style={{
-                            position: 'absolute',
-                            inset: 0,
-                            background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%)'
-                        }} />
+                        <ImageCard src="/images/charging_station.png" alt="Charging Station" aspectRatio="4/3" />
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 20 : 0 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        style={{ width: isMobile ? '100%' : '50%' }}
+                    >
+                        <h2 style={{
+                            fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
+                            marginBottom: '1.5rem',
+                            fontWeight: 400
+                        }}>
+                            Power &{' '}
+                            <span style={{
+                                background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent'
+                            }}>
+                                Protection
+                            </span>
+                        </h2>
+                        <p style={{
+                            fontSize: isMobile ? '1rem' : '1.15rem',
+                            color: 'var(--color-text-muted)',
+                            lineHeight: '1.8',
+                            marginBottom: '2rem',
+                            fontWeight: 300
+                        }}>
+                            You can receive charging via Pogo Pin Magnetic, 4P.
+                        </p>
+                        
+                        <GlassCard style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                            <div style={{
+                                fontSize: isMobile ? '2rem' : '2.5rem',
+                                width: isMobile ? '56px' : '70px',
+                                height: isMobile ? '56px' : '70px',
+                                borderRadius: '16px',
+                                background: 'rgba(0, 255, 136, 0.1)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexShrink: 0
+                            }}>
+                                ⚡
+                            </div>
+                            <div>
+                                <h4 style={{ color: 'var(--color-text)', marginBottom: '0.5rem', fontSize: isMobile ? '1.05rem' : '1.2rem', fontWeight: 500, textTransform: 'none' }}>
+                                    Universal Energy
+                                </h4>
+                                <p style={{ fontSize: isMobile ? '0.9rem' : '0.95rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
+                                    Standardized 24V charging infrastructure available city-wide.
+                                </p>
+                            </div>
+                        </GlassCard>
                     </motion.div>
                 </div>
-                <div style={{ flex: '1 1 400px', maxWidth: '600px' }}>
-                    <h2 style={{
-                        fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                        marginBottom: '2rem',
-                        fontWeight: 300,
-                        letterSpacing: '-0.01em'
-                    }}>
-                        Power &{' '}
-                        <span style={{
-                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)',
+            </motion.section>
+
+            <SectionDivider />
+
+            {/* ===== ECONOMY SECTION ===== */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                style={{
+                    padding: isMobile ? '5rem 1rem' : '10rem 2rem',
+                    background: 'var(--color-bg)',
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}
+            >
+                <div style={{
+                    display: 'flex',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    gap: isMobile ? '2rem' : '6rem',
+                    maxWidth: '1200px',
+                    width: '100%',
+                    alignItems: 'center'
+                }}>
+                    <motion.div
+                        initial={{ opacity: 0, x: isMobile ? 0 : -40, y: isMobile ? 20 : 0 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ order: isMobile ? 2 : 1, width: isMobile ? '100%' : '50%' }}
+                    >
+                        <h2 style={{
+                            fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
+                            marginBottom: '1.5rem',
+                            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
                             WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent'
+                            WebkitTextFillColor: 'transparent',
+                            fontWeight: 400
                         }}>
-                            Protection
-                        </span>
-                    </h2>
-                    <p style={{
-                        fontSize: '1.25rem',
-                        marginBottom: '3rem',
-                        lineHeight: '1.9',
-                        color: 'var(--color-text-muted)',
-                        fontWeight: 300
-                    }}>
-                        You can receive charging via Pogo Pin Magnetic, 4P.
-                    </p>
-                    <GlassCard style={{
-                        padding: '2rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '1.5rem'
-                    }}>
-                        <div style={{
-                            fontSize: '3rem',
-                            width: '80px',
-                            height: '80px',
-                            borderRadius: '20px',
-                            background: 'rgba(212, 175, 55, 0.1)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
+                            The Economy
+                        </h2>
+                        <p style={{
+                            fontSize: isMobile ? '1rem' : '1.15rem',
+                            color: 'var(--color-text-muted)',
+                            lineHeight: '1.8',
+                            marginBottom: '1.5rem',
+                            fontWeight: 300
                         }}>
-                            ⚡
-                        </div>
-                        <div>
-                            <h4 style={{
-                                color: 'var(--color-text)',
-                                marginBottom: '0.5rem',
-                                fontSize: '1.4rem',
-                                fontWeight: 500
-                            }}>
-                                Universal Energy
-                            </h4>
-                            <p style={{
-                                fontSize: '1rem',
+                            The official currency is the{' '}
+                            <strong style={{ color: 'var(--color-primary)', fontWeight: 500 }}>
+                                Juvantian Denarius (JVD)
+                            </strong>.
+                        </p>
+                        <p style={{
+                            fontSize: isMobile ? '0.9rem' : '1rem',
+                            color: 'var(--color-text-muted)',
+                            lineHeight: '1.8',
+                            marginBottom: '1.5rem',
+                            fontWeight: 300
+                        }}>
+                            The City maintains its own independent budget:
+                        </p>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
+                            <div style={{
+                                padding: isMobile ? '0.85rem 1rem' : '1rem 1.25rem',
+                                background: 'rgba(0, 255, 136, 0.05)',
+                                borderLeft: '2px solid var(--color-primary)',
+                                borderRadius: '0 8px 8px 0',
                                 color: 'var(--color-text-muted)',
-                                lineHeight: '1.6'
+                                fontSize: isMobile ? '0.9rem' : '0.95rem'
                             }}>
-                                Standardized 24V charging infrastructure available city-wide.
-                            </p>
+                                Direct payments and contributions
+                            </div>
+                            <div style={{
+                                padding: isMobile ? '0.85rem 1rem' : '1rem 1.25rem',
+                                background: 'rgba(0, 255, 136, 0.05)',
+                                borderLeft: '2px solid var(--color-primary)',
+                                borderRadius: '0 8px 8px 0',
+                                color: 'var(--color-text-muted)',
+                                fontSize: isMobile ? '0.9rem' : '0.95rem'
+                            }}>
+                                Taxes on goods and services
+                            </div>
                         </div>
-                    </GlassCard>
-                </div>
-            </Section>
 
-            {/* Economy */}
-            <Section style={{
-                flexDirection: 'row-reverse',
-                flexWrap: 'wrap',
-                gap: '6rem',
-                background: '#0a0a0a',
-                alignItems: 'center'
-            }}>
-                <div style={{ flex: '1 1 500px', maxWidth: '600px' }}>
+                        <p style={{ fontSize: isMobile ? '0.9rem' : '1rem', color: 'var(--color-text)', lineHeight: '1.8', fontWeight: 300 }}>
+                            We rely on <span style={{ color: 'var(--color-primary)' }}>production</span>,{' '}
+                            <span style={{ color: 'var(--color-primary)' }}>service</span>, and the tangible value of{' '}
+                            <span style={{ color: 'var(--color-primary)' }}>energy</span>.
+                        </p>
+                    </motion.div>
+
                     <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                        style={{
-                            borderRadius: '24px',
-                            overflow: 'hidden',
-                            boxShadow: '0 30px 80px rgba(212, 175, 55, 0.3)',
-                            border: '1px solid rgba(212, 175, 55, 0.3)',
-                            position: 'relative'
-                        }}
+                        initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 20 : 0 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        style={{ order: 1, width: isMobile ? '100%' : '50%' }}
                     >
-                        <img
-                            src="/images/ai_bank.png"
-                            alt="AI Central Bank"
-                            style={{ width: '100%', display: 'block' }}
-                        />
-                        <div style={{
-                            position: 'absolute',
-                            inset: 0,
-                            background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%)'
-                        }} />
+                        <ImageCard src="/images/ai_bank.png" alt="AI Central Bank" aspectRatio="4/3" />
                     </motion.div>
                 </div>
-                <div style={{ flex: '1 1 400px', maxWidth: '600px' }}>
-                    <h2 style={{
-                        fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                        marginBottom: '2rem',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        fontWeight: 300,
-                        letterSpacing: '-0.01em'
-                    }}>
-                        The Economy
-                    </h2>
-                    <p style={{
-                        fontSize: '1.25rem',
-                        lineHeight: '1.9',
-                        marginBottom: '2rem',
-                        color: 'var(--color-text-muted)',
-                        fontWeight: 300
-                    }}>
-                        The official currency is the{' '}
-                        <strong style={{
-                            color: 'var(--color-accent)',
-                            fontWeight: 500
-                        }}>
-                            Juvantian Denarius (JVD)
-                        </strong>.
-                    </p>
-                    <p style={{
-                        fontSize: '1.15rem',
-                        lineHeight: '1.9',
-                        marginBottom: '2rem',
-                        color: 'var(--color-text-muted)',
-                        fontWeight: 300
-                    }}>
-                        The City maintains its own independent budget, fueled by two primary sources:
-                    </p>
-                    <ul style={{
-                        paddingLeft: '0',
-                        marginTop: '1.5rem',
-                        listStyleType: 'none',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '1rem'
-                    }}>
-                        <li style={{
-                            padding: '1rem 1.5rem',
-                            background: 'rgba(212, 175, 55, 0.05)',
-                            borderLeft: '3px solid var(--color-accent)',
-                            borderRadius: '0 8px 8px 0',
-                            color: 'var(--color-text-muted)'
-                        }}>
-                            Direct payments and contributions.
-                        </li>
-                        <li style={{
-                            padding: '1rem 1.5rem',
-                            background: 'rgba(212, 175, 55, 0.05)',
-                            borderLeft: '3px solid var(--color-accent)',
-                            borderRadius: '0 8px 8px 0',
-                            color: 'var(--color-text-muted)'
-                        }}>
-                            Taxes on goods and services sold within Juvantia.
-                        </li>
-                    </ul>
-                    <p style={{
-                        fontSize: '1.15rem',
-                        lineHeight: '1.9',
-                        color: 'var(--color-text)',
-                        marginTop: '2rem',
-                        fontWeight: 300
-                    }}>
-                        We rely on{' '}
-                        <span style={{ color: 'var(--color-accent)', fontWeight: 500 }}>production</span>,{' '}
-                        <span style={{ color: 'var(--color-accent)', fontWeight: 500 }}>service</span>, and the tangible value of{' '}
-                        <span style={{ color: 'var(--color-accent)', fontWeight: 500 }}>energy</span>.
-                        <br />
-                        <span style={{ fontStyle: 'italic', color: 'var(--color-text-muted)' }}>
-                            A transparent economy for a civilized age.
-                        </span>
-                    </p>
-                </div>
-            </Section>
+            </motion.section>
 
-            {/* Politics */}
-            <Section style={{
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                gap: '6rem',
-                background: 'linear-gradient(135deg, #1a0505 0%, #0a0a0a 100%)',
-                alignItems: 'center'
-            }}>
-                <div style={{ flex: '1 1 500px', maxWidth: '600px' }}>
+            <SectionDivider />
+
+            {/* ===== POLITICS SECTION ===== */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                style={{
+                    padding: isMobile ? '5rem 1rem' : '10rem 2rem',
+                    background: 'linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg) 100%)',
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}
+            >
+                <div style={{
+                    display: 'flex',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    gap: isMobile ? '2rem' : '6rem',
+                    maxWidth: '1200px',
+                    width: '100%',
+                    alignItems: 'center'
+                }}>
                     <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                        style={{
-                            borderRadius: '24px',
-                            overflow: 'hidden',
-                            boxShadow: '0 30px 80px rgba(102, 0, 0, 0.4)',
-                            border: '1px solid rgba(102, 0, 0, 0.3)',
-                            position: 'relative'
-                        }}
+                        initial={{ opacity: 0, x: isMobile ? 0 : -40, y: isMobile ? 20 : 0 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{ width: isMobile ? '100%' : '50%' }}
                     >
-                        <img
-                            src="/images/roman_senate_robots.png"
-                            alt="Roman Senate Robots"
-                            style={{ width: '100%', display: 'block' }}
-                        />
-                        <div style={{
-                            position: 'absolute',
-                            inset: 0,
-                            background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%)'
-                        }} />
+                        <ImageCard src="/images/roman_senate_robots.png" alt="Roman Senate Robots" aspectRatio="4/3" />
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 20 : 0 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        style={{ width: isMobile ? '100%' : '50%' }}
+                    >
+                        <h2 style={{
+                            fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
+                            marginBottom: '1.5rem',
+                            fontWeight: 400,
+                            color: 'var(--color-text)'
+                        }}>
+                            Res Publica
+                        </h2>
+                        <p style={{
+                            fontSize: isMobile ? '1rem' : '1.15rem',
+                            color: 'var(--color-text-muted)',
+                            lineHeight: '1.8',
+                            marginBottom: '1.5rem',
+                            fontWeight: 300
+                        }}>
+                            Politics in Juvantia is not a simulation. It is real. Public offices are elected.
+                        </p>
+                        <p style={{
+                            fontSize: isMobile ? '1.05rem' : '1.2rem',
+                            color: 'var(--color-primary)',
+                            fontStyle: 'italic',
+                            marginBottom: '2rem',
+                            fontWeight: 400
+                        }}>
+                            You have the right to stand for election.
+                        </p>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <GlassCard style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: isMobile ? '1.25rem' : '1.5rem' }}>
+                                <div style={{
+                                    fontSize: isMobile ? '1.6rem' : '2rem',
+                                    width: isMobile ? '50px' : '60px',
+                                    height: isMobile ? '50px' : '60px',
+                                    borderRadius: '14px',
+                                    background: 'rgba(0, 255, 136, 0.1)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexShrink: 0
+                                }}>
+                                    🏛️
+                                </div>
+                                <div>
+                                    <h4 style={{ color: 'var(--color-text)', fontSize: isMobile ? '1rem' : '1.1rem', marginBottom: '0.25rem', fontWeight: 500, textTransform: 'none' }}>
+                                        Senator
+                                    </h4>
+                                    <p style={{ fontSize: isMobile ? '0.85rem' : '0.9rem', color: 'var(--color-text-muted)' }}>
+                                        Debate and pass the laws that govern the city.
+                                    </p>
+                                </div>
+                            </GlassCard>
+
+                            <GlassCard style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: isMobile ? '1.25rem' : '1.5rem' }}>
+                                <div style={{
+                                    fontSize: isMobile ? '1.6rem' : '2rem',
+                                    width: isMobile ? '50px' : '60px',
+                                    height: isMobile ? '50px' : '60px',
+                                    borderRadius: '14px',
+                                    background: 'rgba(0, 255, 136, 0.1)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexShrink: 0
+                                }}>
+                                    👑
+                                </div>
+                                <div>
+                                    <h4 style={{ color: 'var(--color-text)', fontSize: isMobile ? '1rem' : '1.1rem', marginBottom: '0.25rem', fontWeight: 500, textTransform: 'none' }}>
+                                        Consul
+                                    </h4>
+                                    <p style={{ fontSize: isMobile ? '0.85rem' : '0.9rem', color: 'var(--color-text-muted)' }}>
+                                        Lead the executive branch and guide the city's future.
+                                    </p>
+                                </div>
+                            </GlassCard>
+                        </div>
                     </motion.div>
                 </div>
-                <div style={{ flex: '1 1 400px', maxWidth: '600px' }}>
-                    <h2 style={{
-                        fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-                        marginBottom: '2rem',
-                        fontWeight: 300,
-                        letterSpacing: '0.05em',
-                        color: 'var(--color-text)'
-                    }}>
-                        Res Publica
-                    </h2>
-                    <p style={{
-                        fontSize: '1.25rem',
-                        marginBottom: '2rem',
-                        lineHeight: '1.9',
-                        color: 'var(--color-text-muted)',
-                        fontWeight: 300
-                    }}>
-                        Politics in Juvantia is not a simulation. It is real.
-                        Public offices are elected, and the city lives by the laws adopted by these politicians.
-                    </p>
-                    <p style={{
-                        fontSize: '1.3rem',
-                        marginBottom: '3rem',
-                        lineHeight: '1.9',
-                        color: 'var(--color-accent)',
-                        fontStyle: 'italic',
-                        fontWeight: 400
-                    }}>
-                        You have the right to stand for election.
-                    </p>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                        <GlassCard style={{ padding: '1.5rem 2rem', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                            <div style={{
-                                fontSize: '2.5rem',
-                                width: '70px',
-                                height: '70px',
-                                borderRadius: '16px',
-                                background: 'rgba(212, 175, 55, 0.1)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}>
-                                🏛️
-                            </div>
-                            <div>
-                                <strong style={{
-                                    color: 'var(--color-text)',
-                                    display: 'block',
-                                    marginBottom: '0.5rem',
-                                    fontSize: '1.3rem'
-                                }}>
-                                    Senator
-                                </strong>
-                                <span style={{ fontSize: '1rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
-                                    Debate and pass the laws that govern the city.
-                                </span>
-                            </div>
-                        </GlassCard>
-                        <GlassCard style={{ padding: '1.5rem 2rem', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                            <div style={{
-                                fontSize: '2.5rem',
-                                width: '70px',
-                                height: '70px',
-                                borderRadius: '16px',
-                                background: 'rgba(212, 175, 55, 0.1)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}>
-                                👑
-                            </div>
-                            <div>
-                                <strong style={{
-                                    color: 'var(--color-text)',
-                                    display: 'block',
-                                    marginBottom: '0.5rem',
-                                    fontSize: '1.3rem'
-                                }}>
-                                    Consul
-                                </strong>
-                                <span style={{ fontSize: '1rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
-                                    Lead the executive branch and guide the city's future.
-                                </span>
-                            </div>
-                        </GlassCard>
-                    </div>
-                </div>
-            </Section>
+            </motion.section>
 
-            {/* The Colosseum */}
-            <Section style={{
-                backgroundImage: 'linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.75)), url(/images/colosseum_arena.png)',
+            <SectionDivider />
+
+            {/* ===== COLOSSEUM SECTION ===== */}
+            <section style={{
+                position: 'relative',
+                padding: isMobile ? '5rem 1rem' : '10rem 2rem',
+                background: 'linear-gradient(rgba(10, 15, 10, 0.92), rgba(10, 15, 10, 0.88)), url(/images/colosseum_arena.png)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                backgroundAttachment: 'fixed',
-                color: 'var(--color-text)',
+                backgroundAttachment: isMobile ? 'scroll' : 'fixed',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
                 textAlign: 'center',
-                borderTop: '1px solid rgba(102, 0, 0, 0.3)',
-                borderBottom: '1px solid rgba(102, 0, 0, 0.3)',
-                position: 'relative',
-                overflow: 'hidden'
+                borderTop: '1px solid rgba(255, 71, 87, 0.2)',
+                borderBottom: '1px solid rgba(255, 71, 87, 0.2)'
             }}>
+                {/* Red glow overlay */}
                 <div style={{
                     position: 'absolute',
-                    inset: 0,
-                    background: 'radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.5) 100%)',
-                    pointerEvents: 'none'
-                }} />
-
-                <div style={{ position: 'relative', zIndex: 1 }}>
-                    <h2 style={{
-                        fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-                        marginBottom: '1rem',
-                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.2em',
-                        fontWeight: 300
-                    }}>
-                        The Colosseum
-                    </h2>
-                    <h3 style={{
-                        fontSize: 'clamp(1.2rem, 2vw, 1.6rem)',
-                        marginBottom: '4rem',
-                        color: 'var(--color-text-muted)',
-                        fontWeight: 300,
-                        letterSpacing: '0.2em',
-                        fontStyle: 'italic'
-                    }}>
-                        The Arena Without Law
-                    </h3>
-
-                    <p style={{
-                        fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
-                        maxWidth: '800px',
-                        marginBottom: '5rem',
-                        lineHeight: '1.9',
-                        fontWeight: 300,
-                        margin: '0 auto 5rem'
-                    }}>
-                        A massive concrete structure, three stories of brutal challenges.
-                        Different channels, different paths, one goal:{' '}
-                        <strong style={{
-                            color: 'var(--color-accent)',
-                            fontWeight: 500
-                        }}>
-                            The Summit
-                        </strong>.
-                    </p>
-
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                        gap: '2.5rem',
-                        width: '100%',
-                        maxWidth: '1200px',
-                        margin: '0 auto'
-                    }}>
-                        <GlassCard style={{
-                            background: 'rgba(102, 0, 0, 0.15)',
-                            border: '1px solid rgba(102, 0, 0, 0.4)',
-                            backdropFilter: 'blur(30px)'
-                        }}>
-                            <h4 style={{
-                                color: 'var(--color-accent)',
-                                marginBottom: '1.5rem',
-                                fontSize: '1.5rem',
-                                fontWeight: 500
-                            }}>
-                                King of the Hill
-                            </h4>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
-                                Reach the Winners' Room and hold your ground against all comers.
-                            </p>
-                        </GlassCard>
-                        <GlassCard style={{
-                            background: 'rgba(102, 0, 0, 0.15)',
-                            border: '1px solid rgba(102, 0, 0, 0.4)',
-                            backdropFilter: 'blur(30px)'
-                        }}>
-                            <h4 style={{
-                                color: 'var(--color-accent)',
-                                marginBottom: '1.5rem',
-                                fontSize: '1.5rem',
-                                fontWeight: 500
-                            }}>
-                                The Prize
-                            </h4>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
-                                3 Charging Connects + Passive Income in JVD.
-                            </p>
-                        </GlassCard>
-                        <GlassCard style={{
-                            background: 'rgba(102, 0, 0, 0.15)',
-                            border: '1px solid rgba(102, 0, 0, 0.4)',
-                            backdropFilter: 'blur(30px)'
-                        }}>
-                            <h4 style={{
-                                color: 'var(--color-accent)',
-                                marginBottom: '1.5rem',
-                                fontSize: '1.5rem',
-                                fontWeight: 500
-                            }}>
-                                The Voice
-                            </h4>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
-                                Exclusive access to the city screen to broadcast your content.
-                            </p>
-                        </GlassCard>
-                    </div>
-                </div>
-            </Section>
-
-            {/* Roles */}
-            <Section style={{ background: '#0a0a0a' }}>
-                <h2 style={{
-                    fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-                    marginBottom: '1.5rem',
-                    letterSpacing: '0.05em',
-                    fontWeight: 300,
-                    background: 'linear-gradient(135deg, var(--color-text) 0%, var(--color-accent) 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
-                }}>
-                    Choose Your Path
-                </h2>
-                <div style={{
-                    width: '100px',
-                    height: '2px',
-                    background: 'linear-gradient(90deg, transparent, var(--color-primary), transparent)',
-                    marginBottom: '5rem'
-                }} />
-                <RolesTabs />
-            </Section>
-
-            {/* Domus Section */}
-            <Section style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #050505 100%)' }}>
-                <h2 style={{
-                    fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-                    marginBottom: '1.5rem',
-                    letterSpacing: '0.05em',
-                    fontWeight: 300,
-                    background: 'linear-gradient(135deg, var(--color-text) 0%, var(--color-accent) 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
-                }}>
-                    Build Your Domus
-                </h2>
-                <div style={{
-                    width: '100px',
-                    height: '2px',
-                    background: 'linear-gradient(90deg, transparent, var(--color-primary), transparent)',
-                    marginBottom: '5rem'
-                }} />
-                <DomusTabs />
-            </Section>
-
-            {/* Footer / CTA */}
-            <Section style={{
-                minHeight: '70vh',
-                background: 'radial-gradient(circle at center, #1a0505 0%, #0a0a0a 70%)',
-                position: 'relative',
-                overflow: 'hidden'
-            }}>
-                <div style={{
-                    position: 'absolute',
-                    top: '20%',
+                    top: '50%',
                     left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '800px',
-                    height: '800px',
-                    background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)',
-                    borderRadius: '50%',
-                    filter: 'blur(100px)',
+                    transform: 'translate(-50%, -50%)',
+                    width: isMobile ? '300px' : '600px',
+                    height: isMobile ? '300px' : '600px',
+                    background: 'radial-gradient(circle, rgba(255, 71, 87, 0.08) 0%, transparent 60%)',
                     pointerEvents: 'none'
                 }} />
 
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-                    style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    style={{ position: 'relative', zIndex: 1, maxWidth: '1200px', width: '100%' }}
                 >
                     <h2 style={{
-                        fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-                        marginBottom: '3rem',
-                        background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-text) 50%, var(--color-accent) 100%)',
+                        fontSize: isMobile ? '2rem' : 'clamp(2.5rem, 6vw, 4rem)',
+                        marginBottom: '0.5rem',
+                        background: 'linear-gradient(135deg, #ff4757 0%, #ffa502 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
-                        letterSpacing: '0.25em',
-                        fontWeight: 300
+                        letterSpacing: isMobile ? '0.1em' : '0.2em',
+                        fontWeight: 400
                     }}>
-                        Lex Est Rex
+                        The Colosseum
                     </h2>
-                    <div style={{
-                        width: '60%',
-                        height: '1px',
-                        background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)',
-                        margin: '0 auto 3rem'
-                    }} />
                     <p style={{
-                        fontSize: 'clamp(1.2rem, 2.5vw, 2rem)',
-                        maxWidth: '900px',
+                        fontSize: isMobile ? '1rem' : '1.2rem',
                         color: 'var(--color-text-muted)',
                         fontStyle: 'italic',
-                        fontWeight: 300,
-                        lineHeight: '1.8',
-                        margin: '0 auto'
+                        letterSpacing: '0.15em',
+                        marginBottom: isMobile ? '2rem' : '4rem'
                     }}>
-                        "All you have to do is follow the law...
-                        <br />
-                        <span style={{
-                            color: 'var(--color-accent)',
-                            fontSize: '0.95em'
-                        }}>
-                            or manage to stay outside of it, if you can."
-                        </span>
+                        The Arena Without Law
                     </p>
-                </motion.div>
-            </Section>
 
-            <style>
-                {`
-                    @keyframes float {
-                        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-                        33% { transform: translate(40px, -40px) rotate(3deg); }
-                        66% { transform: translate(-30px, 30px) rotate(-3deg); }
-                    }
-                    
-                    @keyframes rotate {
-                        from { transform: rotate(0deg); }
-                        to { transform: rotate(360deg); }
-                    }
-                `}
-            </style>
+                    <p style={{
+                        fontSize: isMobile ? '1rem' : '1.2rem',
+                        maxWidth: '700px',
+                        margin: isMobile ? '0 auto 3rem' : '0 auto 5rem',
+                        lineHeight: '1.8',
+                        color: 'var(--color-text)',
+                        fontWeight: 300,
+                        padding: isMobile ? '0 0.5rem' : 0
+                    }}>
+                        A massive concrete structure, three stories of brutal challenges.
+                        Different channels, different paths, one goal:{' '}
+                        <strong style={{ color: '#ff4757' }}>The Summit</strong>.
+                    </p>
+
+                    {/* Mobile: Horizontal scroll | Desktop: Grid */}
+                    <div style={isMobile ? {
+                        display: 'flex',
+                        overflowX: 'auto',
+                        scrollSnapType: 'x mandatory',
+                        gap: '1rem',
+                        padding: '0.5rem 0',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                        width: '100%'
+                    } : {
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(3, 1fr)',
+                        gap: '1.5rem',
+                        width: '100%',
+                        maxWidth: '1000px'
+                    }}>
+                        <style>{`.colosseum-scroll::-webkit-scrollbar { display: none; }`}</style>
+                        
+                        <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : {}}>
+                            <GlassCard style={{ 
+                                background: 'rgba(255, 71, 87, 0.08)', 
+                                border: '1px solid rgba(255, 71, 87, 0.25)',
+                                textAlign: 'center',
+                                padding: isMobile ? '1.5rem 1.25rem' : '2rem 1.5rem',
+                                height: '100%'
+                            }} hoverEffect={!isMobile}>
+                                <h4 style={{ color: '#ff4757', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500 }}>
+                                    King of the Hill
+                                </h4>
+                                <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.85rem' : '0.9rem', lineHeight: '1.7' }}>
+                                    Reach the Winners' Room and hold your ground against all comers.
+                                </p>
+                            </GlassCard>
+                        </div>
+
+                        <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : {}}>
+                            <GlassCard style={{ 
+                                background: 'rgba(255, 165, 2, 0.08)', 
+                                border: '1px solid rgba(255, 165, 2, 0.25)',
+                                textAlign: 'center',
+                                padding: isMobile ? '1.5rem 1.25rem' : '2rem 1.5rem',
+                                height: '100%'
+                            }} hoverEffect={!isMobile}>
+                                <h4 style={{ color: '#ffa502', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500 }}>
+                                    The Prize
+                                </h4>
+                                <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.85rem' : '0.9rem', lineHeight: '1.7' }}>
+                                    3 Charging Connects + Passive Income in JVD.
+                                </p>
+                            </GlassCard>
+                        </div>
+
+                        <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : {}}>
+                            <GlassCard style={{ 
+                                background: 'rgba(255, 71, 87, 0.08)', 
+                                border: '1px solid rgba(255, 71, 87, 0.25)',
+                                textAlign: 'center',
+                                padding: isMobile ? '1.5rem 1.25rem' : '2rem 1.5rem',
+                                height: '100%'
+                            }} hoverEffect={!isMobile}>
+                                <h4 style={{ color: '#ff4757', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500 }}>
+                                    The Voice
+                                </h4>
+                                <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.85rem' : '0.9rem', lineHeight: '1.7' }}>
+                                    Exclusive access to the city screen to broadcast your content.
+                                </p>
+                            </GlassCard>
+                        </div>
+                    </div>
+                </motion.div>
+            </section>
+
+            <SectionDivider />
+
+            {/* ===== ROLES SECTION ===== */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                style={{
+                    padding: isMobile ? '5rem 0' : '10rem 2rem',
+                    background: 'var(--color-bg)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                }}
+            >
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    style={{
+                        fontSize: isMobile ? '1.6rem' : 'clamp(2rem, 5vw, 3rem)',
+                        marginBottom: '1rem',
+                        background: 'linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontWeight: 400,
+                        letterSpacing: '0.1em',
+                        padding: isMobile ? '0 1rem' : 0,
+                        textAlign: 'center'
+                    }}
+                >
+                    Choose Your Path
+                </motion.h2>
+                <div className="divider-glow" style={{ marginBottom: isMobile ? '2rem' : '5rem' }} />
+                <RolesTabs />
+            </motion.section>
+
+            <SectionDivider />
+
+            {/* ===== DOMUS SECTION ===== */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                style={{
+                    padding: isMobile ? '5rem 0' : '10rem 2rem',
+                    background: 'linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 100%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                }}
+            >
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    style={{
+                        fontSize: isMobile ? '1.6rem' : 'clamp(2rem, 5vw, 3rem)',
+                        marginBottom: '1rem',
+                        background: 'linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontWeight: 400,
+                        letterSpacing: '0.1em',
+                        padding: isMobile ? '0 1rem' : 0,
+                        textAlign: 'center'
+                    }}
+                >
+                    Build Your Domus
+                </motion.h2>
+                <div className="divider-glow" style={{ marginBottom: isMobile ? '2rem' : '5rem' }} />
+                <DomusTabs />
+            </motion.section>
+
+            <SectionDivider />
+
+            {/* ===== FOOTER CTA SECTION ===== */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                style={{
+                    padding: isMobile ? '6rem 1.5rem' : '12rem 2rem',
+                    background: 'radial-gradient(ellipse at center, rgba(0, 255, 136, 0.03) 0%, var(--color-bg) 60%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                    position: 'relative'
+                }}
+            >
+                <motion.h2
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="gradient-text-animated"
+                    style={{
+                        fontSize: isMobile ? '2.2rem' : 'clamp(3rem, 8vw, 6rem)',
+                        marginBottom: '2rem',
+                        letterSpacing: isMobile ? '0.1em' : '0.2em',
+                        fontWeight: 400
+                    }}
+                >
+                    Lex Est Rex
+                </motion.h2>
+
+                <div style={{
+                    width: isMobile ? '100px' : '150px',
+                    height: '2px',
+                    background: 'linear-gradient(90deg, transparent, var(--color-primary), var(--color-secondary), transparent)',
+                    margin: '0 auto 3rem',
+                    boxShadow: '0 0 20px rgba(0, 255, 136, 0.4)'
+                }} />
+
+                <p style={{
+                    fontSize: isMobile ? '1rem' : 'clamp(1.1rem, 2vw, 1.5rem)',
+                    maxWidth: '800px',
+                    color: 'var(--color-text-muted)',
+                    fontStyle: 'italic',
+                    lineHeight: '1.8',
+                    fontWeight: 300
+                }}>
+                    "All you have to do is follow the law...
+                    <br />
+                    <span style={{ color: 'var(--color-primary)' }}>
+                        or manage to stay outside of it, if you can."
+                    </span>
+                </p>
+            </motion.section>
         </>
     );
 };

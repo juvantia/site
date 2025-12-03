@@ -6,6 +6,7 @@ import { Icon } from 'leaflet';
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { motion, AnimatePresence } from 'framer-motion';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import CursorGlow from '../components/CursorGlow';
 
 // --- LEAFLET MAP CONFIGURATION ---
 
@@ -139,12 +140,17 @@ const LandMap: React.FC = () => {
     // State for Blueprint Map
     const [districts, setDistricts] = useState<District[]>([]);
     const [selectedDistrict, setSelectedDistrict] = useState<District | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
         fetch(`${API_BASE_URL}/districts`)
             .then(res => res.json())
             .then(data => setDistricts(data))
             .catch(err => console.error('Failed to fetch districts:', err));
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     // Blueprint Map Calculations
@@ -157,12 +163,13 @@ const LandMap: React.FC = () => {
     return (
         <div style={{
             width: '100vw',
-            height: 'calc(100vh - 80px)', // Main scrollable container
+            minHeight: 'calc(100vh - 80px)',
             overflowY: 'auto',
             overflowX: 'hidden',
-            background: '#050505',
+            background: 'var(--color-bg)',
             position: 'relative'
         }}>
+            <CursorGlow size={350} opacity={0.12} />
 
             {/* --- SECTION 1: EUROPE MAP (SQUARE) --- */}
             <div style={{
@@ -170,35 +177,41 @@ const LandMap: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                padding: '40px 0',
-                borderBottom: '1px solid #2f4f2f'
+                padding: isMobile ? '80px 1rem 40px' : '100px 2rem 60px',
+                borderBottom: '1px solid rgba(0, 255, 136, 0.15)'
             }}>
                 <h1 style={{
                     fontFamily: '"Cinzel", serif',
-                    color: '#d4af37',
-                    fontSize: '2.5rem',
-                    marginBottom: '20px',
-                    textShadow: '0 4px 10px rgba(0,0,0,0.8)'
+                    fontSize: isMobile ? '1.5rem' : '2.2rem',
+                    marginBottom: isMobile ? '1rem' : '1.5rem',
+                    letterSpacing: '0.1em',
+                    background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    textAlign: 'center'
                 }}>
                     TERRA JUVANTIA
                 </h1>
                 <p style={{
-                    color: '#8fbc8f',
-                    marginBottom: '30px',
+                    color: 'var(--color-text-muted)',
+                    marginBottom: isMobile ? '1.5rem' : '2.5rem',
                     textAlign: 'center',
-                    maxWidth: '600px'
+                    maxWidth: '600px',
+                    fontSize: isMobile ? '0.95rem' : '1.1rem',
+                    padding: isMobile ? '0 0.5rem' : 0
                 }}>
                     Explore potential territories for the technopark.
                 </p>
 
                 <div style={{
-                    width: '800px',
-                    height: '400px',
-                    maxWidth: '90vw',
-                    maxHeight: '45vw', // Rectangular 2:1 ratio
+                    width: isMobile ? '100%' : '800px',
+                    height: isMobile ? '300px' : '400px',
+                    maxWidth: '100%',
                     position: 'relative',
-                    border: '2px solid #d4af37',
-                    boxShadow: '0 0 50px rgba(0,0,0,0.5)'
+                    border: '1px solid rgba(0, 255, 136, 0.3)',
+                    borderRadius: isMobile ? '12px' : '16px',
+                    overflow: 'hidden',
+                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 255, 136, 0.1)'
                 }}>
                     <MapContainer
                         center={[46.0, 12.0]}
@@ -214,7 +227,7 @@ const LandMap: React.FC = () => {
                             <React.Fragment key={candidate.id}>
                                 <Circle
                                     center={[candidate.lat, candidate.lng]}
-                                    pathOptions={{ color: '#d4af37', fillColor: '#d4af37', fillOpacity: 0.2, weight: 1 }}
+                                    pathOptions={{ color: '#00ff88', fillColor: '#00ff88', fillOpacity: 0.15, weight: 1 }}
                                     radius={50000}
                                     eventHandlers={{ click: () => setSelectedCandidate(candidate) }}
                                 />
@@ -236,28 +249,29 @@ const LandMap: React.FC = () => {
                                 exit={{ opacity: 0, y: 20 }}
                                 style={{
                                     position: 'absolute',
-                                    bottom: '20px',
-                                    left: '20px',
-                                    right: '20px',
+                                    bottom: '16px',
+                                    left: '16px',
+                                    right: '16px',
                                     background: 'rgba(10, 15, 10, 0.95)',
-                                    backdropFilter: 'blur(10px)',
-                                    border: '1px solid #d4af37',
-                                    padding: '20px',
+                                    backdropFilter: 'blur(20px)',
+                                    border: '1px solid rgba(0, 255, 136, 0.3)',
+                                    borderRadius: '12px',
+                                    padding: '1.25rem',
                                     zIndex: 1000,
                                     color: '#fff'
                                 }}
                             >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                     <div>
-                                        <h3 style={{ color: '#d4af37', margin: '0 0 5px 0', fontFamily: '"Cinzel", serif' }}>{selectedCandidate.name}</h3>
-                                        <div style={{ color: '#8fbc8f', fontSize: '0.8rem', textTransform: 'uppercase' }}>{selectedCandidate.country}</div>
+                                        <h3 style={{ color: 'var(--color-primary)', margin: '0 0 4px 0', fontFamily: '"Cinzel", serif', fontSize: '1.2rem' }}>{selectedCandidate.name}</h3>
+                                        <div style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{selectedCandidate.country}</div>
                                     </div>
-                                    <button onClick={() => setSelectedCandidate(null)} style={{ background: 'none', border: 'none', color: '#666', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
+                                    <button onClick={() => setSelectedCandidate(null)} style={{ background: 'none', border: 'none', color: 'var(--color-text-muted)', fontSize: '1.5rem', cursor: 'pointer', padding: 0, lineHeight: 1 }}>×</button>
                                 </div>
-                                <p style={{ fontSize: '0.9rem', color: '#ccc', margin: '10px 0' }}>{selectedCandidate.description}</p>
-                                <div style={{ display: 'flex', gap: '20px', fontSize: '0.9rem' }}>
-                                    <div><span style={{ color: '#888' }}>Size:</span> <span style={{ color: '#d4af37' }}>{selectedCandidate.size}</span></div>
-                                    <div><span style={{ color: '#888' }}>Est. Price:</span> <span style={{ color: '#d4af37' }}>{selectedCandidate.price_estimate}</span></div>
+                                <p style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)', margin: '10px 0', lineHeight: 1.6 }}>{selectedCandidate.description}</p>
+                                <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.9rem' }}>
+                                    <div><span style={{ color: 'var(--color-text-muted)' }}>Size:</span> <span style={{ color: 'var(--color-primary)' }}>{selectedCandidate.size}</span></div>
+                                    <div><span style={{ color: 'var(--color-text-muted)' }}>Est. Price:</span> <span style={{ color: 'var(--color-primary)' }}>{selectedCandidate.price_estimate}</span></div>
                                 </div>
                             </motion.div>
                         )}
@@ -271,56 +285,53 @@ const LandMap: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                padding: '60px 0',
-                backgroundImage: 'radial-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px)',
+                padding: isMobile ? '40px 1rem' : '60px 2rem',
+                backgroundImage: 'radial-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px)',
                 backgroundSize: '20px 20px'
             }}>
                 <h2 style={{
                     fontFamily: '"Cinzel", serif',
-                    color: '#d4af37',
-                    fontSize: '2rem',
-                    marginBottom: '40px',
-                    textShadow: '0 4px 10px rgba(0,0,0,0.8)'
+                    fontSize: isMobile ? '1.3rem' : '1.8rem',
+                    marginBottom: isMobile ? '2rem' : '3rem',
+                    letterSpacing: '0.08em',
+                    background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    textAlign: 'center'
                 }}>
                     DISTRICT MASTERPLAN
                 </h2>
 
                 <div style={{
-                    maxWidth: '800px',
+                    maxWidth: '750px',
                     textAlign: 'center',
-                    marginBottom: '40px',
-                    padding: '0 20px'
+                    marginBottom: isMobile ? '2rem' : '3rem',
+                    padding: '0 1rem',
+                    width: '100%'
                 }}>
                     <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(3, 1fr)',
-                        gap: '20px',
-                        background: 'rgba(212, 175, 55, 0.05)',
-                        border: '1px solid rgba(212, 175, 55, 0.3)',
-                        padding: '20px',
-                        borderRadius: '4px'
+                        display: 'flex',
+                        flexDirection: isMobile ? 'column' : 'row',
+                        gap: isMobile ? '1rem' : '1.5rem',
+                        background: 'rgba(0, 255, 136, 0.03)',
+                        border: '1px solid rgba(0, 255, 136, 0.15)',
+                        padding: isMobile ? '1.25rem' : '1.5rem',
+                        borderRadius: '16px'
                     }}>
-                        <style>{`
-                            @media (max-width: 768px) {
-                                .specs-grid {
-                                    grid-template-columns: 1fr !important;
-                                }
-                            }
-                        `}</style>
-                        <div>
-                            <div style={{ color: '#888', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Total Area</div>
-                            <div style={{ color: '#d4af37', fontSize: '1.3rem', fontFamily: '"Cinzel", serif', marginTop: '5px' }}>6 Hectares</div>
-                            <div style={{ color: '#666', fontSize: '0.9rem' }}>60,000 m² / 645,834 sq ft</div>
+                        <div style={{ flex: 1, textAlign: isMobile ? 'left' : 'center' }}>
+                            <div style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.7rem' : '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Total Area</div>
+                            <div style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1rem' : '1.2rem', fontFamily: '"Cinzel", serif', marginTop: '4px' }}>6 Hectares</div>
+                            <div style={{ color: 'var(--color-text-dim)', fontSize: isMobile ? '0.8rem' : '0.85rem' }}>60,000 m² / 645,834 sq ft</div>
                         </div>
-                        <div>
-                            <div style={{ color: '#888', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Dimensions</div>
-                            <div style={{ color: '#d4af37', fontSize: '1.3rem', fontFamily: '"Cinzel", serif', marginTop: '5px' }}>{Math.max(maxX, 400)}m × {Math.max(maxY, 150)}m</div>
-                            <div style={{ color: '#666', fontSize: '0.9rem' }}>{Math.round(Math.max(maxX, 400) * 3.28084)} ft × {Math.round(Math.max(maxY, 150) * 3.28084)} ft</div>
+                        <div style={{ flex: 1, textAlign: isMobile ? 'left' : 'center' }}>
+                            <div style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.7rem' : '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Dimensions</div>
+                            <div style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1rem' : '1.2rem', fontFamily: '"Cinzel", serif', marginTop: '4px' }}>{Math.max(maxX, 400)}m × {Math.max(maxY, 150)}m</div>
+                            <div style={{ color: 'var(--color-text-dim)', fontSize: isMobile ? '0.8rem' : '0.85rem' }}>{Math.round(Math.max(maxX, 400) * 3.28084)} ft × {Math.round(Math.max(maxY, 150) * 3.28084)} ft</div>
                         </div>
-                        <div>
-                            <div style={{ color: '#888', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Perimeter</div>
-                            <div style={{ color: '#d4af37', fontSize: '1.3rem', fontFamily: '"Cinzel", serif', marginTop: '5px' }}>{2 * (Math.max(maxX, 400) + Math.max(maxY, 150))}m</div>
-                            <div style={{ color: '#666', fontSize: '0.9rem' }}>{Math.round(2 * (Math.max(maxX, 400) + Math.max(maxY, 150)) * 3.28084)} ft</div>
+                        <div style={{ flex: 1, textAlign: isMobile ? 'left' : 'center' }}>
+                            <div style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.7rem' : '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Perimeter</div>
+                            <div style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1rem' : '1.2rem', fontFamily: '"Cinzel", serif', marginTop: '4px' }}>{2 * (Math.max(maxX, 400) + Math.max(maxY, 150))}m</div>
+                            <div style={{ color: 'var(--color-text-dim)', fontSize: isMobile ? '0.8rem' : '0.85rem' }}>{Math.round(2 * (Math.max(maxX, 400) + Math.max(maxY, 150)) * 3.28084)} ft</div>
                         </div>
                     </div>
                 </div>
@@ -329,10 +340,11 @@ const LandMap: React.FC = () => {
                     style={{
                         width: MAP_WIDTH,
                         height: MAP_HEIGHT,
-                        background: '#142214',
+                        background: 'linear-gradient(135deg, rgba(10, 20, 15, 1) 0%, rgba(5, 10, 8, 1) 100%)',
                         position: 'relative',
-                        border: '1px solid #2f4f2f',
-                        boxShadow: '0 0 100px rgba(0,0,0,0.8)',
+                        border: '1px solid rgba(0, 255, 136, 0.2)',
+                        borderRadius: '8px',
+                        boxShadow: '0 20px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 255, 136, 0.05)',
                     }}
                 >
                     {districts.map(d => (
@@ -341,8 +353,8 @@ const LandMap: React.FC = () => {
                             whileHover={{
                                 scale: 1.01,
                                 zIndex: 10,
-                                borderColor: 'rgba(212, 175, 55, 1)',
-                                boxShadow: '0 0 30px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(212, 175, 55, 0.05)',
+                                borderColor: 'rgba(0, 255, 136, 0.8)',
+                                boxShadow: '0 0 30px rgba(0, 255, 136, 0.2), inset 0 0 20px rgba(0, 255, 136, 0.05)',
                             }}
                             onClick={() => setSelectedDistrict(d)}
                             style={{
@@ -351,11 +363,12 @@ const LandMap: React.FC = () => {
                                 top: d.y * OVERVIEW_SCALE,
                                 width: d.width * OVERVIEW_SCALE,
                                 height: d.height * OVERVIEW_SCALE,
-                                background: 'linear-gradient(135deg, #1e331e 0%, #162616 100%)',
-                                border: '1px solid rgba(212, 175, 55, 0.3)',
+                                background: 'linear-gradient(135deg, rgba(15, 30, 22, 1) 0%, rgba(10, 20, 15, 1) 100%)',
+                                border: '1px solid rgba(0, 255, 136, 0.25)',
                                 cursor: 'pointer',
                                 transition: 'border-color 0.3s ease',
-                                overflow: 'hidden'
+                                overflow: 'hidden',
+                                borderRadius: '4px'
                             }}
                         >
                             {d.salesZones?.map(zone => (
@@ -367,8 +380,8 @@ const LandMap: React.FC = () => {
                                         top: zone.y * OVERVIEW_SCALE,
                                         width: zone.width * OVERVIEW_SCALE,
                                         height: zone.height * OVERVIEW_SCALE,
-                                        background: 'rgba(212, 175, 55, 0.5)',
-                                        border: '1px solid rgba(212, 175, 55, 0.8)',
+                                        background: 'rgba(0, 255, 136, 0.4)',
+                                        border: '1px solid rgba(0, 255, 136, 0.7)',
                                         zIndex: 1
                                     }}
                                 />
@@ -409,7 +422,7 @@ const LandMap: React.FC = () => {
                                 alignItems: 'center'
                             }}>
                                 <h3 style={{
-                                    fontSize: '0.9rem',
+                                    fontSize: '0.85rem',
                                     color: '#ffffff',
                                     fontFamily: '"Cinzel", serif',
                                     textTransform: 'uppercase',
@@ -417,7 +430,7 @@ const LandMap: React.FC = () => {
                                     margin: 0,
                                     textShadow: '0 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.8)'
                                 }}>{d.name}</h3>
-                                <div style={{ fontSize: '0.7rem', color: '#8fbc8f', marginTop: '5px' }}>
+                                <div style={{ fontSize: '0.65rem', color: 'var(--color-text-muted)', marginTop: '4px' }}>
                                     {d.width}m x {d.height}m
                                 </div>
                             </div>
@@ -456,41 +469,43 @@ const LandMap: React.FC = () => {
                             style={{
                                 width: '95vw',
                                 height: '90vh',
-                                background: '#111',
-                                border: '1px solid #333',
-                                borderRadius: '4px',
+                                background: 'var(--color-bg)',
+                                border: '1px solid rgba(0, 255, 136, 0.2)',
+                                borderRadius: '16px',
                                 overflow: 'hidden',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                boxShadow: '0 0 50px rgba(0,0,0,0.5)'
+                                boxShadow: '0 30px 100px rgba(0, 0, 0, 0.7), 0 0 60px rgba(0, 255, 136, 0.1)'
                             }}
                         >
                             <div style={{
-                                padding: '1rem 2rem',
-                                borderBottom: '1px solid #222',
+                                padding: '1.25rem 2rem',
+                                borderBottom: '1px solid rgba(0, 255, 136, 0.15)',
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 alignItems: 'center',
-                                background: '#0a0a0a'
+                                background: 'rgba(0, 255, 136, 0.03)'
                             }}>
                                 <div>
-                                    <h2 style={{ color: '#d4af37', margin: 0, fontFamily: '"Cinzel", serif' }}>{selectedDistrict.name}</h2>
-                                    <p style={{ color: '#666', margin: '5px 0 0 0', fontSize: '0.9rem' }}>{selectedDistrict.description}</p>
+                                    <h2 style={{ color: 'var(--color-primary)', margin: 0, fontFamily: '"Cinzel", serif', fontSize: '1.4rem' }}>{selectedDistrict.name}</h2>
+                                    <p style={{ color: 'var(--color-text-muted)', margin: '4px 0 0 0', fontSize: '0.9rem' }}>{selectedDistrict.description}</p>
                                 </div>
                                 <button
                                     onClick={() => setSelectedDistrict(null)}
                                     style={{
                                         background: 'none',
                                         border: 'none',
-                                        color: '#666',
+                                        color: 'var(--color-text-muted)',
                                         fontSize: '2rem',
                                         cursor: 'pointer',
+                                        padding: 0,
+                                        lineHeight: 1
                                     }}
                                 >
                                     ×
                                 </button>
                             </div>
-                            <div style={{ flex: 1, position: 'relative', background: '#050505' }}>
+                            <div style={{ flex: 1, position: 'relative', background: 'rgba(5, 10, 8, 1)' }}>
                                 <TransformWrapper
                                     initialScale={1}
                                     minScale={0.1}
@@ -502,15 +517,15 @@ const LandMap: React.FC = () => {
                                         <div style={{
                                             width: selectedDistrict.width * 10,
                                             height: selectedDistrict.height * 10,
-                                            background: '#080808',
+                                            background: 'rgba(8, 12, 10, 1)',
                                             position: 'relative',
                                             backgroundImage: `
-                                                linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
-                                                linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px)
+                                                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                                                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px)
                                             `,
                                             backgroundSize: '10px 10px',
-                                            border: '1px solid rgba(212, 175, 55, 0.3)',
-                                            boxShadow: '0 0 100px rgba(0,0,0,0.8)'
+                                            border: '1px solid rgba(0, 255, 136, 0.2)',
+                                            boxShadow: '0 0 100px rgba(0, 0, 0, 0.8)'
                                         }}>
                                             {selectedDistrict.salesZones?.map(zone => (
                                                 <motion.div
@@ -518,7 +533,7 @@ const LandMap: React.FC = () => {
                                                     initial={{ opacity: 0.5 }}
                                                     whileHover={{
                                                         opacity: 1,
-                                                        backgroundColor: 'rgba(212, 175, 55, 0.3)',
+                                                        backgroundColor: 'rgba(0, 255, 136, 0.25)',
                                                         scale: 1.02,
                                                         transition: { duration: 0.2 }
                                                     }}
@@ -528,8 +543,8 @@ const LandMap: React.FC = () => {
                                                         top: zone.y * 10,
                                                         width: zone.width * 10,
                                                         height: zone.height * 10,
-                                                        background: 'rgba(212, 175, 55, 0.1)',
-                                                        border: '1px solid rgba(212, 175, 55, 0.5)',
+                                                        background: 'rgba(0, 255, 136, 0.1)',
+                                                        border: '1px solid rgba(0, 255, 136, 0.4)',
                                                         cursor: 'pointer',
                                                         zIndex: 5
                                                     }}
@@ -548,7 +563,7 @@ const LandMap: React.FC = () => {
                                                         width: b.width * 10,
                                                         height: b.height * 10,
                                                         zIndex: 20,
-                                                        pointerEvents: 'none' // Buildings are currently not interactive
+                                                        pointerEvents: 'none'
                                                     }}
                                                 >
                                                     <img
