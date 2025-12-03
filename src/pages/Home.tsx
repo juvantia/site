@@ -1184,13 +1184,17 @@ const Home: React.FC = () => {
                     }}>
                         <style>{`.colosseum-scroll::-webkit-scrollbar { display: none; }`}</style>
                         
-                        <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : {}}>
+                        <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : { height: '100%' }}>
                             <GlassCard style={{ 
                                 background: 'rgba(255, 71, 87, 0.08)', 
                                 border: '1px solid rgba(255, 71, 87, 0.25)',
                                 textAlign: 'center',
                                 padding: isMobile ? '1.5rem 1.25rem' : '2rem 1.5rem',
-                                height: '100%'
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center'
                             }} hoverEffect={!isMobile}>
                                 <h4 style={{ color: '#ff4757', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500 }}>
                                     King of the Hill
@@ -1201,13 +1205,17 @@ const Home: React.FC = () => {
                             </GlassCard>
                         </div>
 
-                        <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : {}}>
+                        <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : { height: '100%' }}>
                             <GlassCard style={{ 
                                 background: 'rgba(255, 165, 2, 0.08)', 
                                 border: '1px solid rgba(255, 165, 2, 0.25)',
                                 textAlign: 'center',
                                 padding: isMobile ? '1.5rem 1.25rem' : '2rem 1.5rem',
-                                height: '100%'
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center'
                             }} hoverEffect={!isMobile}>
                                 <h4 style={{ color: '#ffa502', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500 }}>
                                     The Prize
@@ -1218,13 +1226,17 @@ const Home: React.FC = () => {
                             </GlassCard>
                         </div>
 
-                        <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : {}}>
+                        <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : { height: '100%' }}>
                             <GlassCard style={{ 
                                 background: 'rgba(255, 71, 87, 0.08)', 
                                 border: '1px solid rgba(255, 71, 87, 0.25)',
                                 textAlign: 'center',
                                 padding: isMobile ? '1.5rem 1.25rem' : '2rem 1.5rem',
-                                height: '100%'
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center'
                             }} hoverEffect={!isMobile}>
                                 <h4 style={{ color: '#ff4757', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500 }}>
                                     The Voice
