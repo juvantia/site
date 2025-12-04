@@ -210,7 +210,7 @@ const RobulusRegister: React.FC = () => {
                     }}>
                         How to Participate
                     </h2>
-                    
+
                     {/* Mobile: Horizontal scroll | Desktop: Grid */}
                     <div style={isMobile ? {
                         display: 'flex',
@@ -255,7 +255,7 @@ const RobulusRegister: React.FC = () => {
                                     <span>
                                         Build on ESP32 with camera,{' '}
                                         <a
-                                            href="https://tabylarium.juvantia.org/corpus/robulus"
+                                            href="https://tabularium.juvantia.org/corpus/robulus"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             style={{
