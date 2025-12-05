@@ -73,6 +73,7 @@
   padding: 0;
 }
 
+html,
 body {
   font-family: var(--font-body);
   background-color: var(--color-bg);
@@ -80,6 +81,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   font-weight: 400;
+  width: 100%;
 }
 
 h1,

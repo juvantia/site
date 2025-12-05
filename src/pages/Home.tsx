@@ -117,7 +117,7 @@ const RolesTabs: React.FC = () => {
     ];
 
     const [selectedRole, setSelectedRole] = useState(roles[0]);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
 
     React.useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -319,7 +319,7 @@ const DomusTabs: React.FC = () => {
     ];
 
     const [selectedDomus, setSelectedDomus] = useState(domusTypes[0]);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
 
     React.useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -519,7 +519,7 @@ const Home: React.FC = () => {
     const heroImageY = useTransform(scrollY, [0, 600], [0, 150]);
     const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
     const heroScale = useTransform(scrollY, [0, 400], [1, 1.1]);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
 
     React.useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth <= 768);
