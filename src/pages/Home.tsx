@@ -720,11 +720,10 @@ const Home: React.FC = () => {
                     padding: isMobile ? '0 0.5rem' : 0
                 }}>
                     In Juvantia, the Law is absolute.{' '}
+                    <br />
                     <span style={{ color: 'var(--color-primary)', fontStyle: 'italic' }}>
                         Dura lex, sed lex.
                     </span>
-                    <br />
-                    Everyone is equal before it.
                 </p>
 
                 <div style={{
