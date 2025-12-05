@@ -859,95 +859,60 @@ const Home: React.FC = () => {
                     padding: isMobile ? '5rem 1rem' : '10rem 2rem',
                     background: 'var(--color-bg)',
                     display: 'flex',
-                    justifyContent: 'center'
+                    flexDirection: 'column',
+                    alignItems: 'center'
                 }}
             >
+                <div style={{ maxWidth: '1000px', width: '100%', textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem' }}>
+                    <h2 style={{
+                        fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
+                        marginBottom: '1.5rem',
+                        background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontWeight: 400
+                    }}>
+                        The Economy
+                    </h2>
+                    <p style={{
+                        fontSize: isMobile ? '1.1rem' : '1.3rem',
+                        color: 'var(--color-text-muted)',
+                        lineHeight: '1.8',
+                        fontWeight: 300,
+                        maxWidth: '800px',
+                        margin: '0 auto'
+                    }}>
+                        Juvantia runs a real, closed economy: all value is created by participants and stays inside the City.
+                    </p>
+                </div>
+
                 <div style={{
-                    display: 'flex',
-                    flexDirection: isMobile ? 'column' : 'row',
-                    gap: isMobile ? '2rem' : '6rem',
+                    display: 'grid',
+                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+                    gap: '2rem',
                     maxWidth: '1200px',
-                    width: '100%',
-                    alignItems: 'center'
+                    width: '100%'
                 }}>
-                    <motion.div
-                        initial={{ opacity: 0, x: isMobile ? 0 : -40, y: isMobile ? 20 : 0 }}
-                        whileInView={{ opacity: 1, x: 0, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        style={{ order: isMobile ? 2 : 1, width: isMobile ? '100%' : '50%' }}
-                    >
-                        <h2 style={{
-                            fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
-                            marginBottom: '1.5rem',
-                            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            fontWeight: 400
-                        }}>
-                            The Economy
-                        </h2>
-                        <p style={{
-                            fontSize: isMobile ? '1rem' : '1.15rem',
-                            color: 'var(--color-text-muted)',
-                            lineHeight: '1.8',
-                            marginBottom: '1.5rem',
-                            fontWeight: 300
-                        }}>
-                            The official currency is the{' '}
-                            <strong style={{ color: 'var(--color-primary)', fontWeight: 500 }}>
-                                Juvantian Denarius (JVD)
-                            </strong>.
+                    <GlassCard style={{ height: '100%', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>City Budget</h3>
+                        <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
+                            All payments — land sales, services, fees and taxes — go into a single public budget and are spent only on Juvantia’s development: infrastructure, services, events and new districts.
                         </p>
-                        <p style={{
-                            fontSize: isMobile ? '0.9rem' : '1rem',
-                            color: 'var(--color-text-muted)',
-                            lineHeight: '1.8',
-                            marginBottom: '1.5rem',
-                            fontWeight: 300
-                        }}>
-                            The City maintains its own independent budget:
+                    </GlassCard>
+
+                    <GlassCard style={{ height: '100%', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>Currency Issuance</h3>
+                        <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
+                            The official currency is the <strong style={{ color: 'var(--color-text)' }}>Juvantian Denarius (JVD)</strong>. JVD is issued solely by the AI Central Bank. There is no pre-allocation or “founders’ share”: you can only earn JVD from other participants or buy it from them on the open market.
                         </p>
+                    </GlassCard>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
-                            <div style={{
-                                padding: isMobile ? '0.85rem 1rem' : '1rem 1.25rem',
-                                background: 'rgba(0, 255, 136, 0.05)',
-                                borderLeft: '2px solid var(--color-primary)',
-                                borderRadius: '0 8px 8px 0',
-                                color: 'var(--color-text-muted)',
-                                fontSize: isMobile ? '0.9rem' : '0.95rem'
-                            }}>
-                                Direct payments and contributions
-                            </div>
-                            <div style={{
-                                padding: isMobile ? '0.85rem 1rem' : '1rem 1.25rem',
-                                background: 'rgba(0, 255, 136, 0.05)',
-                                borderLeft: '2px solid var(--color-primary)',
-                                borderRadius: '0 8px 8px 0',
-                                color: 'var(--color-text-muted)',
-                                fontSize: isMobile ? '0.9rem' : '0.95rem'
-                            }}>
-                                Taxes on goods and services
-                            </div>
-                        </div>
-
-                        <p style={{ fontSize: isMobile ? '0.9rem' : '1rem', color: 'var(--color-text)', lineHeight: '1.8', fontWeight: 300 }}>
-                            We rely on <span style={{ color: 'var(--color-primary)' }}>production</span>,{' '}
-                            <span style={{ color: 'var(--color-primary)' }}>service</span>, and the tangible value of{' '}
-                            <span style={{ color: 'var(--color-primary)' }}>energy</span>.
+                    <GlassCard style={{ height: '100%', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>Free Economy</h3>
+                        <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
+                            Prices, salaries and projects are defined by citizens and businesses themselves. The City provides rules, justice and infrastructure — everything else is driven by entrepreneurial initiative.
                         </p>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 20 : 0 }}
-                        whileInView={{ opacity: 1, x: 0, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        style={{ order: 1, width: isMobile ? '100%' : '50%' }}
-                    >
-                        <ImageCard src="/images/ai_bank.png" alt="AI Central Bank" aspectRatio="4/3" />
-                    </motion.div>
+                    </GlassCard>
                 </div>
             </motion.section>
 
@@ -962,110 +927,88 @@ const Home: React.FC = () => {
                     padding: isMobile ? '5rem 1rem' : '10rem 2rem',
                     background: 'linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg) 100%)',
                     display: 'flex',
-                    justifyContent: 'center'
+                    flexDirection: 'column',
+                    alignItems: 'center'
                 }}
             >
+                <div style={{ maxWidth: '1000px', width: '100%', textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem' }}>
+                    <h2 style={{
+                        fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
+                        marginBottom: '1.5rem',
+                        background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontWeight: 400
+                    }}>
+                        Res Publica
+                    </h2>
+                </div>
+
                 <div style={{
                     display: 'flex',
                     flexDirection: isMobile ? 'column' : 'row',
-                    gap: isMobile ? '2rem' : '6rem',
+                    gap: isMobile ? '3rem' : '6rem',
                     maxWidth: '1200px',
                     width: '100%',
-                    alignItems: 'center'
+                    alignItems: 'flex-start'
                 }}>
+                    {/* Left Column: Text */}
                     <motion.div
-                        initial={{ opacity: 0, x: isMobile ? 0 : -40, y: isMobile ? 20 : 0 }}
-                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        initial={{ opacity: 0, x: isMobile ? 0 : -40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        style={{ width: isMobile ? '100%' : '50%' }}
+                        style={{ width: isMobile ? '100%' : '50%', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
                     >
-                        <ImageCard src="/images/roman_senate_robots.png" alt="Roman Senate Robots" aspectRatio="4/3" />
+                        <p style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', color: 'var(--color-text)', lineHeight: '1.8', fontWeight: 300 }}>
+                            Politics in Juvantia is not a simulation. It is a real republic where citizens choose their leaders and laws.
+                        </p>
+                        <p style={{ fontSize: isMobile ? '1rem' : '1.1rem', color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
+                            Every citizen has the right — and the responsibility — to take part in public life: to vote, propose changes, or stand for office.
+                        </p>
+                        <p style={{ fontSize: isMobile ? '1rem' : '1.1rem', color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
+                            Two branches of power guide the City’s fate: the Consul and the Senatus.
+                        </p>
+
+                        <div style={{ marginTop: '1rem' }}>
+                            <p style={{
+                                fontSize: isMobile ? '1.1rem' : '1.2rem',
+                                color: 'var(--color-primary)',
+                                fontWeight: 500,
+                                lineHeight: '1.6'
+                            }}>
+                                You have the right to stand for election — and shape Juvantia’s future.
+                            </p>
+                        </div>
                     </motion.div>
 
+                    {/* Right Column: Blocks */}
                     <motion.div
-                        initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 20 : 0 }}
-                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        initial={{ opacity: 0, x: isMobile ? 0 : 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        style={{ width: isMobile ? '100%' : '50%' }}
+                        style={{ width: isMobile ? '100%' : '50%', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
                     >
-                        <h2 style={{
-                            fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
-                            marginBottom: '1.5rem',
-                            fontWeight: 400,
-                            color: 'var(--color-text)'
-                        }}>
-                            Res Publica
-                        </h2>
-                        <p style={{
-                            fontSize: isMobile ? '1rem' : '1.15rem',
-                            color: 'var(--color-text-muted)',
-                            lineHeight: '1.8',
-                            marginBottom: '1.5rem',
-                            fontWeight: 300
-                        }}>
-                            Politics in Juvantia is not a simulation. It is real. Public offices are elected.
-                        </p>
-                        <p style={{
-                            fontSize: isMobile ? '1.05rem' : '1.2rem',
-                            color: 'var(--color-primary)',
-                            fontStyle: 'italic',
-                            marginBottom: '2rem',
-                            fontWeight: 400
-                        }}>
-                            You have the right to stand for election.
-                        </p>
+                        <GlassCard style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '2rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                <div style={{ fontSize: '2rem' }}>👑</div>
+                                <h3 style={{ color: 'var(--color-text)', fontSize: '1.4rem', fontWeight: 500 }}>Consul</h3>
+                            </div>
+                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
+                                The elected head of the executive branch. Leads the city administration, develops infrastructure and services, and executes the budget approved by the Senate.
+                            </p>
+                        </GlassCard>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                            <GlassCard style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: isMobile ? '1.25rem' : '1.5rem' }}>
-                                <div style={{
-                                    fontSize: isMobile ? '1.6rem' : '2rem',
-                                    width: isMobile ? '50px' : '60px',
-                                    height: isMobile ? '50px' : '60px',
-                                    borderRadius: '14px',
-                                    background: 'rgba(0, 255, 136, 0.1)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    flexShrink: 0
-                                }}>
-                                    🏛️
-                                </div>
-                                <div>
-                                    <h4 style={{ color: 'var(--color-text)', fontSize: isMobile ? '1rem' : '1.1rem', marginBottom: '0.25rem', fontWeight: 500, textTransform: 'none' }}>
-                                        Senator
-                                    </h4>
-                                    <p style={{ fontSize: isMobile ? '0.85rem' : '0.9rem', color: 'var(--color-text-muted)' }}>
-                                        Debate and pass the laws that govern the city.
-                                    </p>
-                                </div>
-                            </GlassCard>
-
-                            <GlassCard style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: isMobile ? '1.25rem' : '1.5rem' }}>
-                                <div style={{
-                                    fontSize: isMobile ? '1.6rem' : '2rem',
-                                    width: isMobile ? '50px' : '60px',
-                                    height: isMobile ? '50px' : '60px',
-                                    borderRadius: '14px',
-                                    background: 'rgba(0, 255, 136, 0.1)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    flexShrink: 0
-                                }}>
-                                    👑
-                                </div>
-                                <div>
-                                    <h4 style={{ color: 'var(--color-text)', fontSize: isMobile ? '1rem' : '1.1rem', marginBottom: '0.25rem', fontWeight: 500, textTransform: 'none' }}>
-                                        Consul
-                                    </h4>
-                                    <p style={{ fontSize: isMobile ? '0.85rem' : '0.9rem', color: 'var(--color-text-muted)' }}>
-                                        Lead the executive branch and guide the city's future.
-                                    </p>
-                                </div>
-                            </GlassCard>
-                        </div>
+                        <GlassCard style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '2rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                <div style={{ fontSize: '2rem' }}>🏛️</div>
+                                <h3 style={{ color: 'var(--color-text)', fontSize: '1.4rem', fontWeight: 500 }}>Senatus</h3>
+                            </div>
+                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
+                                Eight elected senators debate and pass the laws that everyone must follow. They appoint <strong>Custodia Juvantiae</strong> — the civic guard that protects order, comfort and property in the City, accountable only to the Senatus.
+                            </p>
+                        </GlassCard>
                     </motion.div>
                 </div>
             </motion.section>
@@ -1135,9 +1078,12 @@ const Home: React.FC = () => {
                         fontWeight: 300,
                         padding: isMobile ? '0 0.5rem' : 0
                     }}>
-                        A massive concrete structure, three stories of brutal challenges.
-                        Different channels, different paths, one goal:{' '}
-                        <strong style={{ color: '#ff4757' }}>The Summit</strong>.
+                        A three-storey concrete fortress for robotic duels. Different channels, different formats — one goal: <span style={{
+                            background: 'linear-gradient(135deg, #ff4757 0%, #ffa502 100%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            fontWeight: 600
+                        }}>claim the Winners’ Room and keep control of the Colosseum.</span>
                     </p>
 
                     {/* Mobile: Horizontal scroll | Desktop: Grid */}
@@ -1172,11 +1118,11 @@ const Home: React.FC = () => {
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }} hoverEffect={!isMobile}>
-                                <h4 style={{ color: '#ff4757', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500 }}>
-                                    King of the Hill
+                                <h4 style={{ color: '#ff4757', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500, textTransform: 'uppercase' }}>
+                                    KING OF THE HILL
                                 </h4>
                                 <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.85rem' : '0.9rem', lineHeight: '1.7' }}>
-                                    Reach the Winners' Room and hold your ground against all comers.
+                                    Reach the Winners’ Room, take over the arena’s power grid and hold your position against all challengers.
                                 </p>
                             </GlassCard>
                         </div>
@@ -1193,11 +1139,11 @@ const Home: React.FC = () => {
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }} hoverEffect={!isMobile}>
-                                <h4 style={{ color: '#ffa502', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500 }}>
-                                    The Prize
+                                <h4 style={{ color: '#ffa502', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500, textTransform: 'uppercase' }}>
+                                    THE PRIZE
                                 </h4>
                                 <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.85rem' : '0.9rem', lineHeight: '1.7' }}>
-                                    3 Charging Connects + Passive Income in JVD.
+                                    Free energy for the champion: 3 permanent Charging Connects plus a weekly payout in JVD.
                                 </p>
                             </GlassCard>
                         </div>
@@ -1214,11 +1160,11 @@ const Home: React.FC = () => {
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }} hoverEffect={!isMobile}>
-                                <h4 style={{ color: '#ff4757', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500 }}>
-                                    The Voice
+                                <h4 style={{ color: '#ff4757', marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.2rem', fontWeight: 500, textTransform: 'uppercase' }}>
+                                    THE VOICE
                                 </h4>
                                 <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.85rem' : '0.9rem', lineHeight: '1.7' }}>
-                                    Exclusive access to the city screen to broadcast your content.
+                                    Your own broadcast tower: exclusive access to the Colosseum screen and speakers to stream your content to the City.
                                 </p>
                             </GlassCard>
                         </div>
