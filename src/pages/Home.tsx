@@ -596,7 +596,7 @@ const Home: React.FC = () => {
                             WebkitTextFillColor: 'transparent',
                             fontWeight: 400,
                             letterSpacing: '0.25em',
-                            paddingRight: '0.25em',
+                            paddingLeft: '0.25em',
                             position: 'relative'
                         }}
                     >
@@ -1180,7 +1180,8 @@ const Home: React.FC = () => {
                         gridTemplateColumns: 'repeat(3, 1fr)',
                         gap: '1.5rem',
                         width: '100%',
-                        maxWidth: '1000px'
+                        maxWidth: '1000px',
+                        margin: '0 auto'
                     }}>
                         <style>{`.colosseum-scroll::-webkit-scrollbar { display: none; }`}</style>
                         
