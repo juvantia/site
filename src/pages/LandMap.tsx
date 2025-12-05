@@ -336,6 +336,12 @@ const LandMap: React.FC = () => {
                     </div>
                 </div>
 
+                <div style={{
+                    width: '100%',
+                    overflowX: 'auto',
+                    WebkitOverflowScrolling: 'touch',
+                    paddingBottom: '10px'
+                }}>
                 <div
                     style={{
                         width: MAP_WIDTH,
@@ -345,6 +351,7 @@ const LandMap: React.FC = () => {
                         border: '1px solid rgba(0, 255, 136, 0.2)',
                         borderRadius: '8px',
                         boxShadow: '0 20px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 255, 136, 0.05)',
+                        margin: '0 auto'
                     }}
                 >
                     {districts.map(d => (
@@ -436,6 +443,7 @@ const LandMap: React.FC = () => {
                             </div>
                         </motion.div>
                     ))}
+                </div>
                 </div>
             </div>
 
