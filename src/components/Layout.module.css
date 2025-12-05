@@ -359,7 +359,7 @@
     }
 
     .quickActionsPill {
-        display: block;
+        display: none;
     }
 
     .main {
