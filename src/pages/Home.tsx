@@ -13,13 +13,13 @@ const SectionDivider: React.FC = () => (
     }} />
 );
 
-const GlassCard: React.FC<{ 
-    children: React.ReactNode; 
+const GlassCard: React.FC<{
+    children: React.ReactNode;
     style?: React.CSSProperties;
     hoverEffect?: boolean;
 }> = ({ children, style, hoverEffect = true }) => {
     const [isHovered, setIsHovered] = useState(false);
-    
+
     return (
         <motion.div
             onMouseEnter={() => setIsHovered(true)}
@@ -34,7 +34,7 @@ const GlassCard: React.FC<{
                 padding: '2rem',
                 position: 'relative',
                 overflow: 'hidden',
-                boxShadow: isHovered 
+                boxShadow: isHovered
                     ? '0 0 40px rgba(0, 255, 136, 0.15), 0 20px 60px rgba(0, 0, 0, 0.4)'
                     : '0 10px 40px rgba(0, 0, 0, 0.3)',
                 transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
@@ -57,13 +57,13 @@ const GlassCard: React.FC<{
     );
 };
 
-const ImageCard: React.FC<{ 
-    src: string; 
-    alt: string; 
+const ImageCard: React.FC<{
+    src: string;
+    alt: string;
     aspectRatio?: string;
 }> = ({ src, alt, aspectRatio = '16/9' }) => {
     const [isHovered, setIsHovered] = useState(false);
-    
+
     return (
         <motion.div
             onMouseEnter={() => setIsHovered(true)}
@@ -74,7 +74,7 @@ const ImageCard: React.FC<{
                 borderRadius: '24px',
                 overflow: 'hidden',
                 border: `1px solid ${isHovered ? 'rgba(0, 255, 136, 0.4)' : 'rgba(0, 255, 136, 0.15)'}`,
-                boxShadow: isHovered 
+                boxShadow: isHovered
                     ? '0 0 50px rgba(0, 255, 136, 0.2), 0 30px 80px rgba(0, 0, 0, 0.5)'
                     : '0 20px 60px rgba(0, 0, 0, 0.4)',
                 transition: 'border-color 0.5s ease, box-shadow 0.5s ease',
@@ -210,19 +210,19 @@ const RolesTabs: React.FC = () => {
 
     // Desktop version - original layout
     return (
-        <div style={{ 
-            display: 'grid', 
+        <div style={{
+            display: 'grid',
             gridTemplateColumns: 'minmax(250px, 300px) minmax(300px, 450px)',
-            gap: '3rem', 
-            width: '100%', 
+            gap: '3rem',
+            width: '100%',
             maxWidth: '900px',
             alignItems: 'start',
             justifyContent: 'center'
         }}>
             {/* Tabs List */}
-            <div style={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
                 gap: '0.25rem',
                 background: 'rgba(10, 15, 10, 0.5)',
                 borderRadius: '16px',
@@ -260,10 +260,10 @@ const RolesTabs: React.FC = () => {
                         {selectedRole.id === role.id && (
                             <motion.span
                                 layoutId="roleIndicator"
-                                style={{ 
-                                    width: '6px', 
-                                    height: '6px', 
-                                    borderRadius: '50%', 
+                                style={{
+                                    width: '6px',
+                                    height: '6px',
+                                    borderRadius: '50%',
                                     background: 'var(--color-primary)',
                                     boxShadow: '0 0 10px var(--color-primary)'
                                 }}
@@ -411,11 +411,11 @@ const DomusTabs: React.FC = () => {
 
     // Desktop version - original layout
     return (
-        <div style={{ 
-            display: 'grid', 
+        <div style={{
+            display: 'grid',
             gridTemplateColumns: 'minmax(300px, 450px) minmax(250px, 300px)',
-            gap: '3rem', 
-            width: '100%', 
+            gap: '3rem',
+            width: '100%',
             maxWidth: '900px',
             alignItems: 'start',
             justifyContent: 'center'
@@ -455,9 +455,9 @@ const DomusTabs: React.FC = () => {
             </AnimatePresence>
 
             {/* Tabs List */}
-            <div style={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
                 gap: '0.25rem',
                 background: 'rgba(10, 15, 10, 0.5)',
                 borderRadius: '16px',
@@ -496,10 +496,10 @@ const DomusTabs: React.FC = () => {
                         {selectedDomus.id === domus.id && (
                             <motion.span
                                 layoutId="domusIndicator"
-                                style={{ 
-                                    width: '6px', 
-                                    height: '6px', 
-                                    borderRadius: '50%', 
+                                style={{
+                                    width: '6px',
+                                    height: '6px',
+                                    borderRadius: '50%',
                                     background: 'var(--color-primary)',
                                     boxShadow: '0 0 10px var(--color-primary)'
                                 }}
@@ -550,7 +550,7 @@ const Home: React.FC = () => {
                 overflow: 'hidden'
             }}>
                 {/* Background Image with Parallax */}
-                <motion.div 
+                <motion.div
                     style={{
                         position: 'absolute',
                         inset: 0,
@@ -561,7 +561,7 @@ const Home: React.FC = () => {
                         scale: heroScale
                     }}
                 />
-                
+
                 {/* Dark Overlay */}
                 <div style={{
                     position: 'absolute',
@@ -664,9 +664,9 @@ const Home: React.FC = () => {
                                 background: 'linear-gradient(to bottom, transparent, var(--color-primary))'
                             }}
                         />
-                        <span style={{ 
-                            fontSize: '0.7rem', 
-                            letterSpacing: '0.3em', 
+                        <span style={{
+                            fontSize: '0.7rem',
+                            letterSpacing: '0.3em',
                             color: 'var(--color-primary)',
                             fontFamily: 'var(--font-heading)'
                         }}>
@@ -735,46 +735,22 @@ const Home: React.FC = () => {
                     padding: isMobile ? '0 1rem' : 0
                 }}>
                     <a href="https://tabularium.juvantia.org/lex/constitutio" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                        <GlassCard style={{ height: '100%', textAlign: 'center' }}>
-                            <div style={{
-                                width: isMobile ? '80px' : '100px',
-                                height: isMobile ? '80px' : '100px',
-                                margin: '0 auto 1.5rem',
-                                borderRadius: '50%',
-                                background: 'radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}>
-                                <img src="/images/icon_constitution.png" alt="Constitution" style={{ width: isMobile ? '48px' : '60px', filter: 'brightness(1.1)' }} />
-                            </div>
-                            <h3 style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.2rem' : '1.4rem', marginBottom: '0.75rem', fontWeight: 500 }}>
+                        <GlassCard style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 2rem' }}>
+                            <h3 style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.4rem' : '1.8rem', marginBottom: '1rem', fontWeight: 500, letterSpacing: '0.05em' }}>
                                 Constitution
                             </h3>
-                            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>
+                            <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.6' }}>
                                 The foundation of our society.
                             </p>
                         </GlassCard>
                     </a>
 
                     <a href="https://tabularium.juvantia.org/lex/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                        <GlassCard style={{ height: '100%', textAlign: 'center' }}>
-                            <div style={{
-                                width: isMobile ? '80px' : '100px',
-                                height: isMobile ? '80px' : '100px',
-                                margin: '0 auto 1.5rem',
-                                borderRadius: '50%',
-                                background: 'radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}>
-                                <img src="/images/laws.png" alt="Laws" style={{ width: isMobile ? '48px' : '60px', filter: 'brightness(1.1)' }} />
-                            </div>
-                            <h3 style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.2rem' : '1.4rem', marginBottom: '0.75rem', fontWeight: 500 }}>
+                        <GlassCard style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 2rem' }}>
+                            <h3 style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.4rem' : '1.8rem', marginBottom: '1rem', fontWeight: 500, letterSpacing: '0.05em' }}>
                                 Laws
                             </h3>
-                            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>
+                            <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.6' }}>
                                 The rules we live by.
                             </p>
                         </GlassCard>
@@ -844,7 +820,7 @@ const Home: React.FC = () => {
                         }}>
                             You can receive charging via Pogo Pin Magnetic, 4P.
                         </p>
-                        
+
                         <GlassCard style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
                             <div style={{
                                 fontSize: isMobile ? '2rem' : '2.5rem',
@@ -1183,10 +1159,10 @@ const Home: React.FC = () => {
                         margin: '0 auto'
                     }}>
                         <style>{`.colosseum-scroll::-webkit-scrollbar { display: none; }`}</style>
-                        
+
                         <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : { height: '100%' }}>
-                            <GlassCard style={{ 
-                                background: 'rgba(255, 71, 87, 0.08)', 
+                            <GlassCard style={{
+                                background: 'rgba(255, 71, 87, 0.08)',
                                 border: '1px solid rgba(255, 71, 87, 0.25)',
                                 textAlign: 'center',
                                 padding: isMobile ? '1.5rem 1.25rem' : '2rem 1.5rem',
@@ -1206,8 +1182,8 @@ const Home: React.FC = () => {
                         </div>
 
                         <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : { height: '100%' }}>
-                            <GlassCard style={{ 
-                                background: 'rgba(255, 165, 2, 0.08)', 
+                            <GlassCard style={{
+                                background: 'rgba(255, 165, 2, 0.08)',
                                 border: '1px solid rgba(255, 165, 2, 0.25)',
                                 textAlign: 'center',
                                 padding: isMobile ? '1.5rem 1.25rem' : '2rem 1.5rem',
@@ -1227,8 +1203,8 @@ const Home: React.FC = () => {
                         </div>
 
                         <div style={isMobile ? { flexShrink: 0, width: '280px', scrollSnapAlign: 'start' } : { height: '100%' }}>
-                            <GlassCard style={{ 
-                                background: 'rgba(255, 71, 87, 0.08)', 
+                            <GlassCard style={{
+                                background: 'rgba(255, 71, 87, 0.08)',
                                 border: '1px solid rgba(255, 71, 87, 0.25)',
                                 textAlign: 'center',
                                 padding: isMobile ? '1.5rem 1.25rem' : '2rem 1.5rem',
