@@ -655,6 +655,9 @@ const AdminMap: React.FC = () => {
                                             <option value="/images/senatus.svg">Senatus</option>
                                             <option value="/images/OC.svg">OC</option>
                                             <option value="/images/PRAETOR.svg">Praetor</option>
+                                            <option value="/images/col.png">Colosseum</option>
+                                            <option value="/images/custodia.svg">Custodia</option>
+                                            <option value="/images/colosseum_arena.png">Arena</option>
                                         </select>
                                     </div>
                                     <div style={{ marginTop: '5px' }}>
