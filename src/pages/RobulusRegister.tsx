@@ -87,7 +87,7 @@ const RobulusRegister: React.FC = () => {
         }
     };
 
-    const target = 1000;
+    const target = 100;
     const progress = Math.min((memorandumCount / target) * 100, 100);
 
     return (
@@ -135,9 +135,24 @@ const RobulusRegister: React.FC = () => {
                 {/* Hero Section */}
                 <div style={{
                     textAlign: 'center',
-                    marginBottom: isMobile ? '4rem' : '6rem',
+                    marginBottom: isMobile ? '3rem' : '4rem',
                     position: 'relative'
                 }}>
+                    <h2 style={{
+                        fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.5rem)',
+                        lineHeight: '1.4',
+                        maxWidth: '800px',
+                        margin: '0 auto 3rem',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontWeight: 400,
+                        letterSpacing: '-0.02em',
+                        textTransform: 'uppercase'
+                    }}>
+                        FROM CONCEPT TO TECHNOPARK
+                    </h2>
+
                     <div style={{
                         display: 'inline-block',
                         position: 'relative',
@@ -182,18 +197,79 @@ const RobulusRegister: React.FC = () => {
                         fontWeight: 300,
                         letterSpacing: '-0.01em'
                     }}>
-                        Juvantia will occupy real land when it receives 1000 memorandums for sending the required Robuli.
-                        <br />
-                        <span style={{
-                            fontSize: isMobile ? '0.95rem' : '1.1rem',
-                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            fontWeight: 500
-                        }}>
-                            Join the movement to bring Juvantia to the physical world.
-                        </span>
+                        The first milestone is a proof of concept: 100 accepted Memorandums of Intent from people ready to build and send their Robulus to the future technopark.
                     </p>
+                </div>
+
+                {/* Progress Section */}
+                <div style={{
+                    marginBottom: isMobile ? '4rem' : '6rem',
+                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
+                    backdropFilter: 'blur(20px)',
+                    padding: isMobile ? '2rem 1.25rem' : '3rem',
+                    borderRadius: isMobile ? '24px' : '28px',
+                    border: '1px solid rgba(0, 255, 136, 0.15)',
+                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
+                }}>
+                    <h2 style={{
+                        marginBottom: isMobile ? '1.5rem' : '2rem',
+                        textAlign: 'center',
+                        fontSize: isMobile ? '1.3rem' : '1.8rem',
+                        fontWeight: 400,
+                        letterSpacing: '-0.02em',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                    }}>
+                        PROOF-OF-CONCEPT PROGRESS
+                    </h2>
+                    <div style={{
+                        background: 'rgba(0, 0, 0, 0.3)',
+                        height: '40px',
+                        borderRadius: '20px',
+                        overflow: 'hidden',
+                        position: 'relative',
+                        border: '1px solid rgba(0, 255, 136, 0.2)'
+                    }}>
+                        <div style={{
+                            width: `${progress}%`,
+                            background: 'linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                            height: '100%',
+                            transition: 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                            position: 'relative',
+                            boxShadow: '0 0 30px rgba(0, 255, 136, 0.4)'
+                        }}>
+                            <div style={{
+                                position: 'absolute',
+                                inset: 0,
+                                background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%)',
+                                animation: 'shimmer 2s infinite'
+                            }} />
+                        </div>
+                        <span style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            color: '#fff',
+                            fontWeight: 600,
+                            fontSize: '1rem',
+                            textShadow: '0 2px 10px rgba(0,0,0,0.5)',
+                            letterSpacing: '0.05em'
+                        }}>
+                            {memorandumCount} / {target} Robuli
+                        </span>
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        marginTop: '1rem',
+                        fontSize: '0.85rem',
+                        color: 'var(--color-text-muted)'
+                    }}>
+                        <span>Started</span>
+                        <span>{progress.toFixed(1)}% Complete</span>
+                    </div>
                 </div>
 
                 {/* Steps Section */}
@@ -208,7 +284,7 @@ const RobulusRegister: React.FC = () => {
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
                     }}>
-                        How to Participate
+                        HOW IT WILL WORK
                     </h2>
 
                     {/* Mobile: Horizontal scroll | Desktop: Grid */}
@@ -377,76 +453,7 @@ const RobulusRegister: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Progress Section */}
-                <div style={{
-                    marginBottom: isMobile ? '4rem' : '6rem',
-                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
-                    backdropFilter: 'blur(20px)',
-                    padding: isMobile ? '2rem 1.25rem' : '3rem',
-                    borderRadius: isMobile ? '24px' : '28px',
-                    border: '1px solid rgba(0, 255, 136, 0.15)',
-                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
-                }}>
-                    <h2 style={{
-                        marginBottom: isMobile ? '1.5rem' : '2rem',
-                        textAlign: 'center',
-                        fontSize: isMobile ? '1.3rem' : '1.8rem',
-                        fontWeight: 400,
-                        letterSpacing: '-0.02em',
-                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent'
-                    }}>
-                        Progress to Land Occupation
-                    </h2>
-                    <div style={{
-                        background: 'rgba(0, 0, 0, 0.3)',
-                        height: '40px',
-                        borderRadius: '20px',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        border: '1px solid rgba(0, 255, 136, 0.2)'
-                    }}>
-                        <div style={{
-                            width: `${progress}%`,
-                            background: 'linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
-                            height: '100%',
-                            transition: 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                            position: 'relative',
-                            boxShadow: '0 0 30px rgba(0, 255, 136, 0.4)'
-                        }}>
-                            <div style={{
-                                position: 'absolute',
-                                inset: 0,
-                                background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%)',
-                                animation: 'shimmer 2s infinite'
-                            }} />
-                        </div>
-                        <span style={{
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            color: '#fff',
-                            fontWeight: 600,
-                            fontSize: '1rem',
-                            textShadow: '0 2px 10px rgba(0,0,0,0.5)',
-                            letterSpacing: '0.05em'
-                        }}>
-                            {memorandumCount} / {target} Robuli
-                        </span>
-                    </div>
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        marginTop: '1rem',
-                        fontSize: '0.85rem',
-                        color: 'var(--color-text-muted)'
-                    }}>
-                        <span>Started</span>
-                        <span>{progress.toFixed(1)}% Complete</span>
-                    </div>
-                </div>
+
 
                 {/* Memorandum Form */}
                 <div style={{
@@ -471,18 +478,34 @@ const RobulusRegister: React.FC = () => {
                     }}>
                         Memorandum of Intent
                     </h2>
-                    <p style={{
-                        textAlign: 'center',
+                    <div style={{
                         marginBottom: isMobile ? '2rem' : '3rem',
-                        color: 'var(--color-text-muted)',
-                        fontSize: isMobile ? '0.9rem' : '1rem',
-                        lineHeight: '1.8',
-                        maxWidth: '600px',
-                        margin: isMobile ? '0 auto 2rem' : '0 auto 3rem'
+                        maxWidth: '700px',
+                        margin: isMobile ? '0 auto 2rem' : '0 auto 3rem',
+                        textAlign: 'left',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1rem'
                     }}>
-                        We count only applications with confirmed experience or a concrete plan for building a Robulus.
-                        Actual shipping will be possible only after electricity and wifi are provided to the selected territory.
-                    </p>
+                        <div style={{ display: 'flex', gap: '1rem' }}>
+                            <span style={{ color: 'var(--color-primary)', fontSize: '1.2rem' }}>•</span>
+                            <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: '1.6', margin: 0 }}>
+                                We only count memorandums from applicants with <strong>proven experience</strong> in robotics or 3D printing, or with a clear and realistic plan for building a Robulus.
+                            </p>
+                        </div>
+                        <div style={{ display: 'flex', gap: '1rem' }}>
+                            <span style={{ color: 'var(--color-primary)', fontSize: '1.2rem' }}>•</span>
+                            <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: '1.6', margin: 0 }}>
+                                The first <strong>100 approved memorandums</strong> will each receive <strong>1 m² of land</strong> in Juvantia as a permanent allocation once the physical technopark is launched.
+                            </p>
+                        </div>
+                        <div style={{ display: 'flex', gap: '1rem' }}>
+                            <span style={{ color: 'var(--color-primary)', fontSize: '1.2rem' }}>•</span>
+                            <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: '1.6', margin: 0 }}>
+                                Actual shipping of Robuli will start only after electricity and connectivity are provided at the selected territory.
+                            </p>
+                        </div>
+                    </div>
 
                     {submitted ? (
                         <div style={{
@@ -757,7 +780,7 @@ const RobulusRegister: React.FC = () => {
                                         color: 'var(--color-text)',
                                         flex: 1
                                     }}>
-                                        I am ready to build and send a Robulus within 6-8 months
+                                        I am ready to build and send a Robulus when the territory opens (planned for early 2027).
                                     </span>
                                 </label>
 
@@ -797,6 +820,25 @@ const RobulusRegister: React.FC = () => {
                                 >
                                     Submit Memorandum
                                 </button>
+                            </div>
+
+                            <div style={{
+                                marginTop: '2rem',
+                                padding: '1.5rem',
+                                background: 'rgba(0, 255, 136, 0.05)',
+                                borderRadius: '16px',
+                                border: '1px solid rgba(0, 255, 136, 0.1)',
+                                textAlign: 'center'
+                            }}>
+                                <p style={{
+                                    margin: 0,
+                                    color: 'var(--color-text-muted)',
+                                    fontSize: '0.9rem',
+                                    lineHeight: '1.6',
+                                    fontStyle: 'italic'
+                                }}>
+                                    By submitting a memorandum, you help move Juvantia from concept to a real, physical technopark.
+                                </p>
                             </div>
                         </form>
                     )}

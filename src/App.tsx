@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import LandMap from './pages/LandMap';
 import RobulusRegister from './pages/RobulusRegister';
@@ -13,6 +14,7 @@ import AdminMemorandums from './pages/AdminMemorandums';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

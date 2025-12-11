@@ -631,10 +631,10 @@ const Home: React.FC = () => {
                             margin: '0 auto'
                         }}
                     >
-                        A non-profit technopark without human participation,
+                        A technopark of teleoperated mini-robots,
                         <br />
                         <span style={{ color: 'var(--color-text-muted)' }}>
-                            inspired by the Roman Republic with own real economy and politics.
+                            with no humans on site and a closed internal economy.
                         </span>
                     </motion.p>
                 </motion.div>
@@ -901,9 +901,12 @@ const Home: React.FC = () => {
                     </GlassCard>
 
                     <GlassCard style={{ height: '100%', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>Currency Issuance</h3>
+                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>CITIZENS FIRST</h3>
                         <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
-                            The official currency is the <strong style={{ color: 'var(--color-text)' }}>Juvantian Denarius (JVD)</strong>. JVD is issued solely by the AI Central Bank. There is no pre-allocation or “founders’ share”: you can only earn JVD from other participants or buy it from them on the open market.
+                            Individual participants do not pay any fees to the operator directly.
+                        </p>
+                        <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
+                            Operational revenue is earned only from commercial companies that use the technopark as an R&D, testing or marketing platform.
                         </p>
                     </GlassCard>
 
@@ -913,6 +916,143 @@ const Home: React.FC = () => {
                             Prices, salaries and projects are defined by citizens and businesses themselves. The City provides rules, justice and infrastructure — everything else is driven by entrepreneurial initiative.
                         </p>
                     </GlassCard>
+                </div>
+
+                <div style={{
+                    marginTop: '5rem',
+                    display: 'grid',
+                    gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                    gap: isMobile ? '3rem' : '4rem',
+                    maxWidth: '1200px',
+                    width: '100%',
+                    alignItems: 'center'
+                }}>
+                    {/* Left Side: Logos */}
+                    <GlassCard style={{
+                        padding: isMobile ? '1.5rem' : '3rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '2rem',
+                        background: 'linear-gradient(135deg, rgba(10, 15, 10, 0.6) 0%, rgba(0, 255, 136, 0.05) 100%)',
+                        border: '1px solid rgba(0, 255, 136, 0.15)'
+                    }}>
+                        <h3 style={{
+                            color: 'var(--color-primary)',
+                            fontSize: '1.2rem',
+                            letterSpacing: '0.1em',
+                            marginBottom: '1rem',
+                            textAlign: 'center',
+                            fontFamily: 'var(--font-heading)'
+                        }}>
+                            EURO-PEGGED STABLECOINS
+                        </h3>
+                        <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(4, 1fr)',
+                            gap: isMobile ? '0.5rem' : '1.5rem',
+                            justifyItems: 'center',
+                            alignItems: 'center',
+                            width: '100%'
+                        }}>
+                            {[
+                                { id: 'EURC', url: 'https://www.circle.com/eurc' },
+                                { id: 'EURS', url: 'https://eurs.stasis.net/' },
+                                { id: 'EURQ', url: 'https://www.quantoz.com/products/eurq-usdq' },
+                                { id: 'EUROe', url: 'https://www.euroe.com/' }
+                            ].map(token => (
+                                <motion.a
+                                    key={token.id}
+                                    href={token.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.1 }}
+                                    style={{
+                                        position: 'relative',
+                                        width: isMobile ? '45px' : '60px',
+                                        height: isMobile ? '45px' : '60px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        textDecoration: 'none',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    {/* Green Glow Behind */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        inset: -10,
+                                        background: 'radial-gradient(circle, rgba(0, 255, 136, 0.2) 0%, transparent 70%)',
+                                        borderRadius: '50%',
+                                        filter: 'blur(10px)'
+                                    }} />
+                                    <motion.img
+                                        src={`/images/${token.id}.svg`}
+                                        alt={token.id}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            position: 'relative',
+                                            zIndex: 1,
+                                            filter: 'drop-shadow(0 0 8px rgba(0, 255, 136, 0.3))'
+                                        }}
+                                        whileHover={{
+                                            filter: 'drop-shadow(0 0 20px rgba(0, 255, 136, 0.6))'
+                                        }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                </motion.a>
+                            ))}
+                        </div>
+                    </GlassCard>
+
+                    {/* Right Side: Text */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        <p style={{
+                            fontSize: isMobile ? '1.1rem' : '1.25rem',
+                            color: 'var(--color-text)',
+                            lineHeight: '1.8',
+                            fontWeight: 300
+                        }}>
+                            Juvantia’s monetary layer is based on euro-pegged stablecoins issued under the EU <a href="https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>MiCA</a> regulatory framework.
+                        </p>
+                        <p style={{
+                            fontSize: isMobile ? '1rem' : '1.1rem',
+                            color: 'var(--color-text-muted)',
+                            lineHeight: '1.7'
+                        }}>
+                            The City Treasury operates only with regulated EUR stablecoins such as:
+                        </p>
+                        <ul style={{
+                            listStyle: 'none',
+                            padding: 0,
+                            display: 'grid',
+                            gridTemplateColumns: '1fr 1fr',
+                            gap: '0.8rem'
+                        }}>
+                            {['EURC', 'EURS', 'EURQ', 'EUROe'].map(item => (
+                                <li key={item} style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.8rem',
+                                    color: 'var(--color-primary)',
+                                    fontSize: '1.1rem',
+                                    fontWeight: 500
+                                }}>
+                                    <span style={{ width: '8px', height: '8px', background: 'var(--color-primary)', borderRadius: '50%', boxShadow: '0 0 10px var(--color-primary)' }} />
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                        <p style={{
+                            fontSize: isMobile ? '1rem' : '1.1rem',
+                            color: 'var(--color-text-muted)',
+                            lineHeight: '1.7'
+                        }}>
+                            Taxes, fees and budget operations are settled in these assets, which gives the technopark a clear, euro-denominated economic base.
+                        </p>
+                    </div>
                 </div>
             </motion.section>
 
@@ -1143,7 +1283,7 @@ const Home: React.FC = () => {
                                     THE PRIZE
                                 </h4>
                                 <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.85rem' : '0.9rem', lineHeight: '1.7' }}>
-                                    Free energy for the champion: 3 permanent Charging Connects plus a weekly payout in JVD.
+                                    Free energy for the champion: 3 permanent Charging Connects plus a weekly payout.
                                 </p>
                             </GlassCard>
                         </div>
@@ -1168,6 +1308,47 @@ const Home: React.FC = () => {
                                 </p>
                             </GlassCard>
                         </div>
+                    </div>
+
+                    {/* 3D Simulation CTA */}
+                    <div style={{
+                        marginTop: isMobile ? '3rem' : '5rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '1.5rem',
+                        padding: '0 1rem'
+                    }}>
+                        <p style={{
+                            fontSize: isMobile ? '1rem' : '1.2rem',
+                            color: 'var(--color-text)',
+                            fontWeight: 300,
+                            maxWidth: '600px'
+                        }}>
+                            Explore the 3D simulation of the Colosseum to see how the arena actually works.
+                        </p>
+                        <motion.a
+                            href="https://colosseum.juvantia.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            style={{
+                                display: 'inline-block',
+                                padding: '1rem 2rem',
+                                background: 'linear-gradient(135deg, #ff4757 0%, #ffa502 100%)',
+                                borderRadius: '30px',
+                                color: 'white',
+                                textDecoration: 'none',
+                                fontSize: '1rem',
+                                fontWeight: 600,
+                                letterSpacing: '0.05em',
+                                boxShadow: '0 4px 20px rgba(255, 71, 87, 0.4)',
+                                border: '1px solid rgba(255, 255, 255, 0.2)'
+                            }}
+                        >
+                            View 3D Simulation
+                        </motion.a>
                     </div>
                 </motion.div>
             </section>

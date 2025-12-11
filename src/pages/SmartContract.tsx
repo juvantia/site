@@ -18,7 +18,7 @@ const SmartContract: React.FC = () => {
         {
             aspect: 'Currency',
             backend: 'Game points that can be purchased but not withdrawn. A quasi-economy.',
-            blockchain: 'Freely convertible currency with real economic value (JVD).',
+            blockchain: 'Freely convertible currency with real economic value.',
             winner: 'blockchain'
         },
         {
@@ -48,7 +48,7 @@ const SmartContract: React.FC = () => {
         {
             aspect: 'Security Risk',
             backend: 'More protection from risky transactions due to limited capabilities.',
-            blockchain: 'Higher risk: careless transactions can lose funds. Mitigated by using only Juvantia-certified smart contracts and JVD token.',
+            blockchain: 'Higher risk: careless transactions can lose funds. Mitigated by using only Juvantia-certified smart contracts and verified currency.',
             winner: 'backend'
         }
     ];
@@ -137,7 +137,7 @@ const SmartContract: React.FC = () => {
                         }}>
                             Programs running on the blockchain in the <span style={{ color: 'var(--color-primary)', fontWeight: 400 }}>EVM</span> (Ethereum Virtual Machine) standard.
                             <br /><br />
-                            Juvantia operates on <span style={{ color: 'var(--color-primary)', fontWeight: 400 }}>Soneium</span> — an L2 blockchain built on Ethereum.
+                            Self-executing programs on then <span style={{ color: 'var(--color-primary)', fontWeight: 400 }}>blockchain</span> that define and automatically enforce rules for programmable value and assets.
                         </p>
                     </div>
                     <div className="divider-glow" />
@@ -512,129 +512,7 @@ const SmartContract: React.FC = () => {
                     )}
                 </div>
 
-                {/* Security Warning Section */}
-                <div style={{
-                    marginBottom: isMobile ? '4rem' : '6rem',
-                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.08) 0%, rgba(0, 212, 255, 0.04) 100%)',
-                    backdropFilter: 'blur(20px)',
-                    padding: isMobile ? '2rem 1.25rem' : '4rem',
-                    borderRadius: isMobile ? '24px' : '32px',
-                    border: '2px solid rgba(0, 255, 136, 0.25)',
-                    boxShadow: '0 20px 60px rgba(0, 255, 136, 0.1)'
-                }}>
-                    <div style={{
-                        textAlign: 'center',
-                        marginBottom: isMobile ? '2rem' : '3rem'
-                    }}>
-                        <div style={{ fontSize: isMobile ? '2.5rem' : '3rem', marginBottom: '1.5rem' }}>🛡️</div>
-                        <h2 style={{
-                            fontSize: isMobile ? '1.5rem' : '2.2rem',
-                            fontWeight: 400,
-                            letterSpacing: '-0.02em',
-                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            marginBottom: isMobile ? '1.5rem' : '2rem'
-                        }}>
-                            Staying Safe in Juvantia
-                        </h2>
-                        <p style={{
-                            fontSize: isMobile ? '1rem' : '1.15rem',
-                            lineHeight: '1.9',
-                            color: 'var(--color-text)',
-                            maxWidth: '800px',
-                            margin: '0 auto',
-                            fontWeight: 300
-                        }}>
-                            Yes, blockchain comes with slightly higher risks. Careless transactions can lead to lost funds and various types of fraud.
-                        </p>
-                    </div>
 
-                    <div style={{
-                        display: 'flex',
-                        flexDirection: isMobile ? 'column' : 'row',
-                        gap: isMobile ? '1.5rem' : '2rem'
-                    }}>
-                        <div style={{
-                            padding: isMobile ? '1.5rem' : '2rem',
-                            background: 'rgba(10, 15, 10, 0.5)',
-                            borderRadius: '20px',
-                            border: '1px solid rgba(0, 255, 136, 0.2)',
-                            textAlign: 'center',
-                            flex: 1
-                        }}>
-                            <div style={{
-                                width: isMobile ? '56px' : '70px',
-                                height: isMobile ? '56px' : '70px',
-                                margin: '0 auto 1.5rem',
-                                borderRadius: '50%',
-                                background: 'rgba(0, 255, 136, 0.1)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: isMobile ? '1.5rem' : '1.8rem',
-                                color: 'var(--color-primary)'
-                            }}>
-                                ✓
-                            </div>
-                            <h3 style={{
-                                color: 'var(--color-primary)',
-                                marginBottom: '1rem',
-                                fontSize: isMobile ? '1.1rem' : '1.3rem',
-                                fontWeight: 500
-                            }}>
-                                Certified Smart Contracts
-                            </h3>
-                            <p style={{
-                                color: 'var(--color-text-muted)',
-                                lineHeight: '1.7',
-                                margin: 0,
-                                fontSize: isMobile ? '0.9rem' : '0.95rem'
-                            }}>
-                                Only use smart contracts certified by Juvantia to ensure safety and legitimacy.
-                            </p>
-                        </div>
-
-                        <div style={{
-                            padding: isMobile ? '1.5rem' : '2rem',
-                            background: 'rgba(10, 15, 10, 0.5)',
-                            borderRadius: '20px',
-                            border: '1px solid rgba(0, 255, 136, 0.2)',
-                            textAlign: 'center',
-                            flex: 1
-                        }}>
-                            <div style={{
-                                width: isMobile ? '56px' : '70px',
-                                height: isMobile ? '56px' : '70px',
-                                margin: '0 auto 1.5rem',
-                                borderRadius: '50%',
-                                background: 'rgba(0, 255, 136, 0.1)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: isMobile ? '1.5rem' : '1.8rem'
-                            }}>
-                                💰
-                            </div>
-                            <h3 style={{
-                                color: 'var(--color-primary)',
-                                marginBottom: '1rem',
-                                fontSize: isMobile ? '1.1rem' : '1.3rem',
-                                fontWeight: 500
-                            }}>
-                                Use Only JVD
-                            </h3>
-                            <p style={{
-                                color: 'var(--color-text-muted)',
-                                lineHeight: '1.7',
-                                margin: 0,
-                                fontSize: isMobile ? '0.9rem' : '0.95rem'
-                            }}>
-                                Stick to Dinarium (JVD) — the official Juvantia token — for all transactions.
-                            </p>
-                        </div>
-                    </div>
-                </div>
 
                 {/* Conclusion Section */}
                 <div style={{
