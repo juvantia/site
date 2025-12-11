@@ -135,8 +135,6 @@ const SmartContract: React.FC = () => {
                             fontWeight: 300,
                             margin: 0
                         }}>
-                            Programs running on the blockchain in the <span style={{ color: 'var(--color-primary)', fontWeight: 400 }}>EVM</span> (Ethereum Virtual Machine) standard.
-                            <br /><br />
                             Self-executing programs on then <span style={{ color: 'var(--color-primary)', fontWeight: 400 }}>blockchain</span> that define and automatically enforce rules for programmable value and assets.
                         </p>
                     </div>
