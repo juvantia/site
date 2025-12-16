@@ -63,50 +63,6 @@ const AdminTechStackContent: React.FC = () => {
         fetchItems();
     }, []);
 
-    // Physics Engine: Gravity Down
-    const MAX_ROWS = 20; // Define floor
-
-    const applyGravityDown = (currentLayout: TechItem[]) => {
-        // Sort items by Y descending (bottom items first)
-        const sorted = [...currentLayout].sort((a, b) => (b.y + b.h) - (a.y + a.h));
-
-        const settled: TechItem[] = [];
-
-        // Simple collision detection
-        const collides = (item: TechItem, candidates: TechItem[]) => {
-            return candidates.some(c => {
-                if (c.id === item.id) return false;
-                // Check X overlap
-                if (item.x + item.w <= c.x || item.x >= c.x + c.w) return false;
-                // Check Y overlap
-                if (item.y + item.h <= c.y || item.y >= c.y + c.h) return false;
-                return true;
-            });
-        };
-
-        sorted.forEach(item => {
-            let newY = MAX_ROWS - item.h; // Start at floor
-
-            // Move up until no collision
-            while (newY >= 0) {
-                const candidate = { ...item, y: newY };
-                // Check collision with already settled items (which are below or at same level)
-                if (!collides(candidate, settled)) {
-                    break;
-                }
-                newY--;
-            }
-
-            // Safety: ensure >= 0
-            if (newY < 0) newY = 0;
-
-            settled.push({ ...item, y: newY });
-        });
-
-        return settled;
-    };
-
-
 
     // -------------------------------------------------------------------------
     // API
