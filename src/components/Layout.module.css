@@ -30,13 +30,12 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(0, 255, 136, 0.3) 20%, 
-        rgba(0, 212, 255, 0.3) 50%, 
-        rgba(0, 255, 136, 0.3) 80%, 
-        transparent 100%
-    );
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(0, 255, 136, 0.3) 20%,
+            rgba(0, 212, 255, 0.3) 50%,
+            rgba(0, 255, 136, 0.3) 80%,
+            transparent 100%);
 }
 
 .navContent {
@@ -148,11 +147,10 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(0, 255, 136, 0.2) 50%, 
-        transparent 100%
-    );
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(0, 255, 136, 0.2) 50%,
+            transparent 100%);
 }
 
 .footerLink {
@@ -195,11 +193,10 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(0, 255, 136, 0.4) 50%, 
-        transparent 100%
-    );
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(0, 255, 136, 0.4) 50%,
+            transparent 100%);
 }
 
 .floatBarScroll {
@@ -211,8 +208,9 @@
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 0 calc(50vw - 40px);
+    padding: 0 1rem;
     gap: 0.5rem;
+    flex: 1;
 }
 
 .floatBarScroll::-webkit-scrollbar {
@@ -256,6 +254,21 @@
 
 .floatBarLinkActive::after {
     width: 80%;
+}
+
+.mobileLogoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem 0 1.5rem;
+    height: 100%;
+    border-right: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+.mobileLogo {
+    height: 32px;
+    width: auto;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.3));
 }
 
 /* ===== QUICK ACTIONS PILL ===== */
@@ -344,6 +357,7 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+
     .navContent,
     .logoContainer,
     .footer {
@@ -355,7 +369,8 @@
     }
 
     .floatBar {
-        display: block;
+        display: flex;
+        align-items: center;
     }
 
     .quickActionsPill {

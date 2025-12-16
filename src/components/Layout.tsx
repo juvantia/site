@@ -21,11 +21,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     };
 
     const navItems = [
-        { path: '/', label: 'Juvantia', shortLabel: 'Home' },
         { path: '/land', label: 'Land Map', shortLabel: 'Land' },
         { path: '/robulus', label: 'Robulus', shortLabel: 'Robulus' },
-        { path: '/domus', label: 'Domus', shortLabel: 'Domus' },
+        { path: '/shelter', label: 'Shelter', shortLabel: 'Shelter' },
         { path: '/smart-contract', label: 'Smart Contract', shortLabel: 'Contract' },
+        { path: '/tech', label: 'Tech Stack', shortLabel: 'Tech' },
     ];
 
     const quickActions = [
@@ -81,10 +81,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <a href="#" onClick={handleEmailClick} className={styles.footerLink}>Send Mail</a>
                 <a href="https://tabularium.juvantia.org" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Tabularium</a>
                 <a href="https://forum.juvantia.org" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Forum</a>
+                <Link to="/legal" className={styles.footerLink}>Legal</Link>
             </footer>
 
             {/* Mobile Float Bar Navigation */}
             <div className={styles.floatBar}>
+                <Link to="/" className={styles.mobileLogoContainer}>
+                    <img src="/images/logo-mobile.svg" alt="Juvantia" className={styles.mobileLogo} />
+                </Link>
                 <div className={styles.floatBarScroll} ref={floatBarRef}>
                     {navItems.map((item) => (
                         <Link
@@ -128,15 +132,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                     rel={action.external ? 'noopener noreferrer' : undefined}
                                     className={styles.quickActionsItem}
                                     initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                                    animate={{ 
-                                        opacity: 1, 
-                                        y: 0, 
+                                    animate={{
+                                        opacity: 1,
+                                        y: 0,
                                         scale: 1,
                                         transition: { delay: index * 0.05 }
                                     }}
-                                    exit={{ 
-                                        opacity: 0, 
-                                        y: 10, 
+                                    exit={{
+                                        opacity: 0,
+                                        y: 10,
                                         scale: 0.8,
                                         transition: { delay: (quickActions.length - index - 1) * 0.03 }
                                     }}

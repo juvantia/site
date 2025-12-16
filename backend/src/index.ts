@@ -304,6 +304,143 @@ app.get('/api/memorandums/count', async (req, res) => {
     }
 });
 
+
+// --- Tech Stack API ---
+
+// Get all Tech Stack items (Public)
+app.get('/api/tech-stack', async (req, res) => {
+    try {
+        const items = await prisma.techStackItem.findMany({
+            orderBy: { displayOrder: 'asc' }
+        });
+        res.json(items);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to fetch tech stack' });
+    }
+});
+
+// Upsert Tech Stack item (Admin Protected)
+app.post('/api/tech-stack', requireAdmin, async (req, res) => {
+    const { id, name, role, partner, description, layer, gridSpan, rowSpan, colStart, rowStart, verticalAlign, heightRatio, color, textColor, displayOrder } = req.body;
+    try {
+        const item = await prisma.techStackItem.upsert({
+            where: { id },
+            update: {
+                name, role, partner, description, layer,
+                gridSpan: Number(gridSpan),
+                rowSpan: rowSpan ? Number(rowSpan) : 1,
+                colStart: colStart ? Number(colStart) : null,
+                rowStart: rowStart ? Number(rowStart) : null,
+                verticalAlign: verticalAlign || 'end',
+                heightRatio: Number(heightRatio),
+                color, textColor,
+                displayOrder: Number(displayOrder)
+            },
+            create: {
+                id, name, role, partner, description, layer,
+                gridSpan: Number(gridSpan),
+                rowSpan: rowSpan ? Number(rowSpan) : 1,
+                colStart: colStart ? Number(colStart) : null,
+                rowStart: rowStart ? Number(rowStart) : null,
+                verticalAlign: verticalAlign || 'end',
+                heightRatio: Number(heightRatio),
+                color, textColor,
+                displayOrder: Number(displayOrder)
+            }
+        });
+        res.json(item);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to save tech stack item' });
+    }
+});
+
+// Delete Tech Stack item (Admin Protected)
+app.delete('/api/tech-stack/:id', requireAdmin, async (req, res) => {
+    const { id } = req.params;
+    try {
+        await prisma.techStackItem.delete({
+            where: { id }
+        });
+        res.json({ success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to delete item' });
+    }
+});
+
+// Initialize Default Tech Stack (Admin Protected)
+app.post('/api/tech-stack/init', requireAdmin, async (req, res) => {
+    const defaults = [
+        {
+            id: '3d-print', name: '3D Printing', role: 'Manufacturing', partner: 'Creality / Prusa (TBD)',
+            description: 'On-site additive manufacturing facilities for rapid prototyping.', layer: 'physical',
+            gridSpan: 3, heightRatio: 1, color: 'rgba(0, 150, 136, 0.2)', displayOrder: 1
+        },
+        {
+            id: 'pogo', name: 'Pogo Pin', role: 'Charging', partner: 'Juvantia Hardware',
+            description: 'Automated high-efficiency charging interface.', layer: 'physical',
+            gridSpan: 3, heightRatio: 1, color: 'rgba(0, 180, 160, 0.25)', displayOrder: 2
+        },
+        {
+            id: 'gx16', name: 'GX16-4', role: 'Grid Connect', partner: 'Standard Industrial',
+            description: 'Robust aviation-style connectors.', layer: 'physical',
+            gridSpan: 3, heightRatio: 1, color: 'rgba(0, 150, 136, 0.2)', displayOrder: 3
+        },
+        {
+            id: 'vision', name: 'CV / Vision', role: 'Sensing', partner: 'OpenCV / YOLO',
+            description: 'Advanced optical recognition systems.', layer: 'physical',
+            gridSpan: 3, heightRatio: 1, color: 'rgba(0, 180, 160, 0.25)', displayOrder: 4
+        },
+        {
+            id: 'wifi', name: 'Wi-Fi 6 Mesh', role: 'Communication', partner: 'Ubiquiti / Cisco',
+            description: 'High-speed, low-latency city-wide mesh network.', layer: 'communication',
+            gridSpan: 4, heightRatio: 1.2, color: 'rgba(0, 120, 255, 0.15)', displayOrder: 5
+        },
+        {
+            id: 'esp32', name: 'ESP32 / Arduino', role: 'Embedded Control', partner: 'Espressif Systems',
+            description: 'The cortex of every unit.', layer: 'communication',
+            gridSpan: 4, heightRatio: 1.2, color: 'rgba(0, 100, 240, 0.2)', displayOrder: 6
+        },
+        {
+            id: 'mqtt', name: 'MQTT', role: 'Messaging', partner: 'HiveMQ',
+            description: 'Lightweight machine-to-machine messaging.', layer: 'communication',
+            gridSpan: 4, heightRatio: 1.2, color: 'rgba(0, 120, 255, 0.15)', displayOrder: 7
+        },
+        {
+            id: 'llm', name: 'LLM / AI Praetor', role: 'Cognitive Core', partner: 'Local LLaMA / OpenAI',
+            description: 'The judicial and administrative mind.', layer: 'logic',
+            gridSpan: 12, heightRatio: 1.8, color: 'rgba(147, 51, 234, 0.25)', textColor: '#e9d5ff', displayOrder: 8
+        },
+        {
+            id: 'evm', name: 'EVM Smart Contracts', role: 'Governance Logic', partner: 'Polygon / Ethereum',
+            description: 'The programmable law. Manages property rights.', layer: 'logic',
+            gridSpan: 8, heightRatio: 1.5, color: 'rgba(79, 70, 229, 0.2)', displayOrder: 9
+        },
+        {
+            id: 'stablecoins', name: 'Stablecoins', role: 'Currency', partner: 'USDC / USDT',
+            description: 'Digital dollar-pegged currency.', layer: 'logic',
+            gridSpan: 4, heightRatio: 1.5, color: 'rgba(5, 150, 105, 0.2)', displayOrder: 10
+        },
+        {
+            id: 'blockchain', name: 'Blockchain Ledger', role: 'Immutable Foundation', partner: 'Juvantia L2',
+            description: 'The bedrock of Juvantia. Securely records every transaction.', layer: 'fundamental',
+            gridSpan: 12, heightRatio: 2.2, color: 'rgba(15, 23, 42, 0.6)', displayOrder: 11
+        }
+    ];
+
+    try {
+        await prisma.techStackItem.deleteMany({});
+        const created = await Promise.all(defaults.map(item => prisma.techStackItem.create({ data: item })));
+        res.json(created);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to initialize tech stack' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
+    console.log('Backend restarted for Drag and Drop');
 });

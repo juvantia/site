@@ -66,3 +66,21 @@ model Memorandum {
   photos      String?  // JSON array of photo URLs (max 5)
   status      String   @default("PENDING")
 }
+
+model TechStackItem {
+  id          String @id
+  name        String
+  role        String
+  partner     String
+  description String
+  layer       String
+  gridSpan    Int
+  rowSpan     Int     @default(1)
+  colStart    Int?
+  rowStart    Int?
+  verticalAlign String @default("end")
+  heightRatio Float   @default(1)
+  color       String
+  textColor   String?
+  displayOrder Int @default(0)
+}

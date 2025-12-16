@@ -304,12 +304,12 @@ const RobulusRegister: React.FC = () => {
                         <style>{`.steps-scroll::-webkit-scrollbar { display: none; }`}</style>
                         {[
                             {
-                                title: "Read Constitution",
+                                title: "Build or Buy a Robulus",
                                 text: (
                                     <span>
-                                        Read and agree with{' '}
+                                        Any platform is welcome — as long as it supports Wi-Fi connectivity and meets the{' '}
                                         <a
-                                            href="https://tabularium.juvantia.org/lex/constitutio"
+                                            href="https://tabularium.juvantia.org/corpus/robulus/"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             style={{
@@ -319,61 +319,27 @@ const RobulusRegister: React.FC = () => {
                                                 transition: 'all 0.3s ease'
                                             }}
                                         >
-                                            Juvantia Constitution
-                                        </a>
-                                    </span>
-                                ),
-                                icon: "📜"
-                            },
-                            {
-                                title: "Create Robulus",
-                                text: (
-                                    <span>
-                                        Build on ESP32 with camera,{' '}
-                                        <a
-                                            href="https://tabularium.juvantia.org/corpus/robulus"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            style={{
-                                                color: 'var(--color-primary)',
-                                                textDecoration: 'none',
-                                                borderBottom: '1px solid var(--color-primary)',
-                                                transition: 'all 0.3s ease'
-                                            }}
-                                        >
-                                            see specifications
-                                        </a>
+                                            Robulus specifications
+                                        </a>.
                                     </span>
                                 ),
                                 icon: "🤖"
                             },
                             {
-                                title: "Install Firmware",
-                                text: (
-                                    <span>
-                                        From{' '}
-                                        <a
-                                            href="https://github.com/juvantia"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            style={{
-                                                color: 'var(--color-primary)',
-                                                textDecoration: 'none',
-                                                borderBottom: '1px solid var(--color-primary)',
-                                                transition: 'all 0.3s ease'
-                                            }}
-                                        >
-                                            Juvantia GitHub
-                                        </a>
-                                    </span>
-                                ),
-                                icon: <img src="/images/firmware.svg" alt="Firmware" style={{ width: '1em', height: '1em', objectFit: 'contain' }} />
+                                title: "Set Up a Control Client",
+                                text: "Use our open-source client, or build your own. With modern AI tooling, creating a custom client is straightforward.",
+                                icon: "💻"
                             },
-                            { title: "Install Client", text: "For managing your Robulus (Windows initially)", icon: "💻" },
-                            { title: "Configure Firmware", text: "Firmware configuration setup to match your robot control from the client.", icon: "⚙️" },
-                            { title: "Get Citizenship", text: "Register on juvantia.org", icon: "🏛️" },
-                            { title: "Send by Parcel", text: "To Europe (Location TBD)", icon: "📦" },
-                            { title: "Control Robulus", text: "Control your robulus from the game client", icon: "🎮" }
+                            {
+                                title: "Send by Parcel",
+                                text: "Ship your Robulus to Europe (location TBD).",
+                                icon: "📦"
+                            },
+                            {
+                                title: "Control Robulus in Juvantia",
+                                text: "Operate your Robulus remotely inside the Juvantia technopark.",
+                                icon: "🎮"
+                            }
                         ].map((step, index) => (
                             <div
                                 key={index}
@@ -820,6 +786,15 @@ const RobulusRegister: React.FC = () => {
                                 >
                                     Submit Memorandum
                                 </button>
+                                <p style={{
+                                    textAlign: 'center',
+                                    fontSize: '0.8rem',
+                                    color: 'var(--color-text-muted)',
+                                    marginTop: '1rem',
+                                    opacity: 0.7
+                                }}>
+                                    By submitting this form, you agree to our <a href="/legal" target="_blank" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Privacy Policy & Terms</a>.
+                                </p>
                             </div>
 
                             <div style={{

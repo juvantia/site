@@ -106,14 +106,14 @@ const ImageCard: React.FC<{
 
 const RolesTabs: React.FC = () => {
     const roles = [
-        { id: 'builder', label: 'Builder', description: 'Construct the foundations of Juvantia. Architects of the physical realm.', image: '/images/BUI.png' },
-        { id: 'deliverer', label: 'Deliverer', description: 'The lifeblood of the city. Transporting energy and resources where they are needed most.', image: '/images/DEL.png' },
-        { id: 'bounty_hunter', label: 'Bounty Hunter', description: 'Enforce contracts. When words fail, you are the consequence.', image: '/images/BH.png' },
-        { id: 'insurer', label: 'Insurer', description: 'Risk is inevitable. You make it manageable. Protect the assets of the elite.', image: '/images/IN.png' },
-        { id: 'fighter', label: 'Fighter', description: 'Glory in the Colosseum. Credits in the bank. A legend in the making.', image: '/images/FI.png' },
-        { id: 'bodyguard', label: 'Bodyguard', description: 'The ultimate shield. Your presence alone deters threats.', image: '/images/BD.png' },
-        { id: 'engineer', label: 'Engineer', description: 'Maintain the machines that maintain the city. The technical wizards.', image: '/images/ING.png' },
-        { id: 'custom', label: 'Whatever You Wish', description: 'Carve your own niche. If the economy needs it, you can become it.', image: '/images/ANY.png' },
+        { id: 'builder', label: 'Basic Rover', description: 'Build a simple open-frame Robulus with basic suspension — perfect for driving around the technopark.', image: '/images/BUI.png' },
+        { id: 'deliverer', label: 'Gripper Module', description: 'Add a gripper module to your Robulus to collect and transport materials.', image: '/images/DEL.png' },
+        { id: 'bounty_hunter', label: 'Waterproof Shell', description: 'Install a protective plastic cover to keep your Robulus safe from rain and splashes.', image: '/images/BH.png' },
+        { id: 'insurer', label: 'Omni Wheels', description: 'Use omni wheels for smooth movement without a steering mechanism — common in robotics and easy to control.', image: '/images/IN.png' },
+        { id: 'fighter', label: 'Pusher Plate', description: 'Add a front pusher to compete in the Colosseum and move objects by force.', image: '/images/FI.png' },
+        { id: 'bodyguard', label: 'Explorer Setup', description: 'Mount a higher-capacity battery to explore longer routes and cover more of the technopark.', image: '/images/BD.png' },
+        { id: 'engineer', label: 'Acrylic Enclosure', description: 'Build a clear acrylic корпус to protect electronics — with careful sealing for waterproof performance.', image: '/images/ING.png' },
+        { id: 'custom', label: 'Custom Build', description: 'Join the technopark economy: complete tasks, provide services, and earn income for your Robulus owner.', image: '/images/ANY.png' },
     ];
 
     const [selectedRole, setSelectedRole] = useState(roles[0]);
@@ -310,15 +310,15 @@ const RolesTabs: React.FC = () => {
     );
 };
 
-const DomusTabs: React.FC = () => {
-    const domusTypes = [
+const ShelterTabs: React.FC = () => {
+    const shelterTypes = [
         { id: 'workshop', label: 'Workshop', description: 'The heart of industry. A space for crafting, repairing, and upgrading Robulus units to peak performance.', image: '/images/WOR.png' },
         { id: 'apartments', label: 'Robulus Apartments', description: 'Efficient, secure housing for your workforce. A rested Robulus is a productive Robulus.', image: '/images/RA.png' },
         { id: 'shop', label: 'Spare Parts Shop', description: 'Commerce in its purest form. A hub for trading essential components and energy cells.', image: '/images/SPS.png' },
         { id: 'club', label: 'Private Club', description: 'Where deals are made. An exclusive gathering place for networking, leisure, and influence.', image: '/images/CLUB.png' },
     ];
 
-    const [selectedDomus, setSelectedDomus] = useState(domusTypes[0]);
+    const [selectedShelter, setSelectedShelter] = useState(shelterTypes[0]);
     const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
 
     React.useEffect(() => {
@@ -343,20 +343,20 @@ const DomusTabs: React.FC = () => {
                     scrollbarWidth: 'none',
                     msOverflowStyle: 'none',
                 }}>
-                    {domusTypes.map((domus) => (
+                    {shelterTypes.map((shelter) => (
                         <motion.button
-                            key={domus.id}
-                            onClick={() => setSelectedDomus(domus)}
+                            key={shelter.id}
+                            onClick={() => setSelectedShelter(shelter)}
                             whileTap={{ scale: 0.95 }}
                             style={{
                                 flexShrink: 0,
                                 scrollSnapAlign: 'start',
                                 padding: '0.6rem 1rem',
-                                background: selectedDomus.id === domus.id
+                                background: selectedShelter.id === shelter.id
                                     ? 'linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%)'
                                     : 'rgba(10, 15, 10, 0.6)',
-                                color: selectedDomus.id === domus.id ? 'var(--color-primary)' : 'var(--color-text-muted)',
-                                border: `1px solid ${selectedDomus.id === domus.id ? 'rgba(0, 255, 136, 0.4)' : 'rgba(0, 255, 136, 0.1)'}`,
+                                color: selectedShelter.id === shelter.id ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                                border: `1px solid ${selectedShelter.id === shelter.id ? 'rgba(0, 255, 136, 0.4)' : 'rgba(0, 255, 136, 0.1)'}`,
                                 borderRadius: '20px',
                                 fontSize: '0.75rem',
                                 cursor: 'pointer',
@@ -364,10 +364,10 @@ const DomusTabs: React.FC = () => {
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.05em',
                                 whiteSpace: 'nowrap',
-                                boxShadow: selectedDomus.id === domus.id ? '0 0 15px rgba(0, 255, 136, 0.2)' : 'none'
+                                boxShadow: selectedShelter.id === shelter.id ? '0 0 15px rgba(0, 255, 136, 0.2)' : 'none'
                             }}
                         >
-                            {domus.label}
+                            {shelter.label}
                         </motion.button>
                     ))}
                 </div>
@@ -375,14 +375,14 @@ const DomusTabs: React.FC = () => {
                 {/* Content Card */}
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={selectedDomus.id}
+                        key={selectedShelter.id}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
                         transition={{ duration: 0.3 }}
                         style={{ padding: '0 1rem' }}
                     >
-                        <ImageCard src={selectedDomus.image} alt={selectedDomus.label} aspectRatio="3/2" />
+                        <ImageCard src={selectedShelter.image} alt={selectedShelter.label} aspectRatio="3/2" />
                         <div style={{ marginTop: '1.5rem' }}>
                             <h3 style={{
                                 fontSize: '1.4rem',
@@ -392,7 +392,7 @@ const DomusTabs: React.FC = () => {
                                 marginBottom: '0.75rem',
                                 fontWeight: 400
                             }}>
-                                {selectedDomus.label}
+                                {selectedShelter.label}
                             </h3>
                             <p style={{
                                 fontSize: '0.95rem',
@@ -400,7 +400,7 @@ const DomusTabs: React.FC = () => {
                                 lineHeight: '1.7',
                                 fontWeight: 300
                             }}>
-                                {selectedDomus.description}
+                                {selectedShelter.description}
                             </p>
                         </div>
                     </motion.div>
@@ -423,14 +423,14 @@ const DomusTabs: React.FC = () => {
             {/* Content Area */}
             <AnimatePresence mode="wait">
                 <motion.div
-                    key={selectedDomus.id}
+                    key={selectedShelter.id}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
                     transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                     style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '450px' }}
                 >
-                    <ImageCard src={selectedDomus.image} alt={selectedDomus.label} aspectRatio="3/2" />
+                    <ImageCard src={selectedShelter.image} alt={selectedShelter.label} aspectRatio="3/2" />
                     <div>
                         <h3 style={{
                             fontSize: '1.6rem',
@@ -440,7 +440,7 @@ const DomusTabs: React.FC = () => {
                             marginBottom: '0.75rem',
                             fontWeight: 400
                         }}>
-                            {selectedDomus.label}
+                            {selectedShelter.label}
                         </h3>
                         <p style={{
                             fontSize: '1rem',
@@ -448,7 +448,7 @@ const DomusTabs: React.FC = () => {
                             lineHeight: '1.7',
                             fontWeight: 300
                         }}>
-                            {selectedDomus.description}
+                            {selectedShelter.description}
                         </p>
                     </div>
                 </motion.div>
@@ -464,20 +464,20 @@ const DomusTabs: React.FC = () => {
                 padding: '0.5rem',
                 border: '1px solid rgba(0, 255, 136, 0.1)'
             }}>
-                {domusTypes.map((domus) => (
+                {shelterTypes.map((shelter) => (
                     <motion.button
-                        key={domus.id}
-                        onClick={() => setSelectedDomus(domus)}
-                        whileHover={{ x: selectedDomus.id === domus.id ? 0 : -4 }}
+                        key={shelter.id}
+                        onClick={() => setSelectedShelter(shelter)}
+                        whileHover={{ x: selectedShelter.id === shelter.id ? 0 : -4 }}
                         style={{
                             padding: '1rem 1.5rem',
                             textAlign: 'right',
-                            background: selectedDomus.id === domus.id
+                            background: selectedShelter.id === shelter.id
                                 ? 'linear-gradient(-90deg, rgba(0, 255, 136, 0.15) 0%, transparent 100%)'
                                 : 'transparent',
-                            color: selectedDomus.id === domus.id ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                            color: selectedShelter.id === shelter.id ? 'var(--color-primary)' : 'var(--color-text-muted)',
                             border: 'none',
-                            borderRight: `2px solid ${selectedDomus.id === domus.id ? 'var(--color-primary)' : 'transparent'}`,
+                            borderRight: `2px solid ${selectedShelter.id === shelter.id ? 'var(--color-primary)' : 'transparent'}`,
                             fontSize: '0.95rem',
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
@@ -489,13 +489,13 @@ const DomusTabs: React.FC = () => {
                             justifyContent: 'space-between',
                             flexDirection: 'row-reverse',
                             borderRadius: '12px 0 0 12px',
-                            boxShadow: selectedDomus.id === domus.id ? '0 0 20px rgba(0, 255, 136, 0.1)' : 'none'
+                            boxShadow: selectedShelter.id === shelter.id ? '0 0 20px rgba(0, 255, 136, 0.1)' : 'none'
                         }}
                     >
-                        <span>{domus.label}</span>
-                        {selectedDomus.id === domus.id && (
+                        <span>{shelter.label}</span>
+                        {selectedShelter.id === shelter.id && (
                             <motion.span
-                                layoutId="domusIndicator"
+                                layoutId="shelterIndicator"
                                 style={{
                                     width: '6px',
                                     height: '6px',
@@ -545,7 +545,7 @@ const Home: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: isMobile ? 'center' : 'flex-start',
                 textAlign: 'center',
                 overflow: 'hidden'
             }}>
@@ -583,101 +583,135 @@ const Home: React.FC = () => {
                 }} />
 
                 {/* Hero Content */}
-                <motion.div style={{ opacity: heroOpacity, zIndex: 3, maxWidth: '1000px', padding: '0 2rem' }}>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
-                        style={{
-                            fontSize: 'clamp(3rem, 9vw, 8rem)',
-                            marginBottom: '1.5rem',
-                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-text) 40%, var(--color-secondary) 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            fontWeight: 400,
-                            letterSpacing: '0.25em',
-                            paddingLeft: '0.25em',
-                            position: 'relative'
-                        }}
-                    >
-                        JUVANTIA
-                    </motion.h1>
+                <motion.div style={{
+                    opacity: heroOpacity,
+                    zIndex: 3,
+                    maxWidth: '1200px',
+                    padding: '0 2rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: isMobile ? 'auto' : '100%',
+                    paddingTop: isMobile ? '0' : '100px',
+                    paddingBottom: isMobile ? '0' : '15vh'
+                }}>
+                    <div style={{
+                        flex: isMobile ? '0 0 auto' : '1',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '100%',
+                        marginBottom: isMobile ? '2rem' : '0'
+                    }}>
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
+                            style={{
+                                fontSize: 'clamp(3rem, 9vw, 8rem)',
+                                background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-text) 40%, var(--color-secondary) 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                fontWeight: 400,
+                                letterSpacing: '0.25em',
+                                paddingLeft: '0.25em',
+                                position: 'relative'
+                            }}
+                        >
+                            JUVANTIA
+                        </motion.h1>
+                    </div>
 
-                    {/* Animated Underline */}
+                    {/* Hero Feature Plate */}
                     <motion.div
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ delay: 0.5, duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-                        style={{
-                            width: '200px',
-                            height: '2px',
-                            background: 'linear-gradient(90deg, var(--color-primary), var(--color-secondary))',
-                            margin: '0 auto 3rem',
-                            boxShadow: '0 0 20px rgba(0, 255, 136, 0.5)',
-                            transformOrigin: 'center'
-                        }}
-                    />
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.7, duration: 1 }}
+                        transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
                         style={{
-                            fontSize: 'clamp(1rem, 2vw, 1.4rem)',
-                            color: 'var(--color-text)',
-                            lineHeight: '1.8',
-                            fontWeight: 300,
-                            maxWidth: '700px',
-                            margin: '0 auto'
-                        }}
-                    >
-                        A technopark of teleoperated mini-robots,
-                        <br />
-                        <span style={{ color: 'var(--color-text-muted)' }}>
-                            with no humans on site and a closed internal economy.
-                        </span>
-                    </motion.p>
-                </motion.div>
-
-                {/* Scroll Indicator - Hidden on mobile */}
-                {!isMobile && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.6 }}
-                        transition={{ delay: 1.2 }}
-                        style={{
-                            position: 'absolute',
-                            bottom: '3rem',
-                            zIndex: 3,
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
-                            gap: '1rem'
+                            gap: isMobile ? '2rem' : '3rem',
+                            maxWidth: '1200px',
+                            width: '100%',
+                            padding: 0
                         }}
                     >
-                        <motion.div
-                            animate={{ y: [0, 8, 0] }}
-                            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                            style={{
-                                width: '1px',
-                                height: '50px',
-                                background: 'linear-gradient(to bottom, transparent, var(--color-primary))'
-                            }}
-                        />
-                        <span style={{
-                            fontSize: '0.7rem',
-                            letterSpacing: '0.3em',
-                            color: 'var(--color-primary)',
-                            fontFamily: 'var(--font-heading)'
+                        {/* Images Side */}
+                        <div style={{
+                            display: 'flex',
+                            gap: '1.5rem',
+                            justifyContent: 'center',
+                            flexWrap: 'wrap',
+                            width: '100%'
                         }}>
-                            SCROLL
-                        </span>
+                            {[
+                                '/images/TP.png',
+                                '/images/TP2.png'
+                            ].map((src, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    whileHover={{ scale: 1.05, y: -5 }}
+                                    style={{
+                                        position: 'relative',
+                                        borderRadius: '16px',
+                                        overflow: 'hidden',
+                                        boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
+                                        border: '1px solid rgba(255,255,255,0.1)',
+                                        width: isMobile ? 'calc(50% - 0.75rem)' : '420px',
+                                        height: isMobile ? '120px' : '260px',
+                                    }}
+                                >
+                                    <div style={{
+                                        position: 'absolute',
+                                        inset: 0,
+                                        background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.2))',
+                                        zIndex: 1
+                                    }} />
+                                    <img
+                                        src={src}
+                                        alt={`Technopark preview ${idx + 1}`}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover'
+                                        }}
+                                    />
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Text Side */}
+                        <div style={{
+                            textAlign: 'center',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '1rem',
+                            maxWidth: '900px'
+                        }}>
+                            <p style={{
+                                fontSize: 'clamp(1rem, 1.5vw, 1.3rem)',
+                                background: 'linear-gradient(90deg, var(--color-primary), var(--color-secondary))',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                lineHeight: '1.6',
+                                fontWeight: 400,
+                                margin: 0,
+                                textShadow: '0 0 30px rgba(0, 255, 136, 0.3)'
+                            }}>
+                                A technopark of teleoperated mini-robots, with no humans on site and a closed internal economy.
+                            </p>
+                        </div>
                     </motion.div>
-                )}
-            </section>
+                </motion.div>
+
+                {/* Scroll Indicator - Hidden on mobile */}
+
+            </section >
 
             {/* ===== PAX JUVANTIA SECTION ===== */}
-            <motion.section
+            < motion.section
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -702,10 +736,11 @@ const Home: React.FC = () => {
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         fontWeight: 400,
-                        letterSpacing: isMobile ? '0.1em' : '0.15em'
+                        letterSpacing: isMobile ? '0.1em' : '0.15em',
+                        textTransform: 'uppercase'
                     }}
                 >
-                    Pax Juvantia
+                    CONSTITUTION
                 </motion.h2>
 
                 <div className="divider-glow" style={{ marginBottom: isMobile ? '2rem' : '3rem' }} />
@@ -719,44 +754,45 @@ const Home: React.FC = () => {
                     fontWeight: 300,
                     padding: isMobile ? '0 0.5rem' : 0
                 }}>
-                    In Juvantia, the Law is absolute.{' '}
-                    <br />
-                    <span style={{ color: 'var(--color-primary)', fontStyle: 'italic' }}>
-                        Dura lex, sed lex.
-                    </span>
+                    Your Remote Assets are protected under the Juvantia Charter.
                 </p>
 
                 <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: isMobile ? '1.5rem' : '2rem',
+                    display: 'flex',
+                    justifyContent: 'center',
                     maxWidth: '800px',
                     width: '100%',
                     padding: isMobile ? '0 1rem' : 0
                 }}>
-                    <a href="https://tabularium.juvantia.org/lex/constitutio" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                    <a href="https://tabularium.juvantia.org/lex/constitutio" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', width: '100%', maxWidth: '500px' }}>
                         <GlassCard style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 2rem' }}>
-                            <h3 style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.4rem' : '1.8rem', marginBottom: '1rem', fontWeight: 500, letterSpacing: '0.05em' }}>
-                                Constitution
+                            <h3 style={{
+                                color: 'var(--color-primary)',
+                                fontSize: isMobile ? '1.4rem' : '1.8rem',
+                                marginBottom: '1rem',
+                                fontWeight: 500,
+                                letterSpacing: '0.05em',
+                                textDecoration: 'underline',
+                                textUnderlineOffset: '4px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '0.5rem'
+                            }}>
+                                Technopark Charter
+                                <svg width="0.8em" height="0.8em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.8 }}>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                </svg>
                             </h3>
-                            <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.6' }}>
-                                The foundation of our society.
-                            </p>
-                        </GlassCard>
-                    </a>
-
-                    <a href="https://tabularium.juvantia.org/lex/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                        <GlassCard style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 2rem' }}>
-                            <h3 style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.4rem' : '1.8rem', marginBottom: '1rem', fontWeight: 500, letterSpacing: '0.05em' }}>
-                                Laws
-                            </h3>
-                            <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.6' }}>
-                                The rules we live by.
+                            <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.6', textTransform: 'lowercase' }}>
+                                principles, governance, and safety.
                             </p>
                         </GlassCard>
                     </a>
                 </div>
-            </motion.section>
+            </motion.section >
 
             <SectionDivider />
 
@@ -1384,15 +1420,49 @@ const Home: React.FC = () => {
                         textAlign: 'center'
                     }}
                 >
-                    Choose Your Path
+                    WHAT YOU CAN BUILD
                 </motion.h2>
                 <div className="divider-glow" style={{ marginBottom: isMobile ? '2rem' : '5rem' }} />
                 <RolesTabs />
+
+                <motion.a
+                    href="https://www.youtube.com/@juvantia/playlists"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.08)', borderColor: 'rgba(255, 255, 255, 0.3)' }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{
+                        marginTop: '3rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        padding: '1rem 2rem',
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        borderRadius: '100px',
+                        textDecoration: 'none',
+                        color: 'var(--color-text)',
+                        cursor: 'pointer',
+                        backdropFilter: 'blur(10px)',
+                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+                        transition: 'all 0.3s ease'
+                    }}
+                >
+                    <img src="/images/YouTube_Logo_2017.svg" alt="YouTube" style={{ height: '30px', width: 'auto' }} />
+                    <span style={{
+                        fontSize: '0.9rem',
+                        fontWeight: 400,
+                        letterSpacing: '0.05em',
+                        textTransform: 'uppercase'
+                    }}>
+                        Watch more enthusiast builds in our YouTube playlist
+                    </span>
+                </motion.a>
             </motion.section>
 
             <SectionDivider />
 
-            {/* ===== DOMUS SECTION ===== */}
+            {/* ===== SHELTER SECTION ===== */}
             <motion.section
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -1421,10 +1491,10 @@ const Home: React.FC = () => {
                         textAlign: 'center'
                     }}
                 >
-                    Build Your Domus
+                    Build Your Shelter
                 </motion.h2>
                 <div className="divider-glow" style={{ marginBottom: isMobile ? '2rem' : '5rem' }} />
-                <DomusTabs />
+                <ShelterTabs />
             </motion.section>
 
             <SectionDivider />
@@ -1476,12 +1546,58 @@ const Home: React.FC = () => {
                     lineHeight: '1.8',
                     fontWeight: 300
                 }}>
-                    "All you have to do is follow the law...
+                    All you have to do is follow the rules.
                     <br />
                     <span style={{ color: 'var(--color-primary)' }}>
-                        or manage to stay outside of it, if you can."
+                        Or choose the outlaw path — if you can handle it.
                     </span>
                 </p>
+
+                <div style={{
+                    marginTop: '3rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    width: '100%',
+                    maxWidth: '800px',
+                    padding: '0 1rem'
+                }}>
+                    <img
+                        src="/images/kustodia.gif"
+                        alt="Kustodia"
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                            borderRadius: '12px',
+                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+                            border: '1px solid rgba(255, 255, 255, 0.1)'
+                        }}
+                    />
+                    <a
+                        href="https://www.youtube.com/watch?v=OOjda40t6Ng"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            color: 'var(--color-text-muted)',
+                            textDecoration: 'none',
+                            fontSize: '0.9rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            transition: 'color 0.2s'
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                        onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
+                    >
+                        <span>source</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                    </a>
+                </div>
             </motion.section>
         </>
     );
