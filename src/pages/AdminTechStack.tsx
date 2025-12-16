@@ -106,29 +106,7 @@ const AdminTechStackContent: React.FC = () => {
         return settled;
     };
 
-    const handleDragStop = (layout: any[], oldItem: any, newItem: any, placeholder: any, e: any, element: any) => {
-        // For DRAG: apply gravity (items fall down)
-        const merged = items.map(item => {
-            const l = layout.find((p: any) => p.i === item.id);
-            return l ? { ...item, x: l.x, y: l.y, w: l.w, h: l.h } : item;
-        });
 
-        const withGravity = applyGravityDown(merged);
-        setItems(withGravity);
-        setLayoutChanged(true);
-    };
-
-    const handleResizeStop = (layout: any[], oldItem: any, newItem: any, placeholder: any, e: any, element: any) => {
-        // For RESIZE: NO gravity (allow free resizing)
-        const merged = items.map(item => {
-            const l = layout.find((p: any) => p.i === item.id);
-            return l ? { ...item, x: l.x, y: l.y, w: l.w, h: l.h } : item;
-        });
-
-        // Don't apply gravity - just save the new size directly
-        setItems(merged);
-        setLayoutChanged(true);
-    };
 
     // -------------------------------------------------------------------------
     // API
@@ -262,23 +240,7 @@ const AdminTechStackContent: React.FC = () => {
     // -------------------------------------------------------------------------
     // HANDLERS
     // -------------------------------------------------------------------------
-    const onLayoutChange = (layout: any[]) => {
-        // Sync layout positions back to items
-        const newItems = items.map(item => {
-            const l = layout.find(p => p.i === item.id);
-            if (l) {
-                return { ...item, x: l.x, y: l.y, w: l.w, h: l.h };
-            }
-            return item;
-        });
 
-        // Only trigger update if something actually moved
-        const changed = JSON.stringify(newItems) !== JSON.stringify(items);
-        if (changed) {
-            setItems(newItems);
-            setLayoutChanged(true);
-        }
-    };
 
     const openCreate = () => {
         setEditingItem({
@@ -379,7 +341,7 @@ const AdminTechStackContent: React.FC = () => {
 
                         compactType={null}
 
-                        onLayoutChange={(layout: any, layouts: any) => {
+                        onLayoutChange={(layout: any) => {
                             if (!layout || !Array.isArray(layout) || layout.length === 0) return;
 
                             const updated = items.map(item => {
