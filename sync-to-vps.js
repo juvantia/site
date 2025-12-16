@@ -48,6 +48,11 @@ async function syncToVPS() {
             textColor: item.textColor || null
         };
 
+        // Debug first item
+        if (item.name === '3D Printing') {
+            console.log('DEBUG First item payload:', JSON.stringify(payload, null, 2));
+        }
+
         try {
             const updateRes = await fetch(`${VPS_API}/tech-stack`, {
                 method: 'POST',

@@ -50,6 +50,7 @@ Add this location block to your Nginx site configuration:
 ```nginx
 # Backend API proxy
 location /api/ {
+    client_max_body_size 50M; # Allow larger uploads
     proxy_pass http://localhost:3001;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;

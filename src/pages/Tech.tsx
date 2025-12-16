@@ -89,7 +89,15 @@ const Tech: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [selectedItem, setSelectedItem] = useState<TechItem | null>(null);
     const [hoveredId, setHoveredId] = useState<string | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
     const detailsRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -178,12 +186,14 @@ const Tech: React.FC = () => {
                 style={{ textAlign: 'center', marginBottom: '3rem', position: 'relative', zIndex: 1 }}
             >
                 <h1 style={{
-                    fontSize: '3rem',
-                    fontWeight: 700,
-                    background: 'linear-gradient(135deg, #00d4ff 0%, #00ff88 100%)',
+                    fontFamily: '"Cinzel", serif',
+                    fontSize: isMobile ? '1.5rem' : '2.2rem',
+                    marginBottom: isMobile ? '1rem' : '1.5rem',
+                    letterSpacing: '0.1em',
+                    background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    marginBottom: '1rem'
+                    textAlign: 'center'
                 }}>
                     Technology Stack
                 </h1>
