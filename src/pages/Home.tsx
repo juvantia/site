@@ -740,7 +740,7 @@ const Home: React.FC = () => {
                         textTransform: 'uppercase'
                     }}
                 >
-                    CONSTITUTION
+                    RULES & GOVERNANCE
                 </motion.h2>
 
                 <div className="divider-glow" style={{ marginBottom: isMobile ? '2rem' : '3rem' }} />
@@ -754,7 +754,7 @@ const Home: React.FC = () => {
                     fontWeight: 300,
                     padding: isMobile ? '0 0.5rem' : 0
                 }}>
-                    Your Remote Assets are protected under the Juvantia Charter.
+                    Your Remote Assets are protected under the JUVANTIA Charter.
                 </p>
 
                 <div style={{
@@ -764,7 +764,7 @@ const Home: React.FC = () => {
                     width: '100%',
                     padding: isMobile ? '0 1rem' : 0
                 }}>
-                    <a href="https://tabularium.juvantia.org/lex/constitutio" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', width: '100%', maxWidth: '500px' }}>
+                    <a href="https://tabularium.juvantia.org/lex/charter" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', width: '100%', maxWidth: '500px' }}>
                         <GlassCard style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 2rem' }}>
                             <h3 style={{
                                 color: 'var(--color-primary)',
@@ -876,7 +876,7 @@ const Home: React.FC = () => {
                                     Universal Energy
                                 </h4>
                                 <p style={{ fontSize: isMobile ? '0.9rem' : '0.95rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
-                                    Standardized 24V charging infrastructure available city-wide.
+                                    Standardized 24V charging infrastructure available technopark-wide.
                                 </p>
                             </div>
                         </GlassCard>
@@ -918,7 +918,7 @@ const Home: React.FC = () => {
                         maxWidth: '800px',
                         margin: '0 auto'
                     }}>
-                        Juvantia runs a real, closed economy: all value is created by participants and stays inside the City.
+                        JUVANTIA runs a real, closed economy: all value is created by participants and stays inside the technopark.
                     </p>
                 </div>
 
@@ -930,14 +930,14 @@ const Home: React.FC = () => {
                     width: '100%'
                 }}>
                     <GlassCard style={{ height: '100%', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>City Budget</h3>
+                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>Technopark Treasury</h3>
                         <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
-                            All payments — land sales, services, fees and taxes — go into a single public budget and are spent only on Juvantia’s development: infrastructure, services, events and new districts.
+                            All payments — land sales, services, fees and taxes — go into a single public budget and are spent only on JUVANTIA’s development: infrastructure, services, events and new districts.
                         </p>
                     </GlassCard>
 
                     <GlassCard style={{ height: '100%', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>CITIZENS FIRST</h3>
+                        <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>COMMUNITY FIRST</h3>
                         <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
                             Individual participants do not pay any fees to the operator directly.
                         </p>
@@ -949,7 +949,7 @@ const Home: React.FC = () => {
                     <GlassCard style={{ height: '100%', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>Free Economy</h3>
                         <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
-                            Prices, salaries and projects are defined by citizens and businesses themselves. The City provides rules, justice and infrastructure — everything else is driven by entrepreneurial initiative.
+                            Prices, salaries, and projects are defined by participants and businesses themselves. JUVANTIA provides rules, dispute resolution, and infrastructure — everything else is driven by entrepreneurial initiative.
                         </p>
                     </GlassCard>
                 </div>
@@ -1051,14 +1051,14 @@ const Home: React.FC = () => {
                             lineHeight: '1.8',
                             fontWeight: 300
                         }}>
-                            Juvantia’s monetary layer is based on euro-pegged stablecoins issued under the EU <a href="https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>MiCA</a> regulatory framework.
+                            JUVANTIA’s monetary layer is based on euro-pegged stablecoins issued under the EU <a href="https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>MiCA</a> regulatory framework.
                         </p>
                         <p style={{
                             fontSize: isMobile ? '1rem' : '1.1rem',
                             color: 'var(--color-text-muted)',
                             lineHeight: '1.7'
                         }}>
-                            The City Treasury operates only with regulated EUR stablecoins such as:
+                            The Technopark operates only with regulated EUR stablecoins such as:
                         </p>
                         <ul style={{
                             listStyle: 'none',
@@ -1137,13 +1137,13 @@ const Home: React.FC = () => {
                         style={{ width: isMobile ? '100%' : '50%', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
                     >
                         <p style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', color: 'var(--color-text)', lineHeight: '1.8', fontWeight: 300 }}>
-                            Politics in Juvantia is not a simulation. It is a real republic where citizens choose their leaders and laws.
+                            Governance in JUVANTIA is not a simulation. It is a real technopark with rules, elected roles, and binding decisions.
                         </p>
                         <p style={{ fontSize: isMobile ? '1rem' : '1.1rem', color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
-                            Every citizen has the right — and the responsibility — to take part in public life: to vote, propose changes, or stand for office.
+                            Every Member has the right — and the responsibility — to take part in public life: to vote, propose changes, or stand for office.
                         </p>
                         <p style={{ fontSize: isMobile ? '1rem' : '1.1rem', color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
-                            Two branches of power guide the City’s fate: the Consul and the Senatus.
+                            JUVANTIA is guided by two elected roles: the Consul and the Senatus.
                         </p>
 
                         <div style={{ marginTop: '1rem' }}>
@@ -1153,7 +1153,7 @@ const Home: React.FC = () => {
                                 fontWeight: 500,
                                 lineHeight: '1.6'
                             }}>
-                                You have the right to stand for election — and shape Juvantia’s future.
+                                You have the right to stand for election — and shape JUVANTIA’s future.
                             </p>
                         </div>
                     </motion.div>
@@ -1172,7 +1172,7 @@ const Home: React.FC = () => {
                                 <h3 style={{ color: 'var(--color-text)', fontSize: '1.4rem', fontWeight: 500 }}>Consul</h3>
                             </div>
                             <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
-                                The elected head of the executive branch. Leads the city administration, develops infrastructure and services, and executes the budget approved by the Senate.
+                                The elected operational lead. Oversees day-to-day development of the technopark, builds internal infrastructure and services, and executes the budget.
                             </p>
                         </GlassCard>
 
@@ -1182,7 +1182,7 @@ const Home: React.FC = () => {
                                 <h3 style={{ color: 'var(--color-text)', fontSize: '1.4rem', fontWeight: 500 }}>Senatus</h3>
                             </div>
                             <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
-                                Eight elected senators debate and pass the laws that everyone must follow. They appoint <strong>Custodia Juvantiae</strong> — the civic guard that protects order, comfort and property in the City, accountable only to the Senatus.
+                                Eight elected Senators set and update Lex Digitalis, approve key appointments, and oversee major decisions.
                             </p>
                         </GlassCard>
                     </motion.div>
@@ -1340,7 +1340,7 @@ const Home: React.FC = () => {
                                     THE VOICE
                                 </h4>
                                 <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.85rem' : '0.9rem', lineHeight: '1.7' }}>
-                                    Your own broadcast tower: exclusive access to the Colosseum screen and speakers to stream your content to the City.
+                                    Your own broadcast tower: exclusive access to the Colosseum screen and speakers to stream your content in the Colosseum District.
                                 </p>
                             </GlassCard>
                         </div>

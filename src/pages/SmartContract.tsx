@@ -18,7 +18,7 @@ const SmartContract: React.FC = () => {
         {
             aspect: 'Currency',
             backend: 'Game points that can be purchased but not withdrawn. A quasi-economy.',
-            blockchain: 'Freely convertible currency with real economic value.',
+            blockchain: 'Euro-pegged stablecoins let you plan your participation with real costs and real revenues, rather than in-game points.',
             winner: 'blockchain'
         },
         {
@@ -36,19 +36,19 @@ const SmartContract: React.FC = () => {
         {
             aspect: 'Onboarding',
             backend: 'Simpler: buy points and play. Lower barrier to entry.',
-            blockchain: 'Seamless UX experience. Minimal difference for regular players.',
+            blockchain: 'Onboarding is slightly more complex: you need basic blockchain knowledge.',
             winner: 'tie'
         },
         {
             aspect: 'Ownership',
             backend: 'Basic registry of owners. Limited exchange capabilities.',
-            blockchain: 'Unlimited ownership and exchange possibilities. Direct Robulus-for-Domus, triple swaps, etc.',
+            blockchain: 'Unlimited ownership and exchange possibilities. Direct Robulus-for-Shelter, triple swaps, etc.',
             winner: 'blockchain'
         },
         {
             aspect: 'Security Risk',
             backend: 'More protection from risky transactions due to limited capabilities.',
-            blockchain: 'Higher risk: careless transactions can lose funds. Mitigated by using only Juvantia-certified smart contracts and verified currency.',
+            blockchain: 'Higher personal responsibility: your assets are yours alone, and nobody can restore or return them.',
             winner: 'backend'
         }
     ];
@@ -172,7 +172,7 @@ const SmartContract: React.FC = () => {
                         margin: '0 auto 2rem',
                         fontWeight: 300
                     }}>
-                        We spent a long time analyzing which financial layer Juvantia should have. The choice came down to two options:
+                        We spent a long time analyzing which financial layer JUVANTIA should have. The choice came down to two options:
                     </p>
 
                     <div style={{
@@ -277,8 +277,8 @@ const SmartContract: React.FC = () => {
                             lineHeight: '1.8',
                             margin: 0
                         }}>
-                            We studied similar projects like <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>EVE Online</span>, which use their own backend and internal game points that they call "currency."<br />
-                            But if we want to build a <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>real economy</span> where you can earn from your Robulus's actions, we need a freely convertible currency and an independent central bank.
+                            We studied similar projects like <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>EVE Online</span>, and <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>Decentraland</span>, which rely on their own internal points and closed-loop economies.<br />
+                            But if we want to build a real economy where participants can <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>recover costs and sustain their Remote Assets through useful activity</span>, we use euro-pegged stablecoins and a neutral monetary framework — not an in-game “currency.”
                         </p>
                     </div>
                 </div>
@@ -557,7 +557,7 @@ const SmartContract: React.FC = () => {
                             margin: 0,
                             fontStyle: 'italic'
                         }}>
-                            Blockchain enables Juvantia to become not just a game, but a living, breathing economy where real value is created, traded, and earned through the labor of autonomous Robulus units.
+                            Blockchain enables JUVANTIA to become not just a game, but a living, breathing economy where real value is created, traded, and earned through the labor of autonomous Robulus units.
                         </p>
                     </div>
                 </div>

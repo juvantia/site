@@ -198,7 +198,7 @@ const Tech: React.FC = () => {
                     Technology Stack
                 </h1>
                 <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.7)', maxWidth: '800px', margin: '0 auto', lineHeight: 1.6 }}>
-                    Juvantia is designed as a construction kit of cutting-edge technologies, assembled into a single coherent system to create a park that is maximally progressive in results—while remaining realistic, implementable, and grounded in what already exists today.
+                    JUVANTIA is designed as a construction kit of cutting-edge technologies, assembled into a single coherent system to create a park that is maximally progressive in results—while remaining realistic, implementable, and grounded in what already exists today.
                 </p>
             </motion.div>
 

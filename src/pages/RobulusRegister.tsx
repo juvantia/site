@@ -336,8 +336,8 @@ const RobulusRegister: React.FC = () => {
                                 icon: "📦"
                             },
                             {
-                                title: "Control Robulus in Juvantia",
-                                text: "Operate your Robulus remotely inside the Juvantia technopark.",
+                                title: "Control Robulus in JUVANTIA",
+                                text: "Operate your Robulus remotely inside the JUVANTIA technopark.",
                                 icon: "🎮"
                             }
                         ].map((step, index) => (
@@ -462,7 +462,7 @@ const RobulusRegister: React.FC = () => {
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <span style={{ color: 'var(--color-primary)', fontSize: '1.2rem' }}>•</span>
                             <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: '1.6', margin: 0 }}>
-                                The first <strong>100 approved memorandums</strong> will each receive <strong>1 m² of land</strong> in Juvantia as a permanent allocation once the physical technopark is launched.
+                                The first <strong>100 approved memorandums</strong> will each receive <strong>1 m² of land</strong> in JUVANTIA as a permanent allocation once the physical technopark is launched.
                             </p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>

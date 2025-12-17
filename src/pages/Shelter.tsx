@@ -16,7 +16,7 @@ const Shelter: React.FC = () => {
     const timelineSteps = [
         {
             title: "Land Registration",
-            description: "Juvantia secures the physical territory for the technopark. The official map and landscape are revealed, signaling readiness for construction.",
+            description: "JUVANTIA secures the physical territory for the technopark. The official map and landscape are revealed, signaling readiness for construction.",
             icon: "📋",
             phase: "preparation" // оранжевый - подготовка
         },
@@ -132,7 +132,7 @@ const Shelter: React.FC = () => {
                         fontWeight: 400,
                         letterSpacing: '0.01em'
                     }}>
-                        Build your structure in Juvantia.<br />
+                        Build your structure in JUVANTIA.<br />
                         For personal use or commercial profit.
                     </p>
                 </div>
@@ -168,7 +168,7 @@ const Shelter: React.FC = () => {
                         {[
                             { icon: '🏠', title: 'Personal or Commercial', text: 'Build a shelter for your Robulus or create a commercial space with smart contracts.' },
                             { icon: '🛠️', title: 'Any Materials', text: 'Most Shelter structures are built from MDF with waterproofing, but you\'re free to use any materials you choose.' },
-                            { icon: '🏛️', title: 'Citizenship Included', text: 'Register your Shelter and receive Juvantian citizenship, even without owning a Robulus.' }
+                            { icon: '🏛️', title: 'Membership Included', text: 'Register your Shelter and receive JUVANTIA membership, even without owning a Robulus.' }
                         ].map((item, idx) => (
                             <div key={idx} style={{
                                 padding: isMobile ? '1.5rem' : '2rem',
@@ -238,7 +238,7 @@ const Shelter: React.FC = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {[
                                 { title: 'Weather Protection', text: 'Shield your Robulus from rain, snow, wind, and extreme temperatures.' },
-                                { title: 'Charging Station', text: 'Safe, dedicated space for your Robulus to recharge on the 24V city grid.' },
+                                { title: 'Charging Station', text: 'Safe, dedicated space for your Robulus to recharge on the 24V Technopark grid.' },
                                 { title: 'Security', text: 'Protection from theft and vandalism. Your Robulus is safe inside.' }
                             ].map((item, idx) => (
                                 <div key={idx} style={{
@@ -295,7 +295,7 @@ const Shelter: React.FC = () => {
                             color: 'var(--color-text-muted)',
                             fontWeight: 300
                         }}>
-                            To install a Shelter, you must own land in Juvantia or have a valid rental contract.
+                            To install a Shelter, you must own land in JUVANTIA or have a valid rental contract.
                         </p>
                         <div style={{
                             padding: isMobile ? '1.5rem' : '2rem',
@@ -537,12 +537,12 @@ const Shelter: React.FC = () => {
                             color: 'var(--color-text-muted)',
                             fontWeight: 300
                         }}>
-                            We expect your Shelter to be aesthetically pleasing and contribute to the city's visual identity.
+                            We expect your Shelter to be aesthetically pleasing and contribute to the Technopark's visual identity.
                         </p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {[
                                 { icon: '💡', title: 'Exterior Lighting', text: 'Install attractive exterior lighting to enhance the cityscape at night.' },
-                                { icon: '🎨', title: 'Aesthetic Design', text: 'Create a visually appealing structure that adds character to Juvantia.' }
+                                { icon: '🎨', title: 'Aesthetic Design', text: 'Create a visually appealing structure that adds character to JUVANTIA.' }
                             ].map((item, idx) => (
                                 <div key={idx} style={{
                                     padding: isMobile ? '1rem' : '1.25rem',
@@ -630,7 +630,7 @@ const Shelter: React.FC = () => {
                                 lineHeight: '1.8',
                                 color: 'var(--color-text-muted)'
                             }}>
-                                All Shelter structures connect to the city grid via the standard 24V <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>GX16-4</span> plug connector.
+                                All Shelter structures connect to the Technopark grid via the standard 24V <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>GX16-4</span> plug connector.
                             </p>
                             <p style={{
                                 fontSize: isMobile ? '0.85rem' : '0.95rem',
@@ -638,7 +638,7 @@ const Shelter: React.FC = () => {
                                 color: 'var(--color-text-muted)',
                                 fontStyle: 'italic'
                             }}>
-                                This GX16-4 connector powers your Shelter from the Juvantia city electrical network.
+                                This GX16-4 connector powers your Shelter from the JUVANTIA Technopark electrical network.
                             </p>
                         </div>
                         <div style={{ textAlign: 'center', width: isMobile ? '100%' : '40%' }}>
@@ -660,7 +660,7 @@ const Shelter: React.FC = () => {
                                 fontSize: isMobile ? '0.85rem' : '0.95rem',
                                 fontWeight: 500
                             }}>
-                                GX16-4 City Connector (24V)
+                                GX16-4 Technopark Connector (24V)
                             </p>
                         </div>
                     </div>
@@ -723,7 +723,7 @@ const Shelter: React.FC = () => {
                                     marginBottom: '1rem',
                                     fontSize: isMobile ? '1.05rem' : '1.2rem'
                                 }}>
-                                    Juvantia Standard
+                                    JUVANTIA Standard
                                 </h4>
                                 <p style={{
                                     color: 'var(--color-text-muted)',
