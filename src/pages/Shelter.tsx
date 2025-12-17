@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import CursorGlow from '../components/CursorGlow';
+import PageTitle from '../components/PageTitle';
 
 const Shelter: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        setIsVisible(true);
+        const timer = setTimeout(() => setIsVisible(true), 100);
         const checkMobile = () => setIsMobile(window.innerWidth <= 768);
         checkMobile();
         window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener('resize', checkMobile);
+        };
     }, []);
 
     const timelineSteps = [
@@ -59,6 +63,7 @@ const Shelter: React.FC = () => {
             position: 'relative',
             overflow: 'hidden'
         }}>
+            <PageTitle title="Shelter - JUVANTIA" />
             <CursorGlow size={350} opacity={0.12} />
 
             {/* Animated Background Elements */}

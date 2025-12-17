@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../config/api';
 import CursorGlow from '../components/CursorGlow';
+import PageTitle from '../components/PageTitle';
 
 const RobulusRegister: React.FC = () => {
+    // ... (state hooks)
     const [memorandumCount, setMemorandumCount] = useState<number>(0);
     const [formData, setFormData] = useState({
         name: '',
@@ -17,17 +19,21 @@ const RobulusRegister: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        setIsVisible(true);
+        const timer = setTimeout(() => setIsVisible(true), 100);
         const checkMobile = () => setIsMobile(window.innerWidth <= 768);
         checkMobile();
         window.addEventListener('resize', checkMobile);
         fetch(`${API_BASE_URL}/memorandums/count`)
             .then(res => res.json())
             .then(data => setMemorandumCount(data.count))
-            .catch(err => console.error('Failed to fetch count', err));
-        return () => window.removeEventListener('resize', checkMobile);
+            .catch(() => { }); // Removed unused err
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener('resize', checkMobile);
+        };
     }, []);
 
+    // ... (handlers)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value, type } = e.target;
         const checked = (e.target as HTMLInputElement).checked;
@@ -97,6 +103,7 @@ const RobulusRegister: React.FC = () => {
             position: 'relative',
             overflow: 'hidden'
         }}>
+            <PageTitle title="Robulus Register - JUVANTIA" />
             <CursorGlow size={350} opacity={0.12} />
 
             {/* Animated Background Elements */}

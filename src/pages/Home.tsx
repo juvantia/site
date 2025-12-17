@@ -514,6 +514,8 @@ const ShelterTabs: React.FC = () => {
 
 // --- Main Component ---
 
+import PageTitle from '../components/PageTitle';
+
 const Home: React.FC = () => {
     const { scrollY } = useScroll();
     const heroImageY = useTransform(scrollY, [0, 600], [0, 150]);
@@ -530,6 +532,7 @@ const Home: React.FC = () => {
 
     return (
         <>
+            <PageTitle title="JUVANTIA Technopark" />
             {/* Cursor Glow Effect */}
             <CursorGlow size={350} opacity={0.12} />
 

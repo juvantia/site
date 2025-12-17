@@ -7,6 +7,7 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { motion, AnimatePresence } from 'framer-motion';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import CursorGlow from '../components/CursorGlow';
+import PageTitle from '../components/PageTitle';
 
 // --- LEAFLET MAP CONFIGURATION ---
 
@@ -169,6 +170,7 @@ const LandMap: React.FC = () => {
             background: 'var(--color-bg)',
             position: 'relative'
         }}>
+            <PageTitle title="Land Map - JUVANTIA" />
             <CursorGlow size={350} opacity={0.12} />
 
             {/* --- SECTION 1: EUROPE MAP (SQUARE) --- */}
@@ -342,108 +344,108 @@ const LandMap: React.FC = () => {
                     WebkitOverflowScrolling: 'touch',
                     paddingBottom: '10px'
                 }}>
-                <div
-                    style={{
-                        width: MAP_WIDTH,
-                        height: MAP_HEIGHT,
-                        background: 'linear-gradient(135deg, rgba(10, 20, 15, 1) 0%, rgba(5, 10, 8, 1) 100%)',
-                        position: 'relative',
-                        border: '1px solid rgba(0, 255, 136, 0.2)',
-                        borderRadius: '8px',
-                        boxShadow: '0 20px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 255, 136, 0.05)',
-                        margin: '0 auto'
-                    }}
-                >
-                    {districts.map(d => (
-                        <motion.div
-                            key={d.id}
-                            whileHover={{
-                                scale: 1.01,
-                                zIndex: 10,
-                                borderColor: 'rgba(0, 255, 136, 0.8)',
-                                boxShadow: '0 0 30px rgba(0, 255, 136, 0.2), inset 0 0 20px rgba(0, 255, 136, 0.05)',
-                            }}
-                            onClick={() => setSelectedDistrict(d)}
-                            style={{
-                                position: 'absolute',
-                                left: d.x * OVERVIEW_SCALE,
-                                top: d.y * OVERVIEW_SCALE,
-                                width: d.width * OVERVIEW_SCALE,
-                                height: d.height * OVERVIEW_SCALE,
-                                background: 'linear-gradient(135deg, rgba(15, 30, 22, 1) 0%, rgba(10, 20, 15, 1) 100%)',
-                                border: '1px solid rgba(0, 255, 136, 0.25)',
-                                cursor: 'pointer',
-                                transition: 'border-color 0.3s ease',
-                                overflow: 'hidden',
-                                borderRadius: '4px'
-                            }}
-                        >
-                            {d.salesZones?.map(zone => (
-                                <div
-                                    key={zone.id}
-                                    style={{
-                                        position: 'absolute',
-                                        left: zone.x * OVERVIEW_SCALE,
-                                        top: zone.y * OVERVIEW_SCALE,
-                                        width: zone.width * OVERVIEW_SCALE,
-                                        height: zone.height * OVERVIEW_SCALE,
-                                        background: 'rgba(0, 255, 136, 0.4)',
-                                        border: '1px solid rgba(0, 255, 136, 0.7)',
-                                        zIndex: 1
-                                    }}
-                                />
-                            ))}
-
-                            {d.buildings?.map(b => (
-                                <div
-                                    key={`b-${b.id}`}
-                                    style={{
-                                        position: 'absolute',
-                                        left: b.x * OVERVIEW_SCALE,
-                                        top: b.y * OVERVIEW_SCALE,
-                                        width: b.width * OVERVIEW_SCALE,
-                                        height: b.height * OVERVIEW_SCALE,
-                                        zIndex: 2,
-                                        pointerEvents: 'none'
-                                    }}
-                                >
-                                    <img
-                                        src={b.imageUrl}
-                                        alt={b.name}
-                                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    <div
+                        style={{
+                            width: MAP_WIDTH,
+                            height: MAP_HEIGHT,
+                            background: 'linear-gradient(135deg, rgba(10, 20, 15, 1) 0%, rgba(5, 10, 8, 1) 100%)',
+                            position: 'relative',
+                            border: '1px solid rgba(0, 255, 136, 0.2)',
+                            borderRadius: '8px',
+                            boxShadow: '0 20px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 255, 136, 0.05)',
+                            margin: '0 auto'
+                        }}
+                    >
+                        {districts.map(d => (
+                            <motion.div
+                                key={d.id}
+                                whileHover={{
+                                    scale: 1.01,
+                                    zIndex: 10,
+                                    borderColor: 'rgba(0, 255, 136, 0.8)',
+                                    boxShadow: '0 0 30px rgba(0, 255, 136, 0.2), inset 0 0 20px rgba(0, 255, 136, 0.05)',
+                                }}
+                                onClick={() => setSelectedDistrict(d)}
+                                style={{
+                                    position: 'absolute',
+                                    left: d.x * OVERVIEW_SCALE,
+                                    top: d.y * OVERVIEW_SCALE,
+                                    width: d.width * OVERVIEW_SCALE,
+                                    height: d.height * OVERVIEW_SCALE,
+                                    background: 'linear-gradient(135deg, rgba(15, 30, 22, 1) 0%, rgba(10, 20, 15, 1) 100%)',
+                                    border: '1px solid rgba(0, 255, 136, 0.25)',
+                                    cursor: 'pointer',
+                                    transition: 'border-color 0.3s ease',
+                                    overflow: 'hidden',
+                                    borderRadius: '4px'
+                                }}
+                            >
+                                {d.salesZones?.map(zone => (
+                                    <div
+                                        key={zone.id}
+                                        style={{
+                                            position: 'absolute',
+                                            left: zone.x * OVERVIEW_SCALE,
+                                            top: zone.y * OVERVIEW_SCALE,
+                                            width: zone.width * OVERVIEW_SCALE,
+                                            height: zone.height * OVERVIEW_SCALE,
+                                            background: 'rgba(0, 255, 136, 0.4)',
+                                            border: '1px solid rgba(0, 255, 136, 0.7)',
+                                            zIndex: 1
+                                        }}
                                     />
-                                </div>
-                            ))}
+                                ))}
 
-                            <div style={{
-                                textAlign: 'center',
-                                padding: '5px',
-                                position: 'relative',
-                                zIndex: 2,
-                                background: 'rgba(0,0,0,0.3)',
-                                width: '100%',
-                                height: '100%',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>
-                                <h3 style={{
-                                    fontSize: '0.85rem',
-                                    color: '#ffffff',
-                                    fontFamily: '"Cinzel", serif',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '1px',
-                                    margin: 0,
-                                    textShadow: '0 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.8)'
-                                }}>{d.name}</h3>
-                                <div style={{ fontSize: '0.65rem', color: 'var(--color-text-muted)', marginTop: '4px' }}>
-                                    {d.width}m x {d.height}m
+                                {d.buildings?.map(b => (
+                                    <div
+                                        key={`b-${b.id}`}
+                                        style={{
+                                            position: 'absolute',
+                                            left: b.x * OVERVIEW_SCALE,
+                                            top: b.y * OVERVIEW_SCALE,
+                                            width: b.width * OVERVIEW_SCALE,
+                                            height: b.height * OVERVIEW_SCALE,
+                                            zIndex: 2,
+                                            pointerEvents: 'none'
+                                        }}
+                                    >
+                                        <img
+                                            src={b.imageUrl}
+                                            alt={b.name}
+                                            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                        />
+                                    </div>
+                                ))}
+
+                                <div style={{
+                                    textAlign: 'center',
+                                    padding: '5px',
+                                    position: 'relative',
+                                    zIndex: 2,
+                                    background: 'rgba(0,0,0,0.3)',
+                                    width: '100%',
+                                    height: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}>
+                                    <h3 style={{
+                                        fontSize: '0.85rem',
+                                        color: '#ffffff',
+                                        fontFamily: '"Cinzel", serif',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '1px',
+                                        margin: 0,
+                                        textShadow: '0 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.8)'
+                                    }}>{d.name}</h3>
+                                    <div style={{ fontSize: '0.65rem', color: 'var(--color-text-muted)', marginTop: '4px' }}>
+                                        {d.width}m x {d.height}m
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
 

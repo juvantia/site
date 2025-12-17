@@ -1,5 +1,6 @@
 import React from 'react';
 import CursorGlow from '../components/CursorGlow';
+import PageTitle from '../components/PageTitle';
 
 const Legal: React.FC = () => {
     return (
@@ -10,6 +11,7 @@ const Legal: React.FC = () => {
             padding: '6rem 2rem 4rem',
             color: 'var(--color-text)'
         }}>
+            <PageTitle title="Legal - JUVANTIA" />
             <CursorGlow size={350} opacity={0.12} />
 
             <div style={{

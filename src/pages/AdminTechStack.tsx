@@ -59,11 +59,6 @@ const AdminTechStackContent: React.FC = () => {
     // Admin Secret
     const getAdminSecret = () => localStorage.getItem('admin_secret') || '';
 
-    useEffect(() => {
-        fetchItems();
-    }, []);
-
-
     // -------------------------------------------------------------------------
     // API
     // -------------------------------------------------------------------------
@@ -113,6 +108,10 @@ const AdminTechStackContent: React.FC = () => {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        fetchItems();
+    }, []);
 
     // Convert rgba to hex format for backend
     const rgbaToHex = (rgba: string): string => {

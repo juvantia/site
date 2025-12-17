@@ -2,6 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { API_BASE_URL } from '../config/api';
 import CursorGlow from '../components/CursorGlow';
+import PageTitle from '../components/PageTitle';
+
+// ... (existing imports)
+
+// ...
 
 // -----------------------------------------------------------------------------
 // TYPES
@@ -169,6 +174,8 @@ const Tech: React.FC = () => {
             position: 'relative',
             overflow: 'hidden'
         }}>
+            <PageTitle title="Technology Stack - JUVANTIA" />
+
             <CursorGlow />
 
             {/* Hide resize handles */}
