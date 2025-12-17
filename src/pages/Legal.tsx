@@ -42,7 +42,7 @@ const Legal: React.FC = () => {
                         <strong>Last updated: December 2025</strong>
                     </p>
                     <p style={{ marginBottom: '1rem', lineHeight: '1.6', color: 'var(--color-text-muted)' }}>
-                        At Civitas Juvantia Digitalis, we believe in minimizing data collection.
+                        At Juvantia Foundation, we believe in minimizing data collection.
                         We do not use third-party tracking cookies, analytics services, or advertising pixels.
                         This means we do not track your behavior across the internet.
                     </p>
