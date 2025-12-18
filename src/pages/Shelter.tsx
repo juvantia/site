@@ -291,7 +291,7 @@ const Shelter: React.FC = () => {
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent'
                         }}>
-                            Land Requirements
+                            Plot Requirements
                         </h2>
                         <p style={{
                             fontSize: isMobile ? '1rem' : '1.15rem',
@@ -300,7 +300,7 @@ const Shelter: React.FC = () => {
                             color: 'var(--color-text-muted)',
                             fontWeight: 300
                         }}>
-                            To install a Shelter, you must own land in JUVANTIA or have a valid rental contract.
+                            To install a Shelter, you must hold a licensed plot in JUVANTIA or have a valid lease agreement.
                         </p>
                         <div style={{
                             padding: isMobile ? '1.5rem' : '2rem',
@@ -326,13 +326,13 @@ const Shelter: React.FC = () => {
                                 <li style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                     <span style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.1rem' : '1.3rem' }}>✓</span>
                                     <span style={{ color: 'var(--color-text)', fontSize: isMobile ? '0.9rem' : '1rem' }}>
-                                        <strong>Land Ownership</strong> — Purchase your plot
+                                        <strong>Perpetual Plot License</strong> — acquire a non-expiring plot license
                                     </span>
                                 </li>
                                 <li style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                     <span style={{ color: 'var(--color-primary)', fontSize: isMobile ? '1.1rem' : '1.3rem' }}>✓</span>
                                     <span style={{ color: 'var(--color-text)', fontSize: isMobile ? '0.9rem' : '1rem' }}>
-                                        <strong>Rental Contract</strong> — Lease from another citizen
+                                        <strong>Term Plot License</strong> — rent/lease a plot under a time-limited license
                                     </span>
                                 </li>
                             </ul>

@@ -469,7 +469,7 @@ const RobulusRegister: React.FC = () => {
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <span style={{ color: 'var(--color-primary)', fontSize: '1.2rem' }}>•</span>
                             <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: '1.6', margin: 0 }}>
-                                The first <strong>100 approved memorandums</strong> will each receive <strong>1 m² of land</strong> in JUVANTIA as a permanent allocation once the physical technopark is launched.
+                                The first <strong>100 approved memorandums</strong> will each receive <strong>1 m² Perpetual Plot License</strong> in JUVANTIA, effective upon the launch of the physical technopark.
                             </p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>

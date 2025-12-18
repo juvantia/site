@@ -720,12 +720,11 @@ const Home: React.FC = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8 }}
                 style={{
-                    padding: isMobile ? '5rem 1rem' : '10rem 2rem',
+                    padding: isMobile ? '5rem 1rem' : '6rem 2rem',
                     background: 'var(--color-bg)',
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center',
-                    textAlign: 'center'
+                    alignItems: 'center'
                 }}
             >
                 <motion.h2
@@ -733,67 +732,141 @@ const Home: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     style={{
-                        fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 5vw, 3.5rem)',
+                        fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
                         marginBottom: '1rem',
                         background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         fontWeight: 400,
                         letterSpacing: isMobile ? '0.1em' : '0.15em',
-                        textTransform: 'uppercase'
+                        textTransform: 'uppercase',
+                        textAlign: 'center'
                     }}
                 >
                     RULES & GOVERNANCE
                 </motion.h2>
 
-                <div className="divider-glow" style={{ marginBottom: isMobile ? '2rem' : '3rem' }} />
-
-                <p style={{
-                    fontSize: isMobile ? '1.1rem' : '1.3rem',
-                    maxWidth: '700px',
-                    color: 'var(--color-text-muted)',
-                    lineHeight: '1.8',
-                    marginBottom: isMobile ? '3rem' : '5rem',
-                    fontWeight: 300,
-                    padding: isMobile ? '0 0.5rem' : 0
-                }}>
-                    Your Remote Assets are protected under the JUVANTIA Charter.
-                </p>
+                <div className="divider-glow" style={{ marginBottom: isMobile ? '3rem' : '5rem' }} />
 
                 <div style={{
                     display: 'flex',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    alignItems: 'center',
                     justifyContent: 'center',
-                    maxWidth: '800px',
-                    width: '100%',
-                    padding: isMobile ? '0 1rem' : 0
+                    gap: isMobile ? '3rem' : '4rem',
+                    maxWidth: '1200px',
+                    width: '100%'
                 }}>
-                    <a href="https://tabularium.juvantia.org/lex/charter" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', width: '100%', maxWidth: '500px' }}>
-                        <GlassCard style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 2rem' }}>
-                            <h3 style={{
-                                color: 'var(--color-primary)',
-                                fontSize: isMobile ? '1.4rem' : '1.8rem',
-                                marginBottom: '1rem',
-                                fontWeight: 500,
-                                letterSpacing: '0.05em',
-                                textDecoration: 'underline',
-                                textUnderlineOffset: '4px',
+                    {/* Left Side: GIF */}
+                    <motion.div
+                        initial={{ opacity: 0, x: isMobile ? 0 : -40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        style={{
+                            flex: 1,
+                            width: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '1rem'
+                        }}
+                    >
+                        <img
+                            src="/images/kustodia.gif"
+                            alt="Kustodia"
+                            style={{
+                                width: '100%',
+                                height: 'auto',
+                                borderRadius: '12px',
+                                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+                                border: '1px solid rgba(255, 255, 255, 0.1)'
+                            }}
+                        />
+                        <a
+                            href="https://www.youtube.com/watch?v=OOjda40t6Ng"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                color: 'var(--color-text-muted)',
+                                textDecoration: 'none',
+                                fontSize: '0.9rem',
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '0.5rem'
+                                gap: '0.5rem',
+                                transition: 'color 0.2s'
+                            }}
+                            onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                            onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
+                        >
+                            <span>source</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                    </motion.div>
+
+                    {/* Right Side: Text & Card */}
+                    <motion.div
+                        initial={{ opacity: 0, x: isMobile ? 0 : 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        style={{
+                            flex: 1,
+                            width: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '2rem',
+                            textAlign: isMobile ? 'center' : 'left'
+                        }}
+                    >
+                        <p style={{
+                            fontSize: isMobile ? '1.1rem' : '1.25rem',
+                            color: 'var(--color-text-muted)',
+                            lineHeight: '1.8',
+                            fontWeight: 300,
+                            margin: 0
+                        }}>
+                            Your Remote Assets are protected under the JUVANTIA Charter.
+                        </p>
+
+                        <a href="https://tabularium.juvantia.org/rules/charter" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', width: '100%' }}>
+                            <GlassCard style={{
+                                padding: '2.5rem 2rem',
+                                textAlign: isMobile ? 'center' : 'left',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '0.5rem',
+                                height: 'auto'
                             }}>
-                                Technopark Charter
-                                <svg width="0.8em" height="0.8em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.8 }}>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                    <polyline points="15 3 21 3 21 9" />
-                                    <line x1="10" y1="14" x2="21" y2="3" />
-                                </svg>
-                            </h3>
-                            <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.6', textTransform: 'lowercase' }}>
-                                principles, governance, and safety.
-                            </p>
-                        </GlassCard>
-                    </a>
+                                <h3 style={{
+                                    color: 'var(--color-primary)',
+                                    fontSize: isMobile ? '1.4rem' : '1.6rem',
+                                    fontWeight: 500,
+                                    letterSpacing: '0.05em',
+                                    textDecoration: 'underline',
+                                    textUnderlineOffset: '4px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: isMobile ? 'center' : 'flex-start',
+                                    gap: '0.5rem'
+                                }}>
+                                    Technopark Charter
+                                    <svg width="0.8em" height="0.8em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.8 }}>
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </h3>
+                                <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.6', textTransform: 'lowercase' }}>
+                                    principles, governance, and safety.
+                                </p>
+                            </GlassCard>
+                        </a>
+                    </motion.div>
                 </div>
             </motion.section >
 
@@ -1097,102 +1170,7 @@ const Home: React.FC = () => {
 
             <SectionDivider />
 
-            {/* ===== POLITICS SECTION ===== */}
-            <motion.section
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                style={{
-                    padding: isMobile ? '5rem 1rem' : '10rem 2rem',
-                    background: 'linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg) 100%)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}
-            >
-                <div style={{ maxWidth: '1000px', width: '100%', textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem' }}>
-                    <h2 style={{
-                        fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
-                        marginBottom: '1.5rem',
-                        background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        fontWeight: 400
-                    }}>
-                        Res Publica
-                    </h2>
-                </div>
 
-                <div style={{
-                    display: 'flex',
-                    flexDirection: isMobile ? 'column' : 'row',
-                    gap: isMobile ? '3rem' : '6rem',
-                    maxWidth: '1200px',
-                    width: '100%',
-                    alignItems: 'flex-start'
-                }}>
-                    {/* Left Column: Text */}
-                    <motion.div
-                        initial={{ opacity: 0, x: isMobile ? 0 : -40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        style={{ width: isMobile ? '100%' : '50%', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
-                    >
-                        <p style={{ fontSize: isMobile ? '1.1rem' : '1.25rem', color: 'var(--color-text)', lineHeight: '1.8', fontWeight: 300 }}>
-                            Governance in JUVANTIA is not a simulation. It is a real technopark with rules, elected roles, and binding decisions.
-                        </p>
-                        <p style={{ fontSize: isMobile ? '1rem' : '1.1rem', color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
-                            Every Member has the right — and the responsibility — to take part in public life: to vote, propose changes, or stand for office.
-                        </p>
-                        <p style={{ fontSize: isMobile ? '1rem' : '1.1rem', color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
-                            JUVANTIA is guided by two elected roles: the Consul and the Senatus.
-                        </p>
-
-                        <div style={{ marginTop: '1rem' }}>
-                            <p style={{
-                                fontSize: isMobile ? '1.1rem' : '1.2rem',
-                                color: 'var(--color-primary)',
-                                fontWeight: 500,
-                                lineHeight: '1.6'
-                            }}>
-                                You have the right to stand for election — and shape JUVANTIA’s future.
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Right Column: Blocks */}
-                    <motion.div
-                        initial={{ opacity: 0, x: isMobile ? 0 : 40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        style={{ width: isMobile ? '100%' : '50%', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
-                    >
-                        <GlassCard style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '2rem' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <div style={{ fontSize: '2rem' }}>👑</div>
-                                <h3 style={{ color: 'var(--color-text)', fontSize: '1.4rem', fontWeight: 500 }}>Consul</h3>
-                            </div>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
-                                The elected operational lead. Oversees day-to-day development of the technopark, builds internal infrastructure and services, and executes the budget.
-                            </p>
-                        </GlassCard>
-
-                        <GlassCard style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '2rem' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <div style={{ fontSize: '2rem' }}>🏛️</div>
-                                <h3 style={{ color: 'var(--color-text)', fontSize: '1.4rem', fontWeight: 500 }}>Senatus</h3>
-                            </div>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7' }}>
-                                Eight elected Senators set and update Lex Digitalis, approve key appointments, and oversee major decisions.
-                            </p>
-                        </GlassCard>
-                    </motion.div>
-                </div>
-            </motion.section>
-
-            <SectionDivider />
 
             {/* ===== COLOSSEUM SECTION ===== */}
             <section style={{
@@ -1500,108 +1478,7 @@ const Home: React.FC = () => {
                 <ShelterTabs />
             </motion.section>
 
-            <SectionDivider />
 
-            {/* ===== FOOTER CTA SECTION ===== */}
-            <motion.section
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                style={{
-                    padding: isMobile ? '6rem 1.5rem' : '12rem 2rem',
-                    background: 'radial-gradient(ellipse at center, rgba(0, 255, 136, 0.03) 0%, var(--color-bg) 60%)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    textAlign: 'center',
-                    position: 'relative'
-                }}
-            >
-                <motion.h2
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="gradient-text-animated"
-                    style={{
-                        fontSize: isMobile ? '2.2rem' : 'clamp(3rem, 8vw, 6rem)',
-                        marginBottom: '2rem',
-                        letterSpacing: isMobile ? '0.1em' : '0.2em',
-                        fontWeight: 400
-                    }}
-                >
-                    Lex Est Rex
-                </motion.h2>
-
-                <div style={{
-                    width: isMobile ? '100px' : '150px',
-                    height: '2px',
-                    background: 'linear-gradient(90deg, transparent, var(--color-primary), var(--color-secondary), transparent)',
-                    margin: '0 auto 3rem',
-                    boxShadow: '0 0 20px rgba(0, 255, 136, 0.4)'
-                }} />
-
-                <p style={{
-                    fontSize: isMobile ? '1rem' : 'clamp(1.1rem, 2vw, 1.5rem)',
-                    maxWidth: '800px',
-                    color: 'var(--color-text-muted)',
-                    fontStyle: 'italic',
-                    lineHeight: '1.8',
-                    fontWeight: 300
-                }}>
-                    All you have to do is follow the rules.
-                    <br />
-                    <span style={{ color: 'var(--color-primary)' }}>
-                        Or choose the outlaw path — if you can handle it.
-                    </span>
-                </p>
-
-                <div style={{
-                    marginTop: '3rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '1rem',
-                    width: '100%',
-                    maxWidth: '800px',
-                    padding: '0 1rem'
-                }}>
-                    <img
-                        src="/images/kustodia.gif"
-                        alt="Kustodia"
-                        style={{
-                            width: '100%',
-                            height: 'auto',
-                            borderRadius: '12px',
-                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
-                            border: '1px solid rgba(255, 255, 255, 0.1)'
-                        }}
-                    />
-                    <a
-                        href="https://www.youtube.com/watch?v=OOjda40t6Ng"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                            color: 'var(--color-text-muted)',
-                            textDecoration: 'none',
-                            fontSize: '0.9rem',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                            transition: 'color 0.2s'
-                        }}
-                        onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
-                        onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
-                    >
-                        <span>source</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                            <polyline points="15 3 21 3 21 9" />
-                            <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                    </a>
-                </div>
-            </motion.section>
         </>
     );
 };
