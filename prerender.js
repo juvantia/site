@@ -19,6 +19,7 @@ const routes = [
     '/smart-contract',
     '/tech',
     '/legal',
+    '/faq',
     // Add other public routes here
 ];
 
