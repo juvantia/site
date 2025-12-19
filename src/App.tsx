@@ -11,6 +11,7 @@ import AdminMap from './pages/AdminMap';
 import AdminMemorandums from './pages/AdminMemorandums';
 import AdminTechStack from './pages/AdminTechStack';
 import Tech from './pages/Tech';
+import FAQ from './pages/FAQ';
 import Legal from './pages/Legal';
 
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/shelter/register" element={<ShelterRegister />} />
           <Route path="/smart-contract" element={<SmartContract />} />
           <Route path="/tech" element={<Tech />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/admin/map" element={<AdminMap />} />
           <Route path="/admin/memorandums" element={<AdminMemorandums />} />
           <Route path="/admin/tech" element={<AdminTechStack />} />

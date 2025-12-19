@@ -713,6 +713,103 @@ const Home: React.FC = () => {
 
             </section >
 
+            {/* ===== OUR MISSION SECTION ===== */}
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+                style={{
+                    padding: isMobile ? '5rem 1rem' : '6rem 2rem',
+                    background: 'linear-gradient(to bottom, var(--color-bg) 0%, rgba(10, 15, 10, 0.5) 100%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    position: 'relative'
+                }}
+            >
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '1px',
+                    background: 'linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent)',
+                }} />
+
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    style={{
+                        fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
+                        marginBottom: '1rem',
+                        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontWeight: 400,
+                        letterSpacing: isMobile ? '0.1em' : '0.15em',
+                        textTransform: 'uppercase',
+                        textAlign: 'center'
+                    }}
+                >
+                    OUR MISSION
+                </motion.h2>
+
+                <div className="divider-glow" style={{ marginBottom: isMobile ? '3rem' : '4rem' }} />
+
+                <GlassCard style={{
+                    maxWidth: '1100px',
+                    width: '100%',
+                    padding: isMobile ? '2rem' : '3rem',
+                    background: 'rgba(10, 15, 10, 0.4)'
+                }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'left' }}>
+                        <p style={{
+                            fontSize: isMobile ? '1.1rem' : '1.35rem',
+                            lineHeight: '1.6',
+                            color: 'var(--color-text)',
+                            margin: 0,
+                            fontWeight: 300,
+                            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                        }}>
+                            <span style={{ fontWeight: 600, color: '#fff' }}>To embrace rapid robotics progress and turn it into real, buildable infrastructure</span>: an outdoor technopark with reliable Wi-Fi coverage and a unified 24V low-voltage power grid.
+                        </p>
+                        <p style={{
+                            fontSize: isMobile ? '1.1rem' : '1.35rem',
+                            lineHeight: '1.6',
+                            color: 'var(--color-text)',
+                            margin: 0,
+                            fontWeight: 300,
+                            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                        }}>
+                            A place where <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>thousands of teleoperated mini-robots</span> — from units 3D-printed by enthusiasts to production robots from manufacturers — can operate without constant human presence on site.
+                        </p>
+                        <p style={{
+                            fontSize: isMobile ? '1.1rem' : '1.35rem',
+                            lineHeight: '1.6',
+                            color: 'var(--color-text)',
+                            margin: 0,
+                            fontWeight: 300,
+                            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                        }}>
+                            From a “hermit” living off a solar panel at its own Shelter, to a service robot that repairs others, entertains audiences via livestreams, and guides remote visitors who rent a robot to walk through the park.
+                        </p>
+                        <p style={{
+                            fontSize: isMobile ? '1.1rem' : '1.35rem',
+                            lineHeight: '1.6',
+                            color: 'var(--color-text)',
+                            margin: 0,
+                            fontWeight: 300,
+                            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                        }}>
+                            In short, JUVANTIA will become an <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>engineering, research, testing, and entertainment</span> field for mini-robots.
+                        </p>
+                    </div>
+                </GlassCard>
+
+            </motion.section>
+
             {/* ===== PAX JUVANTIA SECTION ===== */}
             < motion.section
                 initial={{ opacity: 0 }}
@@ -930,7 +1027,7 @@ const Home: React.FC = () => {
                             marginBottom: '2rem',
                             fontWeight: 300
                         }}>
-                            You can receive charging via Pogo Pin Magnetic, 4P.
+                            You can receive charging via Pogo Pin Magnetic 4P.
                         </p>
 
                         <GlassCard style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>

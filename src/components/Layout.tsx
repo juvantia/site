@@ -26,6 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         { path: '/shelter', label: 'Shelter', shortLabel: 'Shelter' },
         { path: '/smart-contract', label: 'Smart Contract', shortLabel: 'Contract' },
         { path: '/tech', label: 'Tech Stack', shortLabel: 'Tech' },
+        { path: '/faq', label: 'FAQ', shortLabel: 'FAQ' },
     ];
 
     const quickActions = [
