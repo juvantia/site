@@ -803,7 +803,7 @@ const Home: React.FC = () => {
                             fontWeight: 300,
                             textShadow: '0 2px 10px rgba(0,0,0,0.3)'
                         }}>
-                            In short, JUVANTIA will become an <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>engineering, research, testing, and entertainment</span> field for mini-robots.
+                            In short, JUVANTIA will become an <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>engineering, research, testing, technology demonstration, and entertainment</span> field for mini-robots.
                         </p>
                     </div>
                 </GlassCard>
