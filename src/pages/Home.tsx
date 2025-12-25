@@ -145,7 +145,13 @@ const RolesTabs: React.FC = () => {
     // Mobile version - horizontal swipe carousel
     if (isMobile) {
         return (
-            <div style={{ width: '100%', maxWidth: '100vw', overflow: 'hidden' }}>
+            <div style={{
+                width: '100%',
+                maxWidth: '100vw',
+                overflow: 'hidden',
+                position: 'relative',
+                zIndex: 2
+            }}>
                 {/* Pills navigation */}
                 <div style={{
                     display: 'flex',
@@ -224,7 +230,6 @@ const RolesTabs: React.FC = () => {
         );
     }
 
-    // Desktop version - original layout
     return (
         <div style={{
             display: 'grid',
@@ -233,7 +238,9 @@ const RolesTabs: React.FC = () => {
             width: '100%',
             maxWidth: '900px',
             alignItems: 'start',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            position: 'relative',
+            zIndex: 2
         }}>
             {/* Tabs List */}
             <div style={{
@@ -347,7 +354,13 @@ const ShelterTabs: React.FC = () => {
     // Mobile version - horizontal swipe carousel
     if (isMobile) {
         return (
-            <div style={{ width: '100%', maxWidth: '100vw', overflow: 'hidden' }}>
+            <div style={{
+                width: '100%',
+                maxWidth: '100vw',
+                overflow: 'hidden',
+                position: 'relative',
+                zIndex: 2
+            }}>
                 {/* Pills navigation */}
                 <div style={{
                     display: 'flex',
@@ -425,7 +438,6 @@ const ShelterTabs: React.FC = () => {
         );
     }
 
-    // Desktop version - original layout
     return (
         <div style={{
             display: 'grid',
@@ -434,7 +446,9 @@ const ShelterTabs: React.FC = () => {
             width: '100%',
             maxWidth: '900px',
             alignItems: 'start',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            position: 'relative',
+            zIndex: 2
         }}>
             {/* Content Area */}
             <AnimatePresence mode="wait">
@@ -567,7 +581,8 @@ const Home: React.FC = () => {
                 alignItems: 'center',
                 justifyContent: isMobile ? 'center' : 'flex-start',
                 textAlign: 'center',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                zIndex: 1
             }}>
                 {/* Background Image with Parallax */}
                 <motion.div
@@ -636,7 +651,8 @@ const Home: React.FC = () => {
                                 fontWeight: 400,
                                 letterSpacing: '0.25em',
                                 paddingLeft: '0.25em',
-                                position: 'relative'
+                                position: 'relative',
+                                zIndex: 2
                             }}
                         >
                             JUVANTIA
@@ -655,7 +671,9 @@ const Home: React.FC = () => {
                             gap: isMobile ? '2rem' : '3rem',
                             maxWidth: '1200px',
                             width: '100%',
-                            padding: 0
+                            padding: 0,
+                            position: 'relative',
+                            zIndex: 2
                         }}
                     >
                         {/* Images Side */}
@@ -742,7 +760,8 @@ const Home: React.FC = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    position: 'relative'
+                    position: 'relative',
+                    zIndex: 1
                 }}
             >
                 <div style={{
@@ -767,7 +786,9 @@ const Home: React.FC = () => {
                         fontWeight: 400,
                         letterSpacing: isMobile ? '0.1em' : '0.15em',
                         textTransform: 'uppercase',
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        position: 'relative',
+                        zIndex: 2
                     }}
                 >
                     OUR MISSION
@@ -838,7 +859,9 @@ const Home: React.FC = () => {
                     background: 'transparent',
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    position: 'relative',
+                    zIndex: 1
                 }}
             >
                 <motion.h2
@@ -854,7 +877,9 @@ const Home: React.FC = () => {
                         fontWeight: 400,
                         letterSpacing: isMobile ? '0.1em' : '0.15em',
                         textTransform: 'uppercase',
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        position: 'relative',
+                        zIndex: 2
                     }}
                 >
                     RULES & GOVERNANCE
@@ -869,7 +894,9 @@ const Home: React.FC = () => {
                     justifyContent: 'center',
                     gap: isMobile ? '3rem' : '4rem',
                     maxWidth: '1200px',
-                    width: '100%'
+                    width: '100%',
+                    position: 'relative',
+                    zIndex: 2
                 }}>
                     {/* Left Side: GIF */}
                     <motion.div
@@ -883,7 +910,9 @@ const Home: React.FC = () => {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
-                            gap: '1rem'
+                            gap: '1rem',
+                            position: 'relative',
+                            zIndex: 2
                         }}
                     >
                         <img
@@ -934,7 +963,9 @@ const Home: React.FC = () => {
                             display: 'flex',
                             flexDirection: 'column',
                             gap: '2rem',
-                            textAlign: isMobile ? 'center' : 'left'
+                            textAlign: isMobile ? 'center' : 'left',
+                            position: 'relative',
+                            zIndex: 2
                         }}
                     >
                         <p style={{
@@ -942,7 +973,9 @@ const Home: React.FC = () => {
                             color: 'var(--color-text-muted)',
                             lineHeight: '1.8',
                             fontWeight: 300,
-                            margin: 0
+                            margin: 0,
+                            position: 'relative',
+                            zIndex: 2
                         }}>
                             Your Remote Assets are protected under the JUVANTIA Charter.
                         </p>
@@ -966,7 +999,9 @@ const Home: React.FC = () => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: isMobile ? 'center' : 'flex-start',
-                                    gap: '0.5rem'
+                                    gap: '0.5rem',
+                                    position: 'relative',
+                                    zIndex: 2
                                 }}>
                                     Technopark Charter
                                     <svg width="0.8em" height="0.8em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.8 }}>
@@ -975,7 +1010,14 @@ const Home: React.FC = () => {
                                         <line x1="10" y1="14" x2="21" y2="3" />
                                     </svg>
                                 </h3>
-                                <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.6', textTransform: 'lowercase' }}>
+                                <p style={{
+                                    color: 'var(--color-text-muted)',
+                                    fontSize: '1.1rem',
+                                    lineHeight: '1.6',
+                                    textTransform: 'lowercase',
+                                    position: 'relative',
+                                    zIndex: 2
+                                }}>
                                     principles, governance, and safety.
                                 </p>
                             </GlassCard>
@@ -995,7 +1037,9 @@ const Home: React.FC = () => {
                     padding: isMobile ? '5rem 1rem' : '10rem 2rem',
                     background: 'transparent',
                     display: 'flex',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    position: 'relative',
+                    zIndex: 1
                 }}
             >
                 <div style={{
@@ -1011,7 +1055,11 @@ const Home: React.FC = () => {
                         whileInView={{ opacity: 1, x: 0, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        style={{ width: isMobile ? '100%' : '50%' }}
+                        style={{
+                            width: isMobile ? '100%' : '50%',
+                            position: 'relative',
+                            zIndex: 2
+                        }}
                     >
                         <ImageCard src="/images/charging_station.png" alt="Charging Station" aspectRatio="4/3" />
                     </motion.div>
@@ -1021,12 +1069,18 @@ const Home: React.FC = () => {
                         whileInView={{ opacity: 1, x: 0, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        style={{ width: isMobile ? '100%' : '50%' }}
+                        style={{
+                            width: isMobile ? '100%' : '50%',
+                            position: 'relative',
+                            zIndex: 2
+                        }}
                     >
                         <h2 style={{
                             fontSize: isMobile ? '1.8rem' : 'clamp(2rem, 4vw, 2.8rem)',
                             marginBottom: '1.5rem',
-                            fontWeight: 400
+                            fontWeight: 400,
+                            position: 'relative',
+                            zIndex: 2
                         }}>
                             Power &{' '}
                             <span style={{
@@ -1042,7 +1096,9 @@ const Home: React.FC = () => {
                             color: 'var(--color-text-muted)',
                             lineHeight: '1.8',
                             marginBottom: '2rem',
-                            fontWeight: 300
+                            fontWeight: 300,
+                            position: 'relative',
+                            zIndex: 2
                         }}>
                             You can receive charging via Pogo Pin Magnetic 4P.
                         </p>
@@ -1062,7 +1118,15 @@ const Home: React.FC = () => {
                                 ⚡
                             </div>
                             <div>
-                                <h4 style={{ color: 'var(--color-text)', marginBottom: '0.5rem', fontSize: isMobile ? '1.05rem' : '1.2rem', fontWeight: 500, textTransform: 'none' }}>
+                                <h4 style={{
+                                    color: 'var(--color-text)',
+                                    marginBottom: '0.5rem',
+                                    fontSize: isMobile ? '1.05rem' : '1.2rem',
+                                    fontWeight: 500,
+                                    textTransform: 'none',
+                                    position: 'relative',
+                                    zIndex: 2
+                                }}>
                                     Universal Energy
                                 </h4>
                                 <p style={{ fontSize: isMobile ? '0.9rem' : '0.95rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
@@ -1086,7 +1150,9 @@ const Home: React.FC = () => {
                     background: 'transparent',
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    position: 'relative',
+                    zIndex: 1
                 }}
             >
                 <div style={{ maxWidth: '1000px', width: '100%', textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem' }}>
@@ -1096,7 +1162,9 @@ const Home: React.FC = () => {
                         background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
-                        fontWeight: 400
+                        fontWeight: 400,
+                        position: 'relative',
+                        zIndex: 2
                     }}>
                         The Economy
                     </h2>
@@ -1106,7 +1174,9 @@ const Home: React.FC = () => {
                         lineHeight: '1.8',
                         fontWeight: 300,
                         maxWidth: '800px',
-                        margin: '0 auto'
+                        margin: '0 auto',
+                        position: 'relative',
+                        zIndex: 2
                     }}>
                         JUVANTIA runs a real, closed economy: all value is created by participants and stays inside the technopark.
                     </p>
@@ -1117,7 +1187,9 @@ const Home: React.FC = () => {
                     gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
                     gap: '2rem',
                     maxWidth: '1200px',
-                    width: '100%'
+                    width: '100%',
+                    position: 'relative',
+                    zIndex: 2
                 }}>
                     <GlassCard style={{ height: '100%', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         <h3 style={{ color: 'var(--color-primary)', fontSize: '1.4rem', fontWeight: 500, marginBottom: '0.5rem' }}>Technopark Treasury</h3>
@@ -1151,7 +1223,9 @@ const Home: React.FC = () => {
                     gap: isMobile ? '3rem' : '4rem',
                     maxWidth: '1200px',
                     width: '100%',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    position: 'relative',
+                    zIndex: 2
                 }}>
                     {/* Left Side: Logos */}
                     <GlassCard style={{
@@ -1512,7 +1586,9 @@ const Home: React.FC = () => {
                         fontWeight: 400,
                         letterSpacing: '0.1em',
                         padding: isMobile ? '0 1rem' : 0,
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        position: 'relative',
+                        zIndex: 2
                     }}
                 >
                     WHAT YOU CAN BUILD
@@ -1583,7 +1659,9 @@ const Home: React.FC = () => {
                         fontWeight: 400,
                         letterSpacing: '0.1em',
                         padding: isMobile ? '0 1rem' : 0,
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        position: 'relative',
+                        zIndex: 2
                     }}
                 >
                     Build Your Shelter

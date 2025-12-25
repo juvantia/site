@@ -100,12 +100,22 @@ const FAQ: React.FC = () => {
             <AnimatedBackground />
             <CursorGlow />
 
-            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <div style={{
+                maxWidth: '800px',
+                margin: '0 auto',
+                position: 'relative',
+                zIndex: 1
+            }}>
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    style={{ textAlign: 'center', marginBottom: '4rem' }}
+                    style={{
+                        textAlign: 'center',
+                        marginBottom: '4rem',
+                        position: 'relative',
+                        zIndex: 2
+                    }}
                 >
                     <h1 style={{
                         fontFamily: '"Cinzel", serif',
@@ -115,15 +125,28 @@ const FAQ: React.FC = () => {
                         background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
+                        position: 'relative',
+                        zIndex: 2
                     }}>
                         FAQ
                     </h1>
-                    <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem' }}>
+                    <p style={{
+                        color: 'rgba(255,255,255,0.6)',
+                        fontSize: '1.1rem',
+                        position: 'relative',
+                        zIndex: 2
+                    }}>
                         Frequently Asked Questions about the technopark.
                     </p>
                 </motion.div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '2rem',
+                    position: 'relative',
+                    zIndex: 2
+                }}>
                     {faqItems.map((item, index) => (
                         <motion.div
                             key={item.id}
@@ -139,7 +162,8 @@ const FAQ: React.FC = () => {
                                 position: 'relative',
                                 scrollMarginTop: '120px',
                                 cursor: 'pointer',
-                                transition: 'border-color 0.2s, background 0.2s'
+                                transition: 'border-color 0.2s, background 0.2s',
+                                zIndex: 2
                             }}
                             whileHover={{
                                 borderColor: 'rgba(0, 255, 136, 0.4)',

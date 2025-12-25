@@ -175,14 +175,15 @@ const LandMap: React.FC = () => {
             <AnimatedBackground />
             <CursorGlow size={350} opacity={0.12} />
 
-            {/* --- SECTION 1: EUROPE MAP (SQUARE) --- */}
             <div style={{
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 padding: isMobile ? '80px 1rem 40px' : '100px 2rem 60px',
-                borderBottom: '1px solid rgba(0, 255, 136, 0.15)'
+                borderBottom: '1px solid rgba(0, 255, 136, 0.15)',
+                position: 'relative',
+                zIndex: 1
             }}>
                 <h1 style={{
                     fontFamily: '"Cinzel", serif',
@@ -192,7 +193,9 @@ const LandMap: React.FC = () => {
                     background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    position: 'relative',
+                    zIndex: 2
                 }}>
                     TERRA JUVANTIA
                 </h1>
@@ -202,7 +205,9 @@ const LandMap: React.FC = () => {
                     textAlign: 'center',
                     maxWidth: '600px',
                     fontSize: isMobile ? '0.95rem' : '1.1rem',
-                    padding: isMobile ? '0 0.5rem' : 0
+                    padding: isMobile ? '0 0.5rem' : 0,
+                    position: 'relative',
+                    zIndex: 2
                 }}>
                     Explore potential territories for the technopark.
                 </p>
@@ -215,7 +220,8 @@ const LandMap: React.FC = () => {
                     border: '1px solid rgba(0, 255, 136, 0.3)',
                     borderRadius: isMobile ? '12px' : '16px',
                     overflow: 'hidden',
-                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 255, 136, 0.1)'
+                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 255, 136, 0.1)',
+                    zIndex: 2
                 }}>
                     <MapContainer
                         center={[46.0, 12.0]}
@@ -283,7 +289,6 @@ const LandMap: React.FC = () => {
                 </div>
             </div>
 
-            {/* --- SECTION 2: BLUEPRINT MAP (ORIGINAL) --- */}
             <div style={{
                 width: '100%',
                 display: 'flex',
@@ -291,7 +296,9 @@ const LandMap: React.FC = () => {
                 alignItems: 'center',
                 padding: isMobile ? '40px 1rem' : '60px 2rem',
                 backgroundImage: 'radial-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px)',
-                backgroundSize: '20px 20px'
+                backgroundSize: '20px 20px',
+                position: 'relative',
+                zIndex: 1
             }}>
                 <h2 style={{
                     fontFamily: '"Cinzel", serif',
@@ -301,7 +308,9 @@ const LandMap: React.FC = () => {
                     background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    position: 'relative',
+                    zIndex: 2
                 }}>
                     DISTRICT MASTERPLAN
                 </h2>
@@ -311,7 +320,9 @@ const LandMap: React.FC = () => {
                     textAlign: 'center',
                     marginBottom: isMobile ? '2rem' : '3rem',
                     padding: '0 1rem',
-                    width: '100%'
+                    width: '100%',
+                    position: 'relative',
+                    zIndex: 2
                 }}>
                     <div style={{
                         display: 'flex',
@@ -344,7 +355,9 @@ const LandMap: React.FC = () => {
                     width: '100%',
                     overflowX: 'auto',
                     WebkitOverflowScrolling: 'touch',
-                    paddingBottom: '10px'
+                    paddingBottom: '10px',
+                    position: 'relative',
+                    zIndex: 2
                 }}>
                     <div
                         style={{
@@ -355,7 +368,8 @@ const LandMap: React.FC = () => {
                             border: '1px solid rgba(0, 255, 136, 0.2)',
                             borderRadius: '8px',
                             boxShadow: '0 20px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 255, 136, 0.05)',
-                            margin: '0 auto'
+                            margin: '0 auto',
+                            zIndex: 1
                         }}
                     >
                         {districts.map(d => (
