@@ -102,7 +102,7 @@ const AnimatedBackground: React.FC = () => {
                         );
                 }
 
-                /* Grid lines - technopark blueprint effect */
+                /* Grid lines - compound blueprint effect */
                 .bg-grid {
                     position: absolute;
                     inset: 0;

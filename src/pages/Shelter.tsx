@@ -22,7 +22,7 @@ const Shelter: React.FC = () => {
     const timelineSteps = [
         {
             title: "Land Registration",
-            description: "JUVANTIA secures the physical territory for the technopark. The official map and landscape are revealed, signaling readiness for construction.",
+            description: "JUVANTIA secures the physical territory for the compound. The official map and landscape are revealed, signaling readiness for construction.",
             icon: "📋",
             phase: "preparation" // оранжевый - подготовка
         },
@@ -35,7 +35,7 @@ const Shelter: React.FC = () => {
         },
         {
             title: "Shelter Installation",
-            description: "Build and install your Shelter yourself in the technopark",
+            description: "Build and install your Shelter yourself in the compound",
             duration: "3-6 months",
             icon: "🔨",
             isWindow: true,
@@ -241,7 +241,7 @@ const Shelter: React.FC = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {[
                                 { title: 'Weather Protection', text: 'Shield your Robulus from rain, snow, wind, and extreme temperatures.' },
-                                { title: 'Charging Station', text: 'Safe, dedicated space for your Robulus to recharge on the 24V Technopark grid.' },
+                                { title: 'Charging Station', text: 'Safe, dedicated space for your Robulus to recharge on the compound’s standardized 24V grid.' },
                                 { title: 'Security', text: 'Protection from theft and vandalism. Your Robulus is safe inside.' }
                             ].map((item, idx) => (
                                 <div key={idx} style={{
@@ -540,7 +540,7 @@ const Shelter: React.FC = () => {
                             color: 'var(--color-text-muted)',
                             fontWeight: 300
                         }}>
-                            We expect your Shelter to be aesthetically pleasing and contribute to the Technopark's visual identity.
+                            We expect your Shelter to be aesthetically pleasing and contribute to the compound's visual identity.
                         </p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {[
@@ -633,7 +633,7 @@ const Shelter: React.FC = () => {
                                 lineHeight: '1.8',
                                 color: 'var(--color-text-muted)'
                             }}>
-                                All Shelter structures connect to the Technopark grid via the standard 24V <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>GX16-4</span> plug connector.
+                                All Shelter structures connect to the compound grid via the standard 24V <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>GX16-4</span> plug connector.
                             </p>
                             <p style={{
                                 fontSize: isMobile ? '0.85rem' : '0.95rem',
@@ -641,7 +641,7 @@ const Shelter: React.FC = () => {
                                 color: 'var(--color-text-muted)',
                                 fontStyle: 'italic'
                             }}>
-                                This GX16-4 connector powers your Shelter from the JUVANTIA Technopark electrical network.
+                                This GX16-4 connector powers your Shelter from the JUVANTIA compound electrical network.
                             </p>
                         </div>
                         <div style={{ textAlign: 'center', width: isMobile ? '100%' : '40%' }}>
@@ -663,7 +663,7 @@ const Shelter: React.FC = () => {
                                 fontSize: isMobile ? '0.85rem' : '0.95rem',
                                 fontWeight: 500
                             }}>
-                                GX16-4 Technopark Connector (24V)
+                                GX16-4 Compound Connector (24V)
                             </p>
                         </div>
                     </div>

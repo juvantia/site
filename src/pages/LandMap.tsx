@@ -209,7 +209,7 @@ const LandMap: React.FC = () => {
                     position: 'relative',
                     zIndex: 2
                 }}>
-                    Explore potential territories for the technopark.
+                    Explore potential territories for the compound.
                 </p>
 
                 <div style={{

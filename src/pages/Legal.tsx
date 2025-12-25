@@ -57,7 +57,7 @@ const Legal: React.FC = () => {
                     </p>
                     <p style={{ marginBottom: '1rem', lineHeight: '1.6', color: 'var(--color-text-muted)' }}>
                         <strong>How we use it:</strong><br />
-                        We use this data solely to process your application, verify your eligibility for the technopark,
+                        We use this data solely to process your application, verify your eligibility for the compound,
                         and contact you regarding your citizenship status. We do not sell or share your data with third parties.
                     </p>
                 </div>
@@ -72,7 +72,7 @@ const Legal: React.FC = () => {
                     <h2 style={{ color: 'var(--color-primary)', marginBottom: '1rem', fontSize: '1.5rem' }}>Terms of Service</h2>
                     <p style={{ marginBottom: '1rem', lineHeight: '1.6', color: 'var(--color-text-muted)' }}>
                         <strong>1. The Project</strong><br />
-                        Juvantia is an experimental robotic technopark project. All timelines (including the 2027 target) are estimates and goals, not guarantees.
+                        Juvantia is an experimental robotic compound project. All timelines (including the 2027 target) are estimates and goals, not guarantees.
                     </p>
                     <p style={{ marginBottom: '1rem', lineHeight: '1.6', color: 'var(--color-text-muted)' }}>
                         <strong>2. Contributions</strong><br />
