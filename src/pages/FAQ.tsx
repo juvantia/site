@@ -21,15 +21,15 @@ const FAQ: React.FC = () => {
     const faqItems = [
         {
             id: 'who-is-it-for',
-            question: "Who is this compound for?",
-            answer: "JUVANTIA is for anyone who wants to remotely operate their own mini-robot in a real, open-air compound environment."
+            question: "Who is this park for?",
+            answer: "JUVANTIA is for anyone who wants to remotely operate their own mini-robot in a real, open-air park environment."
         },
         {
             id: 'cost',
             question: "How much does it cost?",
             answer: (
                 <>
-                    Access to the compound is free. You only cover:
+                    Access to the park is free. You only cover:
                     <ul style={{ paddingLeft: '1.5rem', margin: '0.5rem 0' }}>
                         <li style={{ marginBottom: '0.25rem' }}>shipping your Robulus to Europe (at your own expense), and</li>
                         <li style={{ marginBottom: '0.25rem' }}>electricity for charging at the retail energy price + 20%.</li>
@@ -44,8 +44,8 @@ const FAQ: React.FC = () => {
         },
         {
             id: 'shipping',
-            question: "How do I send my Robulus to the compound?",
-            answer: "You can ship it using any parcel delivery service to the compound address (published once the territory is secured). The Operator’s representatives will receive it, register it, and place it into operation inside the compound."
+            question: "How do I send my Robulus to the park?",
+            answer: "You can ship it using any parcel delivery service to the park address (published once the territory is secured). The Operator’s representatives will receive it, register it, and place it into operation inside the park."
         },
         {
             id: 'storage-charging',
@@ -56,30 +56,30 @@ const FAQ: React.FC = () => {
                     <ul style={{ paddingLeft: '1.5rem', margin: '0.5rem 0' }}>
                         <li style={{ marginBottom: '0.25rem' }}>Install your own Shelter on a Licensed Plot, with a power connection available on-site.</li>
                         <li style={{ marginBottom: '0.25rem' }}>Mount a solar panel on your Shelter roof (where applicable).</li>
-                        <li style={{ marginBottom: '0.25rem' }}>Rent charging/storage capacity from the compound or from another participant.</li>
+                        <li style={{ marginBottom: '0.25rem' }}>Rent charging/storage capacity from the park or from another participant.</li>
                     </ul>
                 </>
             )
         },
         {
             id: 'size',
-            question: "How large is the compound?",
+            question: "How large is the park?",
             answer: "The planned fenced territory is 6–8 hectares."
         },
         {
             id: 'participation-without-robot',
             question: "I don’t want to build a Robulus. Can I still participate?",
-            answer: "Yes. We are actively working with partners to adapt existing robots to JUVANTIA standards. It is likely that by launch you will be able to buy a ready-made mini-robot suitable for the compound."
+            answer: "Yes. We are actively working with partners to adapt existing robots to JUVANTIA standards. It is likely that by launch you will be able to buy a ready-made mini-robot suitable for the park."
         },
         {
             id: 'colosseum',
             question: "What is the Colosseum?",
-            answer: "The Colosseum is a separate arena zone where teams compete to hold control and earn defined benefits. Participation is voluntary, but you must assume a higher risk of damage: Robuli can be broken during assaults and defense. The Colosseum may operate under a separate rule set from the main compound zone."
+            answer: "The Colosseum is a separate arena zone where teams compete to hold control and earn defined benefits. Participation is voluntary, but you must assume a higher risk of damage: Robuli can be broken during assaults and defense. The Colosseum may operate under a separate rule set from the main park zone."
         },
         {
             id: 'safety',
             question: "If I build my Robulus with expensive components, how is safety handled?",
-            answer: "The compound is designed around asset protection and safety. Planned measures include high-quality surveillance coverage and incident review procedures. If a party is found responsible for proven damage, they may be required to compensate the loss under the compound’s dispute and enforcement process."
+            answer: "The park is designed around asset protection and safety. Planned measures include high-quality surveillance coverage and incident review procedures. If a party is found responsible for proven damage, they may be required to compensate the loss under the park’s dispute and enforcement process."
         },
         {
             id: 'repairs',
@@ -136,7 +136,7 @@ const FAQ: React.FC = () => {
                         position: 'relative',
                         zIndex: 2
                     }}>
-                        Frequently Asked Questions about the compound.
+                        Frequently Asked Questions about the park.
                     </p>
                 </motion.div>
 
