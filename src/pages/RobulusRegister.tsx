@@ -160,7 +160,7 @@ const RobulusRegister: React.FC = () => {
                         letterSpacing: '-0.02em',
                         textTransform: 'uppercase'
                     }}>
-                        FROM CONCEPT TO AN OPERATIONAL COMPOUND
+                        FROM CONCEPT TO AN OPERATIONAL ROBOTICS PARK
                     </h2>
 
                     <div style={{
@@ -207,7 +207,7 @@ const RobulusRegister: React.FC = () => {
                         fontWeight: 300,
                         letterSpacing: '-0.01em'
                     }}>
-                        We are accepting Memorandums of Intent from those who want to participate and plan to build and send a Robulus once the compound opens.
+                        We are accepting Memorandums of Intent from those who want to participate and plan to build and send a Robulus once the park opens.
                     </p>
                 </div>
 
@@ -342,7 +342,7 @@ const RobulusRegister: React.FC = () => {
                             },
                             {
                                 title: "Control Robulus in JUVANTIA",
-                                text: "Operate your Robulus remotely inside the JUVANTIA compound.",
+                                text: "Operate your Robulus remotely inside the JUVANTIA park.",
                                 icon: "🎮"
                             }
                         ].map((step, index) => (
@@ -462,7 +462,7 @@ const RobulusRegister: React.FC = () => {
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <span style={{ color: 'var(--color-primary)', fontSize: '1.2rem' }}>•</span>
                             <p style={{ color: 'var(--color-text-muted)', fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: '1.6', margin: 0 }}>
-                                The first <strong>100 approved memorandums</strong> will each receive <strong>1 m² Perpetual Plot License</strong> in JUVANTIA, effective upon the launch of the physical compound.
+                                The first <strong>100 approved memorandums</strong> will each receive <strong>1 m² Perpetual Plot License</strong> in JUVANTIA, effective upon the launch of the physical park.
                             </p>
                         </div>
                         <div style={{ display: 'flex', gap: '1rem' }}>
@@ -812,7 +812,7 @@ const RobulusRegister: React.FC = () => {
                                     lineHeight: '1.6',
                                     fontStyle: 'italic'
                                 }}>
-                                    By submitting a memorandum, you help move Juvantia from concept to a real, physical compound.
+                                    By submitting a memorandum, you help move Juvantia from concept to a real, physical park.
                                 </p>
                             </div>
                         </form>

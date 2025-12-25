@@ -122,14 +122,14 @@ const ImageCard: React.FC<{
 
 const RolesTabs: React.FC = () => {
     const roles = [
-        { id: 'builder', label: 'Basic Rover', description: 'Build a simple open-frame Robulus with basic suspension — perfect for driving around the compound.', image: '/images/BUI.png' },
+        { id: 'builder', label: 'Basic Rover', description: 'Build a simple open-frame Robulus with basic suspension — perfect for driving around the park.', image: '/images/BUI.png' },
         { id: 'deliverer', label: 'Gripper Module', description: 'Add a gripper module to your Robulus to collect and transport materials.', image: '/images/DEL.png' },
         { id: 'bounty_hunter', label: 'Waterproof Shell', description: 'Install a protective plastic cover to keep your Robulus safe from rain and splashes.', image: '/images/BH.png' },
         { id: 'insurer', label: 'Omni Wheels', description: 'Use omni wheels for smooth movement without a steering mechanism — common in robotics and easy to control.', image: '/images/IN.png' },
         { id: 'fighter', label: 'Pusher Plate', description: 'Add a front pusher to compete in the Colosseum and move objects by force.', image: '/images/FI.png' },
-        { id: 'bodyguard', label: 'Explorer Setup', description: 'Mount a higher-capacity battery to explore longer routes and cover more of the compound.', image: '/images/BD.png' },
+        { id: 'bodyguard', label: 'Explorer Setup', description: 'Mount a higher-capacity battery to explore longer routes and cover more of the park.', image: '/images/BD.png' },
         { id: 'engineer', label: 'Acrylic Enclosure', description: 'Build a clear acrylic корпус to protect electronics — with careful sealing for waterproof performance.', image: '/images/ING.png' },
-        { id: 'custom', label: 'Custom Build', description: 'Join the compound economy: complete tasks, provide services, and earn income for your Robulus owner.', image: '/images/ANY.png' },
+        { id: 'custom', label: 'Custom Build', description: 'Join the park economy: complete tasks, provide services, and earn income for your Robulus owner.', image: '/images/ANY.png' },
     ];
 
     const [selectedRole, setSelectedRole] = useState(roles[0]);
@@ -562,7 +562,7 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <PageTitle title="JUVANTIA Compound" />
+            <PageTitle title="JUVANTIA Mini-Robot Park" />
             <AnimatedBackground />
             {/* Cursor Glow Effect */}
             <CursorGlow size={350} opacity={0.12} />
@@ -709,7 +709,7 @@ const Home: React.FC = () => {
                                     }} />
                                     <img
                                         src={src}
-                                        alt={`Compound preview ${idx + 1}`}
+                                        alt={`Park preview ${idx + 1}`}
                                         style={{
                                             width: '100%',
                                             height: '100%',
@@ -738,7 +738,9 @@ const Home: React.FC = () => {
                                 margin: 0,
                                 textShadow: '0 0 30px rgba(0, 255, 136, 0.3)'
                             }}>
-                                A compound for teleoperated mini-robots, designed for remote-only operation and a self-contained internal economy.
+                                A Teleoperated Mini-Robot Park with a self-contained internal economy.
+
+
                             </p>
                         </div>
                     </motion.div>
@@ -811,7 +813,7 @@ const Home: React.FC = () => {
                             fontWeight: 300,
                             textShadow: '0 2px 10px rgba(0,0,0,0.3)'
                         }}>
-                            <span style={{ fontWeight: 600, color: '#fff' }}>To turn rapid progress in robotics into real, buildable infrastructure</span>: an outdoor robotics compound with reliable Wi-Fi coverage and a unified 24V low-voltage power grid.
+                            <span style={{ fontWeight: 600, color: '#fff' }}>To channel the explosive progress in robotics into a new kind of living physical ecosystem</span>: an outdoor technopark with reliable Wi‑Fi coverage and a unified 24V low‑voltage power grid.
                         </p>
                         <p style={{
                             fontSize: isMobile ? '1.1rem' : '1.35rem',
@@ -821,7 +823,7 @@ const Home: React.FC = () => {
                             fontWeight: 300,
                             textShadow: '0 2px 10px rgba(0,0,0,0.3)'
                         }}>
-                            A controlled-access environment designed for <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>remote-only operation</span>, where large numbers of teleoperated mini-robots — from enthusiast-built 3D-printed units to production platforms from manufacturers — can run, be tested, maintained, and upgraded without continuous on-site staffing.
+                            A permanent home for thousands of teleoperated mini‑robots (from units 3D‑printed by enthusiasts to production models from manufacturers), where they live and work, piloted exclusively from the digital world.
                         </p>
                         <p style={{
                             fontSize: isMobile ? '1.1rem' : '1.35rem',
@@ -831,7 +833,7 @@ const Home: React.FC = () => {
                             fontWeight: 300,
                             textShadow: '0 2px 10px rgba(0,0,0,0.3)'
                         }}>
-                            The compound supports practical engineering workflows (charging, docking, storage, monitoring, safety rules), structured testing and benchmarking, and public technology demonstrations — including livestreamed activities and remote visitor experiences via rented robots.
+                            The society of machines ranges from solitary "hermits" powered by their own solar panels to highly specialized workers: stationary repair-bots, camera drones broadcasting live feeds, and rugged rover-guides for remote visitors — all transacting within a shared, euro‑pegged digital economy.
                         </p>
                         <p style={{
                             fontSize: isMobile ? '1.1rem' : '1.35rem',
@@ -841,7 +843,7 @@ const Home: React.FC = () => {
                             fontWeight: 300,
                             textShadow: '0 2px 10px rgba(0,0,0,0.3)'
                         }}>
-                            In short, JUVANTIA will become an <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>engineering, research, testing, technology demonstration, and entertainment</span> field for mini-robots.
+                            In short, JUVANTIA will become the <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>premier field for engineering, research, testing, demonstration, and entertainment</span> in the world of mini‑robots.
                         </p>
                     </div>
                 </GlassCard>
@@ -1130,7 +1132,7 @@ const Home: React.FC = () => {
                                     Universal Energy
                                 </h4>
                                 <p style={{ fontSize: isMobile ? '0.9rem' : '0.95rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
-                                    Standardized 24V charging infrastructure available across the compound.
+                                    Standardized 24V charging infrastructure available across the park.
                                 </p>
                             </div>
                         </GlassCard>
@@ -1178,7 +1180,7 @@ const Home: React.FC = () => {
                         position: 'relative',
                         zIndex: 2
                     }}>
-                        JUVANTIA runs a real, self-contained economy: all value is created by participants and stays inside the compound.
+                        JUVANTIA runs a real, self-contained economy: all value is created by participants and stays inside the park.
                     </p>
                 </div>
 
@@ -1204,7 +1206,7 @@ const Home: React.FC = () => {
                             Individual participants do not pay any fees directly to the operator.
                         </p>
                         <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
-                            Operational revenue comes only from commercial companies that use the compound as an R&D, testing, or marketing platform.
+                            Operational revenue comes only from commercial companies that use the park as an R&D, testing, or marketing platform.
                         </p>
                     </GlassCard>
 
@@ -1350,7 +1352,7 @@ const Home: React.FC = () => {
                             color: 'var(--color-text-muted)',
                             lineHeight: '1.7'
                         }}>
-                            Taxes, fees, and treasury operations are settled in these assets, giving the compound a clear, euro-denominated economic base.
+                            Taxes, fees, and treasury operations are settled in these assets, giving the park a clear, euro-denominated economic base.
                         </p>
                     </div>
                 </div>
