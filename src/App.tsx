@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
+import AnimatedBackground from './components/AnimatedBackground';
 import Home from './pages/Home';
 import LandMap from './pages/LandMap';
 import RobulusRegister from './pages/RobulusRegister';
@@ -18,6 +19,7 @@ import Legal from './pages/Legal';
 function App() {
   return (
     <Router>
+      <AnimatedBackground />
       <ScrollToTop />
       <Layout>
         <Routes>

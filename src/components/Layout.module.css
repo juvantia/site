@@ -2,7 +2,10 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: var(--color-bg);
+    /* Background handled by AnimatedBackground component */
+    background: transparent;
+    position: relative;
+    z-index: 1;
 }
 
 /* Navigation */

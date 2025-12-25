@@ -27,15 +27,15 @@ const GlassCard: React.FC<{
             whileHover={hoverEffect ? { y: -6, scale: 1.01 } : {}}
             transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             style={{
-                background: 'linear-gradient(135deg, rgba(15, 31, 23, 0.8) 0%, rgba(10, 15, 10, 0.9) 100%)',
-                backdropFilter: 'blur(20px)',
-                border: `1px solid ${isHovered ? 'rgba(0, 255, 136, 0.4)' : 'rgba(0, 255, 136, 0.12)'}`,
+                background: 'linear-gradient(135deg, rgba(25, 40, 38, 0.75) 0%, rgba(18, 32, 30, 0.85) 100%)',
+                backdropFilter: 'blur(20px) brightness(1.2) saturate(1.3)',
+                border: `1px solid ${isHovered ? 'rgba(0, 212, 255, 0.45)' : 'rgba(0, 212, 255, 0.15)'}`,
                 borderRadius: '20px',
                 padding: '2rem',
                 position: 'relative',
                 overflow: 'hidden',
                 boxShadow: isHovered
-                    ? '0 0 40px rgba(0, 255, 136, 0.15), 0 20px 60px rgba(0, 0, 0, 0.4)'
+                    ? '0 0 40px rgba(0, 255, 136, 0.12), 0 0 60px rgba(0, 212, 255, 0.1), 0 20px 60px rgba(0, 0, 0, 0.4)'
                     : '0 10px 40px rgba(0, 0, 0, 0.3)',
                 transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
                 ...style
@@ -48,11 +48,26 @@ const GlassCard: React.FC<{
                 left: '10%',
                 right: '10%',
                 height: '1px',
-                background: 'linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.5), transparent)',
+                background: 'linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.4), rgba(0, 212, 255, 0.5), transparent)',
                 opacity: isHovered ? 1 : 0,
                 transition: 'opacity 0.4s ease'
             }} />
-            {children}
+
+            {/* Glass Highlight - Glossy Effect */}
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '15%',
+                background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, transparent 100%)',
+                borderRadius: '20px 20px 0 0',
+                pointerEvents: 'none',
+                zIndex: 0
+            }} />
+            <div style={{ position: 'relative', zIndex: 1 }}>
+                {children}
+            </div>
         </motion.div>
     );
 };
@@ -721,7 +736,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 style={{
                     padding: isMobile ? '5rem 1rem' : '6rem 2rem',
-                    background: 'linear-gradient(to bottom, var(--color-bg) 0%, rgba(10, 15, 10, 0.5) 100%)',
+                    background: 'transparent',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -818,7 +833,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 style={{
                     padding: isMobile ? '5rem 1rem' : '6rem 2rem',
-                    background: 'var(--color-bg)',
+                    background: 'transparent',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
@@ -976,7 +991,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 style={{
                     padding: isMobile ? '5rem 1rem' : '10rem 2rem',
-                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-elevated) 100%)',
+                    background: 'transparent',
                     display: 'flex',
                     justifyContent: 'center'
                 }}
@@ -1066,7 +1081,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 style={{
                     padding: isMobile ? '5rem 1rem' : '10rem 2rem',
-                    background: 'var(--color-bg)',
+                    background: 'transparent',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
@@ -1320,7 +1335,7 @@ const Home: React.FC = () => {
                         letterSpacing: '0.15em',
                         marginBottom: isMobile ? '2rem' : '4rem'
                     }}>
-                        The Arena Without Law
+                        The Arena Without Rules
                     </p>
 
                     <p style={{
@@ -1476,7 +1491,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 style={{
                     padding: isMobile ? '5rem 0' : '10rem 2rem',
-                    background: 'var(--color-bg)',
+                    background: 'transparent',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
@@ -1547,7 +1562,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 style={{
                     padding: isMobile ? '5rem 0' : '10rem 2rem',
-                    background: 'linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 100%)',
+                    background: 'transparent',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'

@@ -204,7 +204,7 @@ const RobulusRegister: React.FC = () => {
                         fontWeight: 300,
                         letterSpacing: '-0.01em'
                     }}>
-                        The first milestone is a proof of concept: 100 accepted Memorandums of Intent from people ready to build and send their Robulus to the future technopark.
+                        We are accepting Memorandums of Intent from people who want to participate and plan to build and send a Robulus when the technopark territory opens.
                     </p>
                 </div>
 
@@ -228,7 +228,7 @@ const RobulusRegister: React.FC = () => {
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
                     }}>
-                        PROOF-OF-CONCEPT PROGRESS
+                        MEMORANDUMS OF INTENT PROGRESS
                     </h2>
                     <div style={{
                         background: 'rgba(0, 0, 0, 0.3)',
