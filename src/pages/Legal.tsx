@@ -1,6 +1,7 @@
 import React from 'react';
 import CursorGlow from '../components/CursorGlow';
 import PageTitle from '../components/PageTitle';
+import AnimatedBackground from '../components/AnimatedBackground';
 
 const Legal: React.FC = () => {
     return (
@@ -12,6 +13,7 @@ const Legal: React.FC = () => {
             color: 'var(--color-text)'
         }}>
             <PageTitle title="Legal - JUVANTIA" />
+            <AnimatedBackground />
             <CursorGlow size={350} opacity={0.12} />
 
             <div style={{

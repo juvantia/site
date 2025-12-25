@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import CursorGlow from '../components/CursorGlow';
+import AnimatedBackground from '../components/AnimatedBackground';
 
 // --- Reusable Components ---
 
@@ -548,6 +549,7 @@ const Home: React.FC = () => {
     return (
         <>
             <PageTitle title="JUVANTIA Technopark" />
+            <AnimatedBackground />
             {/* Cursor Glow Effect */}
             <CursorGlow size={350} opacity={0.12} />
 

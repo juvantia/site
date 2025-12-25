@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CursorGlow from '../components/CursorGlow';
 import PageTitle from '../components/PageTitle';
+import AnimatedBackground from '../components/AnimatedBackground';
+import GlassCard from '../components/GlassCard';
 
 const Shelter: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -64,6 +66,7 @@ const Shelter: React.FC = () => {
             overflow: 'hidden'
         }}>
             <PageTitle title="Shelter - JUVANTIA" />
+            <AnimatedBackground />
             <CursorGlow size={350} opacity={0.12} />
 
             {/* Animated Background Elements */}
@@ -143,14 +146,9 @@ const Shelter: React.FC = () => {
                 </div>
 
                 {/* What is Domus Section */}
-                <div style={{
+                <GlassCard style={{
                     marginBottom: isMobile ? '4rem' : '6rem',
-                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
-                    backdropFilter: 'blur(20px)',
-                    padding: isMobile ? '2rem 1.25rem' : '4rem',
-                    borderRadius: isMobile ? '24px' : '32px',
-                    border: '1px solid rgba(0, 255, 136, 0.15)',
-                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
+                    padding: isMobile ? '2rem 1.25rem' : '4rem'
                 }}>
                     <h2 style={{
                         textAlign: 'center',
@@ -200,7 +198,7 @@ const Shelter: React.FC = () => {
                             </div>
                         ))}
                     </div>
-                </div>
+                </GlassCard>
 
                 {/* Primary Purpose Section */}
                 <div style={{
@@ -813,7 +811,7 @@ const Shelter: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

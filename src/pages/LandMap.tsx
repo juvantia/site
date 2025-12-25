@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import CursorGlow from '../components/CursorGlow';
 import PageTitle from '../components/PageTitle';
+import AnimatedBackground from '../components/AnimatedBackground';
 
 // --- LEAFLET MAP CONFIGURATION ---
 
@@ -171,6 +172,7 @@ const LandMap: React.FC = () => {
             position: 'relative'
         }}>
             <PageTitle title="Land Map - JUVANTIA" />
+            <AnimatedBackground />
             <CursorGlow size={350} opacity={0.12} />
 
             {/* --- SECTION 1: EUROPE MAP (SQUARE) --- */}

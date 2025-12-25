@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { API_BASE_URL } from '../config/api';
 import CursorGlow from '../components/CursorGlow';
 import PageTitle from '../components/PageTitle';
+import AnimatedBackground from '../components/AnimatedBackground';
 
 // ... (existing imports)
 
@@ -175,7 +176,7 @@ const Tech: React.FC = () => {
             overflow: 'hidden'
         }}>
             <PageTitle title="Technology Stack - JUVANTIA" />
-
+            <AnimatedBackground />
             <CursorGlow />
 
             {/* Hide resize handles */}

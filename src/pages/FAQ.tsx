@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import PageTitle from '../components/PageTitle';
 import CursorGlow from '../components/CursorGlow';
 import { motion } from 'framer-motion';
+import AnimatedBackground from '../components/AnimatedBackground';
 
 const FAQ: React.FC = () => {
     const location = useLocation();
@@ -96,6 +97,7 @@ const FAQ: React.FC = () => {
             color: 'white'
         }}>
             <PageTitle title="FAQ - JUVANTIA" />
+            <AnimatedBackground />
             <CursorGlow />
 
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>

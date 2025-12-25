@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CursorGlow from '../components/CursorGlow';
 import PageTitle from '../components/PageTitle';
+import AnimatedBackground from '../components/AnimatedBackground';
+import GlassCard from '../components/GlassCard';
 
 const SmartContract: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -65,6 +67,7 @@ const SmartContract: React.FC = () => {
             overflow: 'hidden'
         }}>
             <PageTitle title="Smart Contract - JUVANTIA" />
+            <AnimatedBackground />
             <CursorGlow size={350} opacity={0.12} />
 
             {/* Animated Background Elements */}
@@ -147,14 +150,9 @@ const SmartContract: React.FC = () => {
                 </div>
 
                 {/* Introduction Section */}
-                <div style={{
+                <GlassCard style={{
                     marginBottom: isMobile ? '4rem' : '6rem',
-                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
-                    backdropFilter: 'blur(20px)',
-                    padding: isMobile ? '2rem 1.25rem' : '4rem',
-                    borderRadius: isMobile ? '24px' : '32px',
-                    border: '1px solid rgba(0, 255, 136, 0.15)',
-                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
+                    padding: isMobile ? '2rem 1.25rem' : '4rem'
                 }}>
                     <h2 style={{
                         textAlign: 'center',
@@ -286,17 +284,12 @@ const SmartContract: React.FC = () => {
                             But if we want to build a real economy where participants can <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>recover costs and sustain their Remote Assets through useful activity</span>, we use euro-pegged stablecoins and a neutral monetary framework — not an in-game “currency.”
                         </p>
                     </div>
-                </div>
+                </GlassCard>
 
                 {/* Comparison Table */}
-                <div style={{
+                <GlassCard style={{
                     marginBottom: isMobile ? '4rem' : '6rem',
-                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
-                    backdropFilter: 'blur(20px)',
                     padding: isMobile ? '2rem 1.25rem' : '3rem 2rem',
-                    borderRadius: isMobile ? '24px' : '32px',
-                    border: '1px solid rgba(0, 255, 136, 0.15)',
-                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
                     overflowX: isMobile ? 'visible' : 'auto'
                 }}>
                     <h2 style={{
@@ -513,18 +506,11 @@ const SmartContract: React.FC = () => {
                             </table>
                         </div>
                     )}
-                </div>
-
-
+                </GlassCard>
 
                 {/* Conclusion Section */}
-                <div style={{
-                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
-                    backdropFilter: 'blur(20px)',
+                <GlassCard style={{
                     padding: isMobile ? '2rem 1.25rem' : '4rem',
-                    borderRadius: isMobile ? '24px' : '32px',
-                    border: '1px solid rgba(0, 255, 136, 0.15)',
-                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
                     textAlign: 'center'
                 }}>
                     <h2 style={{
@@ -565,9 +551,9 @@ const SmartContract: React.FC = () => {
                             Blockchain enables JUVANTIA to become not just a game, but a living, breathing economy where real value is created, traded, and earned through the labor of autonomous Robulus units.
                         </p>
                     </div>
-                </div>
+                </GlassCard>
             </div>
-        </div>
+        </div >
     );
 };
 

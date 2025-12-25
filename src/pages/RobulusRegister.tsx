@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../config/api';
 import CursorGlow from '../components/CursorGlow';
 import PageTitle from '../components/PageTitle';
+import AnimatedBackground from '../components/AnimatedBackground';
+import GlassCard from '../components/GlassCard';
 
 const RobulusRegister: React.FC = () => {
     // ... (state hooks)
@@ -104,6 +106,7 @@ const RobulusRegister: React.FC = () => {
             overflow: 'hidden'
         }}>
             <PageTitle title="Robulus Register - JUVANTIA" />
+            <AnimatedBackground />
             <CursorGlow size={350} opacity={0.12} />
 
             {/* Animated Background Elements */}
@@ -209,14 +212,9 @@ const RobulusRegister: React.FC = () => {
                 </div>
 
                 {/* Progress Section */}
-                <div style={{
+                <GlassCard style={{
                     marginBottom: isMobile ? '4rem' : '6rem',
-                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
-                    backdropFilter: 'blur(20px)',
-                    padding: isMobile ? '2rem 1.25rem' : '3rem',
-                    borderRadius: isMobile ? '24px' : '28px',
-                    border: '1px solid rgba(0, 255, 136, 0.15)',
-                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
+                    padding: isMobile ? '2rem 1.25rem' : '3rem'
                 }}>
                     <h2 style={{
                         marginBottom: isMobile ? '1.5rem' : '2rem',
@@ -277,7 +275,7 @@ const RobulusRegister: React.FC = () => {
                         <span>Started</span>
                         <span>{progress.toFixed(1)}% Complete</span>
                     </div>
-                </div>
+                </GlassCard>
 
                 {/* Steps Section */}
                 <div style={{ marginBottom: isMobile ? '4rem' : '6rem' }}>
@@ -429,15 +427,10 @@ const RobulusRegister: React.FC = () => {
 
 
                 {/* Memorandum Form */}
-                <div style={{
-                    background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%)',
-                    backdropFilter: 'blur(20px)',
-                    padding: isMobile ? '2rem 1.25rem' : '3rem',
-                    borderRadius: isMobile ? '24px' : '28px',
-                    border: '1px solid rgba(0, 255, 136, 0.15)',
+                <GlassCard style={{
                     maxWidth: '800px',
                     margin: '0 auto',
-                    boxShadow: '0 30px 80px rgba(0, 0, 0, 0.4)'
+                    padding: isMobile ? '2rem 1.25rem' : '3rem'
                 }}>
                     <h2 style={{
                         textAlign: 'center',
@@ -824,7 +817,7 @@ const RobulusRegister: React.FC = () => {
                             </div>
                         </form>
                     )}
-                </div>
+                </GlassCard>
             </div>
 
             <style>
@@ -840,7 +833,7 @@ const RobulusRegister: React.FC = () => {
                     }
                 `}
             </style>
-        </div>
+        </div >
     );
 };
 
