@@ -738,7 +738,7 @@ const Home: React.FC = () => {
                                 margin: 0,
                                 textShadow: '0 0 30px rgba(0, 255, 136, 0.3)'
                             }}>
-                                A Teleoperated Mini-Robot Park with a self-contained internal economy.
+                                A Persistent Teleoperated Rover Technopark powered by a Role-based Economy.
 
 
                             </p>
