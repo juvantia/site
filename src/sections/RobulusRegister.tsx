@@ -71,7 +71,7 @@ const RobulusRegister: React.FC = () => {
                     you can find assembly help from enthusiasts at <a href="https://marketplace.juvantia.org" style={{ color: '#00FF88', textDecoration: 'none' }}>marketplace.juvantia.org</a>.
                 </>
             ),
-            tip: 'The easiest tool to start with is 3D Sharp — intuitive enough to get a printable model on day one.',
+            tip: 'The easiest tool to start with is 3D Sharp — intuitive enough to get a printable model within the first weeks.',
             images: [{ src: '/images/3D.png', alt: '3D model example' }],
             accent: '#00FF88' as const,
         },

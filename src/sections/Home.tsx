@@ -995,7 +995,7 @@ const Home: React.FC = () => {
                                 lineHeight: 1.8,
                                 fontWeight: 300
                             }}>
-                                A vast, engineered environment designed to support complex logistics, territorial interests, and the concurrent operation of hundreds of rovers.
+                                A vast, engineered environment designed to support complex logistics, territorial interests, and the concurrent operation of thousands of rovers.
                             </p>
                             {/* Bottom accent bar */}
                             <div style={{

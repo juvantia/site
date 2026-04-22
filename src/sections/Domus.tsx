@@ -300,7 +300,7 @@ const Domus: React.FC = () => {
                     <FeatureCard
                         icon="◈"
                         title="Connected to the City Grid"
-                        text="Receive 12V from the city grid and get billed for every watt consumed. Full metering, transparent settlement, on-chain records."
+                        text="Receive 12V from the city grid and get billed for every watt consumed. Full metering, transparent settlement."
                         accent="#00FF88"
                         delay={0.2}
                     />
