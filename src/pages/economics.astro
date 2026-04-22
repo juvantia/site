@@ -1,0 +1,16 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Economics from '../sections/Economics';
+import AnimatedBackground from '../components/AnimatedBackground';
+---
+
+<MainLayout
+  title="Economics — JUVANTIA"
+  description="The Juvantia economy is built on transparency, ownership rights, and the concept of programmable money. Pure market mechanisms for your Robulus."
+  ogImage="https://juvantia.org/images/economics.png"
+>
+  <AnimatedBackground client:only="react" />
+  <div style="position: relative; z-index: 1;">
+    <Economics client:only="react" />
+  </div>
+</MainLayout>

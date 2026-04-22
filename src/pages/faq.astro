@@ -1,0 +1,13 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import FAQSection from '../sections/FAQ';
+import AnimatedBackground from '../components/AnimatedBackground';
+---
+
+<MainLayout
+  title="FAQ — JUVANTIA"
+  description="Frequently asked questions about the JUVANTIA park: who it's for, costs, Robulus specs, shipping, shelter options, and more."
+>
+  <AnimatedBackground client:only="react" />
+  <FAQSection client:load />
+</MainLayout>

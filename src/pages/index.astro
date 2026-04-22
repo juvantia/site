@@ -1,0 +1,14 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import HomeSection from '../sections/Home';
+import AnimatedBackground from '../components/AnimatedBackground';
+---
+
+<MainLayout
+  title="JUVANTIA — Teleoperated Rover Technopark"
+  description="A Persistent Teleoperated Rover Technopark
+powered by a Role-based Economy."
+>
+  <AnimatedBackground client:only="react" />
+  <HomeSection client:load />
+</MainLayout>

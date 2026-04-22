@@ -1,0 +1,963 @@
+---
+import '../styles/global.css';
+import '../components/Layout.module.css';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'A persistent teleoperated rover technopark powered by a role-based economy. Build, ship and control your Robulus remotely inside a real outdoor park.',
+  ogImage = 'https://juvantia.org/images/hero_city.png',
+} = Astro.props;
+
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const navItems = [
+  { path: '/robulus', label: 'Robulus' },
+  { path: '/domus', label: 'Domus' },
+  { path: '/economics', label: 'Economics' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={`https://juvantia.org${pathname === '/' ? '' : pathname}`} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://juvantia.org${pathname}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0a0f0a" />
+    <ClientRouter />
+  </head>
+
+  <body>
+    <div class="layout-container">
+
+      <!-- Desktop Navigation -->
+      <nav class="layout-nav">
+        <a href="/" class={`layout-logo-container${pathname === '/' ? ' layout-logo-active' : ''}`} aria-label="Juvantia Home">
+          <img src="/images/logo.svg" alt="Juvantia" class="layout-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+          <span class="logo-fallback" style="display: none;">J</span>
+        </a>
+
+        <div class="layout-nav-content">
+          {navItems.map(item => (
+            <a
+              href={item.path}
+              class={`layout-link${pathname === item.path ? ' layout-link-active' : ''}`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+
+        <a
+          href="https://city.juvantia.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="layout-enter-city-btn"
+          aria-label="Enter Juvantia City"
+        >
+          Enter City
+        </a>
+      </nav>
+
+      <!-- Page Content -->
+      <main class="layout-main">
+        <slot />
+      </main>
+
+      <!-- Footer -->
+      <footer class="layout-footer">
+
+        <!-- Animated top border -->
+        <div class="layout-footer-top-line"></div>
+
+        <div class="layout-footer-body">
+
+          <!-- Left: Logo + Social + Contact -->
+          <div class="layout-footer-left">
+            <a href="/" aria-label="Juvantia Home" class="layout-footer-logo-wrap">
+              <img src="/images/logo.svg" alt="Juvantia" class="layout-footer-logo" />
+              <span class="layout-footer-wordmark">JUVANTIA</span>
+            </a>
+            
+            <div class="layout-footer-social-wrap">
+              <div class="layout-footer-social">
+                <a href="https://x.com/juvantia_org" target="_blank" rel="noopener noreferrer" class="layout-footer-social-link social-x" aria-label="X / Twitter">
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="layout-footer-social-icon"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.629L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                </a>
+                <a href="https://www.youtube.com/@juvantia" target="_blank" rel="noopener noreferrer" class="layout-footer-social-link social-youtube" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="layout-footer-social-icon"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+                </a>
+                <a href="https://www.reddit.com/r/juvantia/" target="_blank" rel="noopener noreferrer" class="layout-footer-social-link social-reddit" aria-label="Reddit">
+                  <img src="/reddit.svg" alt="Reddit" class="layout-footer-social-icon" />
+                  <div class="reddit-tooltip">
+                    Our subreddit has been banned for reasons unknown to us. Appeals have been unsuccessful. If you can help us resolve this, please contact us.
+                  </div>
+                </a>
+                <a href="https://github.com/juvantia" target="_blank" rel="noopener noreferrer" class="layout-footer-social-link social-github" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="layout-footer-social-icon"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+                </a>
+                <button id="footer-contact-trigger" class="layout-footer-social-link" aria-label="Contact Email">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="layout-footer-social-icon mail-icon"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="layout-footer-system-links">
+              <a href="/faq" class="layout-footer-system-link">
+                <span class="system-link-dot"></span>
+                <span class="system-link-text">FAQ</span>
+              </a>
+              <a href="/legal" class="layout-footer-system-link">
+                <span class="system-link-dot"></span>
+                <span class="system-link-text">Legal</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Gateways + Copyright -->
+          <div class="layout-footer-right">
+            <div class="layout-footer-gateways">
+              <a href="https://tabularium.juvantia.org" target="_blank" rel="noopener noreferrer" class="layout-footer-gateway">
+                <div class="layout-footer-gateway-corner tl"></div>
+                <div class="layout-footer-gateway-corner tr"></div>
+                <div class="layout-footer-gateway-corner bl"></div>
+                <div class="layout-footer-gateway-corner br"></div>
+                <span class="layout-footer-gateway-name">Tabularium</span>
+                <span class="layout-footer-gateway-desc">Official documentation of the Juvantia world</span>
+                <span class="layout-footer-gateway-arrow">↗</span>
+              </a>
+              <a href="https://forum.juvantia.org" target="_blank" rel="noopener noreferrer" class="layout-footer-gateway">
+                <div class="layout-footer-gateway-corner tl"></div>
+                <div class="layout-footer-gateway-corner tr"></div>
+                <div class="layout-footer-gateway-corner bl"></div>
+                <div class="layout-footer-gateway-corner br"></div>
+                <span class="layout-footer-gateway-name">Forum</span>
+                <span class="layout-footer-gateway-desc">The primary hub for Juvantia world discussions</span>
+                <span class="layout-footer-gateway-arrow">↗</span>
+              </a>
+            </div>
+
+            <div class="layout-footer-copyright-wrap">
+              <span class="layout-footer-copyright">© 2026 Juvantia Foundation</span>
+            </div>
+          </div>
+
+        </div>
+
+      </footer>
+
+      <script is:inline>
+        const initContact = () => {
+          document.getElementById('footer-contact-trigger')?.addEventListener('click', () => {
+            const u = 'info';
+            const d = 'juvantia.org';
+            window.location.href = `mailto:${u}@${d}`;
+          });
+        };
+
+        initContact();
+        document.addEventListener('astro:page-load', initContact);
+      </script>
+
+      <!-- Mobile Float Bar -->
+      <nav class="layout-float-bar" aria-label="Mobile navigation">
+        <a href="/" class="layout-mobile-logo-container" aria-label="Home">
+          <img src="/images/logo.svg" alt="Juvantia" class="layout-mobile-logo" />
+        </a>
+        <div class="layout-float-bar-scroll">
+          {navItems.map(item => (
+            <a
+              href={item.path}
+              class={`layout-float-bar-link${pathname === item.path ? ' layout-float-bar-link-active' : ''}`}
+            >
+              {item.label}
+            </a>
+          ))}
+      </nav>
+
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  /* Layout container */
+  .layout-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Desktop Nav */
+  .layout-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    background: rgba(10, 15, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .layout-nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0, 255, 136, 0.3) 20%,
+      rgba(0, 212, 255, 0.3) 50%,
+      rgba(0, 255, 136, 0.3) 80%,
+      transparent 100%);
+  }
+
+  .layout-nav-content {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .layout-logo-container {
+    position: absolute;
+    left: 2rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .layout-logo {
+    height: 44px;
+    width: auto;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.4));
+    transition: filter 0.3s ease;
+  }
+
+  .layout-logo:hover {
+    filter: drop-shadow(0 0 16px rgba(0, 255, 136, 0.7));
+  }
+
+  .layout-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .layout-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary, #00ff88), var(--color-secondary, #00d4ff));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .layout-link:hover { color: #fff; }
+  .layout-link:hover::after { transform: scaleX(1); }
+
+  .layout-link-active { color: #00ff88 !important; }
+  .layout-link-active::after { transform: scaleX(1) !important; }
+
+  /* Desktop Button Positioning & Style Fallback */
+  .layout-enter-city-btn {
+    position: absolute;
+    right: 2rem;
+    white-space: nowrap;
+    text-decoration: none;
+    /* Manual fallback for Neon Architect Style */
+    background: rgba(0, 255, 136, 0.1);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.5);
+    font-family: 'Space Grotesk', sans-serif;
+    outline: none;
+  }
+
+  .layout-enter-city-btn:hover {
+    background: #00ff88;
+    color: #003919;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+  }
+
+
+  /* Main content */
+  .layout-main {
+    flex: 1;
+    padding-top: 80px;
+    padding-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── FOOTER ── */
+  .layout-footer {
+    background: #030705;
+    border-top: none;
+    padding: 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .layout-footer-top-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0,255,136,0.08) 20%,
+      rgba(0,212,255,0.35) 50%,
+      rgba(0,255,136,0.08) 80%,
+      transparent 100%
+    );
+    margin-bottom: 0;
+  }
+
+  .layout-footer-body {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 8rem;
+    padding: 4rem 3rem 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 1100px) {
+    .layout-footer-body { gap: 4rem; }
+  }
+
+  @media (max-width: 900px) {
+    .layout-footer-body { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 2rem; }
+  }
+  @media (max-width: 640px) {
+    .layout-footer-body { gap: 2rem; padding: 2.5rem 1.5rem 1.5rem; }
+  }
+
+  /* Left: logo + social */
+  .layout-footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .layout-footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+  }
+
+  .layout-footer-logo {
+    height: 38px;
+    width: auto;
+    filter: drop-shadow(0 0 8px rgba(0,255,136,0.4));
+    transition: filter 0.3s;
+  }
+  .layout-footer-logo-wrap:hover .layout-footer-logo {
+    filter: drop-shadow(0 0 16px rgba(0,255,136,0.7));
+  }
+
+  .layout-footer-wordmark {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    background: linear-gradient(135deg, #00FF88 0%, #dfe4e1 55%, #00D4FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .layout-footer-social-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .layout-footer-social {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .layout-footer-social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    color: inherit;
+  }
+
+  .layout-footer-social-link:hover {
+    border-color: rgba(0,255,136,0.45);
+    background: rgba(0,255,136,0.08);
+    box-shadow: 0 0 15px rgba(0,255,136,0.15);
+    transform: translateY(-3px);
+  }
+
+  /* Specific Social Hovers */
+  .social-x:hover {
+    border-color: rgba(0, 255, 136, 0.3) !important;
+  }
+  .social-x:hover .layout-footer-social-icon {
+    color: #00FF88 !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .social-youtube:hover {
+    border-color: rgba(0, 255, 136, 0.3) !important;
+  }
+  .social-youtube:hover .layout-footer-social-icon {
+    color: #00FF88 !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .social-github:hover {
+    border-color: rgba(0,255,136,0.3) !important;
+  }
+  .social-github:hover .layout-footer-social-icon {
+    color: #00FF88 !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .social-reddit:hover {
+    border-color: rgba(0,255,136,0.3) !important;
+  }
+  .social-reddit:hover .layout-footer-social-icon {
+    filter: brightness(0) saturate(100%) invert(68%) sepia(72%) saturate(400%) hue-rotate(90deg) !important;
+    opacity: 1 !important;
+  }
+
+  .layout-footer-social-icon {
+    width: 17px;
+    height: 17px;
+    opacity: 0.4;
+    filter: brightness(0) invert(1);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+
+  /* Reddit Tooltip */
+  .social-reddit {
+    position: relative;
+  }
+
+  .reddit-tooltip {
+    position: absolute;
+    bottom: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    width: 240px;
+    padding: 1rem;
+    background: rgba(10, 15, 12, 0.98);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(255,71,87,0.05);
+    z-index: 100;
+  }
+
+  .reddit-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: rgba(255, 71, 87, 0.3);
+  }
+
+  @media (min-width: 901px) {
+    .social-reddit:hover .reddit-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .reddit-tooltip {
+      display: none;
+    }
+  }
+
+  .mail-icon {
+    stroke-width: 1.8;
+  }
+
+  .layout-footer-social-link:hover .layout-footer-social-icon {
+    opacity: 1;
+    filter: none;
+  }
+
+  #footer-contact-trigger:hover .layout-footer-social-icon {
+    color: #00FF88;
+  }
+
+  /* Center/Right column */
+  .layout-footer-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .layout-footer-right {
+      align-items: center;
+      gap: 1.25rem;
+    }
+  }
+
+  /* System Links (FAQ / Legal) */
+  .layout-footer-system-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+    padding-left: 0.25rem;
+  }
+
+  .layout-footer-system-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+  }
+
+  .system-link-dot {
+    width: 4px;
+    height: 1px;
+    background: rgba(0, 255, 136, 0.4);
+    transition: all 0.4s ease;
+  }
+
+  .layout-footer-system-link:hover .system-link-dot {
+    width: 12px;
+    background: #00FF88;
+    box-shadow: 0 0 8px #00FF88;
+  }
+
+  .system-link-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.25);
+    transition: all 0.3s ease;
+  }
+
+  .layout-footer-system-link:hover .system-link-text {
+    color: #fff;
+    letter-spacing: 0.3em;
+  }
+
+  .layout-footer-copyright-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .layout-footer-copyright-wrap {
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .layout-footer-copyright {
+    font-family: 'Space Grotesk', sans-serif;
+    color: rgba(255,255,255,0.15);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Center: Gateway cards */
+  .layout-footer-gateways {
+    display: flex;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  @media (max-width: 640px) {
+    .layout-footer-gateways { flex-direction: column; }
+  }
+
+  .layout-footer-gateway {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    padding: 1.25rem 1.25rem;
+    border: 1px solid rgba(0,255,136,0.08);
+    background: rgba(0,255,136,0.015);
+    text-decoration: none;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    min-height: 80px;
+  }
+
+  .layout-footer-gateway::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,255,136,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .layout-footer-gateway:hover {
+    border-color: rgba(0,255,136,0.3);
+    background: rgba(0,255,136,0.03);
+    box-shadow: 
+      0 12px 40px rgba(0,255,136,0.06), 
+      inset 0 0 30px rgba(0,255,136,0.02);
+    transform: translateY(-5px);
+  }
+
+  .layout-footer-gateway:hover::before { opacity: 1; }
+
+  /* Scanner corners on gateway */
+  .layout-footer-gateway-corner {
+    position: absolute;
+    width: 12px; height: 12px;
+    border-color: rgba(0,255,136,0.2);
+    border-style: solid;
+    border-width: 0;
+    transition: all 0.4s ease;
+  }
+  .layout-footer-gateway:hover .layout-footer-gateway-corner { 
+    border-color: rgba(0,255,136,0.8);
+    width: 16px; height: 16px;
+  }
+  .layout-footer-gateway-corner.tl { top: 12px; left: 12px; border-top-width: 1.5px; border-left-width: 1.5px; }
+  .layout-footer-gateway-corner.tr { top: 12px; right: 12px; border-top-width: 1.5px; border-right-width: 1.5px; }
+  .layout-footer-gateway-corner.bl { bottom: 12px; left: 12px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+  .layout-footer-gateway-corner.br { bottom: 12px; right: 12px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+  .layout-footer-gateway-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    color: rgba(0,255,136,0.3);
+    text-transform: uppercase;
+    position: absolute;
+    top: 1.25rem;
+    left: 1.5rem;
+  }
+
+  .layout-footer-gateway-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: rgba(223,228,225,0.85);
+    line-height: 1;
+    transition: color 0.3s;
+    text-transform: uppercase;
+  }
+  .layout-footer-gateway:hover .layout-footer-gateway-name { color: #fff; }
+
+  .layout-footer-gateway-desc {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .layout-footer-gateway-arrow {
+    position: absolute;
+    top: 1.25rem; right: 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(0,255,136,0.2);
+    transition: all 0.4s;
+  }
+  .layout-footer-gateway:hover .layout-footer-gateway-arrow {
+    color: #00FF88;
+    transform: translate(3px, -3px);
+  }
+
+  /* Bottom bar */
+  .layout-footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  @media (max-width: 640px) {
+    .layout-footer-bottom { 
+      padding: 2rem 1.5rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 1.5rem;
+    }
+  }
+
+  .layout-footer-copyright {
+    font-family: 'Space Grotesk', sans-serif;
+    color: rgba(255,255,255,0.15);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .copyright-sep {
+    margin: 0 0.5rem;
+    opacity: 0.2;
+  }
+
+  .layout-footer-bottom-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .layout-footer-bottom-dots span {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: rgba(0,255,136,0.15);
+  }
+
+  /* System Status */
+  .layout-footer-status {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.75rem;
+    background: rgba(0, 255, 136, 0.02);
+    border: 1px solid rgba(0, 255, 136, 0.08);
+    border-radius: 2px;
+  }
+
+  .status-indicator {
+    width: 5px;
+    height: 5px;
+    background: #00FF88;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+    animation: status-blink 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes status-blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+  }
+
+  .status-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0, 255, 136, 0.7);
+  }
+
+
+  /* Mobile Float Bar */
+  .layout-float-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
+    background: rgba(10, 15, 10, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 255, 136, 0.15);
+    z-index: 1000;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .layout-float-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(0, 255, 136, 0.4) 50%, 
+      transparent 100%);
+  }
+
+  .layout-mobile-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem 0 1.25rem;
+    height: 100%;
+    border-right: 1px solid rgba(0, 255, 136, 0.1);
+    flex-shrink: 0;
+  }
+
+  .layout-mobile-logo {
+    height: 32px;
+    width: auto;
+    filter: drop-shadow(0 0 8px rgba(0,255,136,0.3));
+    transition: filter 0.3s ease;
+  }
+
+  .layout-float-bar-scroll {
+    display: flex;
+    gap: 0.25rem;
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0 0.25rem;
+  }
+
+  .layout-float-bar-scroll::-webkit-scrollbar { display: none; }
+
+  .layout-float-bar-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-family: 'Cinzel', serif !important;
+    font-size: 0.8rem;
+    font-weight: 400 !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.25rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    position: relative;
+    min-width: 75px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .layout-float-bar-link:hover,
+  .layout-float-bar-link-active {
+    color: #33FFB5;
+    text-shadow: 0 0 5px rgba(51, 255, 181, 0.3);
+  }
+
+  .layout-float-bar-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary, #00ff88), var(--color-secondary, #00d4ff));
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  }
+
+  .layout-float-bar-link-active::after {
+    width: 80%;
+  }
+
+
+  @media (max-width: 768px) {
+    .layout-nav { 
+      display: flex; 
+      justify-content: flex-end; 
+      padding: 2.5rem 1.5rem 0 0 !important; 
+      height: auto !important;
+      min-height: 0 !important;
+      border-bottom: none !important; 
+      background: transparent !important; 
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      pointer-events: none !important; 
+      position: fixed !important;
+      top: 0 !important; left: 0 !important; right: 0 !important;
+    }
+    .layout-nav > * { pointer-events: auto !important; }
+    .layout-nav::after { display: none !important; }
+    .layout-logo-container { display: none !important; }
+    .layout-nav-content { display: none !important; }
+    .layout-float-bar { 
+      display: flex; 
+      align-items: center;
+      padding: 0 0.5rem;
+      gap: 0.25rem;
+    }
+    .layout-main { 
+      padding-top: 0; 
+      padding-bottom: calc(70px + env(safe-area-inset-bottom, 0)); 
+    }
+    .layout-footer { padding-bottom: 4rem; }
+  }
+</style>

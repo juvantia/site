@@ -1,0 +1,14 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import RobulusRegister from '../sections/RobulusRegister';
+import AnimatedBackground from '../components/AnimatedBackground';
+---
+
+<MainLayout
+  title="Robulus — JUVANTIA"
+  description="Robulus is a teleoperated mini-robot for the JUVANTIA park. Learn how to build, register and deploy your own Robulus into the open-air park."
+  ogImage="https://juvantia.org/images/ROBULUS.png"
+>
+  <AnimatedBackground client:only="react" />
+  <RobulusRegister client:load />
+</MainLayout>

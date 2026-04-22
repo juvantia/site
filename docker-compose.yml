@@ -2,14 +2,14 @@ version: '3.8'
 
 services:
   site:
-    image: ghcr.io/juvantia/site:latest
+    build: .
     container_name: site-service
     restart: always
     networks:
       - juvantia-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.site.rule=Host(`juvantia.org`)" # Update with your main domain
+      - "traefik.http.routers.site.rule=Host(`juvantia.org`) || Host(`www.juvantia.org`)"
       - "traefik.http.routers.site.entrypoints=websecure"
       - "traefik.http.routers.site.tls.certresolver=myresolver"
       - "traefik.http.services.site.loadbalancer.server.port=80"

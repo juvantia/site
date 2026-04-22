@@ -1,0 +1,245 @@
+nohup: ignoring input
+
+> site@0.0.0 dev
+> astro dev
+
+19:02:45 [types] Generated 1ms
+19:02:45 [content] Syncing content
+19:02:45 [content] Synced content
+
+ astro  v5.18.1 ready in 287 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:02:45 watching for file changes...
+19:02:46 [200] /economics 11ms
+19:03:54 [200] / 47ms
+19:03:56 [200] /robulus 15ms
+19:03:56 [200] /domus 22ms
+19:03:58 [200] /economics 2ms
+19:04:46 [200] /economics 5ms
+19:05:00 [200] /economics 3ms
+19:05:06 [200] /economics 3ms
+19:21:07 [watch] /src/sections/Economics.tsx
+19:46:27 [200] /economics 85ms
+19:47:29 [200] /domus 63ms
+19:47:30 [200] /economics 10ms
+19:52:22 [200] /domus 21ms
+19:52:28 [200] /economics 4ms
+19:52:37 [watch] /src/sections/Economics.tsx
+19:54:07 [watch] /src/sections/Economics.tsx
+19:56:58 [200] /economics 15ms
+20:05:36 [watch] /src/sections/Economics.tsx
+20:05:58 [200] /economics 7ms
+20:06:49 [watch] /src/sections/Economics.tsx
+20:08:30 [watch] /src/sections/Economics.tsx
+20:11:46 [200] /domus 28ms
+20:11:49 [200] /robulus 31ms
+20:11:51 [200] /domus 19ms
+20:11:53 [200] /economics 2ms
+20:11:56 [200] /domus 15ms
+20:11:59 [200] /economics 3ms
+20:12:01 [200] /domus 16ms
+20:12:07 [200] /economics 2ms
+20:12:11 [200] /domus 15ms
+20:12:48 [200] /economics 5ms
+20:13:20 [200] /domus 23ms
+20:13:23 [200] /economics 2ms
+20:13:33 [200] /economics 2ms
+20:13:52 [watch] /src/sections/Economics.tsx
+20:17:11 [200] /economics 9ms
+20:17:14 [200] /domus 18ms
+20:17:15 [200] /economics 2ms
+20:17:20 [200] /domus 17ms
+20:17:25 [200] /economics 2ms
+20:17:49 [200] /domus 19ms
+20:18:44 [200] /economics 3ms
+20:18:50 [watch] /src/sections/Economics.tsx
+20:19:01 [200] /economics 8ms
+20:20:08 [watch] /src/sections/Economics.tsx
+20:20:42 [200] /economics 5ms
+21:21:14 [watch] /src/sections/Economics.tsx
+21:22:24 [200] /economics 47ms
+21:23:18 [watch] /src/sections/Economics.tsx
+21:23:43 [watch] /src/sections/Economics.tsx
+21:34:45 [watch] /src/sections/Economics.tsx
+21:35:36 [200] /robulus 160ms
+21:36:20 [200] /robulus 27ms
+21:36:37 [200] /domus 23ms
+21:36:39 [200] /economics 5ms
+21:36:42 [200] /domus 20ms
+21:36:44 [200] /economics 3ms
+21:36:46 [200] /robulus 13ms
+21:36:47 [200] /economics 3ms
+21:36:58 [200] / 54ms
+21:37:15 [200] /robulus 18ms
+21:37:22 [200] /domus 21ms
+21:37:23 [200] /economics 2ms
+21:38:31 [200] /economics 7ms
+21:38:59 [watch] /src/sections/Economics.tsx
+21:41:18 [200] /economics 3ms
+21:45:02 [200] / 63ms
+21:52:52 [200] /robulus 48ms
+21:53:33 [200] /domus 36ms
+22:00:53 [200] /economics 4ms
+22:04:00 [200] / 91ms
+22:04:00 [200] / 58ms
+22:12:26 [watch] /src/sections/Home.tsx
+22:12:26 [watch] src/sections/Home.tsx
+22:52:04 [watch] /src/sections/Home.tsx
+22:52:04 [watch] src/sections/Home.tsx
+22:54:24 [200] / 29ms
+22:56:18 [watch] /src/sections/Home.tsx
+22:56:18 [watch] src/sections/Home.tsx
+22:57:01 [watch] /src/sections/Home.tsx
+22:57:01 [watch] src/sections/Home.tsx
+22:57:12 [200] / 15ms
+22:58:14 [watch] /src/sections/Home.tsx
+22:58:14 [watch] src/sections/Home.tsx
+23:00:14 [watch] /src/sections/Home.tsx
+23:00:14 [watch] src/sections/Home.tsx
+23:00:46 [200] / 15ms
+23:00:54 [watch] /src/sections/Home.tsx
+23:00:54 [watch] src/sections/Home.tsx
+23:04:36 [200] / 19ms
+23:20:23 [watch] /src/sections/Home.tsx
+23:20:23 [watch] src/sections/Home.tsx
+23:20:43 [watch] /src/layouts/MainLayout.astro?astro&type=style&index=0&lang.css
+23:20:43 [200] / 42ms
+23:20:57 [200] / 13ms
+23:21:06 [200] /domus 16ms
+23:22:32 [watch] /src/layouts/MainLayout.astro?astro&type=style&index=0&lang.css
+23:22:32 [watch] src/layouts/MainLayout.astro
+23:24:55 [200] / 67ms
+23:25:34 [watch] /src/layouts/MainLayout.astro?astro&type=style&index=0&lang.css
+23:25:34 [watch] src/layouts/MainLayout.astro
+23:26:38 [watch] /src/layouts/MainLayout.astro?astro&type=style&index=0&lang.css
+23:26:38 [watch] src/layouts/MainLayout.astro
+23:27:07 [200] / 20ms
+23:27:43 [watch] /src/layouts/MainLayout.astro?astro&type=style&index=0&lang.css
+23:27:43 [watch] src/layouts/MainLayout.astro
+23:27:50 [watch] /src/layouts/MainLayout.astro?astro&type=style&index=0&lang.css
+23:27:50 [watch] src/layouts/MainLayout.astro
+23:28:41 [200] / 20ms
+23:29:20 [watch] /src/sections/Home.tsx
+23:29:20 [watch] src/sections/Home.tsx
+23:29:36 [watch] /src/sections/Home.tsx
+23:29:36 [watch] src/sections/Home.tsx
+23:29:40 [watch] /src/sections/Home.tsx
+23:29:40 [watch] src/sections/Home.tsx
+23:29:44 [watch] /src/sections/Home.tsx
+23:29:44 [watch] src/sections/Home.tsx
+23:29:49 [200] / 14ms
+23:30:02 [watch] /src/sections/Home.tsx
+23:30:02 [watch] src/sections/Home.tsx
+23:30:07 [watch] /src/sections/Home.tsx
+23:30:07 [watch] src/sections/Home.tsx
+23:30:13 [watch] /src/sections/Home.tsx
+23:30:13 [watch] src/sections/Home.tsx
+23:30:16 [watch] /src/sections/Home.tsx
+23:30:16 [watch] src/sections/Home.tsx
+23:30:20 [watch] /src/sections/Home.tsx
+23:30:20 [watch] src/sections/Home.tsx
+23:30:27 [watch] /src/sections/Home.tsx
+23:30:27 [watch] src/sections/Home.tsx
+23:30:31 [watch] /src/sections/Home.tsx
+23:30:31 [watch] src/sections/Home.tsx
+23:30:34 [200] / 15ms
+23:30:46 [watch] /src/sections/Home.tsx
+23:30:46 [watch] src/sections/Home.tsx
+23:30:50 [watch] /src/sections/Home.tsx
+23:30:50 [watch] src/sections/Home.tsx
+23:30:55 [watch] /src/sections/Home.tsx
+23:30:55 [watch] src/sections/Home.tsx
+23:30:59 [200] / 18ms
+23:31:38 [watch] /src/sections/Home.tsx
+23:31:38 [watch] src/sections/Home.tsx
+23:31:53 [200] / 17ms
+23:32:40 [watch] /src/sections/Home.tsx
+23:32:40 [watch] src/sections/Home.tsx
+23:33:18 [watch] /src/sections/Home.tsx
+23:33:18 [watch] src/sections/Home.tsx
+23:34:46 [200] / 22ms
+23:36:00 [watch] /src/sections/Home.tsx
+23:36:00 [watch] src/sections/Home.tsx
+23:36:31 [200] / 16ms
+23:38:41 [200] / 26ms
+23:39:14 [200] /robulus 24ms
+23:39:17 [watch] /src/sections/Home.tsx
+23:39:17 [watch] src/sections/Home.tsx
+23:44:50 [200] / 35ms
+23:45:29 [watch] /src/sections/Home.tsx
+23:45:29 [watch] src/sections/Home.tsx
+23:45:44 [200] / 20ms
+23:46:42 [watch] /src/sections/Home.tsx
+23:46:42 [watch] src/sections/Home.tsx
+23:48:30 [200] / 19ms
+23:48:38 [200] / 13ms
+23:49:11 [watch] /src/sections/Home.tsx
+23:49:11 [watch] src/sections/Home.tsx
+23:49:41 [200] / 18ms
+23:49:45 [200] / 13ms
+23:51:36 [watch] /src/sections/Home.tsx
+23:51:36 [watch] src/sections/Home.tsx
+23:51:52 [200] / 21ms
+15:15:18 [200] / 1279ms
+15:38:00 [200] / 474ms
+15:46:36 [200] / 298ms
+15:51:17 [watch] /src/sections/Home.tsx
+15:51:17 [watch] src/sections/Home.tsx
+15:53:50 [watch] /src/sections/Home.tsx
+15:53:50 [watch] src/sections/Home.tsx
+15:55:53 [200] / 34ms
+15:56:19 [watch] /src/sections/Home.tsx
+15:56:19 [watch] src/sections/Home.tsx
+15:56:25 [watch] /src/sections/Home.tsx
+15:56:25 [watch] src/sections/Home.tsx
+15:56:27 [watch] /src/sections/Home.tsx
+15:56:27 [watch] src/sections/Home.tsx
+15:56:54 [watch] /src/sections/Home.tsx
+15:56:54 [watch] src/sections/Home.tsx
+15:56:58 [watch] /src/sections/Home.tsx
+15:56:58 [watch] src/sections/Home.tsx
+15:57:45 [watch] /src/sections/Home.tsx
+15:57:45 [watch] src/sections/Home.tsx
+15:58:06 [200] /robulus 16ms
+15:58:24 [200] /domus 18ms
+16:00:01 [watch] /src/sections/Domus.tsx
+16:00:01 [watch] src/sections/Domus.tsx
+16:04:43 [watch] /src/sections/Domus.tsx
+16:04:43 [watch] src/sections/Domus.tsx
+16:05:01 [watch] /src/sections/Domus.tsx
+16:05:01 [watch] src/sections/Domus.tsx
+16:06:32 [watch] /src/sections/Domus.tsx
+16:06:32 [watch] src/sections/Domus.tsx
+16:07:09 [watch] /src/sections/Domus.tsx
+16:07:09 [watch] src/sections/Domus.tsx
+16:07:25 [200] /domus 31ms
+16:11:21 [200] /economics 10ms
+16:16:00 [watch] /src/sections/Economics.tsx
+16:17:24 [200] /domus 43ms
+16:17:35 [200] /robulus 15ms
+16:33:42 [watch] /src/sections/RobulusRegister.tsx
+16:33:42 [watch] src/sections/RobulusRegister.tsx
+16:34:20 [watch] /src/sections/RobulusRegister.tsx
+16:34:20 [watch] src/sections/RobulusRegister.tsx
+16:35:57 [watch] /src/sections/RobulusRegister.tsx
+16:35:57 [watch] src/sections/RobulusRegister.tsx
+16:36:41 [200] /robulus 49ms
+16:41:39 [watch] /src/sections/RobulusRegister.tsx
+16:41:39 [watch] src/sections/RobulusRegister.tsx
+16:43:12 [watch] /src/sections/RobulusRegister.tsx
+16:43:12 [watch] src/sections/RobulusRegister.tsx
+16:48:46 [watch] /src/sections/RobulusRegister.tsx
+16:48:46 [watch] src/sections/RobulusRegister.tsx
+16:50:23 [watch] /src/sections/RobulusRegister.tsx
+16:50:23 [watch] src/sections/RobulusRegister.tsx
+16:52:00 [watch] /src/sections/RobulusRegister.tsx
+16:52:00 [watch] src/sections/RobulusRegister.tsx
+16:52:41 [watch] /src/sections/RobulusRegister.tsx
+16:52:41 [watch] src/sections/RobulusRegister.tsx
+16:53:19 [watch] /src/sections/RobulusRegister.tsx
+16:53:19 [watch] src/sections/RobulusRegister.tsx
+18:46:26 [200] /robulus 620ms
+18:52:33 [200] /robulus 1364ms
