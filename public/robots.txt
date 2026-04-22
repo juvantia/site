@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://juvantia.org/sitemap-index.xml
+Sitemap: https://juvantia.org/sitemap.xml

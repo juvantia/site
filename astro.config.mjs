@@ -5,7 +5,9 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://juvantia.org',
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap({
+    indexName: 'sitemap.xml'
+  })],
   output: 'static',
   compressHTML: true,
   build: {
