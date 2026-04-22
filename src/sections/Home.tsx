@@ -634,19 +634,20 @@ const Home: React.FC = () => {
                     opacity: heroOpacity,
                     zIndex: 3,
                     width: '100%',
-                    padding: isMobile ? '0 1.25rem' : '0 4rem',
+                    padding: isMobile ? '1.5rem' : '0 4rem',
                     display: 'flex',
                     flexDirection: isMobile ? 'column' : 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: isMobile ? '2.5rem' : '8rem',
-                    paddingTop: isMobile ? '20px' : '80px'
+                    gap: isMobile ? '2rem' : '8rem',
+                    flex: 1
                 }}>
 
                     {/* ── LEFT COLUMN: Brand + Copy ── */}
                     <div style={{
                         display: 'flex',
                         flexDirection: 'column',
+                        alignItems: isMobile ? 'center' : 'flex-start',
                         gap: isMobile ? '1.5rem' : '2rem',
                         flex: isMobile ? undefined : '0 1 auto',
                         maxWidth: isMobile ? '100%' : '650px',
@@ -686,9 +687,11 @@ const Home: React.FC = () => {
                             transition={{ delay: 0.9, duration: 0.8, ease: 'easeOut' }}
                             style={{
                                 height: '1px',
-                                width: isMobile ? '100%' : '380px',
-                                background: 'linear-gradient(to right, rgba(0,255,136,0.6), rgba(0,212,255,0.3), transparent)',
-                                transformOrigin: 'left'
+                                width: isMobile ? '200px' : '380px',
+                                background: isMobile 
+                                    ? 'linear-gradient(90deg, transparent, rgba(0,255,136,0.6), transparent)' 
+                                    : 'linear-gradient(to right, rgba(0,255,136,0.6), rgba(0,212,255,0.3), transparent)',
+                                transformOrigin: isMobile ? 'center' : 'left'
                             }}
                         />
 
@@ -794,43 +797,45 @@ const Home: React.FC = () => {
 
                 </motion.div>
 
-                {/* Bottom stat bar */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.4, duration: 0.8 }}
-                    style={{
-                        position: 'absolute',
-                        bottom: isMobile ? 'calc(54px + env(safe-area-inset-bottom, 0px))' : 0,
-                        left: 0, right: 0,
-                        zIndex: 4,
-                        background: 'rgba(5,10,9,0.7)',
-                        backdropFilter: 'blur(12px)',
-                        borderTop: '1px solid rgba(0,255,136,0.1)',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        padding: isMobile ? '0.5rem 1rem 0.2rem' : '1rem 5rem',
-                        height: 'auto',
-                        alignItems: 'center'
-                    }}
-                >
-                    <div style={{ display: 'flex', gap: isMobile ? '1.5rem' : '4rem', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-                        {[
-                            ['8 HECTARES', 'TOTAL AREA'],
-                            ['24/7', 'CONSTANT PARK OPERATIONS'],
-                            ['12V GRID', 'POWER NETWORK'],
-                            ['BIOMETRIC', 'ASSET MANAGEMENT']
-                        ].filter(item => !(isMobile && (item[0] === '24/7' || item[0] === 'BIOMETRIC'))).map(([val, label], i) => (
-                            <React.Fragment key={label}>
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontFamily: "'Cinzel'", fontSize: isMobile ? '0.75rem' : '1rem', fontWeight: 600, color: '#E6F0EB', letterSpacing: '0.08em', lineHeight: 1 }}>{val}</div>
-                                    <div style={{ fontFamily: "'Space Grotesk'", fontSize: isMobile ? '0.5rem' : '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(0,255,136,0.55)', marginTop: isMobile ? '0px' : '2px', lineHeight: 1 }}>{label}</div>
-                                </div>
-                                {i < 3 && !isMobile && <div style={{ width: '1px', height: '28px', background: 'rgba(0,255,136,0.15)' }} />}
-                            </React.Fragment>
-                        ))}
-                    </div>
-                </motion.div>
+                {/* Bottom stat bar (Desktop only) */}
+                {!isMobile && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.4, duration: 0.8 }}
+                        style={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0, right: 0,
+                            zIndex: 4,
+                            background: 'rgba(5,10,9,0.7)',
+                            backdropFilter: 'blur(12px)',
+                            borderTop: '1px solid rgba(0,255,136,0.1)',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            padding: '1rem 5rem',
+                            height: 'auto',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <div style={{ display: 'flex', gap: '4rem', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+                            {[
+                                ['8 HECTARES', 'TOTAL AREA'],
+                                ['24/7', 'CONSTANT PARK OPERATIONS'],
+                                ['12V GRID', 'POWER NETWORK'],
+                                ['BIOMETRIC', 'ASSET MANAGEMENT']
+                            ].map(([val, label], i) => (
+                                <React.Fragment key={label}>
+                                    <div style={{ textAlign: 'center' }}>
+                                        <div style={{ fontFamily: "'Cinzel'", fontSize: '1rem', fontWeight: 600, color: '#E6F0EB', letterSpacing: '0.08em', lineHeight: 1 }}>{val}</div>
+                                        <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(0,255,136,0.55)', marginTop: '2px', lineHeight: 1 }}>{label}</div>
+                                    </div>
+                                    {i < 3 && <div style={{ width: '1px', height: '28px', background: 'rgba(0,255,136,0.15)' }} />}
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
 
             </section>
 
