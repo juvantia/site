@@ -15,6 +15,12 @@ services:
       - "traefik.http.routers.site.tls.certresolver=myresolver"
       - "traefik.http.services.site.loadbalancer.server.port=80"
       
+      # Catch-all for robots.txt from any subdomain (low priority)
+      - "traefik.http.routers.site-robots.rule=Path(`/robots.txt`) && HostRegexp(`{subdomain:[a-z0-9-]+}.juvantia.org`)"
+      - "traefik.http.routers.site-robots.entrypoints=websecure"
+      - "traefik.http.routers.site-robots.tls=true"
+      - "traefik.http.routers.site-robots.priority=100"
+      
       # HTTP to HTTPS Redirect
       - "traefik.http.routers.site-insecure.rule=Host(`juvantia.org`) || Host(`www.juvantia.org`)"
       - "traefik.http.routers.site-insecure.entrypoints=web"
