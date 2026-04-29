@@ -550,6 +550,12 @@ const Home: React.FC = () => {
     const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
     const heroScale = useTransform(scrollY, [0, 400], [1, 1.1]);
     const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
+    const [block02ImageIndex, setBlock02ImageIndex] = useState(0);
+    const block02Images = ['/images/charging_station2.png', '/images/charging_station.png'];
+    const block02Alts = [
+        'Industrial-grade magnetic charging station with MagSafe-like connection for rovers',
+        'Distributed 12V power grid infrastructure and Wi-Fi coverage area'
+    ];
 
     React.useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -688,8 +694,8 @@ const Home: React.FC = () => {
                             style={{
                                 height: '1px',
                                 width: isMobile ? '200px' : '380px',
-                                background: isMobile 
-                                    ? 'linear-gradient(90deg, transparent, rgba(0,255,136,0.6), transparent)' 
+                                background: isMobile
+                                    ? 'linear-gradient(90deg, transparent, rgba(0,255,136,0.6), transparent)'
                                     : 'linear-gradient(to right, rgba(0,255,136,0.6), rgba(0,212,255,0.3), transparent)',
                                 transformOrigin: isMobile ? 'center' : 'left'
                             }}
@@ -1062,7 +1068,7 @@ const Home: React.FC = () => {
                                 </div>
                             </div>
                             <p style={{ fontFamily: "'Space Grotesk'", fontSize: '1rem', color: 'rgba(185, 203, 185, 0.82)', lineHeight: 1.8, fontWeight: 300, margin: 0 }}>
-                                Industrial-grade Wi-Fi (Low Latency) and a distributed 12V Power Grid covering the entire site. Automated charging stations ensure an infinite hardware lifecycle and your persistent presence in the ecosystem.
+                                Industrial-grade Wi-Fi and a distributed 12V Power Grid with integrated magnetic charging covering the entire site. Standardized charging stations allow Robuluses to snap on effortlessly — just like MagSafe — ensuring ubiquitous power access and an infinite hardware lifecycle.
                             </p>
                             {/* Spec row */}
                             <div style={{ paddingTop: '1.25rem', borderTop: '1px solid rgba(0,212,255,0.1)', display: 'flex', gap: '2rem' }}>
@@ -1077,18 +1083,63 @@ const Home: React.FC = () => {
 
                         {/* Right: Image */}
                         <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto', order: isMobile ? 1 : 2 }}>
-                            <img
-                                src="/images/charging_station.png"
-                                alt="Charging Station Network"
-                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.8s ease, filter 0.5s ease', filter: 'brightness(0.8) saturate(1.2) hue-rotate(5deg)' }}
-                                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.filter = 'brightness(1) saturate(1.4) hue-rotate(5deg)'; }}
-                                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(0.8) saturate(1.2) hue-rotate(5deg)'; }}
-                            />
+                            <AnimatePresence mode='wait'>
+                                <motion.img
+                                    key={block02ImageIndex}
+                                    src={block02Images[block02ImageIndex]}
+                                    alt={block02Alts[block02ImageIndex]}
+                                    initial={{ opacity: 0, scale: 1.05 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    transition={{ duration: 0.6, ease: 'easeInOut' }}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.8) saturate(1.2) hue-rotate(5deg)' }}
+                                />
+                            </AnimatePresence>
+
+                            {/* Switcher Controls */}
+                            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 1rem', zIndex: 10 }}>
+                                <button 
+                                    onClick={() => setBlock02ImageIndex(prev => (prev === 0 ? block02Images.length - 1 : prev - 1))}
+                                    style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(0,212,255,0.3)', color: '#00D4FF', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', transition: 'all 0.3s' }}
+                                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,212,255,0.2)'; e.currentTarget.style.borderColor = '#00D4FF'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.3)'; e.currentTarget.style.borderColor = 'rgba(0,212,255,0.3)'; }}
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <button 
+                                    onClick={() => setBlock02ImageIndex(prev => (prev === block02Images.length - 1 ? 0 : prev + 1))}
+                                    style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(0,212,255,0.3)', color: '#00D4FF', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', transition: 'all 0.3s' }}
+                                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,212,255,0.2)'; e.currentTarget.style.borderColor = '#00D4FF'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.3)'; e.currentTarget.style.borderColor = 'rgba(0,212,255,0.3)'; }}
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+
+                            {/* Pagination Dots */}
+                            <div style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 10 }}>
+                                {block02Images.map((_, i) => (
+                                    <div 
+                                        key={i}
+                                        onClick={() => setBlock02ImageIndex(i)}
+                                        style={{ 
+                                            width: i === block02ImageIndex ? '20px' : '6px', 
+                                            height: '6px', 
+                                            borderRadius: '3px', 
+                                            background: i === block02ImageIndex ? '#00D4FF' : 'rgba(255,255,255,0.3)', 
+                                            cursor: 'pointer',
+                                            transition: 'all 0.3s ease'
+                                        }} 
+                                    />
+                                ))}
+                            </div>
+
                             {/* Cyan scanner corners */}
                             {['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].map(pos => (
                                 <div key={pos} style={{
                                     position: 'absolute', width: '18px', height: '18px',
                                     borderColor: 'rgba(0, 212, 255, 0.7)', borderStyle: 'solid', borderWidth: 0,
+                                    zIndex: 5,
                                     ...(pos === 'topLeft' && { top: 14, left: 14, borderTopWidth: 2, borderLeftWidth: 2 }),
                                     ...(pos === 'topRight' && { top: 14, right: 14, borderTopWidth: 2, borderRightWidth: 2 }),
                                     ...(pos === 'bottomLeft' && { bottom: 14, left: 14, borderBottomWidth: 2, borderLeftWidth: 2 }),
@@ -1096,7 +1147,7 @@ const Home: React.FC = () => {
                                 }} />
                             ))}
                             {/* Cyan gradient overlay from left */}
-                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(8,14,18,0.6) 0%, transparent 40%)' }} />
+                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(8,14,18,0.6) 0%, transparent 40%)', pointerEvents: 'none', zIndex: 4 }} />
                         </div>
                     </motion.div>
 
