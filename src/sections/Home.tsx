@@ -548,7 +548,7 @@ const Home: React.FC = () => {
     const { scrollY } = useScroll();
     const heroImageY = useTransform(scrollY, [0, 600], [0, 150]);
     const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-    const heroScale = useTransform(scrollY, [0, 400], [1, 1.1]);
+    const heroScale = useTransform(scrollY, [0, 400], [1.0, 1.1]);
     const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
     const [block02ImageIndex, setBlock02ImageIndex] = useState(0);
     const block02Images = ['/images/charging_station2.png', '/images/charging_station.png'];
@@ -574,9 +574,9 @@ const Home: React.FC = () => {
             {/* ===== HERO SECTION ===== */}
             <section style={{
                 position: 'relative',
-                height: isMobile ? '100vh' : '100vh',
+                height: isMobile ? '100vh' : 'calc(100vh - 80px)',
                 width: '100%',
-                marginTop: isMobile ? '0' : '-80px',
+                marginTop: isMobile ? '0' : '0',
                 display: 'flex',
                 alignItems: 'center',
                 overflow: 'hidden',
@@ -586,10 +586,13 @@ const Home: React.FC = () => {
                 <motion.div
                     style={{
                         position: 'absolute',
-                        inset: 0,
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
                         backgroundImage: 'url(/images/hero_city.png)',
                         backgroundSize: 'cover',
-                        backgroundPosition: 'center',
+                        backgroundPosition: 'center center',
                         y: heroImageY,
                         scale: heroScale
                     }}
@@ -600,8 +603,8 @@ const Home: React.FC = () => {
                     position: 'absolute',
                     inset: 0,
                     background: isMobile
-                        ? 'linear-gradient(to bottom, rgba(5,10,9,0.88) 0%, rgba(5,10,9,0.75) 100%)'
-                        : 'linear-gradient(to right, rgba(5,10,9,0.96) 0%, rgba(5,10,9,0.88) 45%, rgba(5,10,9,0.55) 70%, rgba(5,10,9,0.35) 100%)',
+                        ? 'linear-gradient(to bottom, rgba(5,10,9,0.6) 0%, rgba(5,10,9,0.4) 100%)'
+                        : 'linear-gradient(to right, rgba(5,10,9,0.75) 0%, rgba(5,10,9,0.4) 45%, rgba(5,10,9,0.2) 70%, rgba(5,10,9,0.05) 100%)',
                     zIndex: 1
                 }} />
 
