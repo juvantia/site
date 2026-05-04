@@ -550,6 +550,13 @@ const Home: React.FC = () => {
     const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
     const heroScale = useTransform(scrollY, [0, 400], [1.0, 1.1]);
     const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
+    const [block01ImageIndex, setBlock01ImageIndex] = useState(0);
+    const block01Images = ['/images/11.png', '/images/4855.png'];
+    const block01Alts = [
+        'Technopark scale visualization showing vast 8-hectare territory',
+        '8 Hectares Technopark Scale with engineering infrastructure'
+    ];
+
     const [block02ImageIndex, setBlock02ImageIndex] = useState(0);
     const block02Images = ['/images/charging_station2.png', '/images/charging_station.png'];
     const block02Alts = [
@@ -917,21 +924,64 @@ const Home: React.FC = () => {
                             boxShadow: '0 0 40px rgba(0, 255, 136, 0.08)'
                         }}
                     >
-                        {/* Left: Image */}
+                        {/* Left: Image Carousel */}
                         <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto' }}>
-                            <img
-                                src="/images/4855.png"
-                                alt="8 Hectares Technopark Scale"
-                                style={{
-                                    width: '100%', height: '100%',
-                                    objectFit: 'cover',
-                                    display: 'block',
-                                    transition: 'transform 0.8s ease',
-                                    filter: 'brightness(0.85) saturate(1.1)'
-                                }}
-                                onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
-                                onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
-                            />
+                            <AnimatePresence mode='wait'>
+                                <motion.img
+                                    key={block01ImageIndex}
+                                    src={block01Images[block01ImageIndex]}
+                                    alt={block01Alts[block01ImageIndex]}
+                                    initial={{ opacity: 0, scale: 1.05 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    transition={{ duration: 0.6, ease: 'easeInOut' }}
+                                    style={{ 
+                                        width: '100%', height: '100%', 
+                                        objectFit: 'cover', 
+                                        display: 'block', 
+                                        filter: 'brightness(0.85) saturate(1.1)' 
+                                    }}
+                                />
+                            </AnimatePresence>
+
+                            {/* Switcher Controls */}
+                            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 1rem', zIndex: 10 }}>
+                                <button 
+                                    onClick={() => setBlock01ImageIndex(prev => (prev === 0 ? block01Images.length - 1 : prev - 1))}
+                                    style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(0, 255, 136, 0.3)', color: 'var(--color-primary)', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', transition: 'all 0.3s' }}
+                                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0, 255, 136, 0.2)'; e.currentTarget.style.borderColor = 'var(--color-primary)'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.3)'; e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.3)'; }}
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <button 
+                                    onClick={() => setBlock01ImageIndex(prev => (prev === block01Images.length - 1 ? 0 : prev + 1))}
+                                    style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(0, 255, 136, 0.3)', color: 'var(--color-primary)', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', transition: 'all 0.3s' }}
+                                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0, 255, 136, 0.2)'; e.currentTarget.style.borderColor = 'var(--color-primary)'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.3)'; e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.3)'; }}
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+
+                            {/* Pagination Dots */}
+                            <div style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 10 }}>
+                                {block01Images.map((_, i) => (
+                                    <div 
+                                        key={i}
+                                        onClick={() => setBlock01ImageIndex(i)}
+                                        style={{ 
+                                            width: i === block01ImageIndex ? '20px' : '6px', 
+                                            height: '6px', 
+                                            borderRadius: '3px', 
+                                            background: i === block01ImageIndex ? 'var(--color-primary)' : 'rgba(255,255,255,0.3)', 
+                                            cursor: 'pointer',
+                                            transition: 'all 0.3s ease'
+                                        }} 
+                                    />
+                                ))}
+                            </div>
+
                             {/* Scanner corners */}
                             {['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].map(pos => (
                                 <div key={pos} style={{
@@ -940,10 +990,11 @@ const Home: React.FC = () => {
                                     borderColor: 'rgba(0, 255, 136, 0.7)',
                                     borderStyle: 'solid',
                                     borderWidth: 0,
+                                    zIndex: 5,
                                     ...(pos === 'topLeft' && { top: 16, left: 16, borderTopWidth: 2, borderLeftWidth: 2 }),
                                     ...(pos === 'topRight' && { top: 16, right: 16, borderTopWidth: 2, borderRightWidth: 2 }),
                                     ...(pos === 'bottomLeft' && { bottom: 16, left: 16, borderBottomWidth: 2, borderLeftWidth: 2 }),
-                                    ...(pos === 'bottomRight' && { bottom: 16, right: 16, borderBottomWidth: 2, borderRightWidth: 2 }),
+                                    ...(pos === 'bottomRight' && { bottom: 16, right: 16, borderBottomWidth: 2, borderLeftWidth: 2 }),
                                 }} />
                             ))}
 
