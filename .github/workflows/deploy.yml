@@ -17,5 +17,5 @@ jobs:
             cd ~/${{ github.event.repository.name }}
             git pull origin main
             docker build -t ghcr.io/${{ github.repository }}:latest .
-            docker compose up -d
+            docker compose up -d --build --force-recreate
             docker image prune -f
