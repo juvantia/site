@@ -325,7 +325,7 @@ const Domus: React.FC = () => {
                             boxShadow: '0 24px 60px rgba(0,0,0,0.5)'
                         }}>
                             <img
-                                src="/images/DOMUS2.png"
+                                src="/images/sector.jpg"
                                 alt="Plot Requirements"
                                 style={{ width: '100%', height: 'auto', display: 'block', filter: 'brightness(0.88) saturate(1.1)' }}
                             />
