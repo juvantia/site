@@ -219,7 +219,7 @@ const Domus: React.FC = () => {
                             fontWeight: 300, margin: '0 0 2rem'
                         }}
                     >
-                        Your permanent base inside JUVANTIA. Build a structure on a licensed plot — charge your Robulus, run a business, shape the park's cityscape.
+                        Your permanent base inside JUVANTIA. Build a structure on a licensed sector — charge your Robulus, run a business, shape the park's cityscape.
                     </motion.p>
 
 
@@ -360,13 +360,13 @@ const Domus: React.FC = () => {
                             color: 'rgba(185,203,185,0.75)', lineHeight: 1.85,
                             fontWeight: 300, marginBottom: '2rem'
                         }}>
-                            To install a Domus, you must hold a licensed plot in JUVANTIA or have a valid lease agreement.
+                            To install a Domus, you must hold a licensed sector in JUVANTIA or have a valid lease agreement.
                         </p>
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {[
-                                { label: 'Perpetual Plot License', desc: 'Acquire a non-expiring plot license. Full ownership, on-chain title.' },
-                                { label: 'Term Plot License', desc: 'Rent or lease a plot under a time-limited license with renewal options.' }
+                                { label: 'Perpetual Sector License (Purchase)', desc: 'Acquire a non-expiring sector license. Full digital ownership, on-chain title.' },
+                                { label: 'Term Sector License (Leasing)', desc: 'Rent or lease a sector under a time-limited license with renewal options.' }
                             ].map((opt, i) => (
                                 <div key={i} style={{
                                     display: 'flex', gap: '1.25rem', alignItems: 'flex-start',
