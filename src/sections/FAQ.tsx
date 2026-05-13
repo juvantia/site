@@ -50,7 +50,7 @@ const FAQ: React.FC = () => {
                 <>
                     You have several options:
                     <ul style={{ paddingLeft: '1.5rem', margin: '0.5rem 0' }}>
-                        <li style={{ marginBottom: '0.25rem' }}>Install your own Domus on a Licensed Plot, with a power connection available on-site.</li>
+                        <li style={{ marginBottom: '0.25rem' }}>Install your own Domus on a Licensed Sector, with a power connection available on-site.</li>
                         <li style={{ marginBottom: '0.25rem' }}>Mount a solar panel on your Domus roof (where applicable).</li>
                         <li style={{ marginBottom: '0.25rem' }}>Rent charging/storage capacity from the park or from another participant.</li>
                     </ul>

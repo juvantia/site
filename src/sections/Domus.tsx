@@ -309,7 +309,7 @@ const Domus: React.FC = () => {
 
             <NeonDivider />
 
-            {/* ══════════════════ PLOT REQUIREMENTS ══════════════════ */}
+            {/* ══════════════════ SECTOR REQUIREMENTS ══════════════════ */}
             <section style={{ padding: isMobile ? '1.5rem 1.25rem 4rem' : '8rem 2rem', maxWidth: '1280px', margin: '0 auto' }}>
                 <div style={{
                     display: 'grid',
@@ -339,7 +339,7 @@ const Domus: React.FC = () => {
                                 fontFamily: "'Space Grotesk'", fontSize: '0.55rem',
                                 letterSpacing: '0.25em', textTransform: 'uppercase',
                                 color: 'rgba(0,212,255,0.55)'
-                            }}>PLOT · LICENSED TERRITORY</div>
+                            }}>SECTOR · LICENSED TERRITORY</div>
                         </div>
                     </FadeIn>
 
@@ -352,7 +352,7 @@ const Domus: React.FC = () => {
                             fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.1em',
                             color: '#E6F0EB', marginBottom: '1.25rem', lineHeight: 1.2
                         }}>
-                            Plot Requirements
+                            Sector Requirements
                         </h2>
                         <p style={{
                             fontFamily: "'Space Grotesk', sans-serif",
