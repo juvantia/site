@@ -14,8 +14,31 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ~/${{ github.event.repository.name }}
-            git pull origin main
-            docker build -t ghcr.io/${{ github.repository }}:latest .
-            docker compose up -d --build --force-recreate
-            docker image prune -f
+            set -e
+            echo "🚀 [DEPLOY] Starting deployment for Juvantia Site..."
+            
+            # Navigate to project directory
+            TARGET_DIR="/root/site"
+            echo "📂 [DEPLOY] Accessing directory: $TARGET_DIR"
+            cd $TARGET_DIR || { echo "❌ [ERROR] Directory $TARGET_DIR not found!"; exit 1; }
+
+            # Fix Git Ownership
+            git config --global --add safe.directory "$TARGET_DIR"
+
+            # Update Source Code
+            echo "🔄 [DEPLOY] Syncing with origin/main..."
+            git fetch origin main
+            git reset --hard origin/main
+            echo "✅ [DEPLOY] Source code updated to $(git rev-parse --short HEAD)"
+
+            # Build and Launch
+            echo "🔌 [DEPLOY] Orchestrating containers..."
+            # Using --build to ensure fresh image and --force-recreate to ensure container restart
+            docker compose up -d --build --force-recreate site
+
+            # Cleanup
+            echo "🧹 [DEPLOY] Cleaning up stale images..."
+            docker image prune -f || true
+            
+            echo "🏁 [DEPLOY] Deployment finished successfully at $(date)"
+            echo "🚀 Site Online: https://juvantia.org"
