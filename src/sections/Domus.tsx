@@ -326,7 +326,7 @@ const Domus: React.FC = () => {
                         }}>
                             <img
                                 src="/images/sector.jpg"
-                                alt="Plot Requirements"
+                                alt="Sector Requirements"
                                 style={{ width: '100%', height: 'auto', display: 'block', filter: 'brightness(0.88) saturate(1.1)' }}
                             />
                             <div style={{
