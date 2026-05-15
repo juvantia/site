@@ -512,18 +512,18 @@ const Economics: React.FC = () => {
                     {[
                         {
                             step: '01',
-                            label: 'Create Account',
-                            text: <>Register your account at{' '}<a href="https://auth.juvantia.org" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>auth.juvantia.org</a>.</>,
-                        },
-                        {
-                            step: '02',
                             label: 'Enter City',
                             text: <>Access the City interface at{' '}<a href="https://city.juvantia.org" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>city.juvantia.org</a>{' '}to find your deposit address.</>,
                         },
                         {
-                            step: '03',
+                            step: '02',
                             label: 'Get Test EURC',
                             text: <>Get test EURC at{' '}<a href="https://faucet.circle.com" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>faucet.circle.com</a>{' '}to fund your address and start exploring the economy.</>,
+                        },
+                        {
+                            step: '03',
+                            label: 'Visit Trade Hub',
+                            text: <>Explore the <a href="https://city.juvantia.org/trade" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>Trade Hub</a> section. Different asset shares are listed there—you can buy shares and later sell them at a higher price as the project evolves.</>,
                         },
                     ].map((item, idx) => (
                         <FadeIn key={idx} delay={idx * 0.1}>
