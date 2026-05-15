@@ -523,7 +523,7 @@ const Economics: React.FC = () => {
                         {
                             step: '03',
                             label: 'Visit Trade Hub',
-                            text: <>Explore the <a href="https://city.juvantia.org/trade" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>Trade Hub</a> section. Different asset shares are listed there—you can buy shares and later sell them at a higher price as the project evolves.</>,
+                            text: <>Explore the <a href="https://city.juvantia.org/trade" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>Trade Hub</a> section. Different asset shares are listed there—you can buy shares and later sell them at a higher price as the value of that specific asset grows.</>,
                         },
                     ].map((item, idx) => (
                         <FadeIn key={idx} delay={idx * 0.1}>
