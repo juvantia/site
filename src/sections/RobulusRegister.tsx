@@ -110,7 +110,7 @@ const RobulusRegister: React.FC = () => {
         { num: '1', title: 'Buy or Build Your Own', text: 'Buy ready-made kits or build your own one.', icon: '🛠️' },
         { num: '2', title: 'Flash the Firmware', text: (
             <>
-                Use the <a href="https://fabrica.juvantia.org" style={{ color: '#00FF88', textDecoration: 'none' }}>Fabrica service</a> to install the firmware directly from your browser via USB.
+                Use the Fabrica service to install the firmware directly from your browser via USB.
             </>
         ), icon: '💻' },
         { num: '3', title: 'Send by Parcel', text: 'Ship your Robulus to our European location (TBD).', icon: '📦' },
