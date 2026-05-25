@@ -1,73 +1,24 @@
-# React + TypeScript + Vite
+# Juvantia Public Site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The public-facing website for the Juvantia ecosystem. This repository contains the source code for our digital hub, providing information about our technopark initiatives, robotic assets, and community ecosystem.
 
-Currently, two official plugins are available:
+## Transparency Statement
+We believe in open, transparent infrastructure. This repository is open-sourced to allow our community to audit the public face of Juvantia. We are building the digital foundations for realistic robotic tech-parks, and trust is our core component.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Architecture
+- **Framework**: Astro
+- **Styling**: Vanilla CSS
+- **Deployment**: Containerized via Docker
 
-## React Compiler
+## Features
+- **Project Showcase**: Overview of the Juvantia technopark and its core robotic initiatives.
+- **Community Hub**: Entry point for all ecosystem services.
+- **Open Source Showcase**: Links to our various infrastructure and registry repositories.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Security & Usage
+- This service is the public web portal for Juvantia.
+- Contributions are not accepted at this time, but the codebase is fully open for review and educational purposes.
+- For bug reports or security concerns, please contact our team via the official [Juvantia Forum](https://forum.juvantia.org).
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+© Juvantia Foundation

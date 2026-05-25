@@ -11,3 +11,7 @@ yarn-debug.log*
 yarn-error.log*
 MANIFEST.md
 ARCHITECTURE.md
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+
