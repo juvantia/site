@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://juvantia.org/sitemap.xml
+Sitemap: https://tabularium.juvantia.org/sitemap.xml

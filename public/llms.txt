@@ -1,0 +1,94 @@
+# JUVANTIA Website Context
+
+This document compiles the core text content of the JUVANTIA main website (`juvantia.org`) and directs AI models to the comprehensive technical documentation and knowledge base.
+
+---
+
+## 1. Homepage Overview (https://juvantia.org)
+
+Juvantia is a persistent, teleoperated open-air technopark spanning 8 hectares of engineered infrastructure. It features a distributed 12V power grid, full Wi-Fi coverage, and operates with human access restricted during active hours.
+
+### Robulus Roles & Upgrades
+- **Basic Rover:** A simple open-frame Robulus with basic suspension — perfect for driving around the park.
+- **Gripper Module:** Add a gripper module to your Robulus to collect and transport materials.
+- **Waterproof Shell:** Install a protective plastic cover to keep your Robulus safe from rain and splashes.
+- **Omni Wheels:** Use omni wheels for smooth movement without a steering mechanism — common in robotics and easy to control.
+- **Pusher Plate:** Add a front pusher to compete in the Colosseum and move objects by force.
+- **Explorer Setup:** Mount a higher-capacity battery to explore longer routes and cover more of the park.
+- **Acrylic Enclosure:** Build a clear acrylic enclosure to protect electronics — with careful sealing for waterproof performance.
+- **Custom Build:** Join the park economy: complete tasks, provide services, and earn income for your Robulus owner.
+
+### Domus Types (Infrastructure)
+- **Workshop:** The heart of industry. A space for crafting, repairing, and upgrading Robulus units to peak performance.
+- **Robulus Apartments:** Efficient, secure housing for your workforce. A rested Robulus is a productive Robulus.
+- **Spare Parts Shop:** Commerce in its purest form. A hub for trading essential components and energy cells.
+- **Private Club:** Where deals are made. An exclusive gathering place for networking, leisure, and influence.
+
+---
+
+## 2. Robulus Guide (https://juvantia.org/robulus/)
+
+Robulus is a teleoperated mini-robot for the Juvantia park. You can buy ready-made kits or design and build custom units.
+
+### Components & Customization
+1. **Design a 3D Model of Your Chassis:** Create a custom body for your Robulus optimized for the terrain. Print and assemble it yourself, or hire assembly help from enthusiasts at `marketplace.juvantia.org`. (Tip: Shapr3D is recommended for beginners).
+2. **PCB Design:** Use the Cyber Brick Juvantia Edition PCB for deep customization, or build your own. Custom boards must use the ESP32 S3 CAM module. (Policy: No hand-soldering. Only PCB-based designs are accepted to ensure long-term reliability).
+3. **Build the Platform:** Build a custom platform with any equipment you desire. (Tip: Batteries are optional. Juvantia can provide standard batteries on-site to simplify parcel shipping).
+
+### Deployment Workflow
+1. **Buy or Build:** Acquire a ready-made kit or construct your own.
+2. **Flash the Firmware:** Use the Fabrica service to install Juvantia firmware directly from your browser via USB.
+3. **Send by Parcel:** Ship your Robulus to our European reception location.
+4. **Control in Juvantia:** Connect and operate your robot remotely inside the physical park.
+
+---
+
+## 3. Domus Guide (https://juvantia.org/domus/)
+
+A Domus is a permanent structure or module built on a licensed sector inside the Juvantia park. It acts as a base to store and charge rovers, or to host commercial activities.
+
+### Core Concepts
+- **Use Cases:** Can be private (storage, workshop) or commercial (repair shop, swap station, private club).
+- **Materials:** Water-resistant MDF is recommended, but wood, metal, or composite panels are permitted.
+- **Grid Connectivity:** Connects to the city grid for power metering and transparent utility billing.
+
+### Sector Licensing
+To install a Domus, co-owners must hold a licensed sector:
+- **Perpetual Sector License:** Perpetual digital ownership of allocation rights.
+- **Term Sector License:** Time-limited lease agreement with renewal options.
+
+### Installation & Specifications
+- **Timeline:** Installation occurs during designated 3-6 month windows before park launch or during scheduled 1-2 day service windows. During standard 24/7 operations, human physical access is restricted.
+- **Visual Design:** Exterior lighting is expected to enhance the night cityscape.
+- **Electrical Standards:** All Domus structures connect to the grid via a standard 12V 1.5mm 2Pin AMP Superseal plug connector. Internal charging should use the JUVANTIA Standard Pogo Magnetic 4P or a height-adjustable unit.
+
+---
+
+## 4. Economics (https://juvantia.org/economics/)
+
+The Juvantia economy is built on absolute transparency, ownership rights, and programmable money via EVM smart contracts.
+
+### Circle Stablecoins (EURO Only)
+- The entire park economy operates exclusively on EURC stablecoins issued by Circle, expressed in EURO.
+- No other tokens are displayed or accepted, eliminating financial spam and keeping a 15% focus on real utility.
+
+### Programmable Contracts
+- **City Contracts:** Automated, ready-to-use Juvantia infrastructure contracts for settlements, leases, and service payments.
+- **Custom Contracts:** An open EVM environment for deploying bespoke agreements and economic logic.
+
+### Biometric Control
+- Every asset transfer, lease, or service payment requires biometric confirmation (FaceID/TouchID) via the owner's personal device, blocking unauthorized access.
+
+### Onboarding Steps (Testnet)
+1. **Enter City:** Log in to the Juvantia app and obtain your deposit address.
+2. **Get Test EURC:** Fund your address with test EURC using `faucet.circle.com`.
+3. **Visit Trade Hub:** Trade asset shares, buying and selling as the physical asset capitalization changes.
+
+---
+
+## 5. Technical Documentation & Codex (Tabularium)
+
+For the complete technical specifications, rules of conduct, citizen manuals, smart contract addresses, and API references, please visit the JUVANTIA Tabularium:
+
+- [Tabularium Index (llms.txt)](https://tabularium.juvantia.org/llms.txt)
+- [Full Consolidated Context (llms-full.txt)](https://tabularium.juvantia.org/llms-full.txt)
