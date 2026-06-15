@@ -513,7 +513,7 @@ const Economics: React.FC = () => {
                         {
                             step: '01',
                             label: 'Enter City',
-                            text: <>Access the <a href="https://city.juvantia.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>City</a> interface to find your deposit address.</>,
+                            text: <>Access the <a href="https://city.juvantia.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>City</a> application to find your deposit address.</>,
                         },
                         {
                             step: '02',
@@ -523,7 +523,7 @@ const Economics: React.FC = () => {
                         {
                             step: '03',
                             label: 'Visit Trade Hub',
-                            text: <>Locate the Trade Hub section within the City interface. Different asset shares are listed there—you can buy shares and later sell them as their value grows.</>,
+                            text: <>Locate the Trade Hub section within the City application. Different asset shares are listed there—you can buy shares and later sell them as their value grows.</>,
                         },
                     ].map((item, idx) => (
                         <FadeIn key={idx} delay={idx * 0.1}>
