@@ -517,13 +517,13 @@ const Economics: React.FC = () => {
                         },
                         {
                             step: '02',
-                            label: 'Get Test EURC',
+                            label: 'Visit Circle Faucet',
                             text: <>Get test EURC at{' '}<a href="https://faucet.circle.com" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>faucet.circle.com</a>{' '}to fund your address and start exploring the economy.</>,
                         },
                         {
                             step: '03',
                             label: 'Visit Trade Hub',
-                            text: <>Explore the Trade Hub section. Different asset shares are listed there—you can buy shares and later sell them at a higher price as the value of that specific asset grows.</>,
+                            text: <>Locate the Trade Hub section within the City interface. Different asset shares are listed there—you can buy shares and later sell them as their value grows.</>,
                         },
                     ].map((item, idx) => (
                         <FadeIn key={idx} delay={idx * 0.1}>
