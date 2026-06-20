@@ -14,7 +14,7 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 RUN mv /usr/share/nginx/html/sitemap-0.xml /usr/share/nginx/html/sitemap.xml || true
 # Clean up the redundant index
 RUN rm /usr/share/nginx/html/sitemap-index.xml || true
-# SPA fallback: serve index.html for unknown routes (Astro generates these, but just in case)
-RUN printf 'server {\n  listen 80;\n  root /usr/share/nginx/html;\n  index index.html;\n  error_page 404 /404.html;\n  location / {\n    try_files $uri $uri/ $uri.html =404;\n  }\n  location ~* \\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ {\n    expires 1y;\n    add_header Cache-Control "public, max-age=31536000, immutable";\n  }\n}' > /etc/nginx/conf.d/default.conf
+# SPA fallback & AI agent support: copy custom nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

@@ -775,16 +775,7 @@ const Home: React.FC = () => {
                                         ...(pos === 'bottomRight' && { bottom: 18, right: 18, borderBottomWidth: 2, borderRightWidth: 2 }),
                                     }} />
                                 ))}
-                                {/* LIVE badge */}
-                                <div style={{
-                                    position: 'absolute', top: 18, left: 48,
-                                    display: 'flex', alignItems: 'center', gap: '8px',
-                                    background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(10px)',
-                                    padding: '5px 12px', border: '1px solid rgba(0,255,136,0.25)'
-                                }}>
-                                    <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00FF88', boxShadow: '0 0 10px #00FF88', display: 'block' }} />
-                                    <span style={{ fontFamily: "'Space Grotesk'", fontSize: '0.68rem', letterSpacing: '0.2rem', color: '#00FF88', textTransform: 'uppercase' }}>Live System</span>
-                                </div>
+
                                 {/* Bottom gradient overlay */}
                                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100px', background: 'linear-gradient(transparent, rgba(5,10,9,0.85))' }} />
                             </motion.div>
