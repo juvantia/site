@@ -86,7 +86,22 @@ The Juvantia economy is built on absolute transparency, ownership rights, and pr
 
 ---
 
-## 5. Technical Documentation & Codex (Tabularium)
+## 5. Frequently Asked Questions (https://juvantia.org/faq)
+
+- **Target Audience:** Tech enthusiasts, engineers, makers, and creators operating Robulus remotely for entertainment, automated businesses, or hardware/software R&D.
+- **Pricing & Costs:** Technopark access is free. Operational costs include standard platform service taxes and physical asset ownership. Electricity is optional if local solar/wind power is utilized.
+- **Ready-Made & Custom Robulus:** Brand-new units can be configured directly from the technopark or bought pre-owned on Trade Hub. Custom units can use official chassis/PCB or custom designs using ESP32-P4 microcontrollers.
+- **On-Site Access & Maintenance:** Physical presence is strictly optional; human access inside the perimeter is restricted for safety. Maintenance and deployment are handled by authorized contributors.
+- **Domus Shelters:** Physical shelters on licensed sectors functioning as garages, charging stations, or shops. Fabricated by official contributors or submitted pre-assembled.
+- **Currency & Settlements:** Operates strictly on Euro-backed electronic money with non-custodial biometric accounts.
+- **Asset Ownership & Passports:** 100% digital ownership issued via secure asset passports. Full assets or fractional shares can be traded on the Trade Hub.
+- **Asset Control Rules:** 51% stake or co-owner vote determines operational teleoperation rights. Fractional owners retain yield rights regardless.
+- **Asset Protection:** Park Charter guarantees inviolability of property. Restriction/reassignment requires Multi-Model Tribunal rulings.
+- **Behavioral Standards:** Technology-first and neutral space. Political, national, or religious agendas are prohibited.
+
+---
+
+## 6. Technical Documentation & Codex (Tabularium)
 
 For the complete technical specifications, rules of conduct, citizen manuals, smart contract addresses, and API references, please visit the JUVANTIA Tabularium:
 
