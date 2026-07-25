@@ -49,7 +49,7 @@ A Domus is a permanent structure or module built on a licensed sector inside the
 
 ### Core Concepts
 - **Use Cases:** Can be private (storage, workshop) or commercial (repair shop, swap station, private club).
-- **Materials:** Water-resistant MDF is recommended, but wood, metal, or composite panels are permitted.
+- **Materials:** Formex plastic and aluminium composite panels are expected, but other suitable materials are permitted.
 - **Grid Connectivity:** Connects to the city grid for power metering and transparent utility billing.
 
 ### Sector Licensing

@@ -292,8 +292,8 @@ const Domus: React.FC = () => {
                     />
                     <FeatureCard
                         icon="◈"
-                        title="Any Materials"
-                        text="Most Domus structures are built from MDF with waterproofing, but you're free to use any materials you choose — wood, metal, composite panels."
+                        title="Durable Materials"
+                        text="Most Domus structures are expected to be built using Formex plastic or aluminium composite panels, but you're free to choose any suitable materials."
                         accent="#00D4FF"
                         delay={0.1}
                     />
