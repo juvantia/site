@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export interface FAQItem {
     id: string;
@@ -202,7 +202,7 @@ const FAQ: React.FC = () => {
                     </h1>
                 </motion.div>
 
-                {/* FAQ Collapsible Accordion Cards List */}
+                {/* FAQ Accordion List - Always present in DOM for LLM bots & SEO */}
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -304,32 +304,31 @@ const FAQ: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Animated Collapsible Answer Body */}
-                                <AnimatePresence initial={false}>
-                                    {isOpen && (
-                                        <motion.div
-                                            key="content"
-                                            initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                                            animate={{ height: 'auto', opacity: 1, marginTop: 16 }}
-                                            exit={{ height: 0, opacity: 0, marginTop: 0 }}
-                                            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                                            style={{
-                                                overflow: 'hidden',
-                                                borderTop: '1px solid rgba(0, 255, 136, 0.15)',
-                                                paddingTop: '16px'
-                                            }}
-                                        >
-                                            <div style={{
-                                                fontFamily: 'Inter, system-ui, sans-serif',
-                                                color: '#b9cbb9',
-                                                lineHeight: '1.65',
-                                                fontSize: '0.98rem'
-                                            }}>
-                                                {item.answer}
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                                {/* Answer Body - ALWAYS rendered in DOM for LLM bots & SSG, animated height for users */}
+                                <motion.div
+                                    initial={false}
+                                    animate={{
+                                        height: isOpen ? 'auto' : 0,
+                                        opacity: isOpen ? 1 : 0,
+                                        marginTop: isOpen ? 16 : 0,
+                                        paddingTop: isOpen ? 16 : 0
+                                    }}
+                                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                    style={{
+                                        overflow: 'hidden',
+                                        borderTop: isOpen ? '1px solid rgba(0, 255, 136, 0.15)' : '1px solid transparent',
+                                        transition: 'border-color 0.3s ease'
+                                    }}
+                                >
+                                    <div style={{
+                                        fontFamily: 'Inter, system-ui, sans-serif',
+                                        color: '#b9cbb9',
+                                        lineHeight: '1.65',
+                                        fontSize: '0.98rem'
+                                    }}>
+                                        {item.answer}
+                                    </div>
+                                </motion.div>
                             </motion.div>
                         );
                     })}
