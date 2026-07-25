@@ -93,7 +93,7 @@ The Juvantia economy is built on absolute transparency, ownership rights, and pr
 - **Ready-Made & Custom Robulus:** Brand-new units can be configured directly from the technopark or bought pre-owned on Trade Hub. Custom units can use official chassis/PCB or custom designs using ESP32-P4 microcontrollers.
 - **On-Site Access & Maintenance:** Physical presence is strictly optional; human access inside the perimeter is restricted for safety. Maintenance and deployment are handled by authorized contributors.
 - **Domus Shelters:** Physical shelters on licensed sectors functioning as garages, charging stations, or shops. Fabricated by official contributors or submitted pre-assembled.
-- **APU (Asset Passport Unit):** The digital passport and ownership token for physical assets (Robulus, Domus, Sector). Certifies ownership and distributes automated Euro yield.
+- **APU (Asset Passport Unit):** The secure digital passport for a physical asset (Robulus, Domus, Sector). Certifies property ownership, grants rights to vote on operational decisions, select service providers, and receive service rewards in Euros for active participation.
 - **Currency & Neo-Bank UX:** Invisible Web3 experience displayed in Euros (€). All settlements, rentals, and APU payouts use Euro-backed electronic money (EURC) with biometric authorization (Face ID / fingerprint).
 - **Asset Trading & Fractional APUs:** Full APUs or fractional APU shares can be traded on Trade Hub. Pro-rata yield is paid automatically to all APU share holders.
 - **Asset Control Rules:** 51% APU stake or co-owner vote determines operational teleoperation rights. Fractional APU owners retain yield rights regardless.
