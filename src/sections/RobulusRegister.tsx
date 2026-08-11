@@ -183,22 +183,22 @@ const RobulusRegister: React.FC = () => {
         {
             id: 'medium' as const,
             tag: 'MEDIUM PATH',
-            title: 'CUSTOM MARKETPLACE ORDER',
+            title: 'CUSTOM MERCATUS ORDER',
             accent: '#FFB800', // Yellow / Gold
-            shortDesc: 'Find a contributor on marketplace.juvantia.org to commission a custom build and delivery of your Robulus. You can also order the 3D body shell from a separate contributor.',
+            shortDesc: 'Find a contributor on mercatus.juvantia.org to commission a custom build and delivery of your Robulus. You can also order the 3D body shell from a separate contributor.',
             details: [
                 {
-                    title: 'COMMISSION ASSEMBLY ON MARKETPLACE',
+                    title: 'COMMISSION ASSEMBLY ON MERCATUS',
                     text: (
                         <>
                             Find a contributor on{' '}
                             <a 
-                                href="https://marketplace.juvantia.org" 
+                                href="https://mercatus.juvantia.org" 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 style={{ color: '#FFB800', textDecoration: 'underline', fontWeight: 600 }}
                             >
-                                marketplace.juvantia.org
+                                mercatus.juvantia.org
                             </a>{' '}
                             and order a custom build and delivery of your Robulus directly to the park.
                         </>
@@ -374,7 +374,7 @@ const RobulusRegister: React.FC = () => {
                             fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.12em',
                             color: '#E6F0EB', margin: 0, lineHeight: 1.15,
                         }}>
-                            BUILD YOUR OWN{' '}
+                            OWN YOUR{' '}
                             <span style={{
                                 background: 'linear-gradient(135deg, #00FF88, #00D4FF)',
                                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
