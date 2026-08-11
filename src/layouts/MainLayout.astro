@@ -12,7 +12,7 @@ interface Props {
 const {
   title,
   description = 'A persistent teleoperated rover technopark powered by a role-based economy. Build, ship and control your Robulus remotely inside a real outdoor park.',
-  ogImage = 'https://juvantia.org/images/hero_city.png',
+  ogImage = 'https://juvantia.org/images/hero.jpg',
 } = Astro.props;
 
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -87,14 +87,15 @@ const navItems = [
           ))}
         </div>
 
-        <a
-          href="https://city.juvantia.org/"
-          target="_blank"
-          class="layout-enter-city-btn"
-          aria-label="Enter Juvantia City"
-        >
-          Enter City
-        </a>
+        {pathname !== '/downloads' && (
+          <a
+            href="/downloads"
+            class="layout-enter-city-btn"
+            aria-label="Download Juvantia Clients"
+          >
+            Downloads
+          </a>
+        )}
       </nav>
 
       <!-- Page Content -->

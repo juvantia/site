@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60">
+  <defs>
+    <linearGradient id="win-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141a18"/>
+      <stop offset="100%" stop-color="#080d0b"/>
+    </linearGradient>
+    <linearGradient id="win-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00FF88" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#00FF88" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Pill -->
+  <rect x="1" y="1" width="198" height="58" rx="10" fill="url(#win-bg)" stroke="url(#win-border)" stroke-width="1.5"/>
+
+  <!-- Windows Logo (#0078D4) -->
+  <g transform="translate(16, 16) scale(0.95)">
+    <path fill="#0078D4" d="M 0,4.2 L 12.6,2.4 L 12.6,13.8 L 0,13.8 Z M 14,2.2 L 30,0 L 30,13.8 L 14,13.8 Z M 0,15.2 L 12.6,15.2 L 12.6,26.6 L 0,24.8 Z M 14,15.2 L 30,15.2 L 30,29 L 14,26.8 Z"/>
+  </g>
+
+  <!-- Text -->
+  <text x="54" y="24" font-family="'Space Grotesk', system-ui, sans-serif" font-size="8.5" font-weight="600" letter-spacing="1.5" fill="#88A090" text-transform="uppercase">GET IT FOR</text>
+  <text x="54" y="43" font-family="'Cinzel', 'Space Grotesk', serif" font-size="15" font-weight="700" letter-spacing="1" fill="#00FF88" text-transform="uppercase">WINDOWS</text>
+</svg>

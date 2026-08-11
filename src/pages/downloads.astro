@@ -1,0 +1,14 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Downloads from '../sections/Downloads';
+import AnimatedBackground from '../components/AnimatedBackground';
+---
+
+<MainLayout
+  title="Downloads — JUVANTIA"
+  description="Download official Juvantia ecosystem client applications for mobile (Juvantia Citizen) and desktop (Juvantia Operator Deck)."
+  ogImage="https://juvantia.org/images/hero.jpg"
+>
+  <AnimatedBackground client:only="react" />
+  <Downloads client:load />
+</MainLayout>

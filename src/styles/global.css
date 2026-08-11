@@ -132,11 +132,17 @@
 }
 
 /* Master Grid Background */
+html {
+  background-color: #050a09 !important;
+  overflow-x: hidden !important;
+}
+
 body {
   background-color: #050a09 !important;
   color: #dfe4e1 !important;
   margin: 0 !important;
   padding: 0 !important;
+  overflow-x: hidden !important;
 }
 
 body::before {
