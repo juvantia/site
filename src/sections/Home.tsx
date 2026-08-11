@@ -551,14 +551,14 @@ const Home: React.FC = () => {
     const heroScale = useTransform(scrollY, [0, 400], [1.0, 1.1]);
     const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
     const [block01ImageIndex, setBlock01ImageIndex] = useState(0);
-    const block01Images = ['/images/11.png', '/images/4855.png'];
+    const block01Images = ['/images/11.jpg', '/images/4855.png'];
     const block01Alts = [
         'Technopark scale visualization showing vast 8-hectare territory',
         '8 Hectares Technopark Scale with engineering infrastructure'
     ];
 
     const [block02ImageIndex, setBlock02ImageIndex] = useState(0);
-    const block02Images = ['/images/charging_station2.png', '/images/charging_station.png'];
+    const block02Images = ['/images/charging_station2.jpg', '/images/charging_station.jpg'];
     const block02Alts = [
         'Industrial-grade magnetic charging station with MagSafe-like connection for rovers',
         'Distributed 12V power grid infrastructure and Wi-Fi coverage area'
@@ -597,7 +597,7 @@ const Home: React.FC = () => {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        backgroundImage: 'url(/images/hero_city.png)',
+                        backgroundImage: 'url(/images/hero.jpg)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center center',
                         y: heroImageY,
@@ -1491,7 +1491,7 @@ const Home: React.FC = () => {
                             }}
                         >
                             <img
-                                src="/images/colosseum_arena.png"
+                                src="/images/colosseum_arena.jpg"
                                 alt="The Colosseum Arena"
                                 style={{ width: '100%', height: 'auto', display: 'block', filter: 'brightness(0.9) saturate(1.1)' }}
                             />
