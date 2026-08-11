@@ -44,6 +44,95 @@ const deckDownloads: DownloadItem[] = [
   },
 ];
 
+const CitizenQrCode: React.FC = () => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '0 auto 1.5rem auto',
+      gap: '0.5rem',
+    }}
+  >
+    <div
+      style={{
+        padding: '8px',
+        background: '#FFFFFF',
+        borderRadius: '4px',
+        border: '1px solid rgba(0, 255, 136, 0.5)',
+        boxShadow: '0 0 20px rgba(0, 255, 136, 0.25)',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 255, 136, 0.5)';
+        e.currentTarget.style.transform = 'scale(1.04)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.25)';
+        e.currentTarget.style.transform = 'scale(1)';
+      }}
+    >
+      <svg width="88" height="88" viewBox="0 0 29 29" shapeRendering="crispEdges">
+        <rect width="29" height="29" fill="#FFFFFF" />
+        {/* Finder Top-Left */}
+        <rect x="2" y="2" width="7" height="7" fill="#050a09" />
+        <rect x="3" y="3" width="5" height="5" fill="#FFFFFF" />
+        <rect x="4" y="4" width="3" height="3" fill="#050a09" />
+
+        {/* Finder Top-Right */}
+        <rect x="20" y="2" width="7" height="7" fill="#050a09" />
+        <rect x="21" y="3" width="5" height="5" fill="#FFFFFF" />
+        <rect x="22" y="4" width="3" height="3" fill="#050a09" />
+
+        {/* Finder Bottom-Left */}
+        <rect x="2" y="20" width="7" height="7" fill="#050a09" />
+        <rect x="3" y="21" width="5" height="5" fill="#FFFFFF" />
+        <rect x="4" y="22" width="3" height="3" fill="#050a09" />
+
+        {/* Alignment Pattern */}
+        <rect x="20" y="20" width="5" height="5" fill="#050a09" />
+        <rect x="21" y="21" width="3" height="3" fill="#FFFFFF" />
+        <rect x="22" y="22" width="1" height="1" fill="#050a09" />
+
+        {/* Timing bars & data modules */}
+        <g fill="#050a09">
+          <rect x="10" y="4" width="1" height="1" /><rect x="12" y="4" width="1" height="1" /><rect x="14" y="4" width="1" height="1" /><rect x="16" y="4" width="1" height="1" />
+          <rect x="4" y="10" width="1" height="1" /><rect x="4" y="12" width="1" height="1" /><rect x="4" y="14" width="1" height="1" /><rect x="4" y="16" width="1" height="1" />
+
+          <rect x="10" y="2" width="2" height="1" /><rect x="14" y="2" width="1" height="2" /><rect x="17" y="2" width="2" height="1" />
+          <rect x="10" y="6" width="3" height="1" /><rect x="15" y="6" width="2" height="2" /><rect x="18" y="5" width="1" height="3" />
+          <rect x="2" y="10" width="2" height="1" /><rect x="6" y="10" width="1" height="2" /><rect x="8" y="10" width="2" height="1" />
+          <rect x="11" y="9" width="3" height="2" /><rect x="16" y="9" width="2" height="1" /><rect x="20" y="10" width="3" height="1" /><rect x="25" y="10" width="2" height="1" />
+          <rect x="2" y="13" width="1" height="2" /><rect x="5" y="12" width="2" height="1" /><rect x="8" y="13" width="1" height="2" />
+          <rect x="10" y="12" width="2" height="2" /><rect x="13" y="12" width="2" height="1" /><rect x="17" y="12" width="3" height="1" /><rect x="22" y="12" width="2" height="2" /><rect x="26" y="12" width="1" height="2" />
+          <rect x="3" y="16" width="2" height="1" /><rect x="7" y="15" width="2" height="2" /><rect x="10" y="15" width="1" height="3" />
+          <rect x="12" y="15" width="3" height="1" /><rect x="16" y="15" width="2" height="2" /><rect x="19" y="15" width="2" height="1" /><rect x="23" y="15" width="3" height="1" />
+          <rect x="10" y="19" width="2" height="1" /><rect x="13" y="18" width="1" height="2" /><rect x="15" y="19" width="2" height="1" /><rect x="18" y="18" width="1" height="2" />
+          <rect x="10" y="21" width="3" height="1" /><rect x="14" y="21" width="2" height="2" /><rect x="17" y="21" width="2" height="1" />
+          <rect x="10" y="23" width="1" height="3" /><rect x="12" y="24" width="2" height="1" /><rect x="15" y="23" width="3" height="1" /><rect x="19" y="24" width="2" height="2" /><rect x="26" y="22" width="1" height="3" />
+          <rect x="11" y="26" width="2" height="1" /><rect x="14" y="26" width="3" height="1" /><rect x="18" y="26" width="2" height="1" /><rect x="21" y="26" width="3" height="1" /><rect x="25" y="26" width="2" height="1" />
+        </g>
+      </svg>
+    </div>
+    <span
+      style={{
+        fontFamily: '"Space Grotesk", sans-serif',
+        fontSize: '0.65rem',
+        fontWeight: 600,
+        letterSpacing: '0.14em',
+        color: '#88A090',
+        textTransform: 'uppercase',
+      }}
+    >
+      Scan to open on phone
+    </span>
+  </div>
+);
+
 const Downloads: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -210,12 +299,15 @@ const Downloads: React.FC = () => {
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               color: '#E6F0EB',
-              margin: '0 0 1.5rem 0',
+              margin: '0 0 1.25rem 0',
               textAlign: 'center',
             }}
           >
             Juvantia Citizen
           </h2>
+
+          {/* Desktop Only QR Code Block */}
+          {!isMobile && <CitizenQrCode />}
 
           {/* Badges Container Grid */}
           <div
