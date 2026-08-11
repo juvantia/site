@@ -201,12 +201,12 @@ const Downloads: React.FC = () => {
           <div style={{ position: 'absolute', bottom: '12px', left: '12px', width: '16px', height: '16px', borderBottom: '2px solid #00FF88', borderLeft: '2px solid #00FF88' }} />
           <div style={{ position: 'absolute', bottom: '12px', right: '12px', width: '16px', height: '16px', borderBottom: '2px solid #00FF88', borderRight: '2px solid #00FF88' }} />
 
-          {/* Section Title (fontWeight: 500) */}
+          {/* Section Title (fontWeight: 400) */}
           <h2
             style={{
               fontFamily: '"Cinzel", serif',
               fontSize: isMobile ? '1.2rem' : '1.35rem',
-              fontWeight: 500,
+              fontWeight: 400,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               color: '#E6F0EB',
@@ -317,12 +317,12 @@ const Downloads: React.FC = () => {
           <div style={{ position: 'absolute', bottom: '12px', left: '12px', width: '16px', height: '16px', borderBottom: '2px solid #00FF88', borderLeft: '2px solid #00FF88' }} />
           <div style={{ position: 'absolute', bottom: '12px', right: '12px', width: '16px', height: '16px', borderBottom: '2px solid #00FF88', borderRight: '2px solid #00FF88' }} />
 
-          {/* Section Title (fontWeight: 500) */}
+          {/* Section Title (fontWeight: 400) */}
           <h2
             style={{
               fontFamily: '"Cinzel", serif',
               fontSize: isMobile ? '1.2rem' : '1.35rem',
-              fontWeight: 500,
+              fontWeight: 400,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               color: '#E6F0EB',
