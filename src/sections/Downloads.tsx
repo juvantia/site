@@ -13,19 +13,16 @@ const citizenDownloads: DownloadItem[] = [
     id: 'app-store',
     name: 'App Store',
     badgeImg: '/images/as.svg',
-    url: '#',
   },
   {
     id: 'google-play',
     name: 'Google Play',
     badgeImg: '/images/gp.svg',
-    url: '#',
   },
   {
     id: 'apk-download',
     name: 'Direct APK',
     badgeImg: '/images/apk.svg',
-    url: '#',
   },
 ];
 
@@ -34,13 +31,11 @@ const deckDownloads: DownloadItem[] = [
     id: 'macos',
     name: 'macOS Client',
     badgeImg: '/images/mas.svg',
-    url: '#',
   },
   {
     id: 'windows',
     name: 'Windows Client',
     badgeImg: '/images/windows.svg',
-    url: '#',
   },
 ];
 
@@ -60,20 +55,12 @@ const CitizenQrCode: React.FC = () => (
         padding: '8px',
         background: '#FFFFFF',
         borderRadius: '4px',
-        border: '1px solid rgba(0, 255, 136, 0.5)',
-        boxShadow: '0 0 20px rgba(0, 255, 136, 0.25)',
+        border: '1px solid rgba(0, 255, 136, 0.3)',
+        boxShadow: '0 0 15px rgba(0, 255, 136, 0.15)',
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 255, 136, 0.5)';
-        e.currentTarget.style.transform = 'scale(1.04)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.25)';
-        e.currentTarget.style.transform = 'scale(1)';
+        opacity: 0.6,
       }}
     >
       <svg width="88" height="88" viewBox="0 0 29 29" shapeRendering="crispEdges">
@@ -126,6 +113,7 @@ const CitizenQrCode: React.FC = () => (
         letterSpacing: '0.14em',
         color: '#88A090',
         textTransform: 'uppercase',
+        opacity: 0.6,
       }}
     >
       Scan to open on phone
@@ -321,41 +309,71 @@ const Downloads: React.FC = () => {
               boxSizing: 'border-box',
             }}
           >
-            {citizenDownloads.map((item) => (
-              <motion.a
-                key={item.id}
-                href={item.url || '#'}
-                whileHover={{ y: -4, scale: 1.03 }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textDecoration: 'none',
-                  outline: 'none',
-                  borderRadius: '10px',
-                  maxWidth: '100%',
-                  transition: 'filter 0.3s ease, box-shadow 0.3s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.filter = 'drop-shadow(0 0 15px rgba(0, 255, 136, 0.4))';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.filter = 'none';
-                }}
-              >
-                <img
-                  src={item.badgeImg}
-                  alt={item.name}
+            {citizenDownloads.map((item) => {
+              const isAvailable = Boolean(item.url && item.url !== '#');
+              return isAvailable ? (
+                <motion.a
+                  key={item.id}
+                  href={item.url}
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  transition={{ duration: 0.2 }}
                   style={{
-                    height: isMobile ? '50px' : '60px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    textDecoration: 'none',
+                    outline: 'none',
+                    borderRadius: '10px',
                     maxWidth: '100%',
-                    width: 'auto',
-                    objectFit: 'contain',
+                    transition: 'filter 0.3s ease, box-shadow 0.3s ease',
                   }}
-                />
-              </motion.a>
-            ))}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.filter = 'drop-shadow(0 0 15px rgba(0, 255, 136, 0.4))';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.filter = 'none';
+                  }}
+                >
+                  <img
+                    src={item.badgeImg}
+                    alt={item.name}
+                    style={{
+                      height: isMobile ? '50px' : '60px',
+                      maxWidth: '100%',
+                      width: 'auto',
+                      objectFit: 'contain',
+                    }}
+                  />
+                </motion.a>
+              ) : (
+                <div
+                  key={item.id}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '10px',
+                    maxWidth: '100%',
+                    opacity: 0.4,
+                    filter: 'grayscale(0.3)',
+                    cursor: 'not-allowed',
+                    userSelect: 'none',
+                  }}
+                >
+                  <img
+                    src={item.badgeImg}
+                    alt={item.name}
+                    style={{
+                      height: isMobile ? '50px' : '60px',
+                      maxWidth: '100%',
+                      width: 'auto',
+                      objectFit: 'contain',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </motion.div>
 
@@ -437,41 +455,71 @@ const Downloads: React.FC = () => {
               boxSizing: 'border-box',
             }}
           >
-            {deckDownloads.map((item) => (
-              <motion.a
-                key={item.id}
-                href={item.url || '#'}
-                whileHover={{ y: -4, scale: 1.03 }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textDecoration: 'none',
-                  outline: 'none',
-                  borderRadius: '10px',
-                  maxWidth: '100%',
-                  transition: 'filter 0.3s ease, box-shadow 0.3s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.filter = 'drop-shadow(0 0 15px rgba(0, 255, 136, 0.4))';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.filter = 'none';
-                }}
-              >
-                <img
-                  src={item.badgeImg}
-                  alt={item.name}
+            {deckDownloads.map((item) => {
+              const isAvailable = Boolean(item.url && item.url !== '#');
+              return isAvailable ? (
+                <motion.a
+                  key={item.id}
+                  href={item.url}
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  transition={{ duration: 0.2 }}
                   style={{
-                    height: isMobile ? '50px' : '60px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    textDecoration: 'none',
+                    outline: 'none',
+                    borderRadius: '10px',
                     maxWidth: '100%',
-                    width: 'auto',
-                    objectFit: 'contain',
+                    transition: 'filter 0.3s ease, box-shadow 0.3s ease',
                   }}
-                />
-              </motion.a>
-            ))}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.filter = 'drop-shadow(0 0 15px rgba(0, 255, 136, 0.4))';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.filter = 'none';
+                  }}
+                >
+                  <img
+                    src={item.badgeImg}
+                    alt={item.name}
+                    style={{
+                      height: isMobile ? '50px' : '60px',
+                      maxWidth: '100%',
+                      width: 'auto',
+                      objectFit: 'contain',
+                    }}
+                  />
+                </motion.a>
+              ) : (
+                <div
+                  key={item.id}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '10px',
+                    maxWidth: '100%',
+                    opacity: 0.4,
+                    filter: 'grayscale(0.3)',
+                    cursor: 'not-allowed',
+                    userSelect: 'none',
+                  }}
+                >
+                  <img
+                    src={item.badgeImg}
+                    alt={item.name}
+                    style={{
+                      height: isMobile ? '50px' : '60px',
+                      maxWidth: '100%',
+                      width: 'auto',
+                      objectFit: 'contain',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </motion.div>
       </div>
@@ -480,3 +528,4 @@ const Downloads: React.FC = () => {
 };
 
 export default Downloads;
+
