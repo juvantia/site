@@ -16,7 +16,7 @@ const faqItems: FAQItem[] = [
     {
         id: 'cost',
         question: "HOW MUCH DOES IT COST?",
-        answer: "Access to the technopark is completely free. Your only operational costs are standard taxes on specific platform services and physical asset ownership. Electricity is not a mandatory expense if your installation utilizes local solar or wind power generation."
+        answer: "Access to the park is completely free. Your only operational costs are standard taxes on specific platform services and physical asset ownership. Electricity is not a mandatory expense if your installation utilizes local solar or wind power generation."
     },
     {
         id: 'what-is-robulus',
@@ -26,7 +26,7 @@ const faqItems: FAQItem[] = [
     {
         id: 'ready-made-robulus',
         question: "CAN I BUY A READY-MADE ROBULUS?",
-        answer: "Yes, absolutely. You can order a brand-new Robulus with any custom configuration (just like configuring a vehicle) directly from the technopark. Alternatively, you can purchase pre-owned Robulus units on the secondary market via the Trade Hub."
+        answer: "Yes, absolutely. You can order a brand-new Robulus with any custom configuration (just like configuring a vehicle) directly from the park. Alternatively, you can purchase pre-owned Robulus units on the secondary market via the Trade Hub."
     },
     {
         id: 'build-custom-robulus',
@@ -41,7 +41,7 @@ const faqItems: FAQItem[] = [
     {
         id: 'physical-presence',
         question: "DO I NEED TO TRAVEL TO THE PHYSICAL PARK TO INSTALL OR MAINTAIN MY HARDWARE?",
-        answer: "No, physical presence is strictly optional. Human access inside the technopark perimeter is restricted at all times to ensure site safety and operational security. Regular participants are not permitted inside the facility, even during scheduled technical windows. Physical deployment, unboxing, and hardware maintenance on-site are handled exclusively by authorized park contributors and engineering staff. You can deliver or collect your hardware via standard postal and courier services, or hand it over in person at the park entrance checkpoint."
+        answer: "No, physical presence is strictly optional. Human access inside the park perimeter is restricted at all times to ensure site safety and operational security. Regular participants are not permitted inside the facility, even during scheduled technical windows. Physical deployment, unboxing, and hardware maintenance on-site are handled exclusively by authorized park contributors and engineering staff. You can deliver or collect your hardware via standard postal and courier services, or hand it over in person at the park entrance checkpoint."
     },
     {
         id: 'shipping',

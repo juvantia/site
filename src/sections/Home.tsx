@@ -553,8 +553,8 @@ const Home: React.FC = () => {
     const [block01ImageIndex, setBlock01ImageIndex] = useState(0);
     const block01Images = ['/images/11.jpg', '/images/4855.png'];
     const block01Alts = [
-        'Technopark scale visualization showing vast 8-hectare territory',
-        '8 Hectares Technopark Scale with engineering infrastructure'
+        'Proving ground scale visualization showing vast 8-hectare territory',
+        '8 Hectares Proving Ground Scale with engineering infrastructure'
     ];
 
     const [block02ImageIndex, setBlock02ImageIndex] = useState(0);
@@ -712,23 +712,33 @@ const Home: React.FC = () => {
                         />
 
                         {/* Description */}
-                        <motion.p
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7, duration: 0.8 }}
                             style={{
                                 fontFamily: "'Space Grotesk', sans-serif",
-                                fontSize: isMobile ? '0.9rem' : '1.1rem',
-                                color: 'rgba(223, 228, 225, 0.75)',
-                                lineHeight: 1.85,
+                                fontSize: isMobile ? '0.9rem' : '1.05rem',
+                                color: 'rgba(223, 228, 225, 0.8)',
+                                lineHeight: 1.7,
                                 fontWeight: 300,
                                 margin: 0,
-                                maxWidth: '480px'
+                                maxWidth: '540px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '0.85rem'
                             }}
                         >
-                            A Persistent Teleoperated Rover Technopark<br />
-                            powered by a Role-based Economy.
-                        </motion.p>
+                            <p style={{ margin: 0 }}>
+                                A free-to-enter, open-access physical proving ground for teleoperated rovers.
+                            </p>
+                            <p style={{ margin: 0 }}>
+                                It provides a testing and deployment environment for commercial R&D, university laboratories, and competitive entertainment.
+                            </p>
+                            <p style={{ margin: 0 }}>
+                                The ecosystem is powered by a market-driven economy where participants earn by performing useful work and co-owning physical assets.
+                            </p>
+                        </motion.div>
 
 
 
@@ -760,7 +770,7 @@ const Home: React.FC = () => {
                                     boxShadow: '0 30px 60px rgba(0,0,0,0.6)'
                                 }}
                             >
-                                <img src="/images/TP.png" alt="Juvantia Technopark" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.7s ease, filter 0.5s ease', filter: 'brightness(0.9) saturate(1.1)' }}
+                                <img src="/images/TP.png" alt="Juvantia Proving Ground" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.7s ease, filter 0.5s ease', filter: 'brightness(0.9) saturate(1.1)' }}
                                     onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.filter = 'brightness(1) saturate(1.2)'; }}
                                     onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(0.9) saturate(1.1)'; }}
                                 />
@@ -846,7 +856,7 @@ const Home: React.FC = () => {
 
             </section>
 
-            {/* ===== TECHNOPARK FACILITY SECTION ===== */}
+            {/* ===== PROVING GROUND FACILITY SECTION ===== */}
             <motion.section
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -868,9 +878,20 @@ const Home: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
                     style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem', width: '100%' }}
                 >
-
+                    <div style={{
+                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontSize: '0.75rem',
+                        letterSpacing: '0.25em',
+                        textTransform: 'uppercase',
+                        color: 'var(--color-primary)',
+                        marginBottom: '0.75rem',
+                        fontWeight: 600
+                    }}>
+                        TERRAIN & INFRASTRUCTURE
+                    </div>
                     <h2 style={{
                         fontSize: isMobile ? '1.8rem' : 'clamp(2.3rem, 5vw, 3.2rem)',
                         background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
@@ -882,7 +903,7 @@ const Home: React.FC = () => {
                         fontFamily: "'Cinzel', serif",
                         margin: '0 0 1.5rem'
                     }}>
-                        Technopark Facility
+                        Proving Ground Facility
                     </h2>
                     <div style={{
                         width: '60px',
@@ -894,7 +915,7 @@ const Home: React.FC = () => {
 
                 <div style={{ maxWidth: '1280px', width: '100%', display: 'flex', flexDirection: 'column', gap: isMobile ? '1.5rem' : '2rem' }}>
 
-                    {/* ── ROW 1: Full-width HERO — Scale ── */}
+                    {/* ── BLOCK 01: Location (Southern Europe) ── */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -904,7 +925,85 @@ const Home: React.FC = () => {
                             position: 'relative',
                             display: 'grid',
                             gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-                            minHeight: isMobile ? 'auto' : '420px',
+                            minHeight: isMobile ? 'auto' : '400px',
+                            background: 'linear-gradient(135deg, rgba(8, 16, 14, 0.97) 0%, rgba(10, 18, 22, 0.99) 100%)',
+                            border: '1px solid rgba(0, 212, 255, 0.15)',
+                            overflow: 'hidden'
+                        }}
+                        whileHover={{
+                            borderColor: 'rgba(0, 212, 255, 0.35)',
+                            boxShadow: '0 0 40px rgba(0, 212, 255, 0.08)'
+                        }}
+                    >
+                        {/* Left: Image */}
+                        <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto' }}>
+                            <img
+                                src="/images/photo_2026-04-17_22-14-15.jpg"
+                                alt="Southern Europe Location"
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.8s ease, filter 0.5s ease', filter: 'brightness(0.85) saturate(1.25)' }}
+                                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.filter = 'brightness(1.02) saturate(1.4)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(0.85) saturate(1.25)'; }}
+                            />
+                            {['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].map(pos => (
+                                <div key={pos} style={{
+                                    position: 'absolute', width: '18px', height: '18px',
+                                    borderColor: 'rgba(0, 212, 255, 0.7)', borderStyle: 'solid', borderWidth: 0,
+                                    zIndex: 5,
+                                    ...(pos === 'topLeft' && { top: 14, left: 14, borderTopWidth: 2, borderLeftWidth: 2 }),
+                                    ...(pos === 'topRight' && { top: 14, right: 14, borderTopWidth: 2, borderRightWidth: 2 }),
+                                    ...(pos === 'bottomLeft' && { bottom: 14, left: 14, borderBottomWidth: 2, borderLeftWidth: 2 }),
+                                    ...(pos === 'bottomRight' && { bottom: 14, right: 14, borderBottomWidth: 2, borderRightWidth: 2 }),
+                                }} />
+                            ))}
+                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to left, rgba(10,18,22,0.55) 0%, transparent 40%)' }} />
+                        </div>
+
+                        {/* Right: Content */}
+                        <div style={{
+                            padding: isMobile ? '2rem 1.5rem' : '3.5rem',
+                            display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1.5rem',
+                            borderLeft: isMobile ? 'none' : '1px solid rgba(0, 212, 255, 0.08)'
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1rem' }}>
+                                <span style={{
+                                    fontFamily: "'Cinzel', serif",
+                                    fontSize: isMobile ? '4rem' : '6rem',
+                                    lineHeight: 1, fontWeight: 600,
+                                    background: 'linear-gradient(135deg, #00D4FF 0%, #00FF88 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    opacity: 0.25
+                                }}>01</span>
+                                <div>
+                                    <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#00D4FF', marginBottom: '0.4rem', opacity: 0.85 }}>Southern Europe</p>
+                                    <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: isMobile ? '1.3rem' : '1.8rem', fontWeight: 400, letterSpacing: '0.08em', color: '#E6F0EB', textTransform: 'uppercase', margin: 0 }}>Location</h3>
+                                </div>
+                            </div>
+                            <p style={{ fontFamily: "'Space Grotesk'", fontSize: '1rem', color: 'rgba(185, 203, 185, 0.85)', lineHeight: 1.8, fontWeight: 300, margin: 0 }}>
+                                300+ sunny days per year — optimal for continuous solar R&amp;D, photovoltaic generation, and outdoor robotics. The dry, frost-free Mediterranean climate prevents corrosion and condensation, significantly extending your hardware's operational lifespan and enabling 24/7 all-season trials.
+                            </p>
+                            <div style={{ paddingTop: '1.25rem', borderTop: '1px solid rgba(0,212,255,0.1)', display: 'flex', gap: '2rem' }}>
+                                {[['SUNNY DAYS', '300+'], ['FROST RISK', 'ZERO'], ['CONDENSATION', 'MINIMAL']].map(([label, val]) => (
+                                    <div key={label}>
+                                        <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.75rem', fontWeight: 600, color: '#00D4FF', letterSpacing: '0.1em' }}>{val}</div>
+                                        <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(185,203,185,0.4)', marginTop: '2px' }}>{label}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* ── BLOCK 02: Scale — 8 Hectares ── */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, delay: 0.05 }}
+                        style={{
+                            position: 'relative',
+                            display: 'grid',
+                            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                            minHeight: isMobile ? 'auto' : '400px',
                             background: 'linear-gradient(135deg, rgba(18, 32, 30, 0.95) 0%, rgba(10, 15, 14, 0.98) 100%)',
                             border: '1px solid rgba(0, 255, 136, 0.12)',
                             overflow: 'hidden',
@@ -915,8 +1014,83 @@ const Home: React.FC = () => {
                             boxShadow: '0 0 40px rgba(0, 255, 136, 0.08)'
                         }}
                     >
-                        {/* Left: Image Carousel */}
-                        <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto' }}>
+                        {/* Left: Content */}
+                        <div style={{
+                            padding: isMobile ? '2rem 1.5rem' : '3.5rem',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            gap: '1.5rem',
+                            borderRight: isMobile ? 'none' : '1px solid rgba(0, 255, 136, 0.08)',
+                            order: isMobile ? 2 : 1
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1rem' }}>
+                                <span style={{
+                                    fontFamily: "'Cinzel', serif",
+                                    fontSize: isMobile ? '4rem' : '6rem',
+                                    lineHeight: 1,
+                                    fontWeight: 600,
+                                    background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    opacity: 0.25
+                                }}>02</span>
+                                <div>
+                                    <p style={{
+                                        fontFamily: "'Space Grotesk'",
+                                        fontSize: '0.65rem',
+                                        letterSpacing: '0.3em',
+                                        textTransform: 'uppercase',
+                                        color: 'var(--color-primary)',
+                                        marginBottom: '0.4rem',
+                                        opacity: 0.8
+                                    }}>Scale</p>
+                                    <h3 style={{
+                                        fontFamily: "'Cinzel', serif",
+                                        fontSize: isMobile ? '1.3rem' : '1.8rem',
+                                        fontWeight: 400,
+                                        letterSpacing: '0.08em',
+                                        color: '#E6F0EB',
+                                        textTransform: 'uppercase',
+                                        margin: 0
+                                    }}>8 Hectares</h3>
+                                    <p style={{
+                                        fontFamily: "'Space Grotesk'",
+                                        fontSize: '0.75rem',
+                                        color: 'rgba(0,255,136,0.6)',
+                                        letterSpacing: '0.15em',
+                                        marginTop: '0.25rem'
+                                    }}>400 × 200 m</p>
+                                </div>
+                            </div>
+                            <p style={{
+                                fontFamily: "'Space Grotesk'",
+                                fontSize: '1rem',
+                                color: 'rgba(185, 203, 185, 0.85)',
+                                lineHeight: 1.8,
+                                fontWeight: 300
+                            }}>
+                                A vast, engineered physical proving ground spanning 8 hectares (400 × 200 meters). Designed to support complex multi-rover logistics, territorial syndicates, industrial test loops, and concurrent operation of thousands of teleoperated rovers.
+                            </p>
+                            {/* Bottom accent bar */}
+                            <div style={{
+                                marginTop: 'auto',
+                                paddingTop: '1.5rem',
+                                borderTop: '1px solid rgba(0,255,136,0.1)',
+                                display: 'flex',
+                                gap: '2rem'
+                            }}>
+                                {[['RUBBER ROADS', '32 KM'], ['DISTRICTS', '12'], ['DOMUSES', '800+']].map(([label, val]) => (
+                                    <div key={label}>
+                                        <div style={{ fontFamily: "'Cinzel'", fontSize: '1.2rem', fontWeight: 600, color: 'var(--color-primary)' }}>{val}</div>
+                                        <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(185,203,185,0.5)', marginTop: '2px' }}>{label}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Right: Image Carousel */}
+                        <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto', order: isMobile ? 1 : 2 }}>
                             <AnimatePresence mode='wait'>
                                 <motion.img
                                     key={block01ImageIndex}
@@ -985,88 +1159,13 @@ const Home: React.FC = () => {
                                     ...(pos === 'topLeft' && { top: 16, left: 16, borderTopWidth: 2, borderLeftWidth: 2 }),
                                     ...(pos === 'topRight' && { top: 16, right: 16, borderTopWidth: 2, borderRightWidth: 2 }),
                                     ...(pos === 'bottomLeft' && { bottom: 16, left: 16, borderBottomWidth: 2, borderLeftWidth: 2 }),
-                                    ...(pos === 'bottomRight' && { bottom: 16, right: 16, borderBottomWidth: 2, borderLeftWidth: 2 }),
+                                    ...(pos === 'bottomRight' && { bottom: 16, right: 16, borderBottomWidth: 2, borderRightWidth: 2 }),
                                 }} />
                             ))}
-
-                        </div>
-
-                        {/* Right: Content */}
-                        <div style={{
-                            padding: isMobile ? '2rem 1.5rem' : '3.5rem',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            gap: '1.5rem',
-                            borderLeft: isMobile ? 'none' : '1px solid rgba(0, 255, 136, 0.08)'
-                        }}>
-                            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1rem' }}>
-                                <span style={{
-                                    fontFamily: "'Cinzel', serif",
-                                    fontSize: isMobile ? '4rem' : '6rem',
-                                    lineHeight: 1,
-                                    fontWeight: 600,
-                                    background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                    opacity: 0.25
-                                }}>01</span>
-                                <div>
-                                    <p style={{
-                                        fontFamily: "'Space Grotesk'",
-                                        fontSize: '0.65rem',
-                                        letterSpacing: '0.3em',
-                                        textTransform: 'uppercase',
-                                        color: 'var(--color-primary)',
-                                        marginBottom: '0.4rem',
-                                        opacity: 0.8
-                                    }}>Scale</p>
-                                    <h3 style={{
-                                        fontFamily: "'Cinzel', serif",
-                                        fontSize: isMobile ? '1.3rem' : '1.8rem',
-                                        fontWeight: 400,
-                                        letterSpacing: '0.08em',
-                                        color: '#E6F0EB',
-                                        textTransform: 'uppercase',
-                                        margin: 0
-                                    }}>8 Hectares</h3>
-                                    <p style={{
-                                        fontFamily: "'Space Grotesk'",
-                                        fontSize: '0.75rem',
-                                        color: 'rgba(0,255,136,0.6)',
-                                        letterSpacing: '0.15em',
-                                        marginTop: '0.25rem'
-                                    }}>400 × 200 m</p>
-                                </div>
-                            </div>
-                            <p style={{
-                                fontFamily: "'Space Grotesk'",
-                                fontSize: '1rem',
-                                color: 'rgba(185, 203, 185, 0.85)',
-                                lineHeight: 1.8,
-                                fontWeight: 300
-                            }}>
-                                A vast, engineered environment designed to support complex logistics, territorial interests, and the concurrent operation of thousands of rovers.
-                            </p>
-                            {/* Bottom accent bar */}
-                            <div style={{
-                                marginTop: 'auto',
-                                paddingTop: '1.5rem',
-                                borderTop: '1px solid rgba(0,255,136,0.1)',
-                                display: 'flex',
-                                gap: '2rem'
-                            }}>
-                                {[['RUBBER ROADS', '32 KM'], ['DISTRICTS', '12'], ['DOMUSES', '800+']].map(([label, val]) => (
-                                    <div key={label}>
-                                        <div style={{ fontFamily: "'Cinzel'", fontSize: '1.2rem', fontWeight: 600, color: 'var(--color-primary)' }}>{val}</div>
-                                        <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(185,203,185,0.5)', marginTop: '2px' }}>{label}</div>
-                                    </div>
-                                ))}
-                            </div>
                         </div>
                     </motion.div>
 
-                    {/* ── BLOCK 02: Inverted Split — Unified Network ── */}
+                    {/* ── BLOCK 03: Unified Network — Electricity & Power Grid ── */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -1076,58 +1175,18 @@ const Home: React.FC = () => {
                             position: 'relative',
                             display: 'grid',
                             gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-                            minHeight: isMobile ? 'auto' : '360px',
+                            minHeight: isMobile ? 'auto' : '380px',
                             background: 'linear-gradient(135deg, rgba(10, 18, 22, 0.97) 0%, rgba(8, 14, 18, 0.99) 100%)',
-                            border: '1px solid rgba(0, 212, 255, 0.12)',
+                            border: '1px solid rgba(0, 212, 255, 0.15)',
                             overflow: 'hidden'
                         }}
                         whileHover={{
                             borderColor: 'rgba(0, 212, 255, 0.35)',
-                            boxShadow: '0 0 40px rgba(0, 212, 255, 0.07)'
+                            boxShadow: '0 0 40px rgba(0, 212, 255, 0.08)'
                         }}
                     >
-                        {/* Left: Content (inverted from 01) */}
-                        <div style={{
-                            padding: isMobile ? '2rem 1.5rem' : '3rem 3.5rem',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            gap: '1.5rem',
-                            borderRight: isMobile ? 'none' : '1px solid rgba(0, 212, 255, 0.08)',
-                            order: isMobile ? 2 : 1
-                        }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <span style={{
-                                    fontFamily: "'Cinzel', serif",
-                                    fontSize: isMobile ? '4rem' : '6rem',
-                                    lineHeight: 1, fontWeight: 600,
-                                    background: 'linear-gradient(135deg, #00D4FF 0%, #00FF88 100%)',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                    opacity: 0.2
-                                }}>02</span>
-                                <div>
-                                    <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#00D4FF', marginBottom: '0.4rem', opacity: 0.8 }}>Connectivity & Power</p>
-                                    <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, letterSpacing: '0.08em', color: '#E6F0EB', textTransform: 'uppercase', margin: 0 }}>Unified Network</h3>
-
-                                </div>
-                            </div>
-                            <p style={{ fontFamily: "'Space Grotesk'", fontSize: '1rem', color: 'rgba(185, 203, 185, 0.82)', lineHeight: 1.8, fontWeight: 300, margin: 0 }}>
-                                Industrial-grade Wi-Fi and a distributed 12V Power Grid with integrated magnetic charging covering the entire site. Standardized charging stations allow Robuluses to snap on effortlessly — just like MagSafe — ensuring ubiquitous power access and an infinite hardware lifecycle.
-                            </p>
-                            {/* Spec row */}
-                            <div style={{ paddingTop: '1.25rem', borderTop: '1px solid rgba(0,212,255,0.1)', display: 'flex', gap: '2rem' }}>
-                                {[['WIFI NODES', '48+'], ['VOLTAGE', '12V GRID'], ['NIGHT LIGHTING', '160+']].map(([label, val]) => (
-                                    <div key={label}>
-                                        <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.75rem', fontWeight: 600, color: '#00D4FF', letterSpacing: '0.1em' }}>{val}</div>
-                                        <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(185,203,185,0.4)', marginTop: '2px' }}>{label}</div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Right: Image */}
-                        <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto', order: isMobile ? 1 : 2 }}>
+                        {/* Left: Image Carousel */}
+                        <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto' }}>
                             <AnimatePresence mode='wait'>
                                 <motion.img
                                     key={block02ImageIndex}
@@ -1137,7 +1196,7 @@ const Home: React.FC = () => {
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
                                     transition={{ duration: 0.6, ease: 'easeInOut' }}
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.8) saturate(1.2) hue-rotate(5deg)' }}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.85) saturate(1.2)' }}
                                 />
                             </AnimatePresence>
 
@@ -1179,7 +1238,7 @@ const Home: React.FC = () => {
                                 ))}
                             </div>
 
-                            {/* Cyan scanner corners */}
+                            {/* Scanner corners */}
                             {['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].map(pos => (
                                 <div key={pos} style={{
                                     position: 'absolute', width: '18px', height: '18px',
@@ -1191,63 +1250,19 @@ const Home: React.FC = () => {
                                     ...(pos === 'bottomRight' && { bottom: 14, right: 14, borderBottomWidth: 2, borderRightWidth: 2 }),
                                 }} />
                             ))}
-                            {/* Cyan gradient overlay from left */}
                             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(8,14,18,0.6) 0%, transparent 40%)', pointerEvents: 'none', zIndex: 4 }} />
-                        </div>
-                    </motion.div>
-
-                    {/* ── BLOCK 03: Hero (image left) — Location ── */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.15 }}
-                        style={{
-                            position: 'relative',
-                            display: 'grid',
-                            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-                            minHeight: isMobile ? 'auto' : '360px',
-                            background: 'linear-gradient(135deg, rgba(8, 16, 14, 0.97) 0%, rgba(10, 18, 22, 0.99) 100%)',
-                            border: '1px solid rgba(0, 212, 255, 0.12)',
-                            overflow: 'hidden'
-                        }}
-                        whileHover={{
-                            borderColor: 'rgba(0, 212, 255, 0.35)',
-                            boxShadow: '0 0 40px rgba(0, 212, 255, 0.07)'
-                        }}
-                    >
-                        {/* Left: Image */}
-                        <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto' }}>
-                            <img
-                                src="/images/photo_2026-04-17_22-14-15.jpg"
-                                alt="Southern Europe Location"
-                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.8s ease, filter 0.5s ease', filter: 'brightness(0.82) saturate(1.3)' }}
-                                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.filter = 'brightness(1.05) saturate(1.5)'; }}
-                                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(0.82) saturate(1.3)'; }}
-                            />
-                            {/* Cyan scanner corners */}
-                            {['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].map(pos => (
-                                <div key={pos} style={{
-                                    position: 'absolute', width: '18px', height: '18px',
-                                    borderColor: 'rgba(0, 212, 255, 0.65)', borderStyle: 'solid', borderWidth: 0,
-                                    ...(pos === 'topLeft' && { top: 14, left: 14, borderTopWidth: 2, borderLeftWidth: 2 }),
-                                    ...(pos === 'topRight' && { top: 14, right: 14, borderTopWidth: 2, borderRightWidth: 2 }),
-                                    ...(pos === 'bottomLeft' && { bottom: 14, left: 14, borderBottomWidth: 2, borderLeftWidth: 2 }),
-                                    ...(pos === 'bottomRight' && { bottom: 14, right: 14, borderBottomWidth: 2, borderRightWidth: 2 }),
-                                }} />
-                            ))}
-
-                            {/* gradient: right fade */}
-                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to left, rgba(10,18,22,0.55) 0%, transparent 40%)' }} />
                         </div>
 
                         {/* Right: Content */}
                         <div style={{
-                            padding: isMobile ? '2rem 1.5rem' : '3rem 3.5rem',
-                            display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1.5rem',
-                            borderLeft: isMobile ? 'none' : '1px solid rgba(0, 212, 255, 0.08)'
+                            padding: isMobile ? '2rem 1.5rem' : '3.5rem',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            gap: '1.5rem',
+                            borderLeft: isMobile ? 'none' : '1px solid rgba(0, 212, 255, 0.08)',
                         }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1rem' }}>
                                 <span style={{
                                     fontFamily: "'Cinzel', serif",
                                     fontSize: isMobile ? '4rem' : '6rem',
@@ -1255,20 +1270,18 @@ const Home: React.FC = () => {
                                     background: 'linear-gradient(135deg, #00D4FF 0%, #00FF88 100%)',
                                     WebkitBackgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',
-                                    opacity: 0.2
+                                    opacity: 0.25
                                 }}>03</span>
                                 <div>
-                                    <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#00D4FF', marginBottom: '0.4rem', opacity: 0.8 }}>Southern Europe</p>
-                                    <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, letterSpacing: '0.08em', color: '#E6F0EB', textTransform: 'uppercase', margin: 0 }}>Location</h3>
-
+                                    <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#00D4FF', marginBottom: '0.4rem', opacity: 0.85 }}>Power &amp; Energy</p>
+                                    <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, letterSpacing: '0.08em', color: '#E6F0EB', textTransform: 'uppercase', margin: 0 }}>Unified Network</h3>
                                 </div>
                             </div>
                             <p style={{ fontFamily: "'Space Grotesk'", fontSize: '1rem', color: 'rgba(185, 203, 185, 0.82)', lineHeight: 1.8, fontWeight: 300, margin: 0 }}>
-                                300+ sunny days per year — ideal for Solar R&D and renewable energy testing. The dry, frost-free climate prevents corrosion and condensation, significantly extending your hardware's operational lifespan.
+                                A distributed 12V electrical grid with integrated magnetic charging stations covering the entire territory. The entire physical backbone is engineered on heavy-duty underground twisted-pair cabling, routed beneath the terrain surface and linking every charging station, distribution node, and infrastructure point across the facility. Standardized charging terminals allow Robulus rovers to snap on automatically with MagSafe-like ease.
                             </p>
-                            {/* Climate stats */}
                             <div style={{ paddingTop: '1.25rem', borderTop: '1px solid rgba(0,212,255,0.1)', display: 'flex', gap: '2rem' }}>
-                                {[['Sunny Days', '300+'], ['Frost Risk', 'Zero'], ['Humidity', 'Low']].map(([label, val]) => (
+                                {[['GRID VOLTAGE', '12V DC'], ['CHARGING', 'MAGNETIC SNAP'], ['NIGHT LIGHTING', '160+ NODES']].map(([label, val]) => (
                                     <div key={label}>
                                         <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.75rem', fontWeight: 600, color: '#00D4FF', letterSpacing: '0.1em' }}>{val}</div>
                                         <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(185,203,185,0.4)', marginTop: '2px' }}>{label}</div>
@@ -1278,12 +1291,167 @@ const Home: React.FC = () => {
                         </div>
                     </motion.div>
 
-                    {/* ── BLOCK 04: Tactical Wide — Asset Protection ── */}
+                    {/* ── BLOCK 04: Teleoperation Wi-Fi Network (Video & Control) ── */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, delay: 0.15 }}
+                        style={{
+                            position: 'relative',
+                            display: 'grid',
+                            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                            minHeight: isMobile ? 'auto' : '380px',
+                            background: 'linear-gradient(135deg, rgba(14, 26, 22, 0.97) 0%, rgba(9, 16, 14, 0.99) 100%)',
+                            border: '1px solid rgba(0, 255, 136, 0.15)',
+                            overflow: 'hidden'
+                        }}
+                        whileHover={{
+                            borderColor: 'rgba(0, 255, 136, 0.35)',
+                            boxShadow: '0 0 40px rgba(0, 255, 136, 0.08)'
+                        }}
+                    >
+                        {/* Left: Content */}
+                        <div style={{
+                            padding: isMobile ? '2rem 1.5rem' : '3.5rem',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            gap: '1.5rem',
+                            borderRight: isMobile ? 'none' : '1px solid rgba(0, 255, 136, 0.08)',
+                            order: isMobile ? 2 : 1
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1rem' }}>
+                                <span style={{
+                                    fontFamily: "'Cinzel', serif",
+                                    fontSize: isMobile ? '4rem' : '6rem',
+                                    lineHeight: 1, fontWeight: 600,
+                                    background: 'linear-gradient(135deg, #00FF88 0%, #00D4FF 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    opacity: 0.25
+                                }}>04</span>
+                                <div>
+                                    <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '0.4rem', opacity: 0.85 }}>Telemetry &amp; Video Link</p>
+                                    <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, letterSpacing: '0.08em', color: '#E6F0EB', textTransform: 'uppercase', margin: 0 }}>Wi-Fi Telemetry Grid</h3>
+                                </div>
+                            </div>
+                            <p style={{ fontFamily: "'Space Grotesk'", fontSize: '1rem', color: 'rgba(185, 203, 185, 0.85)', lineHeight: 1.8, fontWeight: 300, margin: 0 }}>
+                                An industrial-grade Wi-Fi mesh network covering the entire 8-hectare facility. High-bandwidth, low-jitter wireless access points transmit live high-definition FPV video streams directly from rover cameras to remote pilots worldwide, while simultaneously receiving sub-millisecond teleoperation and steering control commands without packet drops.
+                            </p>
+                            <div style={{ paddingTop: '1.25rem', borderTop: '1px solid rgba(0,255,136,0.1)', display: 'flex', gap: '2rem' }}>
+                                {[['WIFI MESH', '48+ NODES'], ['FPV VIDEO', '1080P STREAM'], ['CONTROL LINK', 'SUB-50MS']].map(([label, val]) => (
+                                    <div key={label}>
+                                        <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-primary)', letterSpacing: '0.1em' }}>{val}</div>
+                                        <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(185,203,185,0.4)', marginTop: '2px' }}>{label}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Right: Image */}
+                        <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto', order: isMobile ? 1 : 2 }}>
+                            <img
+                                src="/images/TP.png"
+                                alt="Rover FPV Video Stream and Wi-Fi Control Link"
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.8s ease, filter 0.5s ease', filter: 'brightness(0.9) saturate(1.15)' }}
+                                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.filter = 'brightness(1.05) saturate(1.3)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(0.9) saturate(1.15)'; }}
+                            />
+                            {['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].map(pos => (
+                                <div key={pos} style={{
+                                    position: 'absolute', width: '18px', height: '18px',
+                                    borderColor: 'rgba(0, 255, 136, 0.7)', borderStyle: 'solid', borderWidth: 0,
+                                    zIndex: 5,
+                                    ...(pos === 'topLeft' && { top: 14, left: 14, borderTopWidth: 2, borderLeftWidth: 2 }),
+                                    ...(pos === 'topRight' && { top: 14, right: 14, borderTopWidth: 2, borderRightWidth: 2 }),
+                                    ...(pos === 'bottomLeft' && { bottom: 14, left: 14, borderBottomWidth: 2, borderLeftWidth: 2 }),
+                                    ...(pos === 'bottomRight' && { bottom: 14, right: 14, borderBottomWidth: 2, borderRightWidth: 2 }),
+                                }} />
+                            ))}
+                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(9,16,14,0.5) 0%, transparent 40%)' }} />
+                        </div>
+                    </motion.div>
+
+                    {/* ── BLOCK 05: Internal Communication — Junctum Network (BLE & Internal API) ── */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, delay: 0.2 }}
+                        style={{
+                            position: 'relative',
+                            display: 'grid',
+                            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                            minHeight: isMobile ? 'auto' : '380px',
+                            background: 'linear-gradient(135deg, rgba(8, 16, 20, 0.97) 0%, rgba(10, 15, 18, 0.99) 100%)',
+                            border: '1px solid rgba(0, 212, 255, 0.15)',
+                            overflow: 'hidden'
+                        }}
+                        whileHover={{
+                            borderColor: 'rgba(0, 212, 255, 0.35)',
+                            boxShadow: '0 0 40px rgba(0, 212, 255, 0.08)'
+                        }}
+                    >
+                        {/* Left: Image */}
+                        <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto' }}>
+                            <img
+                                src="/images/PCB.jpg"
+                                alt="Juvantia Robulus Hardware Platform running Junctum Network"
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.8s ease, filter 0.5s ease', filter: 'brightness(0.9) contrast(1.1) saturate(1.1)' }}
+                                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.filter = 'brightness(1.05) contrast(1.15) saturate(1.2)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(0.9) contrast(1.1) saturate(1.1)'; }}
+                            />
+                            {['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].map(pos => (
+                                <div key={pos} style={{
+                                    position: 'absolute', width: '18px', height: '18px',
+                                    borderColor: 'rgba(0, 212, 255, 0.7)', borderStyle: 'solid', borderWidth: 0,
+                                    zIndex: 5,
+                                    ...(pos === 'topLeft' && { top: 14, left: 14, borderTopWidth: 2, borderLeftWidth: 2 }),
+                                    ...(pos === 'topRight' && { top: 14, right: 14, borderTopWidth: 2, borderRightWidth: 2 }),
+                                    ...(pos === 'bottomLeft' && { bottom: 14, left: 14, borderBottomWidth: 2, borderLeftWidth: 2 }),
+                                    ...(pos === 'bottomRight' && { bottom: 14, right: 14, borderBottomWidth: 2, borderRightWidth: 2 }),
+                                }} />
+                            ))}
+                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to left, rgba(10,15,18,0.55) 0%, transparent 40%)' }} />
+                        </div>
+
+                        {/* Right: Content */}
+                        <div style={{
+                            padding: isMobile ? '2rem 1.5rem' : '3.5rem',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            gap: '1.5rem',
+                            borderLeft: isMobile ? 'none' : '1px solid rgba(0, 212, 255, 0.08)'
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1rem' }}>
+                                <span style={{
+                                    fontFamily: "'Cinzel', serif",
+                                    fontSize: isMobile ? '4rem' : '6rem',
+                                    lineHeight: 1, fontWeight: 600,
+                                    background: 'linear-gradient(135deg, #00D4FF 0%, #00FF88 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    opacity: 0.25
+                                }}>05</span>
+                                <div>
+                                    <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#00D4FF', marginBottom: '0.4rem', opacity: 0.85 }}>Internal Communication</p>
+                                    <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, letterSpacing: '0.08em', color: '#E6F0EB', textTransform: 'uppercase', margin: 0 }}>Junctum Network</h3>
+                                </div>
+                            </div>
+                            <p style={{ fontFamily: "'Space Grotesk'", fontSize: '1rem', color: 'rgba(185, 203, 185, 0.85)', lineHeight: 1.8, fontWeight: 300, margin: 0 }}>
+                                Inside the facility, teleoperators communicate with each other and with stationary infrastructure — charging docks, smart gates, and sensors — through a proprietary protocol: <strong>JUNCTUM NETWORK</strong>. Rather than generic Bluetooth, Junctum merges our custom core engine process with low-energy BLE transport and an internal real-time event API, enabling seamless coordination between every operator and every fixed device across the terrain.
+                            </p>
+                        </div>
+                    </motion.div>
+
+                    {/* ── BLOCK 06: Tactical Wide — Asset Protection ── */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, delay: 0.25 }}
                         style={{
                             position: 'relative',
                             background: 'linear-gradient(135deg, rgba(12, 18, 16, 0.98) 0%, rgba(8, 12, 10, 0.99) 100%)',
@@ -1305,7 +1473,7 @@ const Home: React.FC = () => {
                             borderRight: isMobile ? 'none' : '1px solid rgba(0,255,136,0.07)'
                         }}>
                             <div>
-                                <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.62rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#00FF88', opacity: 0.7, margin: '0 0 0.5rem' }}>Physical & On-chain</p>
+                                <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.62rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#00FF88', opacity: 0.7, margin: '0 0 0.5rem' }}>Physical &amp; On-chain</p>
                                 <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: isMobile ? '1.2rem' : '1.5rem', fontWeight: 400, letterSpacing: '0.08em', color: '#E6F0EB', textTransform: 'uppercase', margin: 0 }}>Asset Protection</h3>
                                 <div style={{ width: '32px', height: '1px', background: '#00FF88', opacity: 0.35, marginTop: '1rem' }} />
                             </div>
@@ -1315,7 +1483,7 @@ const Home: React.FC = () => {
                                 background: 'linear-gradient(135deg, #00FF88 0%, #00D4FF 100%)',
                                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                                 opacity: 0.12, userSelect: 'none', display: 'block', marginTop: 'auto'
-                            }}>04</span>
+                            }}>06</span>
                         </div>
 
                         {/* Column 2: Two text blocks */}
@@ -1393,176 +1561,6 @@ const Home: React.FC = () => {
                     </motion.div>
 
                 </div>
-            </motion.section>
-
-            <SectionDivider />
-
-            {/* ===== COLOSSEUM SECTION ===== */}
-            <motion.section
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1 }}
-                style={{
-                    padding: isMobile ? '4rem 1rem' : '0rem 2rem',
-                    background: 'transparent',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    position: 'relative',
-                    zIndex: 1,
-                    overflow: 'hidden'
-                }}
-            >
-                {/* Background Atmosphere */}
-                <div style={{
-                    position: 'absolute',
-                    top: '30%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '100%',
-                    height: '800px',
-                    background: 'radial-gradient(ellipse at center, rgba(255, 71, 87, 0.05) 0%, transparent 70%)',
-                    pointerEvents: 'none',
-                    zIndex: 0
-                }} />
-
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    style={{ position: 'relative', zIndex: 1, maxWidth: '1280px', width: '100%' }}
-                >
-                    {/* Header Block */}
-                    <div style={{ textAlign: 'center', marginBottom: isMobile ? '2rem' : '3.5rem' }}>
-
-                        <h2 style={{
-                            fontSize: isMobile ? '1.8rem' : 'clamp(2.3rem, 5vw, 3.2rem)',
-                            background: 'linear-gradient(135deg, #ff4757 0%, #ffa502 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            fontWeight: 400,
-                            letterSpacing: '0.15em',
-                            textTransform: 'uppercase',
-                            fontFamily: "'Cinzel', serif",
-                            margin: '0 auto 1.2rem',
-                            filter: 'drop-shadow(0 0 20px rgba(255, 71, 87, 0.3))'
-                        }}>
-                            The Colosseum
-                        </h2>
-                        <p style={{
-                            fontFamily: "'Space Grotesk', sans-serif",
-                            fontSize: isMobile ? '0.65rem' : '0.75rem',
-                            color: 'rgba(255, 71, 87, 0.7)',
-                            letterSpacing: '0.4em',
-                            textTransform: 'uppercase',
-                            marginBottom: '2rem'
-                        }}>
-                            The Arena Without Rules
-                        </p>
-                        <div style={{
-                            width: '80px',
-                            height: '1px',
-                            background: 'linear-gradient(90deg, transparent, #ff4757, transparent)',
-                            margin: '0 auto'
-                        }} />
-                    </div>
-
-                    {/* Image & Description Grid */}
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: isMobile ? '1fr' : '1fr 450px',
-                        gap: isMobile ? '2.5rem' : '5rem',
-                        alignItems: 'center',
-                        marginBottom: isMobile ? '0' : '2.5rem'
-                    }}>
-                        {/* Cinematic Image Frame */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.98 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            style={{
-                                position: 'relative',
-                                borderRadius: '4px',
-                                overflow: 'hidden',
-                                border: '1px solid rgba(255, 71, 87, 0.15)',
-                                boxShadow: '0 30px 60px rgba(0,0,0,0.5)'
-                            }}
-                        >
-                            <img
-                                src="/images/colosseum_arena.jpg"
-                                alt="The Colosseum Arena"
-                                style={{ width: '100%', height: 'auto', display: 'block', filter: 'brightness(0.9) saturate(1.1)' }}
-                            />
-
-                            {/* Scanner corners */}
-                            {['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].map(pos => (
-                                <div key={pos} style={{
-                                    position: 'absolute', width: '24px', height: '24px',
-                                    borderColor: 'rgba(255, 71, 87, 0.7)', borderStyle: 'solid', borderWidth: 0,
-                                    ...(pos === 'topLeft' && { top: 16, left: 16, borderTopWidth: 2, borderLeftWidth: 2 }),
-                                    ...(pos === 'topRight' && { top: 16, right: 16, borderTopWidth: 2, borderRightWidth: 2 }),
-                                    ...(pos === 'bottomLeft' && { bottom: 16, left: 16, borderBottomWidth: 2, borderLeftWidth: 2 }),
-                                    ...(pos === 'bottomRight' && { bottom: 16, right: 16, borderBottomWidth: 2, borderRightWidth: 2 }),
-                                }} />
-                            ))}
-
-
-
-                            {/* Cinematic Overlay */}
-                            <div style={{
-                                position: 'absolute',
-                                inset: 0,
-                                background: 'linear-gradient(to top, rgba(10, 5, 5, 0.6) 0%, transparent 40%)',
-                                pointerEvents: 'none'
-                            }} />
-                        </motion.div>
-
-                        {/* Description Text */}
-                        <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
-                            <h3 style={{
-                                fontFamily: "'Cinzel', serif",
-                                fontSize: '1.6rem',
-                                color: '#E6F0EB',
-                                marginBottom: '1.5rem',
-                                letterSpacing: '0.1em',
-                                fontWeight: 400
-                            }}>
-                                Fortress of Duels
-                            </h3>
-                            <p style={{
-                                fontFamily: "'Space Grotesk', sans-serif",
-                                fontSize: '1.1rem',
-                                lineHeight: '1.9',
-                                color: 'rgba(185, 203, 185, 0.85)',
-                                fontWeight: 300,
-                                margin: 0
-                            }}>
-                                A three-storey concrete fortress built for automated dominance. Claim the Winners’ Room, seize the arena’s grid, and project your influence across the entire Colosseum District.
-                            </p>
-
-                            <div style={{
-                                marginTop: '2.5rem',
-                                display: 'flex',
-                                gap: '1.5rem',
-                                justifyContent: isMobile ? 'center' : 'flex-start'
-                            }}>
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontFamily: "'Cinzel'", fontSize: '1.4rem', color: '#ff4757', fontWeight: 600 }}>3 Levels</div>
-                                    <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '4px' }}>Structure</div>
-                                </div>
-                                <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.1)' }} />
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontFamily: "'Cinzel'", fontSize: '1.4rem', color: '#ffa502', fontWeight: 600 }}>12 Meters</div>
-                                    <div style={{ fontFamily: "'Space Grotesk'", fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '4px' }}>Height</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </motion.div>
             </motion.section>
         </>
     );

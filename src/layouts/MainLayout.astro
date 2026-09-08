@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = 'A persistent teleoperated rover technopark powered by a role-based economy. Build, ship and control your Robulus remotely inside a real outdoor park.',
+  description = 'A free-to-enter, open-access physical proving ground for teleoperated rovers. Built for commercial R&D, university laboratories, and competitive entertainment.',
   ogImage = 'https://juvantia.org/images/hero.jpg',
 } = Astro.props;
 
@@ -20,6 +20,8 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 const navItems = [
   { path: '/robulus', label: 'Robulus' },
   { path: '/domus', label: 'Domus' },
+  { path: '/rnd', label: 'R&D' },
+  { path: '/entertainment', label: 'Entertainment' },
   { path: '/economics', label: 'Economics' },
 ];
 ---

@@ -1,0 +1,14 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import RnD from '../sections/RnD';
+import AnimatedBackground from '../components/AnimatedBackground';
+---
+
+<MainLayout
+  title="Proving Ground — JUVANTIA"
+  description="A secure, purpose-built outdoor proving ground for teleoperated and autonomous robotics. Step beyond sterile testbeds into a living, non-sterile environment."
+  ogImage="https://juvantia.org/images/TP.png"
+>
+  <AnimatedBackground client:only="react" />
+  <RnD client:load />
+</MainLayout>

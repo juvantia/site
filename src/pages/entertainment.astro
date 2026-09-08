@@ -1,0 +1,14 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Entertainment from '../sections/Entertainment';
+import AnimatedBackground from '../components/AnimatedBackground';
+---
+
+<MainLayout
+  title="Entertainment — JUVANTIA"
+  description="Explore competitive challenges in Juvantia: The Colosseum for high-stakes rover combat and Stonecracy for physical crystal harvesting and civic governance in Civitas."
+  ogImage="https://juvantia.org/images/colosseum_arena.jpg"
+>
+  <AnimatedBackground client:only="react" />
+  <Entertainment client:load />
+</MainLayout>

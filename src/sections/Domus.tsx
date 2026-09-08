@@ -113,7 +113,7 @@ const Domus: React.FC = () => {
 
     const timelineSteps = [
         {
-            title: 'Technopark Infrastructure Installation',
+            title: 'Park Infrastructure Installation',
             description: 'Build and install your Domus yourself in the park before the official launch.',
             duration: '3–6 months',
             phase: 'active' as const,
@@ -125,7 +125,7 @@ const Domus: React.FC = () => {
             phase: 'future' as const,
         },
         {
-            title: 'Technopark Maintenance',
+            title: 'Park Maintenance',
             description: 'Scheduled time for installation and maintenance of your Domuses.',
             duration: '1–2 days',
             phase: 'maintenance' as const,
@@ -137,7 +137,7 @@ const Domus: React.FC = () => {
             phase: 'future' as const,
         },
         {
-            title: 'Technopark Maintenance',
+            title: 'Park Maintenance',
             description: 'Scheduled time for installation and maintenance of your Domuses.',
             duration: '1–2 days',
             phase: 'maintenance' as const,

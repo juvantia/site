@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { theme } from '../styles/theme';
 
-// ─── Scanner corners (identical to Domus) ────────────────────────────────────
+// ─── Scanner corners ────────────────────────────────────────────────────────
 const ScannerCorners: React.FC<{ color?: string; size?: number }> = ({
     color = 'rgba(0, 255, 136, 0.7)',
     size = 18,
@@ -30,7 +31,7 @@ const NeonDivider = () => (
     }} />
 );
 
-// ─── FadeIn wrapper (identical to Domus) ──────────────────────────────────────
+// ─── FadeIn wrapper ─────────────────────────────────────────────────────────
 const FadeIn: React.FC<{ children: React.ReactNode; delay?: number; style?: React.CSSProperties }> = ({
     children, delay = 0, style
 }) => {
@@ -60,51 +61,8 @@ const Economics: React.FC = () => {
         return () => window.removeEventListener('resize', check);
     }, []);
 
-    // H1 Style (Style Sync with Domus)
-    const h1Style = {
-        fontFamily: "'Cinzel', serif",
-        fontSize: isMobile ? 'clamp(2.4rem, 10vw, 3.5rem)' : 'clamp(3rem, 6vw, 4.5rem)',
-        fontWeight: 400,
-        letterSpacing: '0.12em',
-        textTransform: 'uppercase' as const,
-        lineHeight: 1.05,
-        background: 'linear-gradient(135deg, #00FF88 0%, #dfe4e1 45%, #00D4FF 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-    };
-
-    // H2 Section Header Base Style (Style Sync with Domus "Timeline" Header)
-    const sectionH2BaseStyle = {
-        fontFamily: "'Cinzel', serif",
-        fontSize: isMobile ? '1.6rem' : 'clamp(1.8rem, 4vw, 2.8rem)',
-        fontWeight: 400,
-        textTransform: 'uppercase' as const,
-        letterSpacing: '0.12em',
-        textAlign: 'center' as const,
-        color: '#E6F0EB',
-        marginBottom: isMobile ? '1.5rem' : '2rem',
-        lineHeight: 1.2,
-    };
-
-    const gradientSpanStyle = {
-        background: 'linear-gradient(135deg, #00FF88, #00D4FF)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-    };
-
-    const sectionDescStyle = {
-        fontFamily: "'Space Grotesk', sans-serif",
-        fontSize: '1.05rem',
-        color: 'rgba(185,203,185,0.7)',
-        lineHeight: 1.85,
-        fontWeight: 300,
-        maxWidth: '700px',
-        margin: '0 auto',
-        textAlign: 'center' as const,
-    };
-
     return (
-        <div style={{ minHeight: '100vh', background: 'transparent', position: 'relative', overflow: 'hidden' }}>
+        <div style={theme.layout.rootContainer}>
 
             {/* Ambient glows */}
             <div style={{
@@ -122,6 +80,7 @@ const Economics: React.FC = () => {
 
             {/* ══════════════════ HERO ══════════════════ */}
             <section style={{
+                position: 'relative',
                 padding: isMobile ? '5.5rem 1.25rem 2rem' : '7rem 2rem 5rem',
                 maxWidth: '1280px',
                 margin: '0 auto',
@@ -131,16 +90,12 @@ const Economics: React.FC = () => {
                 gap: isMobile ? '1.5rem' : '6rem',
             }}>
                 {/* Left: Copy */}
-                <div style={{ flex: isMobile ? '0 0 auto' : '0 1 520px', width: isMobile ? '100%' : 'auto' }}>
+                <div style={{ flex: isMobile ? '0 0 auto' : '0 1 540px', width: isMobile ? '100%' : 'auto' }}>
                     <motion.h1
                         initial={{ opacity: 0, y: 24 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
-                        style={{
-                            ...h1Style,
-                            margin: isMobile ? '0 0 0.75rem' : '0 0 1.5rem',
-                            filter: 'drop-shadow(0 0 20px rgba(0,212,255,0.3))'
-                        }}
+                        style={theme.typography.h1(isMobile)}
                     >
                         Economics
                     </motion.h1>
@@ -149,29 +104,17 @@ const Economics: React.FC = () => {
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
                         transition={{ delay: 0.6, duration: 0.8, ease: 'easeOut' }}
-                        style={{
-                            height: '1px', width: '220px',
-                            background: 'linear-gradient(to right, rgba(0,255,136,0.7), rgba(0,212,255,0.3), transparent)',
-                            transformOrigin: 'left', marginBottom: isMobile ? '1rem' : '1.75rem'
-                        }}
+                        style={theme.layout.heroUnderline(isMobile)}
                     />
 
                     <motion.p
                         initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5, duration: 0.8 }}
-                        style={{
-                            fontFamily: "'Space Grotesk', sans-serif",
-                            fontSize: isMobile ? '1rem' : '1.15rem',
-                            color: 'rgba(223,228,225,0.72)',
-                            lineHeight: 1.85,
-                            fontWeight: 300,
-                            maxWidth: '520px',
-                            margin: '0 0 2rem'
-                        }}
+                        style={theme.typography.heroDesc(isMobile)}
                     >
-                        The Juvantia economy is built on transparency, ownership rights, and the concept of programmable money. 
-                        These are pure market mechanisms designed for the operation of your Robulus.
+                        A market-driven economy where participants earn by performing useful work and co-owning physical assets. 
+                        Settled in regulated euro-backed electronic currency with zero financial spam and zero network gas fees.
                     </motion.p>
                 </div>
 
@@ -203,33 +146,152 @@ const Economics: React.FC = () => {
                             pointerEvents: 'none',
                         }} />
                         <ScannerCorners />
+                        <div style={{
+                            position: 'absolute', bottom: 14, left: 14,
+                            fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.55rem',
+                            letterSpacing: '0.25em', textTransform: 'uppercase',
+                            color: 'rgba(0,255,136,0.7)'
+                        }}>
+                            REAL VALUE · PHYSICAL ASSETS
+                        </div>
                     </div>
                 </motion.div>
             </section>
 
             <NeonDivider />
 
-            {/* ══════════════════ EURO Only ══════════════════ */}
+            {/* ══════════════════ TWO VALUE ENGINES ══════════════════ */}
             <section style={{
-                padding: isMobile ? '1.5rem 1.25rem 4rem' : '8rem 3rem',
+                padding: isMobile ? '2.5rem 1.25rem 4rem' : '7rem 3rem',
+                maxWidth: '1280px',
+                margin: '0 auto'
+            }}>
+                <FadeIn>
+                    <h2 style={theme.typography.h2(isMobile)}>
+                        Two Value <span style={theme.typography.gradientSpan}>Engines</span>
+                    </h2>
+                    <p style={theme.typography.sectionDesc}>
+                        Economic value in Juvantia is anchored directly to physical reality. Operators earn by fulfilling real tasks, while asset co-owners earn continuous yield from hardware utilization.
+                    </p>
+
+                    <div style={{
+                        marginTop: isMobile ? '2rem' : '3.5rem',
+                        display: 'grid',
+                        gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                        gap: isMobile ? '1.5rem' : '2.5rem'
+                    }}>
+                        {/* Engine 1: Useful Work */}
+                        <div style={{
+                            ...theme.layout.card('rgba(0, 255, 136, 0.25)'),
+                            padding: isMobile ? '1.8rem 1.4rem' : '2.5rem 2.2rem',
+                            boxShadow: '0 20px 50px rgba(0,0,0,0.4)'
+                        }}>
+                            <ScannerCorners color="#00FF88" size={18} />
+                            <h3 style={{
+                                ...theme.typography.h3,
+                                fontSize: isMobile ? '1.35rem' : '1.6rem',
+                                marginBottom: '1rem'
+                            }}>
+                                Useful Work
+                            </h3>
+                            <p style={{
+                                ...theme.typography.body,
+                                marginBottom: '1.75rem'
+                            }}>
+                                Rovers are deployed for real functional operations. Operators, pilots, and autonomous algorithms receive direct task payments in euro e-money (EURe) upon completed proof-of-execution:
+                            </p>
+
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                {[
+                                    { title: 'Rescue & Recovery', desc: 'Recharge depleted Robulus rovers stranded across the city and flip overturned units back onto their wheels.' },
+                                    { title: 'Dock & Energy Infrastructure', desc: 'Deploy charging stations and high-capacity docking slots for long-term vehicle rental.' },
+                                    { title: 'Bounties & Delivery Contracts', desc: 'Execute onchain contracts to locate wanted targets and fulfill secure physical deliveries for bounty rewards.' },
+                                    { title: 'Communications & Custom Roles', desc: 'Perform specialized operations such as mobile signal relays allowing expeditions to venture farther for crystals, alongside diverse custom field roles.' }
+                                ].map((item, idx) => (
+                                    <li key={idx} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                                        <span style={{ color: '#00FF88', fontSize: '0.9rem', lineHeight: '1.4' }}>▹</span>
+                                        <div>
+                                            <strong style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#E6F0EB', fontSize: '0.9rem', fontWeight: 600 }}>
+                                                {item.title}:
+                                            </strong>
+                                            <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'rgba(223, 228, 225, 0.72)', fontSize: '0.88rem', marginLeft: '6px' }}>
+                                                {item.desc}
+                                            </span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Engine 2: Asset Co-Ownership */}
+                        <div style={{
+                            ...theme.layout.card('rgba(0, 255, 136, 0.25)'),
+                            padding: isMobile ? '1.8rem 1.4rem' : '2.5rem 2.2rem',
+                            boxShadow: '0 20px 50px rgba(0,0,0,0.4)'
+                        }}>
+                            <ScannerCorners color="#00FF88" size={18} />
+                            <h3 style={{
+                                ...theme.typography.h3,
+                                fontSize: isMobile ? '1.35rem' : '1.6rem',
+                                marginBottom: '1rem'
+                            }}>
+                                Co-Owning Physical Assets
+                            </h3>
+                            <p style={{
+                                ...theme.typography.body,
+                                marginBottom: '1.75rem'
+                            }}>
+                                Every hardware asset in the park is registered as an onchain RWA divided into 100,000 Asset Partition Units (APU). Co-owners participate in physical economics:
+                            </p>
+
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                {[
+                                    { title: 'Operational Rental Yield', desc: 'When rovers are rented by operators or execute paid tasks, gross revenues stream into the asset contract.' },
+                                    { title: 'Automated Balance Split', desc: 'Revenue splits programmatically into operatingBalance (maintenance, parts, electricity) and distributablePool (shareholder yield).' },
+                                    { title: 'Trade Hub Liquidity', desc: 'Buy and sell APU fractional shares instantly on the onchain order book with 0% park commission fees.' },
+                                    { title: 'Infrastructure Ownership', desc: 'Co-own rovers, automated fast-charging docks, Domus workshop sectors, and telemetry towers.' }
+                                ].map((item, idx) => (
+                                    <li key={idx} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                                        <span style={{ color: '#00FF88', fontSize: '0.9rem', lineHeight: '1.4' }}>▹</span>
+                                        <div>
+                                            <strong style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#E6F0EB', fontSize: '0.9rem', fontWeight: 600 }}>
+                                                {item.title}:
+                                            </strong>
+                                            <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: 'rgba(223, 228, 225, 0.72)', fontSize: '0.88rem', marginLeft: '6px' }}>
+                                                {item.desc}
+                                            </span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </FadeIn>
+            </section>
+
+            <NeonDivider />
+
+            {/* ══════════════════ EURO ONLY ══════════════════ */}
+            <section style={{
+                padding: isMobile ? '2.5rem 1.25rem 4rem' : '7rem 3rem',
                 maxWidth: '1280px',
                 margin: '0 auto',
             }}>
                 <FadeIn>
-                    <h2 style={sectionH2BaseStyle}>
-                        EURO <span style={gradientSpanStyle}>Only</span>
+                    <h2 style={theme.typography.h2(isMobile)}>
+                        E-Money <span style={theme.typography.gradientSpan}>Only</span>
                     </h2>
                 </FadeIn>
 
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    {/* BLOCK 1: Symbols + Intro */}
-                    <FadeIn style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: isMobile ? '4rem' : '7rem' }}>
+                    {/* Symbols + Intro */}
+                    <FadeIn style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
                         <div style={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            gap: '3rem',
-                            marginBottom: '2.5rem',
+                            gap: isMobile ? '1.5rem' : '3rem',
+                            marginBottom: '2rem',
                         }}>
                             {/* Big € symbol */}
                             <div style={{
@@ -246,37 +308,41 @@ const Economics: React.FC = () => {
 
                             <div style={{ width: '2px', height: '80px', background: 'rgba(0,255,136,0.15)' }} />
 
-                            <div>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <img
-                                    src="/images/67116d0daddc92483c813398_primary-logo-darkbg.svg"
-                                    alt="Circle"
-                                    style={{ height: isMobile ? '4rem' : '5.5rem', display: 'block', opacity: 0.95 }}
+                                    src="/images/Monerium.png"
+                                    alt="Monerium"
+                                    style={{
+                                        height: isMobile ? '2.5rem' : '3.6rem',
+                                        maxWidth: isMobile ? '190px' : '300px',
+                                        width: 'auto',
+                                        display: 'block',
+                                        objectFit: 'contain'
+                                    }}
                                 />
                             </div>
                         </div>
 
                         <p style={{
-                            fontFamily: "'Space Grotesk', sans-serif",
+                            ...theme.typography.sectionDesc,
                             fontSize: '1.15rem',
                             color: 'rgba(185,203,185,0.85)',
-                            lineHeight: 1.85,
-                            fontWeight: 300,
-                            textAlign: 'center',
-                            maxWidth: '750px',
+                            maxWidth: '780px',
                             margin: 0,
+                            textAlign: 'center',
+                            lineHeight: 1.85,
                         }}>
-                            The entire technopark economy operates on electronic money by Circle, expressed in EURO. 
-                            This is the only currency supported across the entire Juvantia infrastructure.
+                            The entire park economy operates exclusively with authorized electronic money (E-Money) issued by Monerium, a regulated Electronic Money Institution (EMI) fully compliant with the European Union’s Markets in Crypto-Assets (MiCA) regulation. All funds represent a direct legal claim redeemable 1:1 against the euro, backed 100% by segregated liquid reserves held in regulated EEA banking institutions.
                         </p>
                     </FadeIn>
 
-                    {/* BLOCK 2: Wallet + No Spam Policy */}
+                    {/* Wallet */}
                     <FadeIn delay={0.15} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <div style={{ position: 'relative', width: '100%', maxWidth: '560px', marginBottom: '3rem' }}>
+                        <div style={{ position: 'relative', width: '100%', maxWidth: '560px' }}>
                             <div style={{
                                 position: 'relative',
                                 border: '1px solid rgba(0,255,136,0.15)',
-                                background: 'rgba(5,10,9,0.4)',
+                                background: '#171d1b',
                                 overflow: 'hidden',
                                 boxShadow: '0 20px 50px rgba(0,0,0,0.5), 0 0 60px rgba(0,255,136,0.08)'
                             }}>
@@ -293,10 +359,9 @@ const Economics: React.FC = () => {
                                 <ScannerCorners />
                             </div>
                             
-                            {/* Decorative ambient glow under the wallet */}
                             <div style={{
                                 position: 'absolute',
-                                bottom: '-2.5rem',
+                                bottom: '-2rem',
                                 left: '15%',
                                 right: '15%',
                                 height: '1px',
@@ -304,95 +369,77 @@ const Economics: React.FC = () => {
                                 filter: 'blur(3px)'
                             }} />
                         </div>
-
-                        <p style={{
-                            fontFamily: "'Space Grotesk', sans-serif",
-                            fontSize: '1.05rem',
-                            color: 'rgba(185,203,185,0.6)',
-                            lineHeight: 1.85,
-                            fontWeight: 300,
-                            textAlign: 'center',
-                            maxWidth: '750px',
-                            margin: 0,
-                        }}>
-                            No other tokens are allowed, displayed in the interfaces, or can be used. 
-                            This completely eliminates financial spam and keeps a 100% focus on real economic roles.
-                        </p>
                     </FadeIn>
                 </div>
             </section>
 
             <NeonDivider />
 
-            {/* ══════════════════ PROGRAMMABLE ECONOMY ══════════════════ */}
+            {/* ══════════════════ PROGRAMMABLE CONTRACTS ══════════════════ */}
             <section style={{
-                padding: isMobile ? '1.5rem 1.25rem 4rem' : '8rem 3rem',
+                padding: isMobile ? '2.5rem 1.25rem 4rem' : '7rem 3rem',
                 maxWidth: '1280px',
                 margin: '0 auto',
             }}>
                 <FadeIn>
-                    <h2 style={sectionH2BaseStyle}>
-                        Programmable <span style={gradientSpanStyle}>Economy</span>
+                    <h2 style={theme.typography.h2(isMobile)}>
+                        Programmable <span style={theme.typography.gradientSpan}>Settlements</span>
                     </h2>
-                    <p style={sectionDescStyle}>
-                        The financial system is powered by EVM smart contracts. This technology turns regular money into programmable code, 
-                        automating settlements and economic interactions between Robulus units.
+                    <p style={theme.typography.sectionDesc}>
+                        The financial layer runs on Arc L1 with native gas abstraction. Smart contracts turn money into self-executing code, automating agreements, splits, and operations between machines.
                     </p>
                 </FadeIn>
 
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-                    gap: '1.5rem',
-                    marginTop: isMobile ? '3rem' : '5rem'
+                    gap: isMobile ? '1.5rem' : '2rem',
+                    marginTop: isMobile ? '2.5rem' : '3.5rem'
                 }}>
                     {[
                         {
-                            title: 'City Contracts',
-                            desc: 'Ready-to-use Juvantia infrastructure contracts that support the core processes of the park. Settlements, leases, and service payments, all automated.',
+                            title: 'City Protocols',
+                            badge: '01 // Core Park Services',
+                            desc: 'Official, audited smart contracts powering core park interactions: automated rover leasing, dock charging settlements, APU dividend distribution, and maintenance escrows. Zero gas overhead—sponsored by the Juvantia Foundation.',
                             accent: '#00FF88',
                         },
                         {
                             title: 'Custom Contracts',
-                            desc: 'An open environment for creating your own EVM contracts. Program unique interactions between Robulus units and shape entirely new economic niches.',
+                            badge: '02 // Open EVM Architecture',
+                            desc: 'Full freedom to deploy your own custom EVM smart contracts. Construct specialized multi-rover syndicates, custom revenue-sharing pools, automated bounty distributions, or private enterprise logistics workflows.',
                             accent: '#00D4FF',
                         },
                     ].map((card, i) => (
                         <FadeIn key={i} delay={i * 0.12}>
                             <div style={{
-                                padding: '2.5rem',
-                                background: 'rgba(18,29,27,0.9)',
-                                border: `1px solid ${card.accent}18`,
-                                position: 'relative',
+                                ...theme.layout.card(`${card.accent}25`),
+                                padding: isMobile ? '1.8rem 1.4rem' : '2.5rem 2.2rem',
                                 height: '100%',
                                 boxSizing: 'border-box',
-                                transition: 'border-color 0.3s ease',
+                                boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+                                display: 'flex',
+                                flexDirection: 'column'
                             }}>
+                                <ScannerCorners color={card.accent} size={14} />
                                 <div style={{
-                                    position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
-                                    background: `linear-gradient(90deg, transparent, ${card.accent}80, transparent)`,
-                                }} />
-
+                                    ...theme.typography.eyebrow(card.accent),
+                                    marginBottom: '0.75rem'
+                                }}>
+                                    {card.badge}
+                                </div>
                                 <h3 style={{
-                                    fontFamily: "'Space Grotesk', sans-serif",
-                                    fontSize: '1.25rem',
-                                    fontWeight: 700,
-                                    letterSpacing: '0.05em',
-                                    textTransform: 'uppercase',
-                                    color: '#dfe4e1',
-                                    marginBottom: '1.25rem',
-                                }}>{card.title}</h3>
-
+                                    ...theme.typography.h3,
+                                    fontSize: isMobile ? '1.25rem' : '1.45rem',
+                                    marginBottom: '1rem'
+                                }}>
+                                    {card.title}
+                                </h3>
                                 <p style={{
-                                    fontFamily: "'Space Grotesk', sans-serif",
-                                    fontSize: '0.95rem',
-                                    color: 'rgba(185,203,185,0.65)',
-                                    lineHeight: 1.8,
-                                    fontWeight: 300,
-                                    margin: 0,
-                                }}>{card.desc}</p>
-
-                                <ScannerCorners color={`${card.accent}30`} size={12} />
+                                    ...theme.typography.body,
+                                    margin: 0
+                                }}>
+                                    {card.desc}
+                                </p>
                             </div>
                         </FadeIn>
                     ))}
@@ -401,31 +448,30 @@ const Economics: React.FC = () => {
 
             <NeonDivider />
 
-            {/* ══════════════════ ASSET PROTECTION ══════════════════ */}
+            {/* ══════════════════ ASSET PROTECTION & PASSKEYS ══════════════════ */}
             <section style={{
-                padding: isMobile ? '1.5rem 1.25rem 4rem' : '8rem 3rem',
+                padding: isMobile ? '2.5rem 1.25rem 6rem' : '7rem 3rem 10rem',
                 maxWidth: '1280px',
                 margin: '0 auto',
             }}>
                 <FadeIn>
-                    <h2 style={sectionH2BaseStyle}>
-                        Absolute Asset <span style={gradientSpanStyle}>Protection</span>
+                    <h2 style={theme.typography.h2(isMobile)}>
+                        Absolute Asset <span style={theme.typography.gradientSpan}>Protection</span>
                     </h2>
-                    <p style={sectionDescStyle}>
-                        Your assets are registered on the blockchain but are managed intuitively, just like in a classic banking app.
+                    <p style={theme.typography.sectionDesc}>
+                        Assets and funds are held in non-custodial Smart Accounts (ERC-4337), protected by biometric passkeys with zero seed-phrase vulnerability.
                     </p>
                 </FadeIn>
 
-                <FadeIn style={{ marginTop: isMobile ? '3rem' : '5rem' }}>
+                <FadeIn style={{ marginTop: isMobile ? '2.5rem' : '3.5rem' }}>
                     <div style={{
-                        padding: isMobile ? '2.5rem 2rem' : '3.5rem 4rem',
-                        background: 'rgba(10,15,12,0.95)',
-                        border: '1px solid rgba(255,71,87,0.15)',
-                        position: 'relative',
+                        ...theme.layout.card('rgba(255, 71, 87, 0.25)'),
+                        padding: isMobile ? '2rem 1.5rem' : '3.5rem 4rem',
                         display: 'grid',
                         gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr',
-                        gap: isMobile ? '2rem' : '4rem',
+                        gap: isMobile ? '1.75rem' : '3.5rem',
                         alignItems: 'center',
+                        boxShadow: '0 25px 60px rgba(0,0,0,0.5)'
                     }}>
                         <div style={{
                             width: isMobile ? '72px' : '96px',
@@ -433,7 +479,7 @@ const Economics: React.FC = () => {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            border: '1px solid rgba(255,71,87,0.25)',
+                            border: '1px solid rgba(255,71,87,0.3)',
                             background: 'rgba(255,71,87,0.06)',
                             flexShrink: 0,
                         }}>
@@ -457,127 +503,31 @@ const Economics: React.FC = () => {
                         </div>
 
                         <div>
+                            <div style={{
+                                ...theme.typography.eyebrow('#FF4757'),
+                                marginBottom: '0.5rem'
+                            }}>
+                                WebAuthn & Account Abstraction
+                            </div>
                             <h3 style={{
-                                fontFamily: "'Space Grotesk', sans-serif",
-                                fontSize: '1.15rem',
-                                fontWeight: 700,
-                                letterSpacing: '0.12em',
-                                textTransform: 'uppercase',
-                                color: '#dfe4e1',
+                                ...theme.typography.h3,
+                                fontSize: isMobile ? '1.25rem' : '1.45rem',
                                 marginBottom: '1rem',
                             }}>
-                                Biometric Control
+                                Biometric Passkey Security
                             </h3>
                             <p style={{
-                                fontFamily: "'Space Grotesk', sans-serif",
-                                fontSize: '1rem',
-                                color: 'rgba(185,203,185,0.7)',
-                                lineHeight: 1.85,
-                                fontWeight: 300,
+                                ...theme.typography.body,
                                 margin: 0,
                             }}>
-                                Any asset transfer, lease, or service payment requires physical confirmation through your personal device's biometrics (FaceID/TouchID). 
-                                The infrastructure completely blocks unauthorized access — it is impossible to intercept control of your funds.
+                                Every asset transfer, rover lease, or service settlement requires authorization through your personal device’s native biometrics (FaceID or TouchID). 
+                                No complex private key storage or seed phrase loss. Hardware-level cryptographic security ensures complete defense against unauthorized access or control takeover.
                             </p>
                         </div>
-
-                        <div style={{
-                            position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
-                            background: 'linear-gradient(90deg, transparent, rgba(255,71,87,0.5), transparent)',
-                        }} />
 
                         <ScannerCorners color="rgba(255,71,87,0.4)" />
                     </div>
                 </FadeIn>
-            </section>
-
-            <NeonDivider />
-
-            {/* ══════════════════ ONBOARDING CTA ══════════════════ */}
-            <section style={{
-                padding: isMobile ? '1.5rem 1.25rem 8rem' : '8rem 3rem 12rem',
-                maxWidth: '900px',
-                margin: '0 auto',
-            }}>
-                <FadeIn>
-                    <h2 style={{ ...sectionH2BaseStyle, textAlign: 'center' }}>
-                        Experience the Economy <span style={gradientSpanStyle}>Now</span>
-                    </h2>
-                    <p style={sectionDescStyle}>
-                        The testing environment is open to everyone. Explore the transaction logic and digital infrastructure in the testnet without any real investments.
-                    </p>
-                </FadeIn>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: isMobile ? '3rem' : '4rem' }}>
-                    {[
-                        {
-                            step: '01',
-                            label: 'Enter City',
-                            text: <>Access the <a href="https://city.juvantia.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>City</a> application to find your deposit address.</>,
-                        },
-                        {
-                            step: '02',
-                            label: 'Visit Circle Faucet',
-                            text: <>Get test EURC at{' '}<a href="https://faucet.circle.com" target="_blank" rel="noopener noreferrer" style={{ color: '#00FF88', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)' }}>faucet.circle.com</a>{' '}to fund your address and start exploring the economy.</>,
-                        },
-                        {
-                            step: '03',
-                            label: 'Visit Trade Hub',
-                            text: <>Locate the Trade Hub section within the City application. Different asset shares are listed there—you can buy shares and later sell them as their value grows.</>,
-                        },
-                    ].map((item, idx) => (
-                        <FadeIn key={idx} delay={idx * 0.1}>
-                            <div style={{
-                                display: 'grid',
-                                gridTemplateColumns: 'auto auto 1fr',
-                                gap: '1.5rem',
-                                alignItems: 'start',
-                                padding: '1.75rem 2rem',
-                                background: 'rgba(10,15,12,0.95)',
-                                border: '1px solid rgba(0,255,136,0.1)',
-                                position: 'relative',
-                            }}>
-                                <div style={{
-                                    fontFamily: "'Cinzel', serif",
-                                    fontSize: '0.75rem',
-                                    fontWeight: 600,
-                                    color: '#00FF88',
-                                    letterSpacing: '0.1em',
-                                    opacity: 0.5,
-                                    paddingTop: '2px',
-                                    whiteSpace: 'nowrap',
-                                }}>{item.step}</div>
-
-                                <div style={{
-                                    width: '1px',
-                                    alignSelf: 'stretch',
-                                    background: 'rgba(0,255,136,0.1)',
-                                }} />
-
-                                <div>
-                                    <div style={{
-                                        fontFamily: "'Space Grotesk', sans-serif",
-                                        fontSize: '0.65rem',
-                                        letterSpacing: '0.25em',
-                                        textTransform: 'uppercase',
-                                        color: '#00FF88',
-                                        marginBottom: '0.5rem',
-                                        opacity: 0.7,
-                                    }}>{item.label}</div>
-                                    <div style={{
-                                        fontFamily: "'Space Grotesk', sans-serif",
-                                        fontSize: '0.95rem',
-                                        color: '#dfe4e1',
-                                        lineHeight: 1.7,
-                                        fontWeight: 300,
-                                    }}>{item.text}</div>
-                                </div>
-
-                                <ScannerCorners size={10} color="rgba(0,255,136,0.2)" />
-                            </div>
-                        </FadeIn>
-                    ))}
-                </div>
             </section>
         </div>
     );

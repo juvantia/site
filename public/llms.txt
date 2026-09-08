@@ -6,7 +6,7 @@ This document compiles the core text content of the JUVANTIA main website (`juva
 
 ## 1. Homepage Overview (https://juvantia.org)
 
-Juvantia is a persistent, teleoperated open-air technopark spanning 8 hectares of engineered infrastructure. It features a distributed 12V power grid, full Wi-Fi coverage, and operates with human access restricted during active hours.
+Juvantia is a persistent, teleoperated outdoor proving ground spanning 8 hectares of engineered infrastructure. It features a distributed 12V power grid, full Wi-Fi coverage, and operates with human access restricted during active hours.
 
 ### Robulus Roles & Upgrades
 - **Basic Rover:** A simple open-frame Robulus with basic suspension — perfect for driving around the park.
@@ -89,8 +89,8 @@ The Juvantia economy is built on absolute transparency, ownership rights, and pr
 ## 5. Frequently Asked Questions (https://juvantia.org/faq)
 
 - **Target Audience:** Tech enthusiasts, engineers, makers, and creators operating Robulus remotely for entertainment, automated businesses, or hardware/software R&D.
-- **Pricing & Costs:** Technopark access is free. Operational costs include standard platform service taxes and physical asset ownership. Electricity is optional if local solar/wind power is utilized.
-- **Ready-Made & Custom Robulus:** Brand-new units can be configured directly from the technopark or bought pre-owned on Trade Hub. Custom units can use official chassis/PCB or custom designs using ESP32-P4 microcontrollers.
+- **Pricing & Costs:** Proving ground access is free. Operational costs include standard platform service taxes and physical asset ownership. Electricity is optional if local solar/wind power is utilized.
+- **Ready-Made & Custom Robulus:** Brand-new units can be configured directly inside the park or bought pre-owned on Trade Hub. Custom units can use official chassis/PCB or custom designs using ESP32-P4 microcontrollers.
 - **On-Site Access & Maintenance:** Physical presence is strictly optional; human access inside the perimeter is restricted for safety. Maintenance and deployment are handled by authorized contributors.
 - **Domus Shelters:** Physical shelters on licensed sectors functioning as garages, charging stations, or shops. Fabricated by official contributors or submitted pre-assembled.
 - **APU (Asset Passport Unit):** The secure digital passport for a physical asset (Robulus, Domus, Sector). Certifies property ownership, grants rights to vote on operational decisions, select service providers, and receive service rewards in Euros for active participation.

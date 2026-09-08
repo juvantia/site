@@ -162,9 +162,9 @@ const RobulusRegister: React.FC = () => {
         {
             id: 'easy' as const,
             tag: 'EASY PATH',
-            title: 'BUY IN TECHNOPARK',
+            title: 'BUY IN PARK',
             accent: '#00FF88', // Green
-            shortDesc: 'Buy a ready-made Robulus directly inside the technopark and instantly access its remote control. You only need to choose:',
+            shortDesc: 'Buy a ready-made Robulus directly inside the park and instantly access its remote control. You only need to choose:',
             chassis: [
                 { src: '/images/shassis1.webp', alt: 'Chassis Option 1' },
                 { src: '/images/shassis2.webp', alt: 'Chassis Option 2' }
@@ -216,15 +216,15 @@ const RobulusRegister: React.FC = () => {
             tag: 'HARD PATH',
             title: 'FULL CUSTOMIZATION',
             accent: '#FF4757', // Red
-            shortDesc: 'Design your custom robot according to official specifications. Ship the required parts by delivery to the park. The technopark can 3D print the body shell and assemble your Robulus on-site if it matches requirements. Use the official Juvantia Robulus Platform PCB or design your own.',
+            shortDesc: 'Design your custom robot according to official specifications. Ship the required parts by delivery to the park. The park can 3D print the body shell and assemble your Robulus on-site if it matches requirements. Use the official Juvantia Robulus Platform PCB or design your own.',
             details: [
                 {
                     title: 'OFFICIAL SPECIFICATION DESIGN',
                     text: 'Design your robot according to official specifications and ship the required hardware components by parcel delivery directly to the park.'
                 },
                 {
-                    title: 'TECHNOPARK PRINT & ASSEMBLY',
-                    text: 'The technopark can 3D print the body shell and assemble your Robulus on-site if it meets technical compliance standards.'
+                    title: 'PARK PRINT & ASSEMBLY',
+                    text: 'The park can 3D print the body shell and assemble your Robulus on-site if it meets technical compliance standards.'
                 },
                 {
                     title: 'PCB ARCHITECTURE FREEDOM',
