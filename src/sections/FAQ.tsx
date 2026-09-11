@@ -80,7 +80,7 @@ const faqItems: FAQItem[] = [
     {
         id: 'currency',
         question: "WHICH CURRENCY IS USED FOR PAYMENTS AND PAYOUTS?",
-        answer: "The entire JUVANTIA economy operates with the intuitive user experience of a modern neo-bank, strictly displayed in Euros (€). Under the hood, all settlements, automated rentals, and APU yield payouts are processed in Euro-backed electronic money (EURC) via non-custodial accounts managed directly from your device using biometrics (Face ID or fingerprint authentication)."
+        answer: "The entire JUVANTIA economy operates with the intuitive user experience of a modern neo-bank, strictly displayed in Euros (€). Under the hood, settlements, automated rentals, and APU yield payouts use the configured euro token through non-custodial accounts managed directly from your device using biometrics (Face ID or fingerprint authentication)."
     },
     {
         id: 'prove-ownership',

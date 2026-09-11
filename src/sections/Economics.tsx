@@ -198,7 +198,7 @@ const Economics: React.FC = () => {
                                 ...theme.typography.body,
                                 marginBottom: '1.75rem'
                             }}>
-                                Rovers are deployed for real functional operations. Operators, pilots, and autonomous algorithms receive direct task payments in euro e-money (EURe) upon completed proof-of-execution:
+                                Rovers are deployed for real functional operations. Operators, pilots, and autonomous algorithms receive direct euro payments upon completed proof-of-execution:
                             </p>
 
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -386,7 +386,7 @@ const Economics: React.FC = () => {
                         Programmable <span style={theme.typography.gradientSpan}>Settlements</span>
                     </h2>
                     <p style={theme.typography.sectionDesc}>
-                        The financial layer runs on Arc L1 with native gas abstraction. Smart contracts turn money into self-executing code, automating agreements, splits, and operations between machines.
+                        The financial layer runs on the configured blockchain with sponsored operations. Smart contracts turn money into self-executing code, automating agreements, splits, and operations between machines.
                     </p>
                 </FadeIn>
 

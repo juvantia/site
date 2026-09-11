@@ -14,7 +14,7 @@ const EconomyGeneral: React.FC = () => {
     }, []);
 
     const tokens = [
-        { id: 'EURe', name: 'EURe', url: 'https://gnosis-chiado.blockscout.com/token/0x8106F0830f18d2CDa1c0AD7d929a2941F849DF54' }
+        { id: 'euro', name: 'EURO', url: '#euro' }
     ];
 
     return (
@@ -185,18 +185,18 @@ const EconomyGeneral: React.FC = () => {
                         fontWeight: 300,
                         margin: 0
                     }}>
-                        JUVANTIA’s monetary layer settles in EURe on Gnosis Chiado through EVM smart contracts.
+                        JUVANTIA’s monetary layer settles in euro on the configured blockchain through smart contracts.
                     </p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                         <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)', opacity: 0.8, margin: 0 }}>
-                            We display and accept only EURe to provide a consistent settlement unit for ownership and operations.
+                            We display and accept only euro to provide a consistent settlement unit for ownership and operations.
                         </p>
                         <div style={{
                             display: 'grid',
                             gridTemplateColumns: 'repeat(2, 1fr)',
                             gap: '1rem'
                         }}>
-                            {['EURe'].map(item => (
+                            {['EURO'].map(item => (
                                 <div key={item} style={{
                                     display: 'flex',
                                     alignItems: 'center',

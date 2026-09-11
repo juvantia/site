@@ -68,8 +68,8 @@ To install a Domus, co-owners must hold a licensed sector:
 
 The Juvantia economy is built on absolute transparency, ownership rights, and programmable money via EVM smart contracts.
 
-### EURe Settlement (EURO Only)
-- The entire park economy operates exclusively with EURe on Gnosis Chiado, expressed in EURO.
+### Euro settlement
+- The entire park economy operates with the configured euro token on the configured blockchain, expressed in EURO.
 - No other tokens are displayed or accepted, eliminating financial spam and keeping the focus on real utility.
 
 ### Programmable Contracts
@@ -81,7 +81,7 @@ The Juvantia economy is built on absolute transparency, ownership rights, and pr
 
 ### Onboarding Steps (Testnet)
 1. **Enter City:** Log in to the Juvantia app and obtain your deposit address.
-2. **Fund EURe:** Transfer EURe on Gnosis Chiado to your wallet address.
+2. **Fund euro:** Transfer the configured euro token to your wallet address.
 3. **Visit Trade Hub:** Trade asset shares, buying and selling as the physical asset capitalization changes.
 
 ---
@@ -94,7 +94,7 @@ The Juvantia economy is built on absolute transparency, ownership rights, and pr
 - **On-Site Access & Maintenance:** Physical presence is strictly optional; human access inside the perimeter is restricted for safety. Maintenance and deployment are handled by authorized contributors.
 - **Domus Shelters:** Physical shelters on licensed sectors functioning as garages, charging stations, or shops. Fabricated by official contributors or submitted pre-assembled.
 - **APU (Asset Passport Unit):** The secure digital passport for a physical asset (Robulus, Domus, Sector). Certifies property ownership, grants rights to vote on operational decisions, select service providers, and receive service rewards in Euros for active participation.
-- **Currency & Neo-Bank UX:** Invisible Web3 experience displayed in Euros (€). All settlements, rentals, and APU payouts use Euro-backed electronic money (EURC) with biometric authorization (Face ID / fingerprint).
+- **Currency & Neo-Bank UX:** Invisible Web3 experience displayed in Euros (€). All settlements, rentals, and APU payouts use the configured euro token with biometric authorization (Face ID / fingerprint).
 - **Asset Trading & Fractional APUs:** Full APUs or fractional APU shares can be traded on Trade Hub. Pro-rata yield is paid automatically to all APU share holders.
 - **Asset Control Rules:** 51% APU stake or co-owner vote determines operational teleoperation rights. Fractional APU owners retain yield rights regardless.
 - **Asset Protection:** Park Charter guarantees inviolability of property. Restriction/reassignment requires Multi-Model Tribunal rulings.
