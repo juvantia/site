@@ -14,10 +14,7 @@ const EconomyGeneral: React.FC = () => {
     }, []);
 
     const tokens = [
-        { id: 'EURC', name: 'EURC', url: 'https://www.circle.com/eurc' },
-        { id: 'EURS', name: 'EURS', url: 'https://eurs.stasis.net/' },
-        { id: 'EURQ', name: 'EURQ', url: 'https://www.quantoz.com/products/eurq-usdq' },
-        { id: 'EUROe', name: 'EUROe', url: 'https://www.euroe.com/' }
+        { id: 'EURe', name: 'EURe', url: 'https://gnosis-chiado.blockscout.com/token/0x8106F0830f18d2CDa1c0AD7d929a2941F849DF54' }
     ];
 
     return (
@@ -132,11 +129,11 @@ const EconomyGeneral: React.FC = () => {
                             fontFamily: "'Cinzel', serif",
                             textTransform: 'uppercase'
                         }}>
-                            EURO-PEGGED STABLECOINS
+                            EURO SETTLEMENT TOKEN
                         </h3>
                         <div style={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(4, 1fr)',
+                            gridTemplateColumns: '1fr',
                             gap: isMobile ? '1rem' : '2rem',
                             justifyItems: 'center',
                             alignItems: 'center',
@@ -166,17 +163,9 @@ const EconomyGeneral: React.FC = () => {
                                         borderRadius: '50%',
                                         filter: 'blur(10px)'
                                     }} />
-                                    <img
-                                        src={`/images/${token.id}.svg`}
-                                        alt={token.name}
-                                        style={{
-                                            width: '100%',
-                                            height: '100%',
-                                            position: 'relative',
-                                            zIndex: 1,
-                                            filter: 'drop-shadow(0 0 12px rgba(0, 255, 136, 0.4))'
-                                        }}
-                                    />
+                                    <span style={{ position: 'relative', zIndex: 1, color: 'var(--color-primary)', fontWeight: 700 }}>
+                                        {token.name}
+                                    </span>
                                 </motion.a>
                             ))}
                         </div>
@@ -196,18 +185,18 @@ const EconomyGeneral: React.FC = () => {
                         fontWeight: 300,
                         margin: 0
                     }}>
-                        JUVANTIA’s monetary layer is based on euro-pegged stablecoins issued under the EU <a href="https://www.esma.europa.eu/esmas-activities/digital-finance-and-innovation/markets-crypto-assets-regulation-mica" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'none', borderBottom: '1px solid rgba(0,255,136,0.3)', fontWeight: 500 }}>MiCA</a> regulatory framework.
+                        JUVANTIA’s monetary layer settles in EURe on Gnosis Chiado through EVM smart contracts.
                     </p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                         <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)', opacity: 0.8, margin: 0 }}>
-                            We operate exclusively with regulated EUR stablecoins to provide a stable, predictable base for your investments and operations.
+                            We display and accept only EURe to provide a consistent settlement unit for ownership and operations.
                         </p>
                         <div style={{
                             display: 'grid',
                             gridTemplateColumns: 'repeat(2, 1fr)',
                             gap: '1rem'
                         }}>
-                            {['EURC', 'EURS', 'EURQ', 'EUROe'].map(item => (
+                            {['EURe'].map(item => (
                                 <div key={item} style={{
                                     display: 'flex',
                                     alignItems: 'center',

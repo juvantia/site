@@ -68,9 +68,9 @@ To install a Domus, co-owners must hold a licensed sector:
 
 The Juvantia economy is built on absolute transparency, ownership rights, and programmable money via EVM smart contracts.
 
-### Circle Stablecoins (EURO Only)
-- The entire park economy operates exclusively on EURC stablecoins issued by Circle, expressed in EURO.
-- No other tokens are displayed or accepted, eliminating financial spam and keeping a 15% focus on real utility.
+### EURe Settlement (EURO Only)
+- The entire park economy operates exclusively with EURe on Gnosis Chiado, expressed in EURO.
+- No other tokens are displayed or accepted, eliminating financial spam and keeping the focus on real utility.
 
 ### Programmable Contracts
 - **City Contracts:** Automated, ready-to-use Juvantia infrastructure contracts for settlements, leases, and service payments.
@@ -81,7 +81,7 @@ The Juvantia economy is built on absolute transparency, ownership rights, and pr
 
 ### Onboarding Steps (Testnet)
 1. **Enter City:** Log in to the Juvantia app and obtain your deposit address.
-2. **Get Test EURC:** Fund your address with test EURC using `faucet.circle.com`.
+2. **Fund EURe:** Transfer EURe on Gnosis Chiado to your wallet address.
 3. **Visit Trade Hub:** Trade asset shares, buying and selling as the physical asset capitalization changes.
 
 ---
