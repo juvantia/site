@@ -1383,8 +1383,8 @@ const Home: React.FC = () => {
                         style={{
                             position: 'relative',
                             display: 'grid',
-                            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-                            minHeight: isMobile ? 'auto' : '380px',
+                            gridTemplateColumns: isMobile ? '1fr' : '380px 1fr',
+                            minHeight: isMobile ? 'auto' : '260px',
                             background: 'linear-gradient(135deg, rgba(8, 16, 20, 0.97) 0%, rgba(10, 15, 18, 0.99) 100%)',
                             border: '1px solid rgba(0, 212, 255, 0.15)',
                             overflow: 'hidden'
@@ -1394,42 +1394,59 @@ const Home: React.FC = () => {
                             boxShadow: '0 0 40px rgba(0, 212, 255, 0.08)'
                         }}
                     >
-                        {/* Left: Image */}
-                        <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto' }}>
+                        {/* Left: Image / Gif */}
+                        <div style={{
+                            position: 'relative',
+                            overflow: 'hidden',
+                            minHeight: isMobile ? '180px' : '220px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: 'rgba(5, 10, 12, 0.6)',
+                            padding: isMobile ? '1rem' : '1.5rem'
+                        }}>
                             <img
                                 src="/images/junctum.gif"
                                 alt="Juvantia Robulus Hardware Platform running Junctum Network"
-                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.8s ease, filter 0.5s ease', filter: 'brightness(0.9) contrast(1.1) saturate(1.1)' }}
-                                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.filter = 'brightness(1.05) contrast(1.15) saturate(1.2)'; }}
-                                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(0.9) contrast(1.1) saturate(1.1)'; }}
+                                style={{
+                                    maxWidth: '100%',
+                                    maxHeight: isMobile ? '180px' : '220px',
+                                    width: 'auto',
+                                    height: 'auto',
+                                    objectFit: 'contain',
+                                    display: 'block',
+                                    transition: 'transform 0.8s ease, filter 0.5s ease',
+                                    filter: 'brightness(0.95) contrast(1.1)'
+                                }}
+                                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.filter = 'brightness(1.05) contrast(1.15)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'brightness(0.95) contrast(1.1)'; }}
                             />
                             {['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].map(pos => (
                                 <div key={pos} style={{
-                                    position: 'absolute', width: '18px', height: '18px',
+                                    position: 'absolute', width: '14px', height: '14px',
                                     borderColor: 'rgba(0, 212, 255, 0.7)', borderStyle: 'solid', borderWidth: 0,
                                     zIndex: 5,
-                                    ...(pos === 'topLeft' && { top: 14, left: 14, borderTopWidth: 2, borderLeftWidth: 2 }),
-                                    ...(pos === 'topRight' && { top: 14, right: 14, borderTopWidth: 2, borderRightWidth: 2 }),
-                                    ...(pos === 'bottomLeft' && { bottom: 14, left: 14, borderBottomWidth: 2, borderLeftWidth: 2 }),
-                                    ...(pos === 'bottomRight' && { bottom: 14, right: 14, borderBottomWidth: 2, borderRightWidth: 2 }),
+                                    ...(pos === 'topLeft' && { top: 10, left: 10, borderTopWidth: 2, borderLeftWidth: 2 }),
+                                    ...(pos === 'topRight' && { top: 10, right: 10, borderTopWidth: 2, borderRightWidth: 2 }),
+                                    ...(pos === 'bottomLeft' && { bottom: 10, left: 10, borderBottomWidth: 2, borderLeftWidth: 2 }),
+                                    ...(pos === 'bottomRight' && { bottom: 10, right: 10, borderBottomWidth: 2, borderRightWidth: 2 }),
                                 }} />
                             ))}
-                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to left, rgba(10,15,18,0.55) 0%, transparent 40%)' }} />
                         </div>
 
                         {/* Right: Content */}
                         <div style={{
-                            padding: isMobile ? '2rem 1.5rem' : '3.5rem',
+                            padding: isMobile ? '1.5rem' : '2.25rem 2.5rem',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
-                            gap: '1.5rem',
+                            gap: '1rem',
                             borderLeft: isMobile ? 'none' : '1px solid rgba(0, 212, 255, 0.08)'
                         }}>
                             <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1rem' }}>
                                 <span style={{
                                     fontFamily: "'Cinzel', serif",
-                                    fontSize: isMobile ? '4rem' : '6rem',
+                                    fontSize: isMobile ? '3rem' : '4.5rem',
                                     lineHeight: 1, fontWeight: 600,
                                     background: 'linear-gradient(135deg, #00D4FF 0%, #00FF88 100%)',
                                     WebkitBackgroundClip: 'text',
@@ -1437,11 +1454,11 @@ const Home: React.FC = () => {
                                     opacity: 0.25
                                 }}>05</span>
                                 <div>
-                                    <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#00D4FF', marginBottom: '0.4rem', opacity: 0.85 }}>Internal Communication</p>
-                                    <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: isMobile ? '1.3rem' : '1.7rem', fontWeight: 400, letterSpacing: '0.08em', color: '#E6F0EB', textTransform: 'uppercase', margin: 0 }}>Junctum Network</h3>
+                                    <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#00D4FF', marginBottom: '0.3rem', opacity: 0.85 }}>Internal Communication</p>
+                                    <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: isMobile ? '1.2rem' : '1.5rem', fontWeight: 400, letterSpacing: '0.08em', color: '#E6F0EB', textTransform: 'uppercase', margin: 0 }}>Junctum Network</h3>
                                 </div>
                             </div>
-                            <p style={{ fontFamily: "'Space Grotesk'", fontSize: '1rem', color: 'rgba(185, 203, 185, 0.85)', lineHeight: 1.8, fontWeight: 300, margin: 0 }}>
+                            <p style={{ fontFamily: "'Space Grotesk'", fontSize: '0.95rem', color: 'rgba(185, 203, 185, 0.85)', lineHeight: 1.7, fontWeight: 300, margin: 0 }}>
                                 Inside the facility, teleoperators communicate with each other and with stationary infrastructure — charging docks, smart gates, and sensors — through a proprietary protocol: <strong>JUNCTUM NETWORK</strong>. Rather than generic Bluetooth, Junctum merges our custom core engine process with low-energy BLE transport and an internal real-time event API, enabling seamless coordination between every operator and every fixed device across the terrain.
                             </p>
                         </div>
