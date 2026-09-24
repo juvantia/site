@@ -597,7 +597,7 @@ const Home: React.FC = () => {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        backgroundImage: 'url(/images/hero.jpg)',
+                        backgroundImage: 'url(/images/hero.png)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center center',
                         y: heroImageY,
@@ -1396,7 +1396,7 @@ const Home: React.FC = () => {
                         {/* Left: Image */}
                         <div style={{ position: 'relative', overflow: 'hidden', minHeight: isMobile ? '220px' : 'auto' }}>
                             <img
-                                src="/images/PCB.jpg"
+                                src="/images/junctum.gif"
                                 alt="Juvantia Robulus Hardware Platform running Junctum Network"
                                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.8s ease, filter 0.5s ease', filter: 'brightness(0.9) contrast(1.1) saturate(1.1)' }}
                                 onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.filter = 'brightness(1.05) contrast(1.15) saturate(1.2)'; }}
