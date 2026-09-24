@@ -610,8 +610,8 @@ const Home: React.FC = () => {
                     position: 'absolute',
                     inset: 0,
                     background: isMobile
-                        ? 'linear-gradient(to bottom, rgba(5,10,9,0.75) 0%, rgba(5,10,9,0.55) 100%)'
-                        : 'linear-gradient(to right, rgba(5,10,9,0.88) 0%, rgba(5,10,9,0.7) 35%, rgba(5,10,9,0.35) 65%, rgba(5,10,9,0.1) 100%)',
+                        ? 'linear-gradient(to bottom, rgba(5,10,9,0.6) 0%, rgba(5,10,9,0.4) 100%)'
+                        : 'linear-gradient(to right, rgba(5,10,9,0.75) 0%, rgba(5,10,9,0.4) 45%, rgba(5,10,9,0.2) 70%, rgba(5,10,9,0.05) 100%)',
                     zIndex: 1
                 }} />
 
