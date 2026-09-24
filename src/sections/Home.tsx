@@ -610,8 +610,8 @@ const Home: React.FC = () => {
                     position: 'absolute',
                     inset: 0,
                     background: isMobile
-                        ? 'linear-gradient(to bottom, rgba(5,10,9,0.6) 0%, rgba(5,10,9,0.4) 100%)'
-                        : 'linear-gradient(to right, rgba(5,10,9,0.75) 0%, rgba(5,10,9,0.4) 45%, rgba(5,10,9,0.2) 70%, rgba(5,10,9,0.05) 100%)',
+                        ? 'linear-gradient(to bottom, rgba(5,10,9,0.75) 0%, rgba(5,10,9,0.55) 100%)'
+                        : 'linear-gradient(to right, rgba(5,10,9,0.88) 0%, rgba(5,10,9,0.7) 35%, rgba(5,10,9,0.35) 65%, rgba(5,10,9,0.1) 100%)',
                     zIndex: 1
                 }} />
 
@@ -718,15 +718,16 @@ const Home: React.FC = () => {
                             transition={{ delay: 0.7, duration: 0.8 }}
                             style={{
                                 fontFamily: "'Space Grotesk', sans-serif",
-                                fontSize: isMobile ? '0.9rem' : '1.05rem',
-                                color: 'rgba(223, 228, 225, 0.8)',
+                                fontSize: isMobile ? '0.95rem' : '1.05rem',
+                                color: '#F0F5F2',
                                 lineHeight: 1.7,
-                                fontWeight: 300,
+                                fontWeight: 400,
                                 margin: 0,
                                 maxWidth: '540px',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: '0.85rem'
+                                gap: '0.85rem',
+                                textShadow: '0 2px 10px rgba(0, 0, 0, 0.85)'
                             }}
                         >
                             <p style={{ margin: 0 }}>
