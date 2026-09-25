@@ -31,11 +31,19 @@ const deckDownloads: DownloadItem[] = [
     id: 'macos',
     name: 'macOS Client',
     badgeImg: '/images/mas.svg',
+    url: '',
   },
   {
     id: 'windows',
     name: 'Windows Client',
     badgeImg: '/images/windows.svg',
+    url: '',
+  },
+  {
+    id: 'linux',
+    name: 'Linux Client',
+    badgeImg: '/images/linux.svg',
+    url: '',
   },
 ];
 
@@ -456,7 +464,7 @@ const Downloads: React.FC = () => {
             }}
           >
             {deckDownloads.map((item) => {
-              const isAvailable = Boolean(item.url && item.url !== '#');
+              const isAvailable = item.url !== undefined;
               return isAvailable ? (
                 <motion.a
                   key={item.id}
@@ -528,4 +536,3 @@ const Downloads: React.FC = () => {
 };
 
 export default Downloads;
-

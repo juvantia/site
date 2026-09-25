@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&amp;family=Space+Grotesk:wght@600&amp;display=swap');
+      .badge-sub { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; font-size: 8.5px; font-weight: 600; letter-spacing: 1.5px; fill: #88A090; text-transform: uppercase; }
+      .badge-main { font-family: 'Cinzel', serif; font-size: 15px; font-weight: 700; letter-spacing: 1px; fill: #00FF88; text-transform: uppercase; }
+    </style>
+    <linearGradient id="linux-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141a18"/>
+      <stop offset="100%" stop-color="#080d0b"/>
+    </linearGradient>
+    <linearGradient id="linux-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00FF88" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#00FF88" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Pill -->
+  <rect x="1" y="1" width="198" height="58" rx="10" fill="url(#linux-bg)" stroke="url(#linux-border)" stroke-width="1.5"/>
+
+  <!-- Linux Penguin -->
+  <g transform="translate(14, 8)">
+    <path d="M8.8 25.5C4.1 28.4 2.2 33 2.8 36.2C3.2 38.4 5.4 38.9 7.1 37.2C9 35.4 10.1 31.4 12.1 29.2Z" fill="#101513" stroke="#E6F0EB" stroke-width="0.8"/>
+    <path d="M25.2 25.5C29.9 28.4 31.8 33 31.2 36.2C30.8 38.4 28.6 38.9 26.9 37.2C25 35.4 23.9 31.4 21.9 29.2Z" fill="#101513" stroke="#E6F0EB" stroke-width="0.8"/>
+    <ellipse cx="17" cy="23" rx="11.5" ry="16.5" fill="#101513" stroke="#E6F0EB" stroke-width="0.8"/>
+    <ellipse cx="17" cy="27.2" rx="7.7" ry="10.8" fill="#E6F0EB"/>
+    <ellipse cx="13.7" cy="11.4" rx="4.4" ry="5.2" fill="#E6F0EB"/>
+    <ellipse cx="20.3" cy="11.4" rx="4.4" ry="5.2" fill="#E6F0EB"/>
+    <circle cx="14.8" cy="11.9" r="1.25" fill="#050a09"/>
+    <circle cx="19.2" cy="11.9" r="1.25" fill="#050a09"/>
+    <path d="M12.2 15.1L17 12.9L21.8 15.1L17 18.8Z" fill="#F2B134"/>
+    <path d="M7.5 38.1C9.3 35.9 12.2 35.5 15.8 38.4C13.1 40.8 8.6 41.7 6.6 40.3C5.9 39.8 6.3 39.1 7.5 38.1Z" fill="#F2B134"/>
+    <path d="M26.5 38.1C24.7 35.9 21.8 35.5 18.2 38.4C20.9 40.8 25.4 41.7 27.4 40.3C28.1 39.8 27.7 39.1 26.5 38.1Z" fill="#F2B134"/>
+  </g>
+
+  <!-- Live Font Text -->
+  <text x="54" y="24" class="badge-sub">GET IT FOR</text>
+  <text x="54" y="43" class="badge-main">LINUX</text>
+</svg>
