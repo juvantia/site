@@ -19,7 +19,7 @@
   <rect x="1" y="1" width="198" height="58" rx="10" fill="url(#linux-bg)" stroke="url(#linux-border)" stroke-width="1.5"/>
 
   <!-- Linux Penguin -->
-  <image href="/images/linux-logo.svg" x="14" y="8" width="34" height="40" preserveAspectRatio="xMidYMid meet"/>
+  <image href="linux-logo.svg" x="14" y="8" width="34" height="40" preserveAspectRatio="xMidYMid meet"/>
 
   <!-- Live Font Text -->
   <text x="54" y="24" class="badge-sub">GET IT FOR</text>
