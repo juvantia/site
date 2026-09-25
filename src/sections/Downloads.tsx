@@ -37,7 +37,7 @@ const deckDownloads: DownloadItem[] = [
     id: 'windows',
     name: 'Windows Client',
     badgeImg: '/images/windows.svg',
-    url: '',
+    url: 'https://releases.juvantia.org/CONTROL-DECK-latest-setup.exe',
   },
   {
     id: 'linux',
@@ -464,11 +464,13 @@ const Downloads: React.FC = () => {
             }}
           >
             {deckDownloads.map((item) => {
-              const isAvailable = item.url !== undefined;
+              const isAvailable = Boolean(item.url && item.url !== '#');
               return isAvailable ? (
                 <motion.a
                   key={item.id}
                   href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -4, scale: 1.03 }}
                   transition={{ duration: 0.2 }}
                   style={{
