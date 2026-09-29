@@ -43,7 +43,7 @@ const deckDownloads: DownloadItem[] = [
     id: 'linux',
     name: 'Linux Client',
     badgeImg: '/images/linux.svg',
-    url: '',
+    url: 'https://releases.juvantia.org/OPERATOR-DECK-latest-x86_64.AppImage',
   },
 ];
 
