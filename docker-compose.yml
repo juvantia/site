@@ -14,6 +14,17 @@ services:
       - "traefik.http.routers.site.tls=true"
       - "traefik.http.routers.site.tls.certresolver=myresolver"
       - "traefik.http.services.site.loadbalancer.server.port=80"
+
+      # Native passkeys: exact paths, JSON responses, and no content negotiation.
+      - "traefik.http.routers.site-native-association.rule=Host(`juvantia.org`) && (Path(`/.well-known/assetlinks.json`) || Path(`/.well-known/apple-app-site-association`))"
+      - "traefik.http.routers.site-native-association.entrypoints=websecure"
+      - "traefik.http.routers.site-native-association.tls=true"
+      - "traefik.http.routers.site-native-association.tls.certresolver=myresolver"
+      - "traefik.http.routers.site-native-association.priority=200"
+      - "traefik.http.routers.site-native-association.service=site"
+      - "traefik.http.routers.site-native-association.middlewares=site-native-json"
+      - "traefik.http.middlewares.site-native-json.headers.customrequestheaders.Accept=application/json"
+      - "traefik.http.middlewares.site-native-json.headers.customresponseheaders.Content-Type=application/json"
       
       # Catch-all for robots.txt from any subdomain (low priority)
       - "traefik.http.routers.site-robots.rule=Path(`/robots.txt`) && HostRegexp(`{subdomain:[a-z0-9-]+}.juvantia.org`)"
