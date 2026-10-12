@@ -31,13 +31,13 @@ const deckDownloads: DownloadItem[] = [
     id: 'macos',
     name: 'macOS Client',
     badgeImg: '/images/mas.svg',
-    url: '',
+    url: 'https://releases.juvantia.org/OPERATOR-DECK-latest-universal.dmg',
   },
   {
     id: 'windows',
     name: 'Windows Client',
     badgeImg: '/images/windows.svg',
-    url: 'https://releases.juvantia.org/CONTROL-DECK-latest-setup.exe',
+    url: 'https://apps.microsoft.com/detail/9PGZ8LQ3V91B',
   },
   {
     id: 'linux',
