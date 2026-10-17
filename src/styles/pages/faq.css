@@ -1,0 +1,213 @@
+/* ---------- FAQ: one plate whose raised tab carries the page's name; questions are rows parted by hairlines ---------- */
+.faq-page.page-section {
+  padding-top: clamp(24px, 4vw, 56px);
+}
+
+.plate--page .vt-plate-head {
+  min-height: 72px;
+}
+
+.plate--page .vt-plate-title {
+  font-size: clamp(30px, 3vw, 40px);
+  letter-spacing: 0.08em;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-row {
+  position: relative;
+}
+
+.faq-row + .faq-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--vt-hairline), var(--vt-hairline) 80%, transparent);
+}
+
+.faq-item {
+  scroll-margin-top: 120px;
+}
+
+.faq-q {
+  position: relative;
+  display: block;
+  padding: 21px 100px 21px 0;
+  list-style: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.faq-row:first-child .faq-q {
+  padding-top: 6px;
+}
+
+.faq-question {
+  font: 600 17px/1.45 var(--vt-grotesk);
+  color: var(--vt-ink);
+  text-wrap: pretty;
+  transition: color 200ms ease;
+}
+
+.faq-chevron {
+  position: absolute;
+  top: 24px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  color: var(--vt-cyan);
+  opacity: 0.6;
+  filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.45));
+  transition: transform 320ms var(--vt-ease-out), opacity 200ms ease;
+}
+
+.faq-row:first-child .faq-chevron {
+  top: 9px;
+}
+
+.faq-item[open] .faq-question {
+  color: var(--vt-white);
+}
+
+.faq-item[open] .faq-chevron {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faq-q:hover .faq-question {
+    color: var(--vt-white);
+  }
+
+  .faq-q:hover .faq-chevron {
+    opacity: 1;
+  }
+}
+
+.faq-q:focus-visible {
+  outline: 1px solid rgba(0, 212, 255, 0.6);
+  outline-offset: -1px;
+  border-radius: 4px;
+}
+
+.faq-q:focus-visible .faq-question {
+  color: var(--vt-white);
+}
+
+/* The answer: speech in the reading tier, as wide as a line reads well. */
+.faq-a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 76ch;
+  padding: 0 100px 26px 0;
+  font: 500 16px/1.72 var(--vt-grotesk);
+  color: var(--vt-ink-2);
+  text-wrap: pretty;
+  animation: vt-rise 420ms var(--vt-ease-out);
+}
+
+.faq-a ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  list-style: none;
+}
+
+.faq-a li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.faq-a li::before {
+  content: '';
+  position: absolute;
+  top: 0.86em;
+  left: 2px;
+  width: 10px;
+  height: 1px;
+  background: var(--vt-ink-3);
+}
+
+/* The question's own link, beside its chevron: # until copied, then a tick. */
+.faq-link {
+  position: absolute;
+  top: 14px;
+  right: 40px;
+}
+
+.faq-row:first-child .faq-link {
+  top: -1px;
+}
+
+/* With a mouse the link waits until its question is pointed at, focused or open; a finger always sees it. */
+@media (hover: hover) and (pointer: fine) {
+  .faq-link {
+    opacity: 0;
+    transition: opacity 200ms ease, background-color 240ms ease, border-color 240ms ease;
+  }
+
+  .faq-row:hover .faq-link,
+  .faq-row:focus-within .faq-link,
+  .faq-link.is-copied,
+  .faq-item[open] + .faq-link {
+    opacity: 1;
+  }
+}
+
+.faq-link .faq-link-done {
+  display: none;
+  color: var(--vt-green);
+}
+
+.faq-link.is-copied .faq-link-hash {
+  display: none;
+}
+
+.faq-link.is-copied .faq-link-done {
+  display: block;
+}
+
+@media (max-width: 760px) {
+  .plate--page .vt-plate-head {
+    min-height: 58px;
+  }
+
+  .faq-q {
+    padding: 18px 88px 18px 0;
+  }
+
+  .faq-question {
+    font-size: 15.5px;
+  }
+
+  .faq-chevron {
+    top: 20px;
+  }
+
+  .faq-link {
+    top: 10px;
+    right: 36px;
+  }
+
+  .faq-a {
+    padding-right: 0;
+    font-size: 15px;
+    line-height: 1.68;
+  }
+
+  .faq-item {
+    scroll-margin-top: 24px;
+  }
+}

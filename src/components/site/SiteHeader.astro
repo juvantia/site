@@ -15,5 +15,5 @@ const { pathname } = Astro.props;
   <nav class="site-nav" aria-label="Sections">
     <NavTabs pathname={pathname} />
   </nav>
-  {pathname !== '/downloads' && <DeckKey class="key--access head-key" href="/downloads" title="Downloads" label="Download Juvantia Clients" />}
+  {pathname === '/downloads' ? <span class="key--access head-key head-key-slot" aria-hidden="true"></span> : <DeckKey class="key--access head-key" href="/downloads" title="Downloads" label="Download Juvantia Clients" />}
 </header>

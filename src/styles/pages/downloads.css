@@ -1,0 +1,76 @@
+/* ---------- Downloads: each client a plate, its stores and platforms as the Deck's glass keys ---------- */
+.download-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.download-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  min-width: 0;
+}
+
+.key--download {
+  --glass-h: 64px;
+  width: 250px;
+}
+
+.key--download .deck-key-body {
+  gap: 14px;
+  padding: 0 18px 0 20px;
+}
+
+.key--download .deck-key-title {
+  font-size: 15px;
+}
+
+/* The QR placeholder, on desktop only: a phone cannot scan itself. */
+.download-qr {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.download-qr svg {
+  display: block;
+  padding: 7px;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 14px 34px rgba(0, 0, 0, 0.45);
+}
+
+.download-qr figcaption {
+  font: 600 10px/1.2 var(--vt-grotesk);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--vt-ink-3);
+}
+
+@media (max-width: 1100px) {
+  .key--download {
+    width: 232px;
+  }
+}
+
+@media (max-width: 760px) {
+  .download-qr {
+    display: none;
+  }
+
+  .download-keys {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .key--download {
+    --glass-h: 60px;
+    width: 100%;
+  }
+}

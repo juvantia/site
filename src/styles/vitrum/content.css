@@ -1,143 +1,3 @@
-/* ---------- A page's first screen on the land: its name, the sentences under it, the place in a photo ---------- */
-.site-main {
-  display: flow-root;
-}
-
-.page-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 500px);
-  align-items: center;
-  column-gap: clamp(32px, 5vw, 80px);
-  row-gap: 32px;
-  padding-top: clamp(24px, 4vw, 64px);
-}
-
-.page-head:not(.has-photo) {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.page-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  min-width: 0;
-}
-
-.page-title {
-  font: 700 clamp(44px, 5.8vw, 86px)/0.94 var(--vt-barlow);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--vt-white);
-  text-wrap: balance;
-  text-shadow: 0 2px 24px rgba(4, 9, 8, 0.85);
-  animation: vt-hero-in 1000ms 80ms var(--vt-ease-out) backwards;
-}
-
-.page-lead {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85em;
-  max-width: 560px;
-  font: 500 17px/1.7 var(--vt-grotesk);
-  color: #f0f5f2;
-  text-wrap: pretty;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
-  animation: vt-rise 800ms 320ms var(--vt-ease-out) backwards;
-}
-
-.page-photo {
-  animation: vt-photo-in 1000ms 260ms var(--vt-ease-enter) backwards;
-}
-
-/* The sentences that open a section, under its title on the land. */
-.section-lead {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8em;
-  max-width: 720px;
-  font: 500 16.5px/1.7 var(--vt-grotesk);
-  color: var(--vt-ink-2);
-  text-wrap: pretty;
-  text-shadow: 0 2px 12px rgba(4, 9, 8, 0.9);
-}
-
-.section-lead strong {
-  font-weight: 600;
-  color: var(--vt-white);
-}
-
-/* ---------- A plate whose sections are its own tabs ---------- */
-.plate--tabs .vt-plate-head {
-  padding-right: var(--vt-plate-pad);
-}
-
-.plate-tabs {
-  display: flex;
-  align-items: center;
-  gap: 46px;
-  min-width: 0;
-}
-
-/* The open section stands in the raised tab, white; the others wait half a step lower, dimmed. */
-.plate-tab {
-  position: relative;
-  flex: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  font: 700 24px/1 var(--vt-barlow);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: rgba(238, 245, 242, 0.46);
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
-  cursor: pointer;
-  transform: translateY(4.5px);
-  transition: transform 180ms cubic-bezier(0.55, 0, 1, 0.45), color 180ms ease-in;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.plate-tab::before {
-  content: '';
-  position: absolute;
-  inset: -14px -12px;
-}
-
-.plate-tab[aria-selected="true"] {
-  color: var(--vt-white);
-  transform: none;
-  cursor: default;
-  transition: transform 280ms var(--vt-ease-out) 180ms, color 280ms ease-out 180ms;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .plate-tab[aria-selected="false"]:hover {
-    color: rgba(238, 245, 242, 0.72);
-  }
-}
-
-.plate-tab:focus-visible {
-  outline: 1px solid rgba(0, 212, 255, 0.6);
-  outline-offset: 6px;
-  border-radius: 2px;
-}
-
-.plate-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  padding: 26px var(--vt-plate-pad) 36px;
-}
-
-.plate-panel:focus-visible {
-  outline: none;
-}
-
-.plate-panel.is-entering {
-  animation: vt-fade 260ms ease-out;
-}
-
 /* ---------- Inside a plate: a section's own head, its sentences, short statements and lists ---------- */
 .panel-head {
   display: flex;
@@ -146,7 +6,8 @@
   max-width: 760px;
 }
 
-.panel-eyebrow {
+.panel-eyebrow,
+.point-eyebrow {
   font: 600 11px/1.2 var(--vt-grotesk);
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -258,9 +119,21 @@
 }
 
 .row-text {
+  max-width: 72ch;
   font: 500 15px/1.6 var(--vt-grotesk);
   color: var(--vt-ink-2);
   text-wrap: pretty;
+}
+
+/* A list of names only: tighter rows, each name in the reading ink. */
+.row-list.is-compact > li {
+  padding: 10px 0 9px;
+  font: 500 15px/1.4 var(--vt-grotesk);
+  color: var(--vt-ink);
+}
+
+.row-list.is-compact > li:first-child {
+  padding-top: 0;
 }
 
 /* A plate's body in two columns: its sentences on the left, what it lists on the right. */
@@ -291,6 +164,12 @@
   background: linear-gradient(90deg, var(--vt-hairline), transparent);
 }
 
+/* A note that only adds to the sentences above it: smaller, in their tier. */
+.plate-note.is-aside {
+  font-size: 14.5px;
+  color: var(--vt-ink-2);
+}
+
 .plate-note strong {
   font-weight: 600;
   color: var(--vt-white);
@@ -305,7 +184,6 @@
 
 .tile {
   position: relative;
-  flex: 1 1 0;
   min-width: 0;
   margin: 0;
   overflow: hidden;
@@ -315,26 +193,15 @@
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
+.tile-row > .tile {
+  flex: 1 1 0;
+}
+
 .tile img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* A part's small name over its photos or its list. */
-.part {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-width: 0;
-}
-
-.part-title {
-  font: 700 11px/1.2 var(--vt-grotesk);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--vt-white);
 }
 
 /* A product's photo shown at its own size in the plate's recess, its name beneath. */
@@ -367,93 +234,42 @@
   color: var(--vt-ink-2);
 }
 
-/* Plates stand one under another; a section on the land follows the previous one's plates. */
-.page-section {
-  padding-top: clamp(72px, 8vw, 110px);
-}
-
-.page-section:first-child {
-  padding-top: clamp(56px, 6vw, 88px);
-}
-
 @media (max-width: 1000px) {
   .plate-points.is-four {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 26px;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 22px;
   }
 
-  .plate-points.is-four.is-ruled .point:nth-child(3) {
-    padding-left: 0;
+  .plate-points.is-four.is-ruled .point {
+    padding: 22px 0 0;
     border-left: 0;
+    border-top: 1px solid var(--vt-hairline);
+  }
+
+  .plate-points.is-four.is-ruled .point:first-child {
+    padding-top: 0;
+    border-top: 0;
   }
 }
 
 @media (max-width: 900px) {
-  .page-head {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
-  }
-
   .plate-split {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .plate-media.is-product {
+    aspect-ratio: auto;
     padding: 28px 24px;
   }
 }
 
 @media (max-width: 760px) {
-  .page-head {
-    grid-template-columns: minmax(0, 1fr);
-    padding-top: 12px;
-  }
-
-  .page-copy {
-    gap: 20px;
-  }
-
-  .page-title {
-    font-size: clamp(38px, 11vw, 56px);
-  }
-
-  .page-lead {
-    font-size: 15.5px;
-    line-height: 1.68;
-  }
-
-  .page-photo {
-    --ratio: 16 / 10 !important;
-  }
-
-  .section-lead {
-    font-size: 15.5px;
-  }
-
-  .plate-tabs {
-    gap: 30px;
-  }
-
-  .plate-tab {
-    font-size: 20px;
-  }
-
-  /* On a phone a tab may keep only its first word; the rest stays for screen readers. */
-  .plate-tab .tab-tail {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
-
-  .plate-panel {
-    gap: 22px;
-    padding: 20px var(--vt-plate-pad) 28px;
-  }
-
   .panel-title {
     font-size: 24px;
+  }
+
+  .plate-media.is-product > img {
+    width: min(200px, 100%);
   }
 
   .plate-points.is-three,
@@ -462,8 +278,7 @@
     row-gap: 22px;
   }
 
-  .plate-points.is-ruled .point,
-  .plate-points.is-four.is-ruled .point:nth-child(3) {
+  .plate-points.is-ruled .point {
     padding: 22px 0 0;
     border-left: 0;
     border-top: 1px solid var(--vt-hairline);

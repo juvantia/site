@@ -1,7 +1,34 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Economics from '../sections/Economics';
-import AnimatedBackground from '../components/AnimatedBackground';
+import PageHead from '../components/vitrum/PageHead.astro';
+import Plate from '../components/vitrum/Plate.astro';
+import SectionHead from '../components/vitrum/SectionHead.astro';
+import '../styles/pages/economics.css';
+
+const ENGINES = [
+  {
+    id: 'useful-work',
+    title: 'Useful work',
+    text: 'Rovers are deployed for real functional operations. Operators, pilots, and autonomous algorithms receive direct euro payments upon completed proof-of-execution:',
+    items: [
+      { title: 'Rescue & Recovery', desc: 'Recharge depleted Robulus rovers stranded across the city and flip overturned units back onto their wheels.' },
+      { title: 'Dock & Energy Infrastructure', desc: 'Deploy charging stations and high-capacity docking slots for long-term vehicle rental.' },
+      { title: 'Bounties & Delivery Contracts', desc: 'Execute onchain contracts to locate wanted targets and fulfill secure physical deliveries for bounty rewards.' },
+      { title: 'Communications & Custom Roles', desc: 'Perform specialized operations such as mobile signal relays allowing expeditions to venture farther for crystals, alongside diverse custom field roles.' },
+    ],
+  },
+  {
+    id: 'co-owning',
+    title: 'Co-owning physical assets',
+    text: 'Every hardware asset in the park is registered as an onchain RWA divided into 100,000 Asset Partition Units (APU). Co-owners participate in physical economics:',
+    items: [
+      { title: 'Operational Rental Yield', desc: 'When rovers are rented by operators or execute paid tasks, gross revenues stream into the asset contract.' },
+      { title: 'Automated Balance Split', desc: 'Revenue splits programmatically into operatingBalance (maintenance, parts, electricity) and distributablePool (shareholder yield).' },
+      { title: 'Trade Hub Liquidity', desc: 'Buy and sell APU fractional shares instantly on the onchain order book with 0% park commission fees.' },
+      { title: 'Infrastructure Ownership', desc: 'Co-own rovers, automated fast-charging docks, Domus workshop sectors, and telemetry towers.' },
+    ],
+  },
+];
 ---
 
 <MainLayout
@@ -9,8 +36,76 @@ import AnimatedBackground from '../components/AnimatedBackground';
   description="The Juvantia economy is built on transparency, ownership rights, and the concept of programmable money. Pure market mechanisms for your Robulus."
   ogImage="https://juvantia.org/images/economics.png"
 >
-  <AnimatedBackground client:only="react" />
-  <div style="position: relative; z-index: 1;">
-    <Economics client:only="react" />
+  <PageHead title="Economics" class="economics-head" photo={{ src: '/images/economics.png', alt: 'Juvantia Economics', width: 1528, height: 703, caption: 'Real value · Physical assets' }}>
+    <p>A market-driven economy where participants earn by performing useful work and co-owning physical assets. Settled in regulated euro-backed electronic currency with zero financial spam and zero network gas fees.</p>
+  </PageHead>
+
+  <section class="page-section wrap" id="engines" aria-labelledby="engines-title">
+    <SectionHead id="engines-title" title="Two value engines">
+      <p>Economic value in Juvantia is anchored directly to physical reality. Operators earn by fulfilling real tasks, while asset co-owners earn continuous yield from hardware utilization.</p>
+    </SectionHead>
+    <div class="plates">
+      {ENGINES.map((engine) => (
+        <Plate id={engine.id} heading="h3" title={engine.title}>
+          <p class="plate-text">{engine.text}</p>
+          <div class="plate-points is-four is-ruled">
+            {engine.items.map((item) => (
+              <div class="point">
+                <h4 class="point-title">{item.title}</h4>
+                <p class="point-text">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </Plate>
+      ))}
+    </div>
+  </section>
+
+  <div class="page-section wrap">
+    <div class="plates">
+      <Plate id="e-money" title="E-Money only">
+        <div class="plate-split emoney">
+          <div class="emoney-copy">
+            <div class="emoney-marks">
+              <span class="emoney-euro" aria-hidden="true">€</span>
+              <span class="emoney-rule" aria-hidden="true"></span>
+              <img src="/images/Monerium.png" alt="Monerium" width="1436" height="293" loading="lazy" decoding="async" />
+            </div>
+            <p class="plate-text">The entire park economy operates exclusively with authorized electronic money (E-Money) issued by Monerium, a regulated Electronic Money Institution (EMI) fully compliant with the European Union’s Markets in Crypto-Assets (MiCA) regulation. All funds represent a direct legal claim redeemable 1:1 against the euro, backed 100% by segregated liquid reserves held in regulated EEA banking institutions.</p>
+          </div>
+          <figure class="photo-pane wallet-pane" data-pane data-radius="8" style="--ratio: 549 / 122">
+            <img src="/images/wallet.png" alt="Unified Wallet" width="549" height="130" loading="lazy" decoding="async" />
+          </figure>
+        </div>
+      </Plate>
+
+      <Plate id="settlements" title="Programmable settlements">
+        <p class="plate-text">The financial layer runs on the configured blockchain with sponsored operations. Smart contracts turn money into self-executing code, automating agreements, splits, and operations between machines.</p>
+        <div class="plate-points is-ruled">
+          <div class="point">
+            <p class="point-eyebrow">Core park services</p>
+            <h3 class="point-title is-large">City protocols</h3>
+            <p class="point-text">Official, audited smart contracts powering core park interactions: automated rover leasing, dock charging settlements, APU profit distribution, and maintenance escrows. Zero gas overhead—sponsored by the Juvantia Foundation.</p>
+          </div>
+          <div class="point">
+            <p class="point-eyebrow">Open EVM architecture</p>
+            <h3 class="point-title is-large">Custom contracts</h3>
+            <p class="point-text">Full freedom to deploy your own custom EVM smart contracts. Construct specialized multi-rover syndicates, custom revenue-sharing pools, automated bounty distributions, or private enterprise logistics workflows.</p>
+          </div>
+        </div>
+      </Plate>
+
+      <Plate id="protection" title="Absolute asset protection">
+        <p class="plate-text">Assets and funds are held in non-custodial Smart Accounts (ERC-4337), protected by biometric passkeys with zero seed-phrase vulnerability.</p>
+        <div class="passkey">
+          <span class="passkey-mark" aria-hidden="true"></span>
+          <div class="passkey-copy">
+            <p class="point-eyebrow">WebAuthn &amp; Account Abstraction</p>
+            <h3 class="point-title is-large">Biometric passkey security</h3>
+            <p class="point-text">Every asset transfer, rover lease, or service settlement requires authorization through your personal device’s native biometrics (FaceID or TouchID). No complex private key storage or seed phrase loss. Hardware-level cryptographic security ensures complete defense against unauthorized access or control takeover.</p>
+          </div>
+        </div>
+      </Plate>
+    </div>
   </div>
 </MainLayout>

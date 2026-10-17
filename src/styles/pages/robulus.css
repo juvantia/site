@@ -1,0 +1,34 @@
+/* ---------- Robulus: the rover in its photo, then its three paths as the tabs of one plate ---------- */
+.robulus-head {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+}
+
+/* BUY IN PARK: the chassis, the body shell and the hardware stand side by side, tops aligned. */
+.build-parts {
+  align-items: start;
+}
+
+.build-parts .point {
+  gap: 14px;
+}
+
+.plate-panel .plate-split > .tile {
+  align-self: start;
+}
+
+@media (max-width: 900px) {
+  .robulus-head {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+  }
+}
+
+@media (max-width: 760px) {
+  .robulus-head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .robulus-head .page-photo {
+    --ratio: 1 / 1 !important;
+    width: min(100%, 340px);
+  }
+}

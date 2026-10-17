@@ -83,7 +83,7 @@
   align-items: center;
   gap: 12px;
   min-height: 58px;
-  padding: 0 18px 0 var(--vt-plate-pad);
+  padding: 10px 18px 10px var(--vt-plate-pad);
 }
 
 .vt-plate-head::after {
@@ -96,14 +96,17 @@
   background: linear-gradient(90deg, transparent, var(--vt-hairline) 10%, var(--vt-hairline) 90%, transparent);
 }
 
+/* A title keeps its line while the head has room; only a title wider than the whole head wraps, balanced. */
 .vt-plate-title {
+  flex: 0 0 auto;
+  max-width: 100%;
   font-family: var(--vt-barlow);
   font-size: 24px;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.06;
   letter-spacing: 0.1em;
-  white-space: nowrap;
   text-transform: uppercase;
+  text-wrap: balance;
   color: var(--vt-white);
   animation: vt-rise 600ms calc(var(--enter-delay) + 240ms) var(--vt-ease-out) backwards;
 }

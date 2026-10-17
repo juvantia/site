@@ -254,6 +254,95 @@
   transition: opacity 260ms ease, transform 320ms ease;
 }
 
+/* A key with a platform's mark and two lines of words: the small line over the name, as on a store badge. */
+.deck-key-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  color: var(--vt-white);
+}
+
+.deck-key-icon svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 1px 8px rgba(0, 0, 0, 0.45));
+}
+
+.deck-key-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.deck-key-copy .deck-key-title {
+  flex: none;
+}
+
+.deck-key-note {
+  overflow: hidden;
+  font: 600 9.5px/1 var(--vt-grotesk);
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  color: var(--vt-ink-3);
+}
+
+/* A key with nothing to open yet keeps its glass and loses its light: no glow, a faint rim, the words dimmed. */
+.deck-key.is-disabled {
+  cursor: default;
+}
+
+.deck-key.is-disabled:active {
+  transform: none;
+}
+
+.deck-key.is-disabled .deck-key-glow {
+  display: none;
+}
+
+.deck-key.is-disabled .deck-key-edge {
+  opacity: 0.32;
+}
+
+.deck-key.is-disabled .deck-key-plate {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 60%), linear-gradient(180deg, rgba(10, 15, 15, 0.46) 0%, rgba(6, 10, 10, 0.6) 100%);
+}
+
+.deck-key.is-disabled .deck-key-title,
+.deck-key.is-disabled .deck-key-icon {
+  color: var(--vt-ink-3);
+}
+
+.deck-key.is-disabled .deck-key-note {
+  color: var(--vt-ink-4);
+}
+
+.deck-key.is-disabled .deck-key-spark,
+.deck-key.is-disabled .deck-key-sheen {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .deck-key.is-disabled:hover .deck-key-plate::before {
+    opacity: 0;
+  }
+
+  .deck-key.is-disabled:hover .deck-key-edge {
+    opacity: 0.32;
+  }
+
+  .deck-key.is-disabled:hover .deck-key-title {
+    letter-spacing: 0.14em;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+  }
+}
+
 /* DOWNLOADS: the access key of the header, as AUTHENTICATE on the Deck. */
 .key--access {
   --glass-h: clamp(44px, 2.8vw, 54px);

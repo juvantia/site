@@ -72,6 +72,12 @@
   flex: none;
 }
 
+/* On DOWNLOADS its key steps aside but keeps its room, so the sections stand where they stand on every page. */
+.head-key-slot {
+  display: block;
+  visibility: hidden;
+}
+
 /* ---------- The dock: the header again, floating, on the way back up ---------- */
 .site-dock {
   position: fixed;

@@ -1,0 +1,41 @@
+/* ---------- 404: the number on the land, what happened, and the way back ---------- */
+.lost {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 22px;
+  min-height: min(68vh, 720px);
+  padding-block: clamp(32px, 6vw, 72px);
+}
+
+.lost-code {
+  font: 700 clamp(104px, 16vw, 200px)/0.8 var(--vt-barlow);
+  letter-spacing: 0.04em;
+  color: var(--vt-white);
+  text-shadow: 0 4px 40px rgba(4, 9, 8, 0.9);
+  animation: vt-hero-in 1000ms 80ms var(--vt-ease-out) backwards;
+}
+
+.lost-title {
+  font: 700 clamp(28px, 3vw, 40px)/1 var(--vt-barlow);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vt-white);
+  text-shadow: 0 2px 20px rgba(4, 9, 8, 0.85);
+  animation: vt-rise 800ms 240ms var(--vt-ease-out) backwards;
+}
+
+.lost-text {
+  max-width: 460px;
+  font: 500 16.5px/1.7 var(--vt-grotesk);
+  color: var(--vt-ink-2);
+  text-wrap: pretty;
+  text-shadow: 0 2px 12px rgba(4, 9, 8, 0.9);
+  animation: vt-rise 800ms 320ms var(--vt-ease-out) backwards;
+}
+
+.lost-key {
+  margin-top: 14px;
+  animation: vt-rise 800ms 420ms var(--vt-ease-out) backwards;
+}

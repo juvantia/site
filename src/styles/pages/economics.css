@@ -1,0 +1,125 @@
+/* ---------- Economics ---------- */
+.economics-head {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 600px);
+}
+
+/* E-MONEY ONLY: the euro and its issuer, side by side over the sentence; the wallet beside them. */
+.emoney {
+  align-items: center;
+}
+
+.emoney-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  min-width: 0;
+}
+
+.emoney-marks {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+}
+
+.emoney-euro {
+  font: 700 clamp(64px, 6vw, 92px)/0.8 var(--vt-barlow);
+  color: var(--vt-white);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+}
+
+.emoney-rule {
+  flex: none;
+  width: 1px;
+  height: 64px;
+  background: linear-gradient(180deg, transparent, var(--vt-hairline) 20%, var(--vt-hairline) 80%, transparent);
+}
+
+.emoney-marks img {
+  display: block;
+  width: auto;
+  height: clamp(34px, 3.4vw, 50px);
+  max-width: min(260px, 50%);
+  object-fit: contain;
+}
+
+.wallet-pane,
+.wallet-pane img {
+  border-radius: 8px;
+}
+
+/* The screenshot carries a light strip along its top edge; the frame starts below it. */
+.wallet-pane img {
+  object-position: 50% 100%;
+}
+
+.wallet-pane {
+  width: 100%;
+  max-width: 560px;
+  justify-self: end;
+}
+
+/* The passkey: the fingerprint in the emblem's ink, its name and its sentence beside it. */
+.passkey {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 26px;
+  padding-top: 24px;
+}
+
+.passkey::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--vt-hairline), var(--vt-hairline) 70%, transparent);
+}
+
+.passkey-mark {
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(90deg, var(--vt-green), var(--vt-cyan));
+  -webkit-mask: url('/images/fingerprint-svgrepo-com.svg') center / contain no-repeat;
+  mask: url('/images/fingerprint-svgrepo-com.svg') center / contain no-repeat;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.28));
+}
+
+.passkey-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 72ch;
+}
+
+@media (max-width: 900px) {
+  .economics-head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .economics-head .page-photo {
+    max-width: 640px;
+  }
+
+  .wallet-pane {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .economics-head .page-photo {
+    --ratio: 1528 / 703 !important;
+  }
+
+  .passkey {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .passkey-mark {
+    width: 40px;
+    height: 40px;
+  }
+}
