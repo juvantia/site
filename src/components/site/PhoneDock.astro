@@ -1,0 +1,21 @@
+---
+// Below 900 px the sections live in a floating dock at the bottom: the emblem stays put as Home, the sections scroll
+// beside it at their own size and are never shrunk to fit.
+import NavTabs from './NavTabs.astro';
+
+interface Props {
+  pathname: string;
+}
+
+const { pathname } = Astro.props;
+---
+
+<nav class="phone-dock" data-phone-dock aria-label="Sections">
+  <span class="dock-plate" aria-hidden="true"><span class="dock-contact"></span></span>
+  <div class="phone-dock-row">
+    <a class="dock-home" href="/" aria-label="Juvantia Home" aria-current={pathname === '/' ? 'page' : undefined}><img src="/images/logo.svg" alt="" width="30" height="30" /></a>
+    <div class="phone-dock-items" data-dock-scroll>
+      <NavTabs pathname={pathname} />
+    </div>
+  </div>
+</nav>

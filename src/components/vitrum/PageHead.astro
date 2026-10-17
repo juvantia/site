@@ -1,0 +1,29 @@
+---
+// The first screen of a page on the land: its name in Barlow and the sentences under it on the left, the place in a
+// photo on the right; on a phone the photo follows the words.
+import PhotoPane from './PhotoPane.astro';
+
+interface Photo {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+}
+
+interface Props {
+  title: string;
+  photo?: Photo;
+  class?: string;
+}
+
+const { title, photo, class: className = '' } = Astro.props;
+---
+
+<header class:list={['page-head', 'wrap', className, { 'has-photo': photo }]}>
+  <div class="page-copy">
+    <h1 class="page-title">{title}</h1>
+    {Astro.slots.has('default') && <div class="page-lead"><slot /></div>}
+  </div>
+  {photo && <PhotoPane class="page-photo" {...photo} eager />}
+</header>

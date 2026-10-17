@@ -1,0 +1,100 @@
+/* ---------- A plate whose sections are its own tabs ---------- */
+.plate--tabs .vt-plate-head {
+  padding-right: var(--vt-plate-pad);
+}
+
+.plate-tabs {
+  display: flex;
+  align-items: center;
+  gap: 46px;
+  min-width: 0;
+}
+
+/* The open section stands in the raised tab, white; the others wait half a step lower, dimmed. */
+.plate-tab {
+  position: relative;
+  flex: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 700 24px/1 var(--vt-barlow);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(238, 245, 242, 0.46);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transform: translateY(4.5px);
+  transition: transform 180ms cubic-bezier(0.55, 0, 1, 0.45), color 180ms ease-in;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.plate-tab::before {
+  content: '';
+  position: absolute;
+  inset: -14px -12px;
+}
+
+.plate-tab[aria-selected="true"] {
+  color: var(--vt-white);
+  transform: none;
+  cursor: default;
+  transition: transform 280ms var(--vt-ease-out) 180ms, color 280ms ease-out 180ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .plate-tab[aria-selected="false"]:hover {
+    color: rgba(238, 245, 242, 0.72);
+  }
+}
+
+.plate-tab:focus-visible {
+  outline: 1px solid rgba(0, 212, 255, 0.6);
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+
+.plate-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 26px var(--vt-plate-pad) 36px;
+}
+
+.plate-panel:focus-visible {
+  outline: none;
+}
+
+.plate-panel.is-entering {
+  animation: vt-fade 260ms ease-out;
+}
+
+.plate-panel * {
+  animation: none;
+}
+
+@media (max-width: 760px) {
+  .plate-tabs {
+    gap: 30px;
+  }
+
+  .plate-tab {
+    font-size: 20px;
+  }
+
+  /* On a phone a tab may keep only its first word; the rest stays for screen readers. */
+  .plate-tab .tab-tail {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .plate-panel {
+    gap: 22px;
+    padding: 20px var(--vt-plate-pad) 28px;
+  }
+}

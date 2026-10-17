@@ -1,0 +1,295 @@
+/* ---------- Inside a plate: a section's own head, its sentences, short statements and lists ---------- */
+.panel-head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 760px;
+}
+
+.panel-eyebrow,
+.point-eyebrow {
+  font: 600 11px/1.2 var(--vt-grotesk);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--vt-ink-3);
+}
+
+.panel-title {
+  font: 700 30px/1 var(--vt-barlow);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vt-white);
+  text-wrap: balance;
+}
+
+.plate-text a,
+.point-text a,
+.section-lead a,
+.row-text a,
+.text-link {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--vt-cyan);
+  transition: color 200ms ease, text-shadow 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .plate-text a:hover,
+  .point-text a:hover,
+  .section-lead a:hover,
+  .row-text a:hover,
+  .text-link:hover {
+    color: #7fe8ff;
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.45);
+  }
+}
+
+.plate-text a:focus-visible,
+.point-text a:focus-visible,
+.section-lead a:focus-visible,
+.row-text a:focus-visible,
+.text-link:focus-visible {
+  outline: 1px solid var(--vt-cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Several short statements side by side inside one plate, parted by hairlines. */
+.plate-points.is-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.plate-points.is-four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.plate-points.is-ruled {
+  gap: 0;
+}
+
+.plate-points.is-ruled .point {
+  padding: 4px 26px 0;
+  border-left: 1px solid var(--vt-hairline);
+}
+
+.plate-points.is-ruled .point:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.point-title.is-large {
+  font: 700 20px/1.1 var(--vt-barlow);
+  letter-spacing: 0.08em;
+}
+
+/* A list: rows parted by hairlines, a name in white and its sentence beneath. */
+.row-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row-list > li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 15px 0 14px;
+}
+
+.row-list > li + li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--vt-hairline), var(--vt-hairline) 70%, transparent);
+}
+
+.row-list > li:first-child {
+  padding-top: 2px;
+}
+
+.row-title {
+  font: 600 15.5px/1.35 var(--vt-grotesk);
+  color: var(--vt-white);
+}
+
+.row-text {
+  max-width: 72ch;
+  font: 500 15px/1.6 var(--vt-grotesk);
+  color: var(--vt-ink-2);
+  text-wrap: pretty;
+}
+
+/* A list of names only: tighter rows, each name in the reading ink. */
+.row-list.is-compact > li {
+  padding: 10px 0 9px;
+  font: 500 15px/1.4 var(--vt-grotesk);
+  color: var(--vt-ink);
+}
+
+.row-list.is-compact > li:first-child {
+  padding-top: 0;
+}
+
+/* A plate's body in two columns: its sentences on the left, what it lists on the right. */
+.plate-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 24px clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+
+/* A sentence set apart at a plate's foot. */
+.plate-note {
+  position: relative;
+  max-width: 62ch;
+  padding-top: 18px;
+  font: 500 15.5px/1.62 var(--vt-grotesk);
+  color: var(--vt-ink);
+  text-wrap: pretty;
+}
+
+.plate-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: min(100%, 420px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--vt-hairline), transparent);
+}
+
+/* A note that only adds to the sentences above it: smaller, in their tier. */
+.plate-note.is-aside {
+  font-size: 14.5px;
+  color: var(--vt-ink-2);
+}
+
+.plate-note strong {
+  font-weight: 600;
+  color: var(--vt-white);
+}
+
+/* Photos of parts inside a plate: square or as they are, each with a hairline frame. */
+.tile-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tile {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: var(--ratio, 1 / 1);
+  border-radius: 6px;
+  background: #f4f6f5;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.tile-row > .tile {
+  flex: 1 1 0;
+}
+
+.tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* A product's photo shown at its own size in the plate's recess, its name beneath. */
+.plate-media.is-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px 28px;
+  background:
+    radial-gradient(60% 70% at 50% 45%, rgba(255, 255, 255, 0.05), transparent 70%),
+    #020504;
+}
+
+.plate-media.is-product > img {
+  position: static;
+  width: min(240px, 100%);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.plate-media .media-name {
+  font: 600 11px/1.3 var(--vt-grotesk);
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--vt-ink-2);
+}
+
+@media (max-width: 1000px) {
+  .plate-points.is-four {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 22px;
+  }
+
+  .plate-points.is-four.is-ruled .point {
+    padding: 22px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--vt-hairline);
+  }
+
+  .plate-points.is-four.is-ruled .point:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .plate-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .plate-media.is-product {
+    aspect-ratio: auto;
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 760px) {
+  .panel-title {
+    font-size: 24px;
+  }
+
+  .plate-media.is-product > img {
+    width: min(200px, 100%);
+  }
+
+  .plate-points.is-three,
+  .plate-points.is-four {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 22px;
+  }
+
+  .plate-points.is-ruled .point {
+    padding: 22px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--vt-hairline);
+  }
+
+  .plate-points.is-ruled .point:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .plate-points.is-ruled {
+    row-gap: 22px;
+  }
+}

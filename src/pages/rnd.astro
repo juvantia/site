@@ -1,7 +1,39 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import RnD from '../sections/RnD';
-import AnimatedBackground from '../components/AnimatedBackground';
+import PageHead from '../components/vitrum/PageHead.astro';
+import Plate from '../components/vitrum/Plate.astro';
+import SectionHead from '../components/vitrum/SectionHead.astro';
+import TabsPlate from '../components/vitrum/TabsPlate.astro';
+import TabPanel from '../components/vitrum/TabPanel.astro';
+
+const TRACKS = [
+  {
+    id: 'industry',
+    label: 'Industry',
+    tail: '& startups',
+    heading: 'Hardware companies & startups',
+    description: 'Accelerate your cycle from laboratory prototyping to field validation without investing hundreds of thousands into private testing infrastructure. Deploy prototypes directly to the park and operate 24/7 in non-sterile outdoor conditions:',
+    items: [
+      { title: 'Zero Facility CAPEX', desc: 'No land acquisition, perimeter fencing, weatherproofing, or base-station network overhead.' },
+      { title: 'Continuous Reliability Runs', desc: 'Stress-test drivetrains, thermal dissipation, suspension, and battery wear across hundreds of hours.' },
+      { title: 'Global Remote Demos', desc: 'Demonstrate active prototypes to investors and enterprise buyers worldwide via Operator Deck.' },
+      { title: 'Dedicated Domus Garages', desc: 'Private workshop sectors with continuous power, wired telemetry links, and secure hardware storage.' },
+    ],
+  },
+  {
+    id: 'academia',
+    label: 'Academia',
+    tail: '& research',
+    heading: 'University laboratories & research',
+    description: 'Provide research departments and students with direct remote access to outdoor robotics experimentation without physical relocation. Test autonomy stacks and gather authentic sensor datasets under genuine physics:',
+    items: [
+      { title: 'Sim-to-Real Benchmarking', desc: 'Test Isaac Sim and Gazebo models against real moisture, wheel slip, loose stones, and lighting shifts.' },
+      { title: 'Physical AI Dataset Gathering', desc: 'Collect synchronised camera, IMU, and BLE beacon streams with authentic physical sensory noise.' },
+      { title: 'Cross-Campus Competitions', desc: 'Host remote student hackathons, teleoperation trials, and gripper challenges on shared park hardware.' },
+      { title: 'Open Protocol Architecture', desc: 'Deploy experimental firmware on ESP32 or official Juvantia PCBs via Web-Serial and WSS interfaces.' },
+    ],
+  },
+];
 ---
 
 <MainLayout
@@ -9,6 +41,51 @@ import AnimatedBackground from '../components/AnimatedBackground';
   description="A secure, purpose-built outdoor proving ground for teleoperated and autonomous robotics. Step beyond sterile testbeds into a living, non-sterile environment."
   ogImage="https://juvantia.org/images/TP.png"
 >
-  <AnimatedBackground client:only="react" />
-  <RnD client:load />
+  <PageHead title="Proving ground" photo={{ src: '/images/TP.png', alt: 'Juvantia Proving Ground', width: 1184, height: 864, caption: 'Proving ground · R&D facility' }}>
+    <p>A secure, purpose-built outdoor infrastructure for teleoperated and autonomous robotics. Step beyond sterile private testbeds into a living, non-sterile environment—operating, testing, and coexisting alongside other machines, real operators, and shared infrastructure.</p>
+  </PageHead>
+
+  <div class="page-section wrap">
+    <Plate id="foundation" title="The hardware foundation">
+      <div class="plate-points is-three is-ruled">
+        <div class="point">
+          <h3 class="point-title">ESP32-P4 architecture</h3>
+          <p class="point-text">The official Juvantia Robulus Platform board is built on the ESP32-P4 chip, providing vehicle control, telemetry streaming, and park mesh networking out of the box.</p>
+        </div>
+        <div class="point">
+          <h3 class="point-title">Bring your own compute</h3>
+          <p class="point-text">Keep your ROS2 stacks and autonomy algorithms. Connect your own Nvidia Jetson, Raspberry Pi, LiDAR, or neural accelerators directly to the P4 vehicle bridge.</p>
+        </div>
+        <div class="point">
+          <h3 class="point-title">Bespoke designs</h3>
+          <p class="point-text">Deploy on our reference carrier board or integrate your own hardware. For proprietary research or unique industrial form factors, we are open to discussing bespoke solutions.</p>
+        </div>
+      </div>
+    </Plate>
+  </div>
+
+  <section class="page-section wrap" id="tracks" aria-labelledby="tracks-title">
+    <SectionHead id="tracks-title" title="Industry & academia">
+      <p>Tailored deployment paths eliminating proving ground barriers for both commercial product development and scientific research.</p>
+    </SectionHead>
+
+    <TabsPlate label="Industry and Academia Tracks" tabs={TRACKS.map(({ id, label, tail }) => ({ id, label, tail }))}>
+      {TRACKS.map((track, index) => (
+        <TabPanel id={track.id} open={index === 0}>
+          <header class="panel-head">
+            <h3 class="panel-title">{track.heading}</h3>
+            <p class="plate-text">{track.description}</p>
+          </header>
+          <div class="plate-points is-four is-ruled">
+            {track.items.map((item) => (
+              <div class="point">
+                <h4 class="point-title">{item.title}</h4>
+                <p class="point-text">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </TabPanel>
+      ))}
+    </TabsPlate>
+  </section>
 </MainLayout>

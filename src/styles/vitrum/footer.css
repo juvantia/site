@@ -1,0 +1,192 @@
+/* ---------- Footer: the land sinks into the night; on the black, the emblem, the gateways and the foundation ---------- */
+.site-foot {
+  --foot-fade: clamp(120px, 12vw, 180px);
+  margin-top: clamp(40px, 5vw, 72px);
+  padding-top: var(--foot-fade);
+  padding-bottom: 36px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.72) calc(var(--foot-fade) * 0.55), var(--vt-night) var(--foot-fade));
+}
+
+.foot-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 48px;
+  align-items: start;
+}
+
+.foot-id {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.foot-brand {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.foot-brand img {
+  height: 40px;
+}
+
+.foot-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* A gateway out of the site is a line of words, never a key: an icon in the emblem's ink, the name, a cyan arrow out,
+   and the sentence that says where it leads. */
+.foot-gates {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 270px));
+  gap: 56px;
+  padding-top: 4px;
+}
+
+.gate {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gate-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-top: -3px;
+}
+
+.gate-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: url(#vt-brand-ink);
+  transition: filter 320ms ease;
+}
+
+.gate-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.gate-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 13px/1 var(--vt-grotesk);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--vt-white);
+}
+
+.gate-name svg {
+  width: 13px;
+  height: 13px;
+  color: var(--vt-cyan);
+  transition: transform 340ms var(--vt-ease-out);
+}
+
+.gate-desc {
+  font: 500 13.5px/1.5 var(--vt-grotesk);
+  color: var(--vt-ink-3);
+  text-wrap: pretty;
+  transition: color 240ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gate:hover .gate-name svg {
+    transform: translate(2px, -2px);
+  }
+
+  .gate:hover .gate-desc {
+    color: var(--vt-ink-2);
+  }
+
+  .gate:hover .gate-icon svg {
+    filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.55));
+  }
+}
+
+.gate:active .gate-desc {
+  color: var(--vt-ink-2);
+  transition-duration: 100ms;
+}
+
+.gate:focus-visible {
+  outline: 1px solid var(--vt-cyan);
+  outline-offset: 8px;
+  border-radius: 2px;
+}
+
+/* The foundation's line: a hairline, the copyright, FAQ and LEGAL as the site's own tabs. */
+.foot-base {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 64px;
+  padding-top: 14px;
+}
+
+.foot-base::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.07) 60%, rgba(255, 255, 255, 0.03));
+}
+
+.foot-copy {
+  font: 500 12px/1 var(--vt-grotesk);
+  color: var(--vt-ink-4);
+}
+
+.foot-links {
+  display: flex;
+  gap: 32px;
+}
+
+.foot-links .nav-tab {
+  text-shadow: none;
+}
+
+@media (max-width: 900px) {
+  .foot-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 44px;
+  }
+
+  /* The black runs on under the floating dock, to the bottom of the screen. */
+  .site-foot {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (max-width: 760px) {
+  .foot-gates {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .foot-base {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 18px;
+    margin-top: 48px;
+    padding-top: 10px;
+  }
+}

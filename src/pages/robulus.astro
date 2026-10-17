@@ -1,7 +1,20 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import RobulusRegister from '../sections/RobulusRegister';
-import AnimatedBackground from '../components/AnimatedBackground';
+import PageHead from '../components/vitrum/PageHead.astro';
+import SectionHead from '../components/vitrum/SectionHead.astro';
+import TabsPlate from '../components/vitrum/TabsPlate.astro';
+import TabPanel from '../components/vitrum/TabPanel.astro';
+import '../styles/pages/robulus.css';
+
+const HARDWARE = [
+  'High-Output Battery Pack',
+  'Drive Motors',
+  'LED Headlight Modules',
+  'HD Camera Module',
+  'Telemetry Antenna',
+  'Microphone',
+  'Audio Speaker',
+];
 ---
 
 <MainLayout
@@ -9,6 +22,87 @@ import AnimatedBackground from '../components/AnimatedBackground';
   description="Robulus is a teleoperated mini-robot for the JUVANTIA park. Learn how to build, register and deploy your own Robulus into the open-air park."
   ogImage="https://juvantia.org/images/ROBULUS.png"
 >
-  <AnimatedBackground client:only="react" />
-  <RobulusRegister client:load />
+  <PageHead title="Robulus" class="robulus-head" photo={{ src: '/images/ROBULUS.png', alt: 'Robulus', width: 1024, height: 1024 }}>
+    <p>Deploy, order, or engineer your teleoperated rover</p>
+  </PageHead>
+
+  <section class="page-section wrap" aria-labelledby="paths-title">
+    <SectionHead id="paths-title" eyebrow="Three paths — one destination" title="Own your Robulus" />
+
+    <TabsPlate
+      label="Robulus build paths"
+      tabs={[
+        { id: 'easy', label: 'Easy', tail: 'path' },
+        { id: 'medium', label: 'Medium', tail: 'path' },
+        { id: 'hard', label: 'Hard', tail: 'path' },
+      ]}
+    >
+      <TabPanel id="easy" open>
+        <header class="panel-head">
+          <h3 class="panel-title">Buy in park</h3>
+          <p class="plate-text">Buy a ready-made Robulus directly inside the park and instantly access its remote control. You only need to choose:</p>
+        </header>
+        <div class="plate-points is-three is-ruled build-parts">
+          <div class="point">
+            <h4 class="point-title">Chassis options</h4>
+            <div class="tile-row">
+              <figure class="tile"><img src="/images/shassis1.webp" alt="Chassis Option 1" width="800" height="800" loading="lazy" decoding="async" /></figure>
+              <figure class="tile"><img src="/images/shassis2.webp" alt="Chassis Option 2" width="900" height="900" loading="lazy" decoding="async" /></figure>
+            </div>
+          </div>
+          <div class="point">
+            <h4 class="point-title">Body shell options</h4>
+            <figure class="tile" style="--ratio: 1024 / 707"><img src="/images/body.jpg" alt="3D Body Option" width="1024" height="707" loading="lazy" decoding="async" /></figure>
+          </div>
+          <div class="point">
+            <h4 class="point-title">Hardware suite</h4>
+            <ul class="row-list is-compact">
+              {HARDWARE.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+      </TabPanel>
+
+      <TabPanel id="medium">
+        <header class="panel-head">
+          <h3 class="panel-title">Custom Mercatus order</h3>
+          <p class="plate-text">Find a contributor on mercatus.juvantia.org to commission a custom build and delivery of your Robulus. You can also order the 3D body shell from a separate contributor.</p>
+        </header>
+        <div class="plate-points is-ruled">
+          <div class="point">
+            <h4 class="point-title">Commission assembly on Mercatus</h4>
+            <p class="point-text">Find a contributor on <a href="https://mercatus.juvantia.org" target="_blank" rel="noopener noreferrer">mercatus.juvantia.org</a> and order a custom build and delivery of your Robulus directly to the park.</p>
+          </div>
+          <div class="point">
+            <h4 class="point-title">Separate 3D body order</h4>
+            <p class="point-text">You can commission the 3D-printed body shell from a different contributor for maximum modularity.</p>
+          </div>
+        </div>
+      </TabPanel>
+
+      <TabPanel id="hard">
+        <header class="panel-head">
+          <h3 class="panel-title">Full customization</h3>
+          <p class="plate-text">Design your custom robot according to official specifications. Ship the required parts by delivery to the park. The park can 3D print the body shell and assemble your Robulus on-site if it matches requirements. Use the official Juvantia Robulus Platform PCB or design your own.</p>
+        </header>
+        <div class="plate-split">
+          <ul class="row-list">
+            <li>
+              <h4 class="row-title">Official specification design</h4>
+              <p class="row-text">Design your robot according to official specifications and ship the required hardware components by parcel delivery directly to the park.</p>
+            </li>
+            <li>
+              <h4 class="row-title">Park print &amp; assembly</h4>
+              <p class="row-text">The park can 3D print the body shell and assemble your Robulus on-site if it meets technical compliance standards.</p>
+            </li>
+            <li>
+              <h4 class="row-title">PCB architecture freedom</h4>
+              <p class="row-text">You can utilize the official Juvantia Robulus Platform PCB or engineer your own bespoke printed circuit board.</p>
+            </li>
+          </ul>
+          <figure class="tile" style="--ratio: 1024 / 768"><img src="/images/PCB.jpg" alt="Juvantia Robulus PCB" width="1024" height="768" loading="lazy" decoding="async" /></figure>
+        </div>
+      </TabPanel>
+    </TabsPlate>
+  </section>
 </MainLayout>

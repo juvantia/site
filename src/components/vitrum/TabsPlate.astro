@@ -1,0 +1,44 @@
+---
+// A plate whose sections are its whole content raises them as its own tabs: the open one stands in the raised tab,
+// the others wait below the step; SINK & RISE moves the tab. On a phone a tab may drop its tail ("Easy path" → "Easy").
+export interface PlateTab {
+  id: string;
+  label: string;
+  tail?: string;
+}
+
+interface Props {
+  label: string;
+  tabs: PlateTab[];
+  id?: string;
+  class?: string;
+}
+
+const { label, tabs, id, class: className = '' } = Astro.props;
+---
+
+<section class:list={['vt-plate', 'plate--tabs', className]} id={id} data-plate data-tabs aria-label={label}>
+  <div class="vt-plate-stage">
+    <div class="vt-plate-glass">
+      <span class="vt-plate-signal" aria-hidden="true"></span>
+      <div class="vt-plate-content">
+        <div class="vt-plate-head">
+          <div class="plate-tabs" role="tablist" aria-label={label}>
+            {tabs.map((tab, index) => (
+              <button
+                class="plate-tab"
+                type="button"
+                role="tab"
+                id={`tab-${tab.id}`}
+                aria-controls={`panel-${tab.id}`}
+                aria-selected={index === 0 ? 'true' : 'false'}
+                tabindex={index === 0 ? 0 : -1}
+              >{tab.label}{tab.tail && <span class="tab-tail"> {tab.tail}</span>}</button>
+            ))}
+          </div>
+        </div>
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

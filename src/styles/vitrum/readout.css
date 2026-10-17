@@ -1,0 +1,124 @@
+/* ---------- Photo pane: a photo of the place, with the plates' rim; nothing presses it ---------- */
+.photo-pane {
+  position: relative;
+  aspect-ratio: var(--ratio, 1184 / 864);
+  max-width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.photo-pane img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.pane-edge {
+  position: absolute;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* ---------- Readout: Barlow throughout, the label over its value ---------- */
+.readout {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--count, 3), minmax(0, 1fr));
+  padding-top: 20px;
+}
+
+.readout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--vt-hairline), var(--vt-hairline) 80%, transparent);
+}
+
+.readout-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  min-width: 0;
+  padding: 2px 18px 0;
+}
+
+.readout-item:first-child {
+  padding-left: 0;
+}
+
+.readout-item + .readout-item::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--vt-hairline), transparent);
+}
+
+.readout dt {
+  font: 600 12px/1.25 var(--vt-barlow);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vt-ink-3);
+}
+
+.readout dd {
+  font: 600 30px/0.92 var(--vt-barlow);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--vt-white);
+}
+
+.readout .unit {
+  margin-left: 0.22em;
+  font-size: 0.5em;
+  letter-spacing: 0.1em;
+  color: var(--vt-ink-2);
+}
+
+@media (max-width: 760px) {
+  /* On a phone a plate's readout is a list: the label on the left, its value on the right. */
+  .plate-body-readout {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 0;
+  }
+
+  .plate-body-readout::before {
+    display: none;
+  }
+
+  .plate-body-readout .readout-item {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 13px 0 12px;
+  }
+
+  .plate-body-readout .readout-item::before,
+  .plate-body-readout .readout-item + .readout-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(90deg, var(--vt-hairline), var(--vt-hairline) 70%, transparent);
+  }
+
+  .plate-body-readout dd {
+    font-size: 22px;
+  }
+}

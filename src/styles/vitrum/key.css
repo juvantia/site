@@ -1,0 +1,458 @@
+/* ---------- The Deck's glass key: chamfered, its rim glowing at rest; under a mouse the sheen crosses it ----------
+   Ported from the Operator Deck (GlassButton, glass-button.css). Under a finger it answers with CONTACT instead. */
+.deck-key {
+  --glass-h: 54px;
+  --glass-ease: cubic-bezier(0.22, 0.72, 0.18, 1);
+  --glass-fade: 420ms;
+  --glass-sweep: 680ms cubic-bezier(0.45, 0.05, 0.3, 1);
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: var(--glass-h);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--vt-ink);
+  font-family: var(--vt-grotesk);
+  text-align: left;
+  text-decoration: none;
+  isolation: isolate;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 160ms ease;
+}
+
+.deck-key:focus-visible {
+  outline: none;
+}
+
+.deck-key:active {
+  transform: scale(0.985);
+}
+
+.deck-key-glow {
+  position: absolute;
+  z-index: 0;
+  overflow: visible;
+  pointer-events: none;
+  filter: blur(5px);
+  opacity: 0.4;
+  transition: opacity var(--glass-fade) var(--glass-ease);
+}
+
+.deck-key-plate {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 42%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(70% 90% at 0% 0%, rgba(0, 255, 136, 0.08), transparent 70%),
+    radial-gradient(60% 90% at 100% 100%, rgba(0, 212, 255, 0.08), transparent 70%),
+    linear-gradient(180deg, rgba(12, 19, 19, 0.42) 0%, rgba(6, 10, 10, 0.58) 100%);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5) brightness(1.1);
+  backdrop-filter: blur(14px) saturate(1.5) brightness(1.1);
+}
+
+/* The glass warms under the pointer. */
+.deck-key-plate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 255, 136, 0.035), rgba(0, 212, 255, 0.045));
+  opacity: 0;
+  transition: opacity var(--glass-fade) var(--glass-ease);
+}
+
+/* The HUD's interlaced raster. */
+.deck-key-plate::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0 1px, rgba(0, 0, 0, 0.1) 1px 2px, transparent 2px 4px);
+}
+
+.deck-key-sheen {
+  position: absolute;
+  z-index: 1;
+  top: -30%;
+  bottom: -30%;
+  left: 0;
+  width: 46%;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 136, 0.07) 28%, rgba(255, 255, 255, 0.26) 50%, rgba(0, 212, 255, 0.1) 66%, transparent 100%);
+  transform: translateX(-115%) skewX(-18deg);
+  transition: transform var(--glass-sweep);
+}
+
+.deck-key-body {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  padding: 0 18px 0 22px;
+}
+
+.deck-key-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  color: var(--vt-white);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+  transition: letter-spacing var(--glass-fade) var(--glass-ease), text-shadow var(--glass-fade) ease;
+}
+
+/* The way a key leads: cyan, the gradient's end. */
+.deck-key-chevron {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--vt-cyan);
+  opacity: 0.7;
+  filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.5));
+  transition: transform var(--glass-fade) var(--glass-ease), opacity 300ms ease;
+}
+
+.deck-key-edge,
+.deck-key-spark {
+  position: absolute;
+  z-index: 3;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.deck-key-edge {
+  opacity: 0.85;
+  transition: opacity var(--glass-fade) ease;
+}
+
+.deck-key-spark {
+  filter: drop-shadow(0 0 4px rgba(190, 255, 235, 0.9));
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 42%, #000 58%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 42%, #000 58%, transparent);
+  -webkit-mask-size: 42% 100%;
+  mask-size: 42% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: -80% 0;
+  mask-position: -80% 0;
+  transition: -webkit-mask-position var(--glass-sweep), mask-position var(--glass-sweep);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .deck-key:hover .deck-key-plate::before,
+  .deck-key:hover .deck-key-edge {
+    opacity: 1;
+  }
+
+  .deck-key:hover .deck-key-glow {
+    opacity: 0.75;
+  }
+
+  .deck-key:hover .deck-key-sheen {
+    transform: translateX(222%) skewX(-18deg);
+  }
+
+  .deck-key:hover .deck-key-spark {
+    -webkit-mask-position: 180% 0;
+    mask-position: 180% 0;
+  }
+
+  .deck-key:hover .deck-key-title {
+    letter-spacing: 0.18em;
+    text-shadow: 0 0 16px rgba(190, 255, 235, 0.35), 0 1px 12px rgba(0, 0, 0, 0.45);
+  }
+
+  .deck-key:hover .deck-key-chevron {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+}
+
+.deck-key:focus-visible .deck-key-plate::before,
+.deck-key:focus-visible .deck-key-edge {
+  opacity: 1;
+}
+
+.deck-key:focus-visible .deck-key-glow {
+  opacity: 0.75;
+}
+
+.deck-key:focus-visible .deck-key-title {
+  letter-spacing: 0.18em;
+}
+
+/* CONTACT, under a finger: light trapped in the glass escapes where it is touched. */
+.deck-key-contact {
+  position: absolute;
+  z-index: 2;
+  top: var(--cy, 50%);
+  left: var(--cx, 50%);
+  width: var(--contact-size, 200px);
+  height: var(--contact-size, 200px);
+  margin: calc(var(--contact-size, 200px) / -2) 0 0 calc(var(--contact-size, 200px) / -2);
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(244, 255, 250, 0.5) 0%, rgba(var(--contact-rgb, 90, 240, 205), 0.26) 20%, rgba(var(--contact-rgb, 90, 240, 205), 0.1) 48%, rgba(var(--contact-rgb, 90, 240, 205), 0.03) 72%, rgba(var(--contact-rgb, 90, 240, 205), 0) 100%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: scale(0.3);
+  transition: opacity 240ms ease, transform 320ms var(--vt-ease-out);
+}
+
+.deck-key-lit {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(var(--contact-rgb, 90, 240, 205), 0.3) 0 1px, transparent 1px 4px);
+  -webkit-mask-image: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), #000 0, rgba(0, 0, 0, 0.55) 30px, transparent 78px);
+  mask-image: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), #000 0, rgba(0, 0, 0, 0.55) 30px, transparent 78px);
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.deck-key.is-contact .deck-key-contact {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 120ms ease-out, transform 260ms var(--vt-ease-out);
+}
+
+.deck-key.is-contact .deck-key-lit {
+  opacity: 1;
+  transition-duration: 120ms;
+}
+
+.deck-key.is-contact .deck-key-edge {
+  opacity: 0.3;
+  transition: opacity 160ms ease;
+}
+
+.deck-key.is-commit .deck-key-contact {
+  animation: vt-contact-release 340ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.deck-key.is-cancel .deck-key-contact {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 260ms ease, transform 320ms ease;
+}
+
+/* A key with a platform's mark and two lines of words: the small line over the name, as on a store badge. */
+.deck-key-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  color: var(--vt-white);
+}
+
+.deck-key-icon svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 1px 8px rgba(0, 0, 0, 0.45));
+}
+
+.deck-key-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.deck-key-copy .deck-key-title {
+  flex: none;
+}
+
+.deck-key-note {
+  overflow: hidden;
+  font: 600 9.5px/1 var(--vt-grotesk);
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  color: var(--vt-ink-3);
+}
+
+/* A key with nothing to open yet keeps its glass and loses its light: no glow, a faint rim, the words dimmed. */
+.deck-key.is-disabled {
+  cursor: default;
+}
+
+.deck-key.is-disabled:active {
+  transform: none;
+}
+
+.deck-key.is-disabled .deck-key-glow {
+  display: none;
+}
+
+.deck-key.is-disabled .deck-key-edge {
+  opacity: 0.32;
+}
+
+.deck-key.is-disabled .deck-key-plate {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 60%), linear-gradient(180deg, rgba(10, 15, 15, 0.46) 0%, rgba(6, 10, 10, 0.6) 100%);
+}
+
+.deck-key.is-disabled .deck-key-title,
+.deck-key.is-disabled .deck-key-icon {
+  color: var(--vt-ink-3);
+}
+
+.deck-key.is-disabled .deck-key-note {
+  color: var(--vt-ink-4);
+}
+
+.deck-key.is-disabled .deck-key-spark,
+.deck-key.is-disabled .deck-key-sheen {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .deck-key.is-disabled:hover .deck-key-plate::before {
+    opacity: 0;
+  }
+
+  .deck-key.is-disabled:hover .deck-key-edge {
+    opacity: 0.32;
+  }
+
+  .deck-key.is-disabled:hover .deck-key-title {
+    letter-spacing: 0.14em;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* DOWNLOADS: the access key of the header, as AUTHENTICATE on the Deck. */
+.key--access {
+  --glass-h: clamp(44px, 2.8vw, 54px);
+  width: clamp(212px, 15vw, 252px);
+}
+
+.dock-inner .key--access {
+  --glass-h: 44px;
+  width: 212px;
+}
+
+/* ---------- Flat control: small actions never behave like the big keys ---------- */
+.vt-flat {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-sizing: border-box;
+  height: 32px;
+  margin: 0;
+  padding: 0 9px 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--vt-white);
+  font: 600 10.5px/1 var(--vt-grotesk);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 240ms ease, border-color 240ms ease, color 240ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vt-flat::before {
+  content: '';
+  position: absolute;
+  inset: -7px -5px;
+}
+
+.vt-flat svg {
+  width: 14px;
+  height: 14px;
+  color: var(--vt-cyan);
+  opacity: 0.8;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .vt-flat:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.vt-flat:active {
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.08);
+  transition-duration: 100ms;
+}
+
+.vt-flat:focus-visible {
+  outline: 1px solid var(--vt-cyan);
+  outline-offset: 2px;
+}
+
+.flat--icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
+.flat--icon svg,
+.flat--icon img {
+  width: 16px;
+  height: 16px;
+  color: var(--vt-ink-2);
+  opacity: 1;
+  transition: color 240ms ease, opacity 240ms ease;
+}
+
+.flat--icon img {
+  filter: brightness(0) invert(1);
+  opacity: 0.68;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .flat--icon:hover svg {
+    color: var(--vt-white);
+  }
+
+  .flat--icon:hover img {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 760px) {
+  .key--access {
+    --glass-h: 42px;
+    width: auto;
+  }
+
+  .key--access .deck-key-body {
+    gap: 10px;
+    padding: 0 13px 0 18px;
+  }
+
+  .key--access .deck-key-title {
+    font-size: 12.5px;
+  }
+}

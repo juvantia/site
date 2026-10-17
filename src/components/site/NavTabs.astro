@@ -1,0 +1,14 @@
+---
+// The main menu's sections; the open one is lit from below.
+import { SECTIONS } from './nav';
+
+interface Props {
+  pathname: string;
+}
+
+const { pathname } = Astro.props;
+---
+
+{SECTIONS.map((section) => (
+  <a class="nav-tab" href={section.path} aria-current={pathname === section.path ? 'page' : undefined}>{section.label}</a>
+))}

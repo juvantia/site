@@ -1,0 +1,25 @@
+---
+// A readout: Barlow throughout, each label over its value, hairlines between them.
+export interface Reading {
+  label: string;
+  value: string;
+  unit?: string;
+}
+
+interface Props {
+  items: Reading[];
+  class?: string;
+  stagger?: boolean;
+}
+
+const { items, class: className = '', stagger = false } = Astro.props;
+---
+
+<dl class:list={['readout', className]} style={`--count: ${items.length}`}>
+  {items.map((item, index) => (
+    <div class="readout-item" style={stagger ? `--i: ${index}` : undefined}>
+      <dt>{item.label}</dt>
+      <dd>{item.value}{item.unit && <span class="unit">{item.unit}</span>}</dd>
+    </div>
+  ))}
+</dl>

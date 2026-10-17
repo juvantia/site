@@ -1,0 +1,16 @@
+---
+// A section on the land: its small label, its title in Barlow, and the sentence that opens it.
+interface Props {
+  title: string;
+  id?: string;
+  eyebrow?: string;
+}
+
+const { title, id, eyebrow } = Astro.props;
+---
+
+<header class="section-head">
+  {eyebrow && <p class="section-eyebrow">{eyebrow}</p>}
+  <h2 class="section-title" id={id}>{title}</h2>
+  {Astro.slots.has('default') && <div class="section-lead"><slot /></div>}
+</header>

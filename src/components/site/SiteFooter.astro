@@ -1,0 +1,48 @@
+---
+// The footer: the land sinks into the night; on the black stand the emblem and the wordmark, Juvantia elsewhere,
+// the gateways as lines of words, and the foundation's line with FAQ and LEGAL.
+import Icon from '../vitrum/Icon.astro';
+
+interface Props {
+  pathname: string;
+}
+
+const { pathname } = Astro.props;
+
+const GATES = [
+  { href: 'https://tabularium.juvantia.org', name: 'Tabularium', icon: 'library', desc: 'Official documentation of the Juvantia world' },
+  { href: 'https://forum.juvantia.org', name: 'Forum', icon: 'messages', desc: 'The primary hub for Juvantia world discussions' },
+] as const;
+---
+
+<footer class="site-foot gutter">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-id">
+        <a class="foot-brand" href="/" aria-label="Juvantia Home"><img src="/images/logo.svg" alt="" width="40" height="40" /><span class="vt-brand">JUVANTIA</span></a>
+        <div class="foot-row" role="group" aria-label="Juvantia elsewhere">
+          <a class="vt-flat flat--icon" href="https://x.com/juvantia_org" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><Icon name="x" /></a>
+          <a class="vt-flat flat--icon" href="https://www.youtube.com/@juvantia" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Icon name="youtube" /></a>
+          <a class="vt-flat flat--icon" href="https://www.reddit.com/r/juvantia_org/" target="_blank" rel="noopener noreferrer" aria-label="Reddit"><img src="/reddit.svg" alt="" width="16" height="16" /></a>
+          <a class="vt-flat flat--icon" href="https://github.com/juvantia" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Icon name="github" /></a>
+          <button class="vt-flat flat--icon" type="button" data-mail aria-label="Contact Email"><Icon name="mail" /></button>
+        </div>
+      </div>
+      <nav class="foot-gates" aria-label="Juvantia gateways">
+        {GATES.map((gate) => (
+          <a class="gate" href={gate.href} target="_blank" rel="noopener noreferrer">
+            <span class="gate-icon"><Icon name={gate.icon} /></span>
+            <span class="gate-copy"><span class="gate-name">{gate.name}<Icon name="arrow-up-right" /></span><span class="gate-desc">{gate.desc}</span></span>
+          </a>
+        ))}
+      </nav>
+    </div>
+    <div class="foot-base">
+      <p class="foot-copy">© 2026 Juvantia Foundation</p>
+      <nav class="foot-links" aria-label="Juvantia Foundation">
+        <a class="nav-tab" href="/faq" aria-current={pathname === '/faq' ? 'page' : undefined}>FAQ</a>
+        <a class="nav-tab" href="/legal" aria-current={pathname === '/legal' ? 'page' : undefined}>Legal</a>
+      </nav>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,34 @@
+---
+// The Deck's glass key: chamfered, its rim glowing at rest, the sheen crossing it under a mouse, CONTACT under a finger.
+// A key that has nothing to open yet loses its light and is not a link.
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  href?: string;
+  note?: string;
+  label?: string;
+  external?: boolean;
+  disabled?: boolean;
+  chevron?: 'right' | 'out' | 'none';
+  class?: string;
+}
+
+const { title, href, note, label, external = false, disabled = false, chevron = 'right', class: className = '' } = Astro.props;
+const Tag = disabled || !href ? 'div' : 'a';
+const linkAttrs = Tag === 'a' ? { href, ...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {}) } : { 'aria-disabled': 'true', role: 'group' };
+const hasIcon = Astro.slots.has('icon');
+---
+
+<Tag class:list={['deck-key', className, { 'is-disabled': disabled, 'has-note': note }]} data-deck-key aria-label={label} {...linkAttrs}>
+  <span class="deck-key-plate" aria-hidden="true"><span class="deck-key-sheen"></span><span class="deck-key-lit"></span><span class="deck-key-contact"></span></span>
+  <span class="deck-key-body">
+    {hasIcon && <span class="deck-key-icon"><slot name="icon" /></span>}
+    {note ? (
+      <span class="deck-key-copy"><span class="deck-key-note">{note}</span><span class="deck-key-title">{title}</span></span>
+    ) : (
+      <span class="deck-key-title">{title}</span>
+    )}
+    {!disabled && chevron !== 'none' && <Icon name={chevron === 'out' ? 'arrow-up-right' : 'chevron-right'} class="deck-key-chevron" />}
+  </span>
+</Tag>

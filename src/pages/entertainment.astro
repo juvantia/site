@@ -1,7 +1,8 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Entertainment from '../sections/Entertainment';
-import AnimatedBackground from '../components/AnimatedBackground';
+import PageHead from '../components/vitrum/PageHead.astro';
+import Plate from '../components/vitrum/Plate.astro';
+import SectionHead from '../components/vitrum/SectionHead.astro';
 ---
 
 <MainLayout
@@ -9,6 +10,29 @@ import AnimatedBackground from '../components/AnimatedBackground';
   description="Explore competitive challenges in Juvantia: The Colosseum for high-stakes rover combat and Stonecracy for physical crystal harvesting and civic governance in Civitas."
   ogImage="https://juvantia.org/images/colosseum_arena.jpg"
 >
-  <AnimatedBackground client:only="react" />
-  <Entertainment client:load />
+  <PageHead title="Competitive entertainment">
+    <p>Entertainment in Juvantia is physically consequential. Out here, there are no virtual simulations or algorithmic shortcuts.</p>
+  </PageHead>
+
+  <section class="page-section wrap" id="colosseum" aria-labelledby="colosseum-title">
+    <SectionHead id="colosseum-title" title="The Colosseum" />
+    <Plate id="siege" heading="h3" title="Community occupation & siege" media style="--media: 1.15fr">
+      <figure class="plate-media" slot="media" style="--ratio: 3371 / 1896; --focus: 50% 45%">
+        <img src="/images/colosseum_arena.jpg" alt="Juvantia Colosseum Arena" width="3371" height="1896" loading="lazy" decoding="async" />
+      </figure>
+      <p class="plate-text">The objective is for your community to seize control of the Colosseum to broadcast on and operate its massive screen, monetize commercial screen time, and receive free electrical power at arena charging stations.</p>
+      <p class="plate-text">The citadel gates unlock once every two weeks for new challenger syndicates attempting to conquer the building. To retain command and continuous revenues, your community must hold its ground and survive the siege.</p>
+      <p class="plate-note">The Colosseum perimeter is designated as <strong>Terra Nullius</strong>, operating strictly outside the protection and jurisdiction of Custodia.</p>
+    </Plate>
+  </section>
+
+  <section class="page-section wrap" id="stonecracy" aria-labelledby="stonecracy-title">
+    <SectionHead id="stonecracy-title" title="Stonecracy" />
+    <Plate id="crystals" heading="h3" title="Physical labor over artificial inflation" media style="--media: 1fr">
+      <figure class="plate-media" slot="media" style="--ratio: 1024 / 559; --focus: 50% 55%">
+        <img src="/images/stonecracy.jpg" alt="Juvantia Stonecracy Physical Crystal Harvesting" width="1024" height="559" loading="lazy" decoding="async" />
+      </figure>
+      <p class="plate-text">Juvantia rejects virtual "play-to-earn" schemes that print tokens out of thin air. Instead, our political economy is rooted in physical reality: teams locate custom <strong>photopolymer 3D-printed crystal artifacts</strong> seeded across the wild outdoor sectors. Capturing and delivering these crystals requires precision teleoperated manipulation—and yields genuine <strong>civic governance influence in Civitas</strong>.</p>
+    </Plate>
+  </section>
 </MainLayout>

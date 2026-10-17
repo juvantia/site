@@ -1,7 +1,19 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Domus from '../sections/Domus';
-import AnimatedBackground from '../components/AnimatedBackground';
+import PageHead from '../components/vitrum/PageHead.astro';
+import Plate from '../components/vitrum/Plate.astro';
+import SectionHead from '../components/vitrum/SectionHead.astro';
+import '../styles/pages/domus.css';
+
+type Phase = 'window' | 'live';
+
+const STEPS: { title: string; description: string; duration: string; phase: Phase; label: string }[] = [
+  { title: 'Park infrastructure installation', description: 'Build and install your Domus yourself in the park before the official launch.', duration: '3–6 months', phase: 'window', label: 'Installation window' },
+  { title: '24/7 park operations', description: 'Park is fully operational. Human access restricted.', duration: '1–2 months', phase: 'live', label: 'Operations live' },
+  { title: 'Park maintenance', description: 'Scheduled time for installation and maintenance of your Domuses.', duration: '1–2 days', phase: 'window', label: 'Service window' },
+  { title: '24/7 park operations', description: 'Park is fully operational. Human access restricted.', duration: '1–2 months', phase: 'live', label: 'Operations live' },
+  { title: 'Park maintenance', description: 'Scheduled time for installation and maintenance of your Domuses.', duration: '1–2 days', phase: 'window', label: 'Service window' },
+];
 ---
 
 <MainLayout
@@ -9,6 +21,105 @@ import AnimatedBackground from '../components/AnimatedBackground';
   description="A Domus is your private shelter sector inside the JUVANTIA park. Store and charge your Robulus, mount solar panels, and build your operational base."
   ogImage="https://juvantia.org/images/DOMUS1.png"
 >
-  <AnimatedBackground client:only="react" />
-  <Domus client:load />
+  <PageHead title="Domus" photo={{ src: '/images/DOMUS1.png', alt: 'Domus Structure', width: 1248, height: 832, caption: 'Domus · Juvantia park' }}>
+    <p>Your permanent base inside JUVANTIA. Build a structure on a licensed sector — charge your Robulus, run a business, shape the park's cityscape.</p>
+  </PageHead>
+
+  <div class="page-section wrap">
+    <div class="plates">
+      <Plate id="what" title="What is a Domus?">
+        <div class="plate-points is-three is-ruled">
+          <div class="point">
+            <h3 class="point-title">Personal or commercial</h3>
+            <p class="point-text">Build a Domus for your Robulus or create a commercial space — workshop, shop, or club. Your structure, your rules, enforced by smart contracts.</p>
+          </div>
+          <div class="point">
+            <h3 class="point-title">Durable materials</h3>
+            <p class="point-text">Most Domus structures are expected to be built using Formex plastic or aluminium composite panels, but you're free to choose any suitable materials.</p>
+          </div>
+          <div class="point">
+            <h3 class="point-title">Connected to the city grid</h3>
+            <p class="point-text">Receive 12V from the city grid and get billed for every watt consumed. Full metering, transparent settlement.</p>
+          </div>
+        </div>
+      </Plate>
+
+      <Plate id="sector" title="Sector requirements" media>
+        <figure class="plate-media" slot="media" style="--ratio: 1024 / 768; --focus: 50% 60%">
+          <img src="/images/sector.jpg" alt="Sector Requirements" width="1024" height="768" loading="lazy" decoding="async" />
+          <figcaption class="media-caption">Sector · Licensed territory</figcaption>
+        </figure>
+        <p class="plate-text">To install a Domus, you must hold a licensed sector in JUVANTIA or have a valid lease agreement.</p>
+        <ul class="row-list">
+          <li>
+            <h3 class="row-title">Perpetual Sector License (Purchase)</h3>
+            <p class="row-text">Acquire a non-expiring sector license. Full digital ownership, on-chain title.</p>
+          </li>
+          <li>
+            <h3 class="row-title">Term Sector License (Leasing)</h3>
+            <p class="row-text">Rent or lease a sector under a time-limited license with renewal options.</p>
+          </li>
+        </ul>
+      </Plate>
+
+      <Plate id="timeline" title="Domus installation timeline">
+        <ol class="timeline">
+          {STEPS.map((step) => (
+            <li class:list={['timeline-step', `is-${step.phase}`]}>
+              <span class="timeline-node" aria-hidden="true"></span>
+              <p class="timeline-duration">{step.duration}</p>
+              <p class="timeline-phase">{step.label}</p>
+              <h3 class="timeline-title">{step.title}</h3>
+              <p class="timeline-text">{step.description}</p>
+            </li>
+          ))}
+        </ol>
+        <ul class="timeline-legend">
+          <li class="is-window">Installation window — manual setup allowed</li>
+          <li class="is-live">24/7 operations — access restricted</li>
+        </ul>
+      </Plate>
+
+      <Plate id="design" title="Design expectations" media>
+        <figure class="plate-media" slot="media" style="--ratio: 1184 / 864; --focus: 50% 55%">
+          <img src="/images/DOMUS4.png" alt="Domus Design" width="1184" height="864" loading="lazy" decoding="async" />
+          <figcaption class="media-caption">Domus · Design concept</figcaption>
+        </figure>
+        <p class="plate-text">We expect your Domus to be aesthetically pleasing and contribute to the park's visual identity.</p>
+        <ul class="row-list">
+          <li>
+            <h3 class="row-title">Exterior Lighting</h3>
+            <p class="row-text">Install attractive exterior lighting to enhance the cityscape at night.</p>
+          </li>
+          <li>
+            <h3 class="row-title">Aesthetic Design</h3>
+            <p class="row-text">Create a visually appealing structure that adds character to JUVANTIA.</p>
+          </li>
+        </ul>
+      </Plate>
+    </div>
+  </div>
+
+  <section class="page-section wrap" id="electrical" aria-labelledby="electrical-title">
+    <SectionHead id="electrical-title" title="Electrical connection" />
+    <div class="plates">
+      <Plate id="external" heading="h3" title="External connection" media style="--media: 0.72fr">
+        <figure class="plate-media is-product" slot="media">
+          <img src="/images/2-Pin-AMP-Superseal-Female-Automotive-Connector.webp" alt="1.5mm 2Pin AMP Superseal connector" width="800" height="800" loading="lazy" decoding="async" />
+          <figcaption class="media-name">1.5mm 2Pin AMP Superseal · 12V</figcaption>
+        </figure>
+        <p class="plate-text">All Domus structures connect to the park grid via the standard 12V <strong>1.5mm 2Pin AMP Superseal</strong> plug connector.</p>
+        <p class="plate-note is-aside">This 1.5mm 2Pin AMP Superseal connector powers your Domus from the JUVANTIA park electrical network.</p>
+      </Plate>
+
+      <Plate id="internal" heading="h3" title="Internal charging" media style="--media: 0.72fr">
+        <figure class="plate-media is-product" slot="media">
+          <img src="/images/4P.jpg" alt="4-pin magnetic connector" width="800" height="800" loading="lazy" decoding="async" />
+          <figcaption class="media-name">JUVANTIA Standard · 4-Pin Magnetic</figcaption>
+        </figure>
+        <p class="plate-text">Inside your Domus, you can choose how to charge your Robulus. We recommend the <strong>JUVANTIA Standard Pogo Magnetic 4P</strong> for maximum compatibility.</p>
+        <p class="plate-note is-aside">To ensure your Domus can be resold to another participant—use a stepper-motor-driven height-adjustable charging unit (<a class="text-link" href="https://tabularium.juvantia.org">detailed instructions here</a>).</p>
+      </Plate>
+    </div>
+  </section>
 </MainLayout>

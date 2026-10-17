@@ -1,0 +1,19 @@
+---
+// The header lies on the first screen: the emblem (Home), the sections, DOWNLOADS. The land lies flat under the emblem.
+import DeckKey from '../vitrum/DeckKey.astro';
+import NavTabs from './NavTabs.astro';
+
+interface Props {
+  pathname: string;
+}
+
+const { pathname } = Astro.props;
+---
+
+<header class="site-head wrap">
+  <a class="site-logo" href="/" aria-label="Juvantia Home" aria-current={pathname === '/' ? 'page' : undefined} data-plain><img src="/images/logo.svg" alt="Juvantia" width="46" height="46" /></a>
+  <nav class="site-nav" aria-label="Sections">
+    <NavTabs pathname={pathname} />
+  </nav>
+  {pathname === '/downloads' ? <span class="key--access head-key head-key-slot" aria-hidden="true"></span> : <DeckKey class="key--access head-key" href="/downloads" title="Downloads" label="Download Juvantia Clients" />}
+</header>

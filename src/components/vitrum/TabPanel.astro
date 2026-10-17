@@ -1,0 +1,14 @@
+---
+// One section of a TabsPlate; the first is open, the others wait hidden but stay in the page.
+interface Props {
+  id: string;
+  open?: boolean;
+  class?: string;
+}
+
+const { id, open = false, class: className = '' } = Astro.props;
+---
+
+<div class:list={['plate-panel', className]} id={`panel-${id}`} role="tabpanel" aria-labelledby={`tab-${id}`} tabindex="0" hidden={!open}>
+  <slot />
+</div>

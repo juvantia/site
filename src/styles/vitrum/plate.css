@@ -1,0 +1,391 @@
+/* ---------- Plate: smoked glass in the Civitas silhouette (Juvantia Auth's, unchanged) ---------- */
+.vt-plate {
+  --vt-plate-pad: 28px;
+  --enter-delay: 0ms;
+  position: relative;
+  color: var(--vt-ink);
+  font-family: var(--vt-barlow);
+}
+
+.vt-plate-stage {
+  position: relative;
+  animation: vt-plate-rise 820ms var(--enter-delay) var(--vt-ease-enter) backwards;
+}
+
+.vt-plate-glass {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.012) 16%, rgba(255, 255, 255, 0) 30%),
+    radial-gradient(80% 45% at 8% 0%, rgba(0, 255, 136, 0.035), transparent 62%),
+    radial-gradient(70% 40% at 100% 100%, rgba(0, 212, 255, 0.035), transparent 70%),
+    linear-gradient(180deg, rgba(9, 14, 14, var(--vt-smoke-top)) 0%, rgba(6, 10, 10, var(--vt-smoke-mid)) 55%, rgba(4, 8, 8, var(--vt-smoke-foot)) 100%);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3) brightness(0.95);
+  backdrop-filter: blur(24px) saturate(1.3) brightness(0.95);
+  animation: vt-fade 560ms var(--enter-delay) ease-out backwards;
+}
+
+.vt-plate-signal {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.vt-plate-signal::after {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+.vt-plate-content {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.vt-plate-frame,
+.vt-plate-glow {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.vt-plate-frame {
+  z-index: 6;
+}
+
+.vt-plate-frame path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: vt-draw 1100ms calc(var(--enter-delay) + 160ms) var(--vt-ease-draw) backwards;
+}
+
+.vt-plate-glow {
+  z-index: 0;
+  display: none;
+  filter: blur(6px);
+}
+
+.vt-plate-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 10px 18px 10px var(--vt-plate-pad);
+}
+
+.vt-plate-head::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  bottom: 0;
+  left: var(--vt-plate-pad);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--vt-hairline) 10%, var(--vt-hairline) 90%, transparent);
+}
+
+/* A title keeps its line while the head has room; only a title wider than the whole head wraps, balanced. */
+.vt-plate-title {
+  flex: 0 0 auto;
+  max-width: 100%;
+  font-family: var(--vt-barlow);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--vt-white);
+  animation: vt-rise 600ms calc(var(--enter-delay) + 240ms) var(--vt-ease-out) backwards;
+}
+
+.vt-plate-meta {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 4px 12px;
+  min-width: 0;
+  margin: 9px 0 0 auto;
+  padding-block: 6px;
+}
+
+.vt-plate-label {
+  font: 600 12px/1.3 var(--vt-barlow);
+  letter-spacing: 0.2em;
+  text-align: right;
+  text-transform: uppercase;
+  color: var(--vt-ink-3);
+}
+
+/* A dimension stays as written: 400 × 200 m. */
+.vt-plate-value {
+  font: 600 15px/1 var(--vt-barlow);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--vt-ink-2);
+}
+
+.vt-plate-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px var(--vt-plate-pad) 34px;
+}
+
+.plate-text {
+  max-width: 62ch;
+  font: 500 16px/1.66 var(--vt-grotesk);
+  color: var(--vt-ink-2);
+  text-wrap: pretty;
+  animation: vt-rise 600ms calc(var(--enter-delay) + 320ms) var(--vt-ease-out) backwards;
+}
+
+.plate-text strong {
+  font-weight: 600;
+  color: var(--vt-white);
+}
+
+.plate-body-readout {
+  grid-template-columns: repeat(var(--count, 3), max-content);
+  margin-top: auto;
+  animation: vt-rise 600ms calc(var(--enter-delay) + 420ms) var(--vt-ease-out) backwards;
+}
+
+/* ---------- A plate's photo fills its side and takes its silhouette: the step above, the foot below ---------- */
+.plate--media .vt-plate-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--media, 1.1fr));
+  grid-template-rows: auto 1fr;
+}
+
+.plate--media .vt-plate-head {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.plate--media .vt-plate-body {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.plate--media .plate-media {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  min-height: 340px;
+}
+
+.plate-media {
+  position: relative;
+  overflow: hidden;
+  background: #020504;
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.plate-media > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+}
+
+/* A device's screen: shown at its own size in a recess, never stretched. */
+.plate-media.is-screen {
+  display: grid;
+  place-items: center;
+  padding: 28px 24px;
+  background:
+    radial-gradient(60% 70% at 50% 50%, rgba(0, 255, 136, 0.05), transparent 70%),
+    #020504;
+}
+
+.plate-media.is-screen > img {
+  position: static;
+  width: min(400px, 100%);
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Words on a photo: white on a dark plate at its foot, as an ID on Citizen's photos. */
+.media-caption {
+  position: absolute;
+  z-index: 2;
+  bottom: 22px;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px 6px;
+  border-radius: 3px;
+  background: rgba(4, 9, 8, 0.62);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font: 600 10.5px/1 var(--vt-grotesk);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.86);
+  text-shadow: none;
+}
+
+.media-caption .state-live {
+  color: var(--vt-green);
+}
+
+/* Two photos of one subject: they cross-fade; flat controls and a count, never dots. */
+.switch-img {
+  opacity: 0;
+  transition: opacity 520ms ease;
+}
+
+.switch-img.is-on {
+  opacity: 1;
+}
+
+.switch-bar {
+  position: absolute;
+  z-index: 3;
+  bottom: 22px;
+  left: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px;
+  border-radius: 6px;
+  background: rgba(4, 9, 8, 0.6);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.switch-bar .vt-flat {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.switch-bar .vt-flat svg {
+  color: var(--vt-white);
+  opacity: 0.9;
+}
+
+.switch-count {
+  min-width: 52px;
+  font: 600 13px/1 var(--vt-barlow);
+  letter-spacing: 0.08em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--vt-ink-3);
+  text-shadow: none;
+}
+
+.switch-count b {
+  font-weight: 600;
+  color: var(--vt-white);
+}
+
+/* Two short statements inside one plate (ASSET PROTECTION). */
+.plate-points {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  animation: vt-rise 600ms calc(var(--enter-delay) + 360ms) var(--vt-ease-out) backwards;
+}
+
+.point {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.point-title {
+  font: 700 11px/1.2 var(--vt-grotesk);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--vt-white);
+}
+
+.point-text {
+  font: 500 15px/1.62 var(--vt-grotesk);
+  color: var(--vt-ink-2);
+  text-wrap: pretty;
+}
+
+
+/* ---------- Entrance below the first screen: a plate rises as it comes into view ---------- */
+.vt-plate[data-enter="pending"] .vt-plate-stage {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+.vt-plate[data-enter="pending"],
+.vt-plate[data-enter="pending"] * {
+  animation: none !important;
+}
+
+@media (max-width: 900px) {
+  .plate--media .vt-plate-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plate--media .plate-media {
+    min-height: 0;
+    aspect-ratio: var(--ratio, 16 / 10);
+  }
+
+  .plate-media.is-screen {
+    aspect-ratio: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .vt-plate {
+    --vt-plate-pad: 18px;
+  }
+
+  .vt-plate-head {
+    min-height: 50px;
+    padding-right: 14px;
+  }
+
+  .vt-plate-head::after {
+    right: 14px;
+  }
+
+  .vt-plate-title {
+    font-size: 20px;
+  }
+
+  .vt-plate-body {
+    gap: 20px;
+    padding: 18px var(--vt-plate-pad) 28px;
+  }
+
+  .plate-text {
+    font-size: 15px;
+    line-height: 1.62;
+  }
+
+  .plate-points {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+}
