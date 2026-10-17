@@ -1,6 +1,6 @@
 # juvantia.org visual direction
 
-Internal design record for the public site. It captures the goal, how Neon Vitrum is applied here, the decisions taken with the product lead, what was tried and rejected, and what is still open. Last updated 2026-10-17, when the redesign was built on the branch `design/site-vitrum`.
+Internal design record for the public site. It captures the goal, how Neon Vitrum is applied here, the decisions taken with the product lead, what was tried and rejected, and what is still open. Last updated 2026-10-17, when the redesign was built on the branch `design/site-vitrum` and merged to `main` in one deploy.
 
 `../../style/AI_GUIDE.md` (Neon Vitrum) is the shared language. This file records only what is particular to the site.
 
@@ -14,7 +14,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
 
 - Round 1 was an HTML prototype of the shell and Home: https://claude.ai/artifact/RopR9Lpd5BJgwKnQL8yW63 (versions 1–5, rounds 1 to 1e).
 - The other pages were built directly in code. The lead said either way was fine, so they are reviewed on a local server.
-- All work stays on the branch `design/site-vitrum`. Pushing the branch does not deploy, because `deploy.yml` runs on `main` only. The merge to `main` is one deploy, after the lead says yes.
+- All work stayed on the branch `design/site-vitrum`, because `deploy.yml` runs on `main` only. The lead approved the whole site on 2026-10-17, and the branch merged to `main` in one deploy.
 
 ## 3. The language on the site
 
@@ -68,7 +68,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
   - The sections keep 20 px and scroll sideways; the edge where more waits fades, and the open section comes into view.
   - The header then shows only DOWNLOADS.
 - **The footer is black.** The land sinks into the night.
-  - Emblem with the canonical wordmark, and the social marks as flat keys. Reddit carries its note on hover or focus.
+  - Emblem with the canonical wordmark, and the social marks as flat keys (Reddit is r/juvantia_org).
   - Tabularium and Forum as lines of words: an emblem-ink icon, the name, a cyan ↗ and the sentence.
   - The base row: © on the left, FAQ and LEGAL on the right.
 
@@ -106,6 +106,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
   - Junctum has no figures.
 - **Round 1e.** The phone hero is left-aligned ("слева классно").
 - **Code.** The lead's instruction: "сделай просто все остальные страницы по этому же принципу". The remaining pages follow the patterns above.
+- **Review of all pages** ("Уау! Просто топ"). The lead approved the site as built, with the choices put to them for review: FAQ as one plate, the engines as four points, the unlit Citizen keys, the menu's kept room on `/downloads`, the quieter Domus notes, the left-aligned 404. One change: Reddit moved to the new subreddit r/juvantia_org, so the note about the banned r/juvantia is gone.
 
 ## 7. Tried and rejected — do not reintroduce
 
@@ -140,7 +141,6 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
 
 ## 10. Open items
 
-- **The merge to `main` and the deploy** wait for the lead's yes.
 - **Real-device scroll check** (section 8).
 - **The Citizen keys** stay unlit until the app has store links.
 - **The QR on Downloads** is the old site's placeholder. It encodes nothing and was kept as content.
