@@ -1,0 +1,52 @@
+/* ---------- The world: the land, two carriers of light, grain and the broadcast raster ---------- */
+.vt-world {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.vt-world-land {
+  position: absolute;
+  inset: 0;
+}
+
+.vt-relief {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.vt-relief.is-ready {
+  opacity: 1;
+}
+
+.vt-carriers {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(95% 52% at -6% -4%, rgba(0, 255, 136, calc(0.13 * var(--vt-carrier))), rgba(0, 255, 136, calc(0.035 * var(--vt-carrier))) 46%, transparent 74%),
+    radial-gradient(92% 50% at 106% 104%, rgba(0, 212, 255, calc(0.12 * var(--vt-carrier))), rgba(0, 212, 255, calc(0.03 * var(--vt-carrier))) 46%, transparent 74%),
+    radial-gradient(60% 30% at 104% 26%, rgba(0, 212, 255, calc(0.035 * var(--vt-carrier))), transparent 70%),
+    radial-gradient(55% 30% at -4% 72%, rgba(0, 255, 136, calc(0.03 * var(--vt-carrier))), transparent 70%);
+}
+
+.vt-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+.vt-raster,
+.hero-raster {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 4px);
+}

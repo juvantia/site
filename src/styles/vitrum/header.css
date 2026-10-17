@@ -1,0 +1,162 @@
+/* ---------- Header: the emblem, the sections, DOWNLOADS ---------- */
+.site-head {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 96px;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.6vw, 40px);
+  margin-inline: auto;
+}
+
+/* A section is a tab: its words brighten under the pointer; the open one is lit from below, never underlined. */
+.nav-tab {
+  position: relative;
+  padding: 14px 2px;
+  font: 600 12px/1 var(--vt-grotesk);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  color: rgba(238, 245, 242, 0.66);
+  text-shadow: 0 1px 10px rgba(4, 9, 8, 0.8);
+  transition: color 240ms ease;
+}
+
+.nav-tab:hover,
+.nav-tab[aria-current="page"] {
+  color: var(--vt-white);
+}
+
+.nav-tab:focus-visible {
+  outline: 1px solid rgba(0, 212, 255, 0.55);
+  outline-offset: 2px;
+}
+
+.nav-tab::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  bottom: 0;
+  left: -4px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--vt-green) 30%, var(--vt-cyan) 70%, transparent);
+  filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.6));
+  opacity: 0;
+  transform: scaleX(0.3);
+  transition: opacity 240ms ease, transform 340ms var(--vt-ease-out);
+}
+
+.nav-tab[aria-current="page"]::after {
+  opacity: 1;
+  transform: none;
+}
+
+/* The sections are the game's main menu, so they speak in Barlow at its smallest size outside a readout
+   (the lead's choice, round 1c). FAQ and LEGAL in the footer stay small Grotesk links. */
+.site-nav .nav-tab,
+.phone-dock .nav-tab {
+  font: 600 20px/1 var(--vt-barlow);
+  letter-spacing: 0.1em;
+}
+
+.site-nav .nav-tab {
+  padding-block: 11px;
+}
+
+.head-key {
+  flex: none;
+}
+
+/* ---------- The dock: the header again, floating, on the way back up ---------- */
+.site-dock {
+  position: fixed;
+  z-index: 40;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  left: 50%;
+  width: min(var(--site-max), calc(100% - 32px));
+  height: 62px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, calc(-100% - 20px));
+  transition: transform 460ms var(--vt-ease-out), opacity 260ms ease, visibility 0s linear 460ms;
+}
+
+.site-dock.is-shown {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition: transform 460ms var(--vt-ease-out), opacity 260ms ease, visibility 0s;
+}
+
+.dock-plate {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgba(4, 9, 8, 0.93);
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+}
+
+.dock-plate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, var(--vt-key-raster)) 0 1px, rgba(0, 0, 0, var(--vt-key-raster-dark)) 1px 2px, transparent 2px 4px);
+}
+
+.dock-edge {
+  position: absolute;
+  z-index: 3;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 0.78;
+}
+
+.dock-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 100%;
+  padding: 0 9px 0 18px;
+}
+
+.dock-inner .site-logo img {
+  height: 36px;
+}
+
+.dock-inner .nav-tab {
+  padding-block: 21px;
+  text-shadow: none;
+}
+
+/* Below 900 px the five sections no longer fit beside the emblem and DOWNLOADS: they move to the floating dock at the
+   bottom, which carries the emblem as Home, so the header keeps only DOWNLOADS. */
+@media (max-width: 900px) {
+  .site-head {
+    justify-content: flex-end;
+  }
+
+  .site-head .site-logo,
+  .site-head .site-nav,
+  .site-dock {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-head {
+    gap: 16px;
+    height: 72px;
+  }
+}

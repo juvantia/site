@@ -1,13 +1,156 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import HomeSection from '../sections/Home';
-import AnimatedBackground from '../components/AnimatedBackground';
+import SiteHeader from '../components/site/SiteHeader.astro';
+import Plate from '../components/vitrum/Plate.astro';
+import Readout from '../components/vitrum/Readout.astro';
+import PhotoPane from '../components/vitrum/PhotoPane.astro';
+import ImageSwitch from '../components/vitrum/ImageSwitch.astro';
+import SectionHead from '../components/vitrum/SectionHead.astro';
+import '../styles/pages/home.css';
 ---
 
 <MainLayout
   title="JUVANTIA — Physical Proving Ground for Teleoperated Rovers"
   description="A free-to-enter, open-access physical proving ground for teleoperated rovers. Built for commercial R&D, university laboratories, and competitive entertainment."
 >
-  <AnimatedBackground client:only="react" />
-  <HomeSection client:load />
+  <!-- The first screen: the night scene of the proving ground, JUVANTIA as the site always had it, the lead, the place. -->
+  <section class="hero-stage" data-hero aria-label="Juvantia" slot="stage">
+    <div class="hero-image" aria-hidden="true"><img src="/images/hero-night.jpg" alt="" width="1672" height="940" fetchpriority="high" /></div>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-raster" aria-hidden="true"></div>
+
+    <div class="gutter">
+      <SiteHeader pathname="/" />
+    </div>
+
+    <div class="gutter hero-band">
+      <div class="hero wrap">
+        <div class="hero-copy">
+          <h1 class="hero-wordmark">JUVANTIA</h1>
+          <div class="hero-text">
+            <p>A free-to-enter, open-access physical proving ground for teleoperated rovers.</p>
+            <p>It provides a testing and deployment environment for commercial R&amp;D, university laboratories, and competitive entertainment.</p>
+            <p>The ecosystem is powered by a market-driven economy where participants earn by performing useful work and co-owning physical assets.</p>
+          </div>
+        </div>
+        <PhotoPane class="hero-photo" src="/images/TP.png" alt="Juvantia Proving Ground" width={1184} height={864} eager />
+        <Readout
+          class="hero-readout"
+          stagger
+          items={[
+            { label: 'Total area', value: '8', unit: 'Hectares' },
+            { label: 'Constant park operations', value: '24/7' },
+            { label: 'Power network', value: '12V', unit: 'Grid' },
+            { label: 'Asset management', value: 'Biometric' },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="facility" aria-labelledby="facility-title">
+    <SectionHead id="facility-title" title="Proving ground facility" />
+
+    <div class="plates">
+      <Plate id="location" heading="h3" title="Location" media style="--media: 1.15fr">
+        <span class="vt-plate-label" slot="meta">Southern Europe</span>
+        <figure class="plate-media" slot="media" style="--focus: 58% 62%; --ratio: 1768 / 890">
+          <img src="/images/photo_2026-04-17_22-14-15.jpg" alt="Southern Europe Location" loading="lazy" decoding="async" />
+        </figure>
+        <p class="plate-text">300+ sunny days per year — optimal for continuous solar R&amp;D, photovoltaic generation, and outdoor robotics. The dry, frost-free Mediterranean climate prevents corrosion and condensation, significantly extending your hardware's operational lifespan and enabling 24/7 all-season trials.</p>
+        <Readout
+          class="plate-body-readout"
+          items={[
+            { label: 'Sunny days', value: '300+' },
+            { label: 'Frost risk', value: 'Zero' },
+            { label: 'Condensation', value: 'Minimal' },
+          ]}
+        />
+      </Plate>
+
+      <Plate id="scale" heading="h3" title="8 Hectares" media>
+        <Fragment slot="meta"><span class="vt-plate-value">400 × 200 m</span><span class="vt-plate-label">Scale</span></Fragment>
+        <ImageSwitch
+          slot="media"
+          ratio="16 / 9"
+          images={[
+            { src: '/images/11.jpg', alt: 'Proving ground scale visualization showing vast 8-hectare territory' },
+            { src: '/images/4855.png', alt: '8 Hectares Proving Ground Scale with engineering infrastructure' },
+          ]}
+        />
+        <p class="plate-text">A vast, engineered physical proving ground spanning 8 hectares (400 × 200 meters). Designed to support complex multi-rover logistics, territorial syndicates, industrial test loops, and concurrent operation of thousands of teleoperated rovers.</p>
+        <Readout
+          class="plate-body-readout"
+          items={[
+            { label: 'Rubber roads', value: '32', unit: 'Km' },
+            { label: 'Districts', value: '12' },
+            { label: 'Domuses', value: '800+' },
+          ]}
+        />
+      </Plate>
+
+      <Plate id="network" heading="h3" title="Unified network" media>
+        <span class="vt-plate-label" slot="meta">Power &amp; energy</span>
+        <ImageSwitch
+          slot="media"
+          ratio="4 / 3"
+          images={[
+            { src: '/images/charging_station2.jpg', alt: 'Industrial-grade magnetic charging station with MagSafe-like connection for rovers' },
+            { src: '/images/charging_station.jpg', alt: 'Distributed 12V power grid infrastructure and Wi-Fi coverage area' },
+          ]}
+        />
+        <p class="plate-text">A distributed 12V electrical grid with integrated magnetic charging stations covering the entire territory. The entire physical backbone is engineered on heavy-duty underground twisted-pair cabling, routed beneath the terrain surface and linking every charging station, distribution node, and infrastructure point across the facility. Standardized charging terminals allow Robulus rovers to snap on automatically with MagSafe-like ease.</p>
+        <Readout
+          class="plate-body-readout"
+          items={[
+            { label: 'Grid voltage', value: '12V', unit: 'DC' },
+            { label: 'Charging', value: 'Magnetic snap' },
+            { label: 'Night lighting', value: '160+', unit: 'Nodes' },
+          ]}
+        />
+      </Plate>
+
+      <Plate id="wifi" heading="h3" title="Wi-Fi telemetry grid" media>
+        <span class="vt-plate-label" slot="meta">Telemetry &amp; video link</span>
+        <figure class="plate-media" slot="media" style="--ratio: 1184 / 864">
+          <img src="/images/TP.png" alt="Rover FPV Video Stream and Wi-Fi Control Link" loading="lazy" decoding="async" />
+        </figure>
+        <p class="plate-text">An industrial-grade Wi-Fi mesh network covering the entire 8-hectare facility. High-bandwidth, low-jitter wireless access points transmit live high-definition FPV video streams directly from rover cameras to remote pilots worldwide, while simultaneously receiving sub-millisecond teleoperation and steering control commands without packet drops.</p>
+        <Readout
+          class="plate-body-readout"
+          items={[
+            { label: 'WiFi mesh', value: '48+', unit: 'Nodes' },
+            { label: 'FPV video', value: '1080P', unit: 'Stream' },
+            { label: 'Control link', value: 'Sub-50ms' },
+          ]}
+        />
+      </Plate>
+
+      <Plate id="junctum" heading="h3" title="Junctum network" media style="--media: 1fr">
+        <span class="vt-plate-label" slot="meta">Internal communication</span>
+        <figure class="plate-media is-screen" slot="media">
+          <img src="/images/junctum.gif" alt="Juvantia Robulus Hardware Platform running Junctum Network" width="400" height="304" loading="lazy" decoding="async" />
+        </figure>
+        <p class="plate-text">Inside the facility, teleoperators communicate with each other and with stationary infrastructure — charging docks, smart gates, and sensors — through a proprietary protocol: <strong>JUNCTUM NETWORK</strong>. Rather than generic Bluetooth, Junctum merges our custom core engine process with low-energy BLE transport and an internal real-time event API, enabling seamless coordination between every operator and every fixed device across the terrain.</p>
+      </Plate>
+
+      <Plate id="protection" heading="h3" title="Asset protection" media style="--media: 1fr">
+        <span class="vt-plate-label" slot="meta">Physical &amp; on-chain</span>
+        <figure class="plate-media" slot="media" style="--ratio: 16 / 9; --focus: 50% 60%">
+          <img src="/images/kustodia.gif" alt="Kustodia Security System" width="400" height="225" loading="lazy" decoding="async" />
+          <figcaption class="media-caption">Kustodia · <span class="state-live">Active</span></figcaption>
+        </figure>
+        <div class="plate-points">
+          <div class="point">
+            <h4 class="point-title">Physical perimeter</h4>
+            <p class="point-text">Fully secured site with strict guarantee against manual tampering. No unauthorized physical access — ever.</p>
+          </div>
+          <div class="point">
+            <h4 class="point-title">On-chain ownership</h4>
+            <p class="point-text">Legal ownership anchored in the blockchain. All critical operations secured via biometrics and smart contracts.</p>
+          </div>
+        </div>
+      </Plate>
+    </div>
+  </section>
 </MainLayout>

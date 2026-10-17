@@ -1,0 +1,31 @@
+---
+// A plate: smoked glass in the Civitas silhouette. The title stands in the raised tab, a small label or value may stand
+// at the head's right, a photo may fill the plate's right side; plates are never pressed.
+interface Props {
+  title: string;
+  id?: string;
+  heading?: 'h2' | 'h3';
+  media?: boolean;
+  class?: string;
+  style?: string;
+}
+
+const { title, id, heading: Heading = 'h2', media = false, class: className = '', style } = Astro.props;
+const titleId = id ? `${id}-title` : undefined;
+---
+
+<section class:list={['vt-plate', className, { 'plate--media': media }]} id={id} data-plate style={style} aria-labelledby={titleId}>
+  <div class="vt-plate-stage">
+    <div class="vt-plate-glass">
+      <span class="vt-plate-signal" aria-hidden="true"></span>
+      <div class="vt-plate-content">
+        <header class="vt-plate-head">
+          <Heading class="vt-plate-title" id={titleId}>{title}</Heading>
+          {Astro.slots.has('meta') && <div class="vt-plate-meta"><slot name="meta" /></div>}
+        </header>
+        <slot name="media" />
+        <div class="vt-plate-body"><slot /></div>
+      </div>
+    </div>
+  </div>
+</section>

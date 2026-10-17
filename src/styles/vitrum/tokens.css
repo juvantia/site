@@ -1,0 +1,94 @@
+/* Neon Vitrum on juvantia.org: tokens and the page's base. */
+@property --vt-reach {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fade-l {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fade-r {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+:root {
+  color-scheme: dark;
+  --vt-world: #040908;
+  --vt-night: #000000;
+  --vt-green: #00ff88;
+  --vt-cyan: #00d4ff;
+  --vt-red: #ff4757;
+  --vt-white: #ffffff;
+  --vt-ink: #eef5f2;
+  --vt-ink-2: rgba(238, 245, 242, 0.68);
+  --vt-ink-3: rgba(238, 245, 242, 0.5);
+  --vt-ink-4: rgba(238, 245, 242, 0.26);
+  --vt-hairline: rgba(255, 255, 255, 0.14);
+  --vt-title: 'Cinzel', 'Times New Roman', serif;
+  --vt-grotesk: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --vt-barlow: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --vt-ease-enter: cubic-bezier(0.16, 0.84, 0.24, 1);
+  --vt-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --vt-ease-draw: cubic-bezier(0.65, 0, 0.25, 1);
+  --vt-carrier: 1;
+  --vt-smoke-top: 0.58;
+  --vt-smoke-mid: 0.66;
+  --vt-smoke-foot: 0.72;
+  --vt-key-raster: 0.03;
+  --vt-key-raster-dark: 0.065;
+  --site-max: 1240px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+
+html {
+  background: var(--vt-night);
+}
+
+body {
+  margin: 0;
+  background: var(--vt-world);
+  color: var(--vt-ink);
+  font-family: var(--vt-grotesk);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+:where(h1, h2, h3, h4, p, figure, dl, dd, ul) {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.vt-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+
+img {
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Words that only a screen reader needs. */
+.vt-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

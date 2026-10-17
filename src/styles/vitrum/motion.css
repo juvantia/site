@@ -1,0 +1,38 @@
+/* ---------- Keyframes ---------- */
+@keyframes vt-fade {
+  from { opacity: 0; }
+}
+
+@keyframes vt-rise {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+@keyframes vt-hero-in {
+  from { opacity: 0; transform: translateY(22px); }
+}
+
+@keyframes vt-plate-rise {
+  from { transform: translateY(26px); }
+}
+
+@keyframes vt-photo-in {
+  from { opacity: 0; transform: translateY(18px); }
+}
+
+@keyframes vt-draw {
+  from { stroke-dashoffset: 1; }
+}
+
+@keyframes vt-contact-release {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

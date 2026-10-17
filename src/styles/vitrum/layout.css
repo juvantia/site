@@ -1,0 +1,110 @@
+/* ---------- The page ---------- */
+.site {
+  position: relative;
+  z-index: 1;
+}
+
+.gutter {
+  padding-left: var(--gutter-l);
+  padding-right: var(--gutter-r);
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--site-max);
+  margin-inline: auto;
+}
+
+/* The wordmark exactly as on the Deck and in Citizen: Cinzel 400, 0.12em, the emblem's gradient. */
+.vt-brand {
+  display: inline-block;
+  font-family: var(--vt-title);
+  font-size: clamp(22px, 2vw, 31px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  background: linear-gradient(90deg, var(--vt-green), var(--vt-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px rgba(0, 212, 255, 0.14);
+}
+
+/* The emblem in the header, as the site always had it. */
+.site-logo {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  line-height: 0;
+}
+
+.site-logo img,
+.foot-brand img {
+  display: block;
+  width: auto;
+  height: 46px;
+  filter: drop-shadow(0 0 9px rgba(0, 255, 136, 0.28)) drop-shadow(0 0 26px rgba(0, 212, 255, 0));
+  transition: filter 520ms var(--vt-ease-out);
+}
+
+/* Under the pointer the emblem gives off its own light: green close to the shield, cyan further out. */
+@media (hover: hover) and (pointer: fine) {
+  .site-logo:hover img,
+  .foot-brand:hover img {
+    filter: drop-shadow(0 0 9px rgba(0, 255, 136, 0.72)) drop-shadow(0 0 26px rgba(0, 212, 255, 0.44));
+    transition-duration: 320ms;
+  }
+}
+
+.site-logo:focus-visible img,
+.foot-brand:focus-visible img {
+  filter: drop-shadow(0 0 9px rgba(0, 255, 136, 0.72)) drop-shadow(0 0 26px rgba(0, 212, 255, 0.44));
+}
+
+.site-logo:focus-visible,
+.foot-brand:focus-visible {
+  outline: 1px solid var(--vt-cyan);
+  outline-offset: 4px;
+}
+
+
+/* ---------- A section of the page: its small label and its title on the land ---------- */
+.section {
+  padding-top: clamp(72px, 8vw, 110px);
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.section-eyebrow {
+  font: 600 11px/1 var(--vt-grotesk);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--vt-ink-3);
+}
+
+.section-title {
+  font: 700 clamp(32px, 3.6vw, 48px)/1 var(--vt-barlow);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vt-white);
+  text-wrap: balance;
+  text-shadow: 0 2px 20px rgba(4, 9, 8, 0.85);
+}
+
+.plates {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 760px) {
+  .section-head {
+    margin-bottom: 22px;
+  }
+}
