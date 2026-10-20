@@ -15,23 +15,16 @@
   margin-inline: auto;
 }
 
-/* The wordmark exactly as on the Deck and in Citizen: Cinzel 400, 0.12em, the emblem's gradient. */
+/* The wordmark: one SVG drawn from Cinzel 400 (style/brand/juvantia-wordmark), the same file in every product. Its
+   box is the typed text's box, so the old font size is its height. */
 .vt-brand {
-  display: inline-block;
-  font-family: var(--vt-title);
-  font-size: clamp(22px, 2vw, 31px);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0.12em;
-  text-decoration: none;
-  background: linear-gradient(90deg, var(--vt-green), var(--vt-cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 24px rgba(0, 212, 255, 0.14);
+  display: block;
+  width: auto;
+  height: clamp(22px, 2vw, 31px);
+  filter: drop-shadow(0 0 24px rgba(0, 212, 255, 0.14));
 }
 
-/* The emblem in the header, as the site always had it. */
+/* The mark in the header: the J on the land, received through the raster. */
 .site-logo {
   display: inline-flex;
   flex: none;
@@ -40,7 +33,7 @@
 }
 
 .site-logo img,
-.foot-brand img {
+.foot-brand .foot-mark {
   display: block;
   width: auto;
   height: 46px;
@@ -48,17 +41,17 @@
   transition: filter 520ms var(--vt-ease-out);
 }
 
-/* Under the pointer the emblem gives off its own light: green close to the shield, cyan further out. */
+/* Under the pointer the mark gives off its own light: green close to it, cyan further out. */
 @media (hover: hover) and (pointer: fine) {
   .site-logo:hover img,
-  .foot-brand:hover img {
+  .foot-brand:hover .foot-mark {
     filter: drop-shadow(0 0 9px rgba(0, 255, 136, 0.72)) drop-shadow(0 0 26px rgba(0, 212, 255, 0.44));
     transition-duration: 320ms;
   }
 }
 
 .site-logo:focus-visible img,
-.foot-brand:focus-visible img {
+.foot-brand:focus-visible .foot-mark {
   filter: drop-shadow(0 0 9px rgba(0, 255, 136, 0.72)) drop-shadow(0 0 26px rgba(0, 212, 255, 0.44));
 }
 

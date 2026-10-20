@@ -44,7 +44,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
 
 | Role | Face | On the site |
 | --- | --- | --- |
-| Wordmark | Cinzel 400 | Canonical in the footer (clamp 22–31 px, 0.12em, the emblem's gradient). Home's big JUVANTIA stays as the old site had it (0.18em, 135° gradient), at the lead's request. |
+| Wordmark | The SVG master | `public/images/wordmark.svg`, from `style/brand/juvantia-wordmark` (Cinzel 400's outlines, its kerning, 0.12em, two colours, a 0.15 px hairline). In the footer at clamp 22–31 px as the horizontal lockup with the mark; Home's big JUVANTIA is the same file at the old letters' height. The site loads no Cinzel. |
 | Main menu | Barlow 600 | 20 px / 0.1em in the header, the top dock and the phone dock (rule 8 of the guide). |
 | Titles | Barlow 700 | Page title clamp 44–86 px (phone 38–56 px); section title 32–48 px; plate title 24 px (phone 20 px); a panel's title 30 px. |
 | Values and readouts | Barlow 600 | Readout values 30 px with labels 12 px / 0.18em above them; the timeline's durations; the € sign. |
@@ -62,7 +62,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
 - **Header on the land:** the emblem (Home) on the left, the sections in the middle, DOWNLOADS (the Deck's access key) on the right.
   - On `/downloads` the key steps aside but keeps its room, so the sections stand where they stand on every page.
   - Going back up, the header returns as a floating dock at the top.
-- **The emblem glows under the pointer:** green close to the shield, cyan wide.
+- **The mark glows under the pointer:** green close to it, cyan wide.
 - **Below 900 px:**
   - The sections move to a floating dock at the bottom. Its first item is the emblem (Home), fixed behind a hairline.
   - The sections keep 20 px and scroll sideways; the edge where more waits fades, and the open section comes into view.
@@ -105,6 +105,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
   - The emblem is the dock's first item ("это тоже пункт").
   - Junctum has no figures.
 - **Round 1e.** The phone hero is left-aligned ("слева классно").
+- **The mark and the wordmark (2026-10-20).** The J on the land (`style/brand/juvantia-mark`) replaces the shield in the header, the docks and the footer, and in the favicons and home-screen icons. The wordmark is one SVG everywhere, and the lead asked for one wordmark style, so Home's old 0.18em JUVANTIA with its grey middle went; the hero keeps its stronger glow over the photo. The footer is the horizontal lockup: the word's capitals as tall as the mark's J, on its line.
 - **Code.** The lead's instruction: "сделай просто все остальные страницы по этому же принципу". The remaining pages follow the patterns above.
 - **Review of all pages** ("Уау! Просто топ"). The lead approved the site as built, with the choices put to them for review: FAQ as one plate, the engines as four points, the unlit Citizen keys, the menu's kept room on `/downloads`, the quieter Domus notes, the left-aligned 404. One change: Reddit moved to the new subreddit r/juvantia_org, so the note about the banned r/juvantia is gone.
 
@@ -115,7 +116,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
 - The main menu in Space Grotesk.
 - A fixed header bar (option B).
 - Junctum figures (proximity window, beacon payload, scan capacity).
-- A canonical wordmark alone as the hero. The lead brought back the night scene and the old JUVANTIA.
+- A canonical wordmark alone as the hero. The lead brought back the night scene (the old 0.18em JUVANTIA later gave way to the SVG master, 2026-10-20).
 - Plates side by side.
 - A centred phone hero.
 - A thin accent line under the hero's JUVANTIA was left out on purpose: the Deck rejected a partial accent under a title. Offer it back only if the lead misses it.

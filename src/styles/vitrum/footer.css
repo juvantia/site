@@ -20,16 +20,25 @@
   gap: 30px;
 }
 
+/* The horizontal lockup: the word's capitals as tall as the mark's J and on its line, so the mark is 1.536 times the
+   wordmark's height, with 0.3 of its diameter between them (style/living-guide.html, Lockups). */
 .foot-brand {
+  --wordmark: clamp(22px, 2vw, 31px);
+  --mark: calc(var(--wordmark) * 1.536);
   display: inline-flex;
   align-self: flex-start;
-  align-items: center;
-  gap: 14px;
+  align-items: flex-start;
+  gap: calc(var(--mark) * 0.3 - var(--wordmark) * 0.02);
   text-decoration: none;
 }
 
-.foot-brand img {
-  height: 40px;
+.foot-brand .foot-mark {
+  width: var(--mark);
+  height: var(--mark);
+}
+
+.foot-brand .vt-brand {
+  margin-top: calc(var(--mark) * 0.20703 - var(--wordmark) * 0.1);
 }
 
 .foot-row {

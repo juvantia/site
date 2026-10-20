@@ -70,22 +70,20 @@
   container-type: inline-size;
 }
 
-/* JUVANTIA as the site always had it; on a narrower column it shrinks rather than lose its last letter. */
+/* The wordmark, the same file as everywhere, as large as the old JUVANTIA's letters; on a narrower column it shrinks
+   rather than lose its last letter. Its stronger glow is the first screen's light over the photo. */
 .hero-wordmark {
-  width: max-content;
-  max-width: 100%;
-  font-family: var(--vt-title);
-  font-size: min(6.5rem, 13.4cqi);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0.18em;
-  white-space: nowrap;
-  background: linear-gradient(135deg, #00ff88 0%, #dfe4e1 40%, #00d4ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  margin: 0;
+  line-height: 0;
   filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.4));
   animation: vt-hero-in 1000ms 80ms var(--vt-ease-out) backwards;
+}
+
+.hero-wordmark img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: min(6.5rem, 13.4cqi);
 }
 
 .hero-text {
@@ -152,8 +150,8 @@
     gap: 24px;
   }
 
-  .hero-wordmark {
-    font-size: min(clamp(2.5rem, 12vw, 4rem), 13.4cqi);
+  .hero-wordmark img {
+    height: min(clamp(2.5rem, 12vw, 4rem), 13.4cqi);
   }
 
   .hero-text {
