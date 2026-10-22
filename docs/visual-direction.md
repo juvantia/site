@@ -84,7 +84,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
 | Economics | Title, the paragraph, CITY ASSETS | TWO VALUE ENGINES (two plates, four points each); E-MONEY ONLY (€, Monerium, the wallet); PROGRAMMABLE SETTLEMENTS; ABSOLUTE ASSET PROTECTION (the fingerprint in emblem ink, not red). The page is static HTML now (it was `client:only`). |
 | FAQ | One plate whose tab carries FAQ | Questions as rows parted by hairlines (`details`), every answer in the HTML. `#id` opens its answer; the # beside each question copies its link (with a mouse it waits until the row is pointed at, focused or open). |
 | Legal | LEGAL INFORMATION | Two plates in a narrow column (880 px); "Last updated" stands at the plate's head |
-| Downloads | DOWNLOADS | JUVANTIA CITIZEN: three unlit keys and the QR placeholder (desktop only); JUVANTIA OPERATOR DECK: macOS, Windows, Linux |
+| Downloads | DOWNLOADS | JUVANTIA CITIZEN: three unlit keys and the QR placeholder (desktop only); JUVANTIA OPERATOR DECK: macOS, Windows, Linux AppImage and Arch/Omarchy. Both Linux formats have a visible download key, a short installation note and the x86_64 architecture; the four Deck keys form one row on wide screens and one column below 1200 px. |
 | 404 | 404, SECTOR NOT FOUND, the sentence, RETURN TO BASE | — |
 
 ## 6. Decisions by round (the product lead, 2026-10-17)

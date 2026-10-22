@@ -27,6 +27,26 @@
   font-size: 15px;
 }
 
+.download-keys--deck {
+  flex-wrap: nowrap;
+}
+
+.download-keys--deck .key--download {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 1199px) {
+  .download-keys--deck {
+    flex-direction: column;
+  }
+
+  .download-keys--deck .key--download {
+    flex: none;
+    width: 100%;
+  }
+}
+
 /* The QR placeholder, on desktop only: a phone cannot scan itself. */
 .download-qr {
   display: flex;

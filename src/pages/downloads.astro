@@ -26,7 +26,8 @@ const CITIZEN: Download[] = [
 const DECK: Download[] = [
   { id: 'macos', note: 'Available for', title: 'macOS', icon: 'apple', url: 'https://releases.juvantia.org/OPERATOR-DECK-latest-universal.dmg' },
   { id: 'windows', note: 'Get it for', title: 'Windows', icon: 'windows', url: 'https://apps.microsoft.com/detail/9PGZ8LQ3V91B' },
-  { id: 'linux', note: 'Get it for', title: 'Linux', icon: 'linux', url: 'https://releases.juvantia.org/OPERATOR-DECK-latest-x86_64.AppImage' },
+  { id: 'linux-appimage', note: 'Linux · portable', title: 'AppImage', icon: 'linux', url: 'https://releases.juvantia.org/OPERATOR-DECK-latest-x86_64.AppImage' },
+  { id: 'linux-arch', note: 'Linux · pacman', title: 'Arch/Omarchy', icon: 'linux', url: 'https://releases.juvantia.org/OPERATOR-DECK-latest-x86_64.pkg.tar.zst' },
 ];
 
 // The QR placeholder as the site always had it: finder squares and a scatter of modules on a 29 × 29 grid.
@@ -83,13 +84,14 @@ const FINDERS = [[2, 2], [20, 2], [2, 20]];
       </Plate>
 
       <Plate id="operator-deck" title="Juvantia Operator Deck">
-        <div class="download-keys">
+        <div class="download-keys download-keys--deck">
           {DECK.map((item) => (
             <DeckKey class="key--download" href={item.url} note={item.note} title={item.title} external chevron="out">
               <Icon name={item.icon} slot="icon" />
             </DeckKey>
           ))}
         </div>
+        <p class="plate-text">Linux packages are for x86_64. AppImage runs as a standalone file; Arch Linux and Omarchy use pacman.</p>
       </Plate>
     </div>
   </div>
