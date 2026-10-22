@@ -4,23 +4,30 @@
 import Icon from './Icon.astro';
 
 interface Props {
+  id?: string;
   title: string;
   href?: string;
   note?: string;
   label?: string;
   external?: boolean;
   disabled?: boolean;
-  chevron?: 'right' | 'out' | 'none';
+  chevron?: 'right' | 'out' | 'down' | 'none';
+  popoverTarget?: string;
   class?: string;
 }
 
-const { title, href, note, label, external = false, disabled = false, chevron = 'right', class: className = '' } = Astro.props;
-const Tag = disabled || !href ? 'div' : 'a';
-const linkAttrs = Tag === 'a' ? { href, ...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {}) } : { 'aria-disabled': 'true', role: 'group' };
+const { id, title, href, note, label, external = false, disabled = false, chevron = 'right', popoverTarget, class: className = '' } = Astro.props;
+const Tag = disabled ? 'div' : popoverTarget ? 'button' : href ? 'a' : 'div';
+const linkAttrs = Tag === 'a'
+  ? { href, ...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {}) }
+  : Tag === 'button'
+    ? { type: 'button', popovertarget: popoverTarget, 'aria-controls': popoverTarget, 'aria-haspopup': 'menu' }
+    : { 'aria-disabled': 'true', role: 'group' };
+const chevronIcon = chevron === 'out' ? 'arrow-up-right' : chevron === 'down' ? 'chevron-down' : 'chevron-right';
 const hasIcon = Astro.slots.has('icon');
 ---
 
-<Tag class:list={['deck-key', className, { 'is-disabled': disabled, 'has-note': note }]} data-deck-key aria-label={label} {...linkAttrs}>
+<Tag id={id} class:list={['deck-key', className, { 'is-disabled': disabled, 'has-note': note }]} data-deck-key aria-label={label} {...linkAttrs}>
   <span class="deck-key-plate" aria-hidden="true"><span class="deck-key-sheen"></span><span class="deck-key-lit"></span><span class="deck-key-contact"></span></span>
   <span class="deck-key-body">
     {hasIcon && <span class="deck-key-icon"><slot name="icon" /></span>}
@@ -29,6 +36,6 @@ const hasIcon = Astro.slots.has('icon');
     ) : (
       <span class="deck-key-title">{title}</span>
     )}
-    {!disabled && chevron !== 'none' && <Icon name={chevron === 'out' ? 'arrow-up-right' : 'chevron-right'} class="deck-key-chevron" />}
+    {!disabled && chevron !== 'none' && <Icon name={chevronIcon} class={`deck-key-chevron${chevron === 'down' ? ' is-down' : ''}`} />}
   </span>
 </Tag>

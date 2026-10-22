@@ -27,23 +27,124 @@
   font-size: 15px;
 }
 
-.download-keys--deck {
-  flex-wrap: nowrap;
+.download-menu-key {
+  position: relative;
+  width: 250px;
 }
 
-.download-keys--deck .key--download {
-  flex: 1;
-  min-width: 0;
+.download-menu-key .key--download {
+  width: 100%;
+  anchor-name: --linux-download;
 }
 
-@media (max-width: 1199px) {
-  .download-keys--deck {
-    flex-direction: column;
+.download-menu-key .deck-key .deck-key-chevron.is-down {
+  transform: none;
+  transition: transform 220ms ease, opacity 300ms ease;
+}
+
+.download-menu-key .deck-key[aria-expanded='true'] .deck-key-chevron.is-down,
+.download-menu-key:has(.download-menu:popover-open) .deck-key .deck-key-chevron.is-down {
+  transform: rotate(180deg);
+}
+
+/* Forum's account card: rows on floating glass, as wide as the key.
+   A native popover keeps the menu above the plate's clipped glass. */
+.download-menu {
+  position: fixed;
+  inset: auto;
+  box-sizing: border-box;
+  width: 250px;
+  max-width: calc(100vw - 32px);
+  margin: 0;
+  padding: 6px;
+  overflow-y: auto;
+  background:
+    radial-gradient(70% 60% at 0% 0%, rgba(0, 255, 136, 0.06), transparent 70%),
+    radial-gradient(60% 60% at 100% 100%, rgba(0, 212, 255, 0.06), transparent 70%),
+    linear-gradient(180deg, rgba(12, 19, 19, 0.92), rgba(6, 10, 10, 0.96));
+  -webkit-backdrop-filter: blur(18px) saturate(1.4) brightness(1.05);
+  backdrop-filter: blur(18px) saturate(1.4) brightness(1.05);
+  border: 1px solid rgba(238, 245, 242, 0.12);
+  border-radius: 6px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.62);
+}
+
+/* Native positioning also anchors the menu when scripts are disabled. */
+@supports (position-anchor: --linux-download) {
+  .download-menu {
+    position-anchor: --linux-download;
+    left: anchor(left);
+    top: calc(anchor(bottom) + 10px);
+    width: anchor-size(width);
+  }
+}
+
+.download-menu:popover-open {
+  display: grid;
+  gap: 2px;
+  animation: download-menu-in 220ms cubic-bezier(0.22, 0.72, 0.18, 1) both;
+}
+
+.download-menu-row {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 46px;
+  padding: 8px 14px 8px 16px;
+  border-radius: 4px;
+  color: rgba(238, 245, 242, 0.84);
+  font: 700 12px/1 var(--vt-grotesk);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.download-menu-row::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 0;
+  width: 2px;
+  background: transparent;
+  transition: background-color 200ms ease;
+}
+
+.download-menu-row:is(:hover, :focus-visible) {
+  color: var(--vt-white);
+  background: rgba(255, 255, 255, 0.055);
+  outline: none;
+}
+
+.download-menu-row:is(:hover, :focus-visible)::before {
+  background: rgba(0, 212, 255, 0.8);
+}
+
+.download-menu-row svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: rgba(0, 212, 255, 0.72);
+}
+
+@keyframes download-menu-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .download-menu:popover-open {
+    animation: none;
   }
 
-  .download-keys--deck .key--download {
-    flex: none;
-    width: 100%;
+  .download-menu-key .deck-key .deck-key-chevron.is-down,
+  .download-menu-row,
+  .download-menu-row::before {
+    transition: none;
   }
 }
 
@@ -72,7 +173,8 @@
 }
 
 @media (max-width: 1100px) {
-  .key--download {
+  .key--download,
+  .download-menu-key {
     width: 232px;
   }
 }
@@ -91,6 +193,10 @@
 
   .key--download {
     --glass-h: 60px;
+    width: 100%;
+  }
+
+  .download-menu-key {
     width: 100%;
   }
 }

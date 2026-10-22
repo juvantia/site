@@ -8,6 +8,7 @@ import { mountPane, mountSwitch } from './vitrum/media';
 import { mountPhoneDock, mountTopDock } from './vitrum/docks';
 import { heroParallax, mountEntrances } from './vitrum/motion';
 import { mountFaq } from './vitrum/faq';
+import { mountDownloadMenu } from './vitrum/download-menu';
 
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 const cleanups: (() => void)[] = [];
@@ -28,6 +29,7 @@ const start = () => {
   each('[data-tabs]', (plate) => mountTabs(plate, reduced));
   each('[data-pane]', mountPane);
   each('[data-deck-key]', mountDeckKey);
+  each('[data-download-menu]', mountDownloadMenu);
   each('[data-switch]', mountSwitch);
   each('[data-faq]', mountFaq);
   each('[data-mail]', (button) => {
