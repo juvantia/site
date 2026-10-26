@@ -1,6 +1,7 @@
 ---
 // The footer: the land sinks into the night; on the black stand the emblem and the wordmark, Juvantia elsewhere,
-// the gateways as lines of words, and the foundation's line with FAQ and LEGAL.
+// the gateways as lines of words, each with its service's own sign (style/brand/service-signs), and the foundation's
+// line with FAQ and LEGAL.
 import Icon from '../vitrum/Icon.astro';
 
 interface Props {
@@ -10,8 +11,8 @@ interface Props {
 const { pathname } = Astro.props;
 
 const GATES = [
-  { href: 'https://tabularium.juvantia.org', name: 'Tabularium', icon: 'library', desc: 'Official documentation of the Juvantia world' },
-  { href: 'https://forum.juvantia.org', name: 'Forum', icon: 'messages', desc: 'The primary hub for Juvantia world discussions' },
+  { href: 'https://tabularium.juvantia.org', name: 'Tabularium', sign: '/images/sign-tabularium.svg?v=20261026', desc: 'Official documentation of the Juvantia world' },
+  { href: 'https://forum.juvantia.org', name: 'Forum', sign: '/images/sign-forum.svg?v=20261026', desc: 'The primary hub for Juvantia world discussions' },
 ] as const;
 ---
 
@@ -31,7 +32,7 @@ const GATES = [
       <nav class="foot-gates" aria-label="Juvantia gateways">
         {GATES.map((gate) => (
           <a class="gate" href={gate.href} target="_blank" rel="noopener noreferrer">
-            <span class="gate-icon"><Icon name={gate.icon} /></span>
+            <span class="gate-icon"><img src={gate.sign} alt="" width="20" height="20" /></span>
             <span class="gate-copy"><span class="gate-name">{gate.name}<Icon name="arrow-up-right" /></span><span class="gate-desc">{gate.desc}</span></span>
           </a>
         ))}
