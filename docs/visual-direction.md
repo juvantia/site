@@ -92,7 +92,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
 - **Round 1.** The header lies on the land and comes back as a dock on the way up (option A, not a fixed bar). The land has one plain.
 - **Round 1b:**
   - Home's first screen must show `hero.png` ("это 100%"), and the big JUVANTIA stays as it was.
-  - The hero's three paragraphs use one small size; the hero media pane is 460 px.
+  - The hero's three paragraphs use one small size; the hero video pane is 600 px (1.3× format on desktop).
   - DOWNLOADS is the Deck's AUTHENTICATE key, and so is every glass key on the site.
   - JUNCTUM NETWORK and ASSET PROTECTION never stand side by side.
 - **Round 1c:**
