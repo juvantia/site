@@ -1,0 +1,41 @@
+---
+// A video pane with the plates' rim; autoplay, muted, loop, playsinline.
+interface Props {
+  src: string;
+  poster?: string;
+  width: number;
+  height: number;
+  ratio?: string;
+  caption?: string;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  src,
+  poster,
+  width,
+  height,
+  ratio = `${width} / ${height}`,
+  caption,
+  class: className = '',
+  ariaLabel = 'Juvantia video loop',
+} = Astro.props;
+---
+
+<figure class:list={['photo-pane', className]} data-pane style={`--ratio: ${ratio}`}>
+  <video
+    poster={poster}
+    width={width}
+    height={height}
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="auto"
+    aria-label={ariaLabel}
+  >
+    <source src={src} type="video/mp4" />
+  </video>
+  {caption && <figcaption class="media-caption">{caption}</figcaption>}
+</figure>

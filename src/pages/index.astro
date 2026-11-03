@@ -4,6 +4,7 @@ import SiteHeader from '../components/site/SiteHeader.astro';
 import Plate from '../components/vitrum/Plate.astro';
 import Readout from '../components/vitrum/Readout.astro';
 import PhotoPane from '../components/vitrum/PhotoPane.astro';
+import VideoPane from '../components/vitrum/VideoPane.astro';
 import ImageSwitch from '../components/vitrum/ImageSwitch.astro';
 import SectionHead from '../components/vitrum/SectionHead.astro';
 import '../styles/pages/home.css';
@@ -33,7 +34,14 @@ import '../styles/pages/home.css';
             <p>The ecosystem is powered by a market-driven economy where participants earn by performing useful work and co-owning physical assets.</p>
           </div>
         </div>
-        <PhotoPane class="hero-photo" src="/images/TP.png" alt="Juvantia Proving Ground" width={1184} height={864} eager />
+        <VideoPane
+          class="hero-photo"
+          src="/images/hero.mp4"
+          poster="/images/hero-video-poster.jpg"
+          width={854}
+          height={480}
+          ariaLabel="Juvantia Teleoperated Rover FPV stream"
+        />
         <Readout
           class="hero-readout"
           stagger

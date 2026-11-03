@@ -99,7 +99,7 @@
 }
 
 .hero-photo {
-  --ratio: 1184 / 864;
+  --ratio: 854 / 480;
   grid-area: photo;
   align-self: center;
   animation: vt-photo-in 1000ms 380ms var(--vt-ease-enter) backwards;
@@ -160,7 +160,7 @@
   }
 
   .hero-photo {
-    --ratio: 16 / 10;
+    --ratio: 854 / 480;
   }
 
   /* Four readings on a hairline cross, as Citizen's sensor cluster. */

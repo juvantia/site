@@ -76,7 +76,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
 
 | Page | First screen | What follows |
 | --- | --- | --- |
-| Home | Night scene, JUVANTIA, three paragraphs, TP.png, the readout 8 HECTARES · 24/7 · 12V GRID · BIOMETRIC | PROVING GROUND FACILITY: six plates, one per row; Junctum without figures |
+| Home | Night scene, JUVANTIA, three paragraphs, hero.mp4 video loop, the readout 8 HECTARES · 24/7 · 12V GRID · BIOMETRIC | PROVING GROUND FACILITY: six plates, one per row; Junctum without figures |
 | Robulus | Title, the sentence, the rover's photo | OWN YOUR ROBULUS: a plate whose tabs are EASY / MEDIUM / HARD PATH; BUY IN PARK shows chassis, body shell and hardware side by side |
 | Domus | Title, the sentence, the blueprint | WHAT IS A DOMUS? (three points); SECTOR REQUIREMENTS (photo); the installation timeline (one rail, five steps; upright below 900 px); DESIGN EXPECTATIONS (photo); ELECTRICAL CONNECTION: two plates with the connectors in recesses |
 | R&D | PROVING GROUND, the paragraph, TP.png | THE HARDWARE FOUNDATION (three points); INDUSTRY & ACADEMIA: a plate whose tabs are the two tracks, four points in a row (rows below 1000 px, never 2 × 2) |
@@ -92,7 +92,7 @@ Internal design record for the public site. It captures the goal, how Neon Vitru
 - **Round 1.** The header lies on the land and comes back as a dock on the way up (option A, not a fixed bar). The land has one plain.
 - **Round 1b:**
   - Home's first screen must show `hero.png` ("это 100%"), and the big JUVANTIA stays as it was.
-  - The hero's three paragraphs use one small size; TP.png is 460 px.
+  - The hero's three paragraphs use one small size; the hero media pane is 460 px.
   - DOWNLOADS is the Deck's AUTHENTICATE key, and so is every glass key on the site.
   - JUNCTUM NETWORK and ASSET PROTECTION never stand side by side.
 - **Round 1c:**
