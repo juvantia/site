@@ -51,18 +51,21 @@
   display: grid;
   flex: 1;
   grid-template-columns: minmax(0, 1fr) minmax(0, 600px);
-  grid-template-rows: 1fr auto;
+  /* The words and the video share one bottom line; the pair stays centred in the scene's free height. */
+  grid-template-rows: 1fr auto 1fr auto;
   grid-template-areas:
+    ". ."
     "copy photo"
+    ". ."
     "read read";
   column-gap: clamp(32px, 4vw, 56px);
-  row-gap: 40px;
+  row-gap: 0;
   padding-block: 8px 34px;
 }
 
 .hero-copy {
   grid-area: copy;
-  align-self: center;
+  align-self: end;
   display: flex;
   flex-direction: column;
   gap: 34px;
@@ -101,13 +104,14 @@
 .hero-photo {
   --ratio: 854 / 480;
   grid-area: photo;
-  align-self: center;
+  align-self: end;
   animation: vt-photo-in 1000ms 380ms var(--vt-ease-enter) backwards;
 }
 
 .hero-readout {
   grid-area: read;
   align-self: end;
+  margin-top: 40px;
 }
 
 
@@ -140,20 +144,34 @@
 }
 
 @media (max-width: 760px) {
-  /* The phone's first screen: the words over the photo, on the page's one left edge. */
+  /* The phone's first screen: JUVANTIA, the video, then the words beneath it, on the page's one left edge. */
   .hero {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto;
     grid-template-areas:
-      "copy"
+      "mark"
       "photo"
+      "text"
       "read";
-    row-gap: 30px;
+    row-gap: 24px;
     padding-block: 18px 24px;
   }
 
   .hero-copy {
-    gap: 24px;
+    display: contents;
+  }
+
+  .hero-wordmark {
+    grid-area: mark;
+    margin-bottom: 6px;
+  }
+
+  .hero-text {
+    grid-area: text;
+  }
+
+  .hero-readout {
+    margin-top: 6px;
   }
 
   .hero-wordmark img {
