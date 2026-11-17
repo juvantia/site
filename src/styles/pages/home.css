@@ -63,11 +63,13 @@
   padding-block: 8px 34px;
 }
 
+/* JUVANTIA on the video's top line, the words on its bottom line. */
 .hero-copy {
   grid-area: copy;
-  align-self: end;
+  align-self: stretch;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 34px;
   min-width: 0;
   container-type: inline-size;
